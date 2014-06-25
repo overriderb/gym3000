@@ -1,22 +1,23 @@
-package org.gym;
+package org.gym.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.TextView;
+import org.gym.activity.R;
 
-public class MainActivity extends Activity {
+/**
+ * TODO: Add class description
+ */
+public class MenuActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_layout);
+        setContentView(R.layout.menu_layout);
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        TextView textView = (TextView) findViewById(R.id.text_view);
-        textView.setText("Gym 3000!");
     }
 
 }

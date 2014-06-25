@@ -4,21 +4,18 @@
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
         >
-    <TextView
-            android:id="@+id/text_view"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            />
+
     <Button android:id="@+id/firstProgramButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="First programm" />
     <Button android:id="@+id/secondProgramButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Second programm" />
     <Button android:id="@+id/button"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Go to gym right now!!!" />
+
 </LinearLayout>
