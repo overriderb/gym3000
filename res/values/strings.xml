@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Gym 3000</string>
+    <string name="app_name">Gym3000</string>
+    <string name="edit_message">edit_message</string>
+    <string name="first_program">Chest/arms training</string>
+    <string name="second_program">Legs/back training</string>
+    <string name="training">Today training</string>
+
 </resources>

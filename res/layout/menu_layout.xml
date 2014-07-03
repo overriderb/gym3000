@@ -13,7 +13,7 @@
     <ImageView
             android:layout_width="fill_parent"
             android:layout_height="319dp"
-            android:id="@+id/imageView" android:background="@drawable/gym300_logo"/>
+            android:id="@+id/imageView" android:background="@drawable/gym3000_sign"/>
     <Button android:id="@+id/firstProgramButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
