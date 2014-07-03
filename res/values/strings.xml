@@ -4,6 +4,6 @@
     <string name="menuTitle">Go to GYM right now</string>
     <string name="firstProgramButton">First programm</string>
     <string name="secondProgramButton">Second programm</string>
-    <string name="edit_message">edit_message</string>
+    <string name="editMessage">edit_message</string>
     <string name="training">Today training</string>
 </resources>
