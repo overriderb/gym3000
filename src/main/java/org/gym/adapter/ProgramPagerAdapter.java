@@ -43,7 +43,7 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return PAGE_TITLE_PREFIX + position;
+        return PAGE_TITLE_PREFIX + position + 1;
     }
 
     public void setPageCount(int pageCount) {
