@@ -17,9 +17,11 @@
     <Button android:id="@+id/firstProgramButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="First programm" />
+            android:text="First programm"
+            android:onClick="startActivity"/>
     <Button android:id="@+id/secondProgramButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Second programm" />
+            android:text="Second programm"
+            android:onClick="startActivity"/>
 </LinearLayout>
