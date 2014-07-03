@@ -1,34 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent"
               android:orientation="vertical" android:baselineAligned="false"
               android:weightSum="1">
-
     <TextView
             android:id="@+id/text_view"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="@string/menuTitle"
-            style="@android:style/Widget.CompoundButton.Star" />
-
+            android:text="Go to GYM right now" style="@android:style/Widget.CompoundButton.Star"
+            />
     <ImageView
             android:layout_width="fill_parent"
             android:layout_height="319dp"
-            android:id="@+id/imageView"
-            android:background="@drawable/gym300_logo" />
-
+            android:id="@+id/imageView" 
+            android:background="@drawable/gym3000_sign"/>
     <Button android:id="@+id/firstProgramButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/firstProgramButton"
-            android:onClick="startActivity" />
-
+            android:text="First programm"
+            android:onClick="startActivity"/>
     <Button android:id="@+id/secondProgramButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/secondProgramButton"
-            android:onClick="startActivity" />
-
+            android:text="Second programm"
+            android:onClick="startActivity"/>
 </LinearLayout>

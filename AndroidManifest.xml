@@ -5,7 +5,9 @@
           android:versionName="1.0.0" >
     <uses-sdk android:minSdkVersion="16" />
 
-    <application android:label="@string/appName" android:debuggable="true">
+    <application android:label="@string/appName"
+                 android:debuggable="true"
+                android:logo="@drawable/gym3000_sign64">
         <activity
                 android:name="org.gym.activity.MenuActivity"
                 android:label="@string/appName" >
