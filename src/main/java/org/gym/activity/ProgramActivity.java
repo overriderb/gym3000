@@ -29,11 +29,11 @@ public class ProgramActivity extends FragmentActivity {
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the app.
-        //programPagerAdapter = new ProgramPagerAdapter(getSupportFragmentManager());
+        programPagerAdapter = new ProgramPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        //viewPager = (ViewPager) findViewById(R.id.programPager);
-        //viewPager.setAdapter(programPagerAdapter);
+        viewPager = (ViewPager) findViewById(R.id.programPager);
+        viewPager.setAdapter(programPagerAdapter);
     }
 
     @Override

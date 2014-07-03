@@ -4,11 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import org.gym.activity.R;
 
 import java.util.Locale;
 
@@ -18,8 +13,8 @@ import java.util.Locale;
  */
 public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
-    public ProgramPagerAdapter(FragmentManager fm) {
-        super(fm);
+    public ProgramPagerAdapter(FragmentManager fragmentManager) {
+        super(fragmentManager);
     }
 
     @Override
@@ -42,15 +37,6 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        Locale l = Locale.getDefault();
-        switch (position) {
-            case 0:
-                return "Title 1";
-            case 1:
-                return "Title 1";
-            case 2:
-                return "Title 1";
-        }
-        return null;
+        return "Training program " + position;
     }
 }
