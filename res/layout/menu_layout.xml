@@ -14,9 +14,10 @@
             style="@android:style/Widget.CompoundButton.Star" />
 
     <ImageView
-            android:layout_width="fill_parent"
+            android:layout_width="319dp"
             android:layout_height="319dp"
-            android:id="@+id/imageView" 
+            android:id="@+id/imageView"
+            android:layout_gravity="center_horizontal"
             android:background="@drawable/gym3000_sign"/>
 
     <Button android:id="@+id/firstProgramButton"
