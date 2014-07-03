@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Gym 3000</string>
+    <string name="appName">Gym 3000</string>
+    <string name="menuTitle">Go to GYM right now</string>
+    <string name="firstProgramButton">First programm</string>
+    <string name="secondProgramButton">Second programm</string>
 </resources>

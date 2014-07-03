@@ -13,8 +13,14 @@ import java.util.Locale;
  */
 public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
+    public final static String PAGE_TITLE_PREFIX = "Training program ";
+
+    private int pageCount;
+
     public ProgramPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
+        // hardcoded value
+        this.pageCount = 3;
     }
 
     @Override
@@ -32,11 +38,15 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         // Show 3 total pages.
-        return 3;
+        return pageCount;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return "Training program " + position;
+        return PAGE_TITLE_PREFIX + position;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
     }
 }
