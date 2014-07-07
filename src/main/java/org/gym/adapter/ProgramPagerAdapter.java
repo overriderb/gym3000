@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import org.gym.Workout;
+import org.gym.WorkoutFactory;
 
 import java.util.Locale;
 
@@ -20,7 +22,7 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
     public ProgramPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
         // hardcoded value
-        this.pageCount = 3;
+        this.pageCount = WorkoutFactory.getExercisesCollection().size();
     }
 
     @Override
@@ -43,7 +45,9 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return PAGE_TITLE_PREFIX + (position + 1);
+        //return PAGE_TITLE_PREFIX + (position + 1);
+        Workout workoutItem = (Workout) WorkoutFactory.getExercisesCollection().get(position);
+        return position + 1 + ". " + workoutItem.getName();
     }
 
     public void setPageCount(int pageCount) {
