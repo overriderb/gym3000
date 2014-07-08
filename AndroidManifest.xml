@@ -8,7 +8,8 @@
     <application android:label="@string/appName"
                  android:debuggable="true"
                  android:logo="@drawable/gym3000_sign_64x64"
-                 android:icon="@drawable/gym3000_sign_256x256">
+                 android:icon="@drawable/gym3000_sign_256x256"
+                 android:theme="@android:style/Theme.Holo">
         <activity
                 android:name="org.gym.activity.MenuActivity"
                 android:label="@string/appName" >
@@ -18,7 +19,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ProgramActivity"
-                android:parentActivityName=".MenuActivity"/>
+                  android:parentActivityName=".MenuActivity"/>
+        <activity android:name=".HistoryActivity"
+                  android:parentActivityName=".ProgramActivity"/>    <!--TODO bug, it should return us program activity to chosen program-->
     </application>
 
 </manifest>

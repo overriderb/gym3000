@@ -1,8 +1,13 @@
 package org.gym.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import org.gym.adapter.ProgramPagerAdapter;
 import org.gym.activity.R;
 
@@ -39,5 +44,28 @@ public class ProgramActivity extends FragmentActivity {
     @Override
     public void onStart() {
         super.onStart();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu (Menu menu){       //TODO need to discuss what options we need in options menu
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.program_layout_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_history:
+                startHistory();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    public void startHistory(){
+        Intent intent = new Intent(this, HistoryActivity.class);
+        startActivity(intent);
     }
 }
