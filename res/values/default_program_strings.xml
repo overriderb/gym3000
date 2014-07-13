@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="exerciseTitles">
-        <tem>Warm-up</tem>
+        <item>Warm-up</item>
         <item>Lateral raise</item>
         <item>Lat pulldown</item>
         <item>Cable rows</item>
@@ -21,17 +21,17 @@
         </item>
         <item>
             The lat pulldown works the major muscles in the back and also the biceps in the arms.
-            It's a good exercise to progress up to doing pull ups as it develops strength in the back and arms,
+            It\'s a good exercise to progress up to doing pull ups as it develops strength in the back and arms,
             so its ideal for beginners.
         </item>
         <item>
             Seated cable rows are a great way to work the back muscles. Varying the width of your hands
-            focuses the intensity on different areas of the back. Because it's a pulling exercise you
+            focuses the intensity on different areas of the back. Because it\'s a pulling exercise you
             are also working your biceps.
         </item>
         <item>
             Tricep pushdowns isolate the tricep muscles and are usually done at the tail end of a workout
-            to give the triceps a real pump. It's a very easy exercise to perform and is ideal for beginners
+            to give the triceps a real pump. It\'s a very easy exercise to perform and is ideal for beginners
             to weight training.
         </item>
         <item>
@@ -39,11 +39,11 @@
             and effective exercise that is great for beginners to help develop strong abdominal muscles.
         </item>
         <item>
-            Back extensions are also known as hyperextensions. It's an exercise that works the lower
+            Back extensions are also known as hyperextensions. It\'s an exercise that works the lower
             back and also the buttocks and hamstrings.
         </item>
         <item>
-            Training for pussy-man, which doesn't want to kick somebody's ass on street, only likes pedalling
+            Training for pussy-man, which doesn\'t want to kick somebody\'s ass on street, only likes pedalling
         </item>
     </string-array>
 </resources>
