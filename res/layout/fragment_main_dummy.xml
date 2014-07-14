@@ -13,25 +13,70 @@
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:layout_alignParentRight="true" android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true" android:layout_alignParentStart="true" android:text="Test"/>
+            android:layout_alignParentLeft="true" android:layout_alignParentStart="true" android:text="Workout"/>
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/workout_picture"
-            android:layout_below="@+id/workout_title" android:layout_alignParentLeft="true"
-            android:src="@drawable/gym3000_sign_128x128"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Test"
-            android:id="@+id/workout_descr"
+            android:src="@drawable/gym3000_sign_128x128"
+            android:layout_alignWithParentIfMissing="false" android:layout_below="@+id/workout_title"
+            android:layout_centerHorizontal="true"/>
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:id="@+id/scrollView1"
             android:layout_below="@+id/workout_picture"
-            android:layout_alignParentLeft="true" android:layout_alignParentRight="true"/>
-    <!-- <TextView
-             android:layout_width="fill_parent"
-             android:layout_height="fill_parent"
-             android:id="@+id/workout_descr"
-             android:layout_below="@+id/workout_title"
-             android:layout_alignParentLeft="true" android:text="Test"/>-->
+            android:layout_alignParentLeft="true">
 
+        <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/listView"/>
+    </ScrollView>
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/linearLayout"
+            android:layout_below="@+id/scrollView1"
+            android:orientation="horizontal">
+        <EditText
+                android:id="@+id/edit_message1"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:inputType="number"
+                android:ems="10"
+                android:text="Weight"
+                android:layout_height="wrap_content"/>
+        <EditText
+                android:id="@+id/edit_message2"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:inputType="number"
+                android:ems="10"
+                android:text="Times"
+                android:layout_height="wrap_content"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_insert"
+                android:text="Insert" />
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button_drop"
+                android:text="Drop" />
+    </LinearLayout>
+    <ScrollView
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:id="@+id/scrollView2"
+            android:layout_below="@+id/linearLayout" android:layout_alignParentLeft="true">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Workout description"
+                android:textSize="20dp"
+                android:id="@+id/workout_descr"
+                android:layout_alignParentLeft="true" android:layout_alignParentRight="true"/>
+    </ScrollView>
 </RelativeLayout>

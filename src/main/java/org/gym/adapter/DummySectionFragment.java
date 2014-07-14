@@ -36,4 +36,6 @@ public class DummySectionFragment extends Fragment {
         workoutDescrTextView.setText(workoutItem.getDescription());
         return rootView;
     }
+
+
 }

@@ -15,7 +15,7 @@ import java.util.Locale;
  */
 public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
-    public final static String PAGE_TITLE_PREFIX = "Training program ";
+    //public final static String PAGE_TITLE_PREFIX = "Training program ";
 
     private int pageCount;
 
