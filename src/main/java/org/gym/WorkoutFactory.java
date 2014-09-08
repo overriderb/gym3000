@@ -1,5 +1,7 @@
 package org.gym;
 
+import org.gym.activity.R;
+
 import java.util.ArrayList;
 import java.util.List;
 

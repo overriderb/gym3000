@@ -11,7 +11,8 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/menuTitle"
-            style="@android:style/Widget.CompoundButton.Star" />
+             />
+    <!--style="@android:style/Widget.CompoundButton.Star"-->
 
     <ImageView
             android:layout_width="200dp"
