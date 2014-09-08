@@ -12,7 +12,7 @@ public class Workout {
         this.description = description;
     }
 
-    public Workout(String name, String description, int picturePath) {
+    public Workout(String name, String description, String picturePath) {
         this.name = name;
         this.description = description;
         this.picturePath = picturePath;
@@ -20,7 +20,7 @@ public class Workout {
 
     private String name;
     private String description;
-    private int picturePath;
+    private String picturePath;
 
     public String getName() {
         return name;
@@ -30,7 +30,7 @@ public class Workout {
         return description;
     }
 
-    public int getPicturePath() {
+    public String getPicturePath() {
         return picturePath;
     }
 
@@ -42,7 +42,7 @@ public class Workout {
         this.description = description;
     }
 
-    public void setPicturePath(int picturePath) {
+    public void setPicturePath(String picturePath) {
         this.picturePath = picturePath;
     }
 }

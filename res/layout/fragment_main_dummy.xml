@@ -18,9 +18,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/workout_picture"
-            android:src="@drawable/gym3000_sign_128x128"
             android:layout_alignWithParentIfMissing="false" android:layout_below="@+id/workout_title"
-            android:layout_centerHorizontal="true"/>
+            android:layout_centerHorizontal="true"
+            />
     <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="50dp"
