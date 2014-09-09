@@ -20,7 +20,21 @@ public class WorkoutFactory {
                 "stretch every muscle which will be burden.", R.drawable.warm_up));
         exercisesCollection.add(new Workout("Lateral raise", "The lateral raise with dumbbells is an effective " +
                 "exercise for developing the deltoids, and is performed by extending the arm to the side of the body " +
-                "with the elbow extended.", R.drawable.lateral_raise));
+                "with the elbow extended.\n lot of text \n" +
+                " lot of text \n" +
+                " lot of text \n" +
+                " lot of text \n" +
+                " lot of text \n" +
+                " lot of text \n" +
+                " lot of text \n" +
+                " lot of text \n" +
+                " lot of text \n" +
+                " lot of text \n" +
+                " lot of text \n" +
+                " lot of text \n" +
+                " lot of text \n" +
+                " lot of text \n" +
+                " lot of text", R.drawable.lateral_raise));
         exercisesCollection.add(new Workout("Lat pulldown", "The lat pulldown works the major muscles in the back and " +
                 "also the biceps in the arms. It's a good exercise to progress up to doing pull ups as it develops " +
                 "strength in the back and arms, so its ideal for beginners.", R.drawable.lat_pulldown));

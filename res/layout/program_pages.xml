@@ -6,7 +6,7 @@
                 android:layout_height="match_parent"
                 tools:context=".ProgramSectionFragment" >
 
-    <TextView
+   <!-- <TextView
             android:id="@+id/workout_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -25,22 +25,56 @@
             android:src="@drawable/crunch"
             android:layout_alignWithParentIfMissing="false"
             android:layout_centerHorizontal="true"/>
-    <ScrollView
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:id="@+id/scrollView2"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@+id/workout_picture">
+
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="Workout description"
                 android:textSize="20dp"
                 android:id="@+id/workout_descr"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentRight="true"/>
-    </ScrollView>
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/workout_picture"/>-->
 
+   <ScrollView android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+           android:id="@+id/bigscroll">
+       <LinearLayout android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:orientation="vertical"
+               android:id="@+id/bigLinear">
+
+
+           <AbsoluteLayout android:layout_width="match_parent" android:layout_height="250dp">
+               <ImageView
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       android:id="@+id/workout_picture"
+                       android:src="@drawable/crunch"
+                       android:layout_y="-20dp"/>
+               <TextView
+                       android:id="@+id/workout_title"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:textAppearance="?android:attr/textAppearanceLarge"
+                       android:text="Workout"
+                       android:layout_gravity="center_horizontal" android:layout_x="117dp" android:layout_y="175dp"/>
+
+           </AbsoluteLayout>
+
+           <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="Workout description"
+                   android:textSize="20dp"
+                   android:id="@+id/workout_descr"
+                   android:layout_alignParentLeft="true"
+                   android:layout_alignParentRight="true"
+                   android:layout_below="@+id/workout_picture"/>-->
+
+       </LinearLayout>
+
+   </ScrollView>
 
 
 </RelativeLayout>
