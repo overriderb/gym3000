@@ -7,15 +7,12 @@ import android.support.v4.app.FragmentPagerAdapter;
 import org.gym.Workout;
 import org.gym.WorkoutFactory;
 
-import java.util.Locale;
-
 /**
  * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
 public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
-    //public final static String PAGE_TITLE_PREFIX = "Training program ";
 
     private int pageCount;
 
@@ -30,9 +27,9 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
         // getItem is called to instantiate the fragment for the given page.
         // Return a DummySectionFragment (defined as a static inner class
         // below) with the page number as its lone argument.
-        Fragment fragment = new DummySectionFragment();
+        Fragment fragment = new ProgramSectionFragment();
         Bundle args = new Bundle();
-        args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, position + 1);
+        args.putInt(ProgramSectionFragment.ARG_SECTION_NUMBER, position + 1);
         fragment.setArguments(args);
         return fragment;
     }

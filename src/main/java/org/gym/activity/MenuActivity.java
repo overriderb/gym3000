@@ -25,16 +25,18 @@ public class MenuActivity extends Activity {
         super.onStart();
     }
 
-    public void startActivity(View view){
-        Intent intent = new Intent(this, ProgramActivity.class);
-        startActivity(intent);
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu){       //TODO need to discuss what options we need in options menu
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_layout_actions, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public void startActivity(View view){
+        Intent intent = new Intent(this, ProgramActivity.class);
+        startActivity(intent);
     }
 
     /*@Override                                                //TODO Use it if need

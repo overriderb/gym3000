@@ -63,7 +63,6 @@ public class ProgramActivity extends FragmentActivity {
         }
     }
 
-
     public void startHistory(){
         Intent intent = new Intent(this, HistoryActivity.class);
         startActivity(intent);
