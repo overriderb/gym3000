@@ -9,7 +9,7 @@
 
     <ScrollView android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:id="@+id/bigscroll">
+                android:id="@+id/bigScroll">
         <LinearLayout android:layout_width="match_parent"
                       android:layout_height="wrap_content"
                       android:orientation="vertical"
@@ -25,6 +25,19 @@
                         android:layout_height="match_parent"
                         android:id="@+id/workout_picture"
                         android:src="@drawable/crunch"
+                        android:scaleType="centerCrop"/>
+                <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="5dp"
+                        android:layout_gravity="center_horizontal|top"
+                        android:src="@drawable/black_gradient_5per"
+                        android:scaleType="centerCrop"/>
+                <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:src="@drawable/black_gradient_50per"
+                        android:rotation="180"
                         android:scaleType="centerCrop"/>
                 <TextView
                         android:id="@+id/workout_title"
@@ -43,8 +56,7 @@
                     android:id="@+id/workout_descr"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
-                    android:layout_below="@+id/workout_picture"/>-->
-
+                    android:layout_below="@+id/absolute_layout"/>
         </LinearLayout>
 
     </ScrollView>
