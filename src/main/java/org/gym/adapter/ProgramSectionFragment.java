@@ -1,12 +1,14 @@
 package org.gym.adapter;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.gym.Workout;
 import org.gym.WorkoutFactory;
@@ -27,6 +29,7 @@ public class ProgramSectionFragment extends Fragment {
     TextView workoutNameTextView;
     TextView workoutDescrTextView;
     ImageView imageView;
+    FrameLayout frameLayout;
 
     public ProgramSectionFragment() {
     }
@@ -39,11 +42,14 @@ public class ProgramSectionFragment extends Fragment {
         workoutNameTextView = (TextView) rootView.findViewById(R.id.workout_title);
         workoutDescrTextView = (TextView) rootView.findViewById(R.id.workout_descr);
         imageView = (ImageView) rootView.findViewById(R.id.workout_picture);
+        frameLayout = (FrameLayout)rootView.findViewById(R.id.absolute_layout);
 
         workoutNameTextView.setText(workoutItem.getName());
         workoutDescrTextView.setText(workoutItem.getDescription());
         imageView.setImageResource(workoutItem.getPictureId());
 
+        //ViewGroup.LayoutParams layoutParams = frameLayout.getLayoutParams();
+        //layoutParams.height = 100;
 
         return rootView;
     }
