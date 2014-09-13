@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.view.*;
-import android.widget.FrameLayout;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import org.gym.adapter.ProgramPagerAdapter;
 import org.gym.activity.R;
 
-import java.util.zip.Inflater;
 
 /**
  * TODO: Add class description
