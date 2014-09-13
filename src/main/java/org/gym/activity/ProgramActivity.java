@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
+import android.widget.FrameLayout;
 import org.gym.adapter.ProgramPagerAdapter;
 import org.gym.activity.R;
+
+import java.util.zip.Inflater;
 
 /**
  * TODO: Add class description
@@ -21,6 +21,8 @@ public class ProgramActivity extends FragmentActivity {
      * fragments for each of the sections.
      */
     ProgramPagerAdapter programPagerAdapter;
+    //View programPagerAdapterRootView;
+
 
     /**
      * The {@link android.support.v4.view.ViewPager} that will host the section contents.
@@ -39,6 +41,7 @@ public class ProgramActivity extends FragmentActivity {
         // Set up the ViewPager with the sections adapter.
         viewPager = (ViewPager) findViewById(R.id.programPager);
         viewPager.setAdapter(programPagerAdapter);
+
     }
 
     @Override
@@ -67,4 +70,19 @@ public class ProgramActivity extends FragmentActivity {
         Intent intent = new Intent(this, HistoryActivity.class);
         startActivity(intent);
     }
+
+    public void closePictureAndDescription(View view){
+        System.out.print(view.getId());
+
+        //programPagerAdapterRootView = programPagerAdapter.getCurrentFragment().getView();
+
+
+         //View rootView = inflater.inflate(R.layout.program_pages, container, false);
+
+
+        /*FrameLayout frameLayout = (FrameLayout)programPagerAdapterRootView.findViewById(R.id.absolute_layout);
+        ViewGroup.LayoutParams layoutParams = frameLayout.getLayoutParams();
+        layoutParams.height = 50;*/
+    }
+
 }

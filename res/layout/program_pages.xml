@@ -46,7 +46,9 @@
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Workout"
                         android:layout_gravity="center_horizontal|bottom"
-                        android:gravity="center_horizontal"/>
+                        android:gravity="center_horizontal"
+                        android:onClick="closePictureAndDescription"
+                        android:clickable="true"/>
             </FrameLayout>
 
             <TextView

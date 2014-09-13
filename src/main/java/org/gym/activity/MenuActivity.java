@@ -3,10 +3,8 @@ package org.gym.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.view.*;
+import android.widget.FrameLayout;
 import org.gym.activity.R;
 
 /**
@@ -38,6 +36,7 @@ public class MenuActivity extends Activity {
         Intent intent = new Intent(this, ProgramActivity.class);
         startActivity(intent);
     }
+
 
     /*@Override                                                //TODO Use it if need
     public boolean onOptionsItemSelected (MenuItem item) {

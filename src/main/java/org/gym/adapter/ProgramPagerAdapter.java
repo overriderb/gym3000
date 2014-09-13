@@ -14,7 +14,9 @@ import org.gym.WorkoutFactory;
 public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
 
+    //private Fragment currentFragment = new ProgramSectionFragment();
     private int pageCount;
+
 
     public ProgramPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
@@ -27,11 +29,12 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
         // getItem is called to instantiate the fragment for the given page.
         // Return a DummySectionFragment (defined as a static inner class
         // below) with the page number as its lone argument.
-        Fragment fragment = new ProgramSectionFragment();
+
+        Fragment currentFragment = new ProgramSectionFragment();
         Bundle args = new Bundle();
         args.putInt(ProgramSectionFragment.ARG_SECTION_NUMBER, position + 1);
-        fragment.setArguments(args);
-        return fragment;
+        currentFragment.setArguments(args);
+        return currentFragment;
     }
 
     @Override
@@ -50,4 +53,8 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
     public void setPageCount(int pageCount) {
         this.pageCount = pageCount;
     }
+
+    /*public Fragment getCurrentFragment(){
+        return currentFragment;
+    }*/
 }

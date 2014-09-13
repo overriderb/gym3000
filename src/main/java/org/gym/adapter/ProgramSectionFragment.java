@@ -1,5 +1,6 @@
 package org.gym.adapter;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Layout;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.gym.Workout;
 import org.gym.WorkoutFactory;
+import org.gym.activity.ProgramActivity;
 import org.gym.activity.R;
 
 /**
@@ -53,10 +55,5 @@ public class ProgramSectionFragment extends Fragment {
 
         return rootView;
     }
-
-    public void closePicture(){
-        imageView.setMaxHeight(50);
-    }
-
 
 }
