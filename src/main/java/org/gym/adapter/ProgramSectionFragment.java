@@ -50,10 +50,14 @@ public class ProgramSectionFragment extends Fragment {
         workoutDescrTextView.setText(workoutItem.getDescription());
         imageView.setImageResource(workoutItem.getPictureId());
 
+        return rootView;
+    }
+
+
+        //Create method for change size of frameLayout
+
         //ViewGroup.LayoutParams layoutParams = frameLayout.getLayoutParams();
         //layoutParams.height = 100;
 
-        return rootView;
-    }
 
 }

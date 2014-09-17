@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import org.gym.adapter.ProgramPagerAdapter;
 import org.gym.activity.R;
+import org.gym.adapter.ProgramSectionFragment;
 
 
 /**
@@ -51,7 +52,7 @@ public class ProgramActivity extends FragmentActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu (Menu menu){       //TODO need to discuss what options we need in options menu
+    public boolean onCreateOptionsMenu (Menu menu){       //TODO need to discuss what options do we need in options menu
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.program_layout_actions, menu);
         return super.onCreateOptionsMenu(menu);
@@ -74,6 +75,7 @@ public class ProgramActivity extends FragmentActivity {
 
     public void closePictureAndDescription(View view){
         System.out.print(view.getId());
+        //ProgramSectionFragment.closeFrameLayout();
 
         //programPagerAdapterRootView = programPagerAdapter.getCurrentFragment().getView();
 
