@@ -23,7 +23,6 @@ public class ProgramActivity extends FragmentActivity {
      * fragments for each of the sections.
      */
     ProgramPagerAdapter programPagerAdapter;
-    //View programPagerAdapterRootView;
 
 
     /**
@@ -72,20 +71,4 @@ public class ProgramActivity extends FragmentActivity {
         Intent intent = new Intent(this, HistoryActivity.class);
         startActivity(intent);
     }
-
-    public void closePictureAndDescription(View view){
-        System.out.print(view.getId());
-        //ProgramSectionFragment.closeFrameLayout();
-
-        //programPagerAdapterRootView = programPagerAdapter.getCurrentFragment().getView();
-
-
-         //View rootView = inflater.inflate(R.layout.program_pages, container, false);
-
-
-        /*FrameLayout frameLayout = (FrameLayout)programPagerAdapterRootView.findViewById(R.id.absolute_layout);
-        ViewGroup.LayoutParams layoutParams = frameLayout.getLayoutParams();
-        layoutParams.height = 50;*/
-    }
-
 }

@@ -11,12 +11,12 @@ import org.gym.WorkoutFactory;
  * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to
  * one of the sections/tabs/pages.
  */
-public class ProgramPagerAdapter extends FragmentPagerAdapter {
+public class HistoryPagerAdapter extends FragmentPagerAdapter {
 
     private int pageCount;
 
 
-    public ProgramPagerAdapter(FragmentManager fragmentManager) {
+    public HistoryPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
         this.pageCount = WorkoutFactory.getExercisesCollection().size();
     }
@@ -27,9 +27,9 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
         // Return a DummySectionFragment (defined as a static inner class
         // below) with the page number as its lone argument.
 
-        Fragment currentFragment = new ProgramSectionFragment();
+        Fragment currentFragment = new HistorySectionFragment();
         Bundle args = new Bundle();
-        args.putInt(ProgramSectionFragment.ARG_SECTION_NUMBER, position);
+        args.putInt(HistorySectionFragment.ARG_SECTION_NUMBER, position);
         currentFragment.setArguments(args);
         return currentFragment;
     }
