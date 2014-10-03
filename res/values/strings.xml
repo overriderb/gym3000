@@ -12,4 +12,5 @@
     <string name="menu_layout_add_program">Change program</string>
     <string name="menu_layout_add_workout">Change workout</string>
     <string name="program_layout_history">History</string>
+    <string name="history_layout_workout">Workout</string>
 </resources>
