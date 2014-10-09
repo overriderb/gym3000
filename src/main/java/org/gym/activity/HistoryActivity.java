@@ -16,6 +16,7 @@ public class HistoryActivity extends FragmentActivity {
 
     HistoryPagerAdapter historyPagerAdapter;
     ViewPager viewPager;
+    public final static String CURRENT_ITEM = "org.gym.activity.HistoryActivity.CURRENT_ITEM";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,8 @@ public class HistoryActivity extends FragmentActivity {
         historyPagerAdapter = new HistoryPagerAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.historyPager);
         viewPager.setAdapter(historyPagerAdapter);
+        Intent intent = getIntent();
+        viewPager.setCurrentItem(intent.getIntExtra(ProgramActivity.CURRENT_ITEM, 0));
     }
 
     @Override
@@ -51,6 +54,7 @@ public class HistoryActivity extends FragmentActivity {
 
     public void startProgram(){
         Intent intent = new Intent(this, ProgramActivity.class);
+        intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
         startActivity(intent);
     }
 

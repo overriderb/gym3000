@@ -7,10 +7,8 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import org.gym.adapter.ProgramPagerAdapter;
-import org.gym.activity.R;
-import org.gym.adapter.ProgramSectionFragment;
+
 
 
 /**
@@ -18,31 +16,21 @@ import org.gym.adapter.ProgramSectionFragment;
  */
 public class ProgramActivity extends FragmentActivity {
 
-    /**
-     * The {@link android.support.v4.view.PagerAdapter} that will provide
-     * fragments for each of the sections.
-     */
     ProgramPagerAdapter programPagerAdapter;
-
-
-    /**
-     * The {@link android.support.v4.view.ViewPager} that will host the section contents.
-     */
     ViewPager viewPager;
+    public final static String CURRENT_ITEM = "org.gym.activity.ProgramActivity.CURRENT_ITEM";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.program_layout);
 
-        // Create the adapter that will return a fragment for each of the three
-        // primary sections of the app.
         programPagerAdapter = new ProgramPagerAdapter(getSupportFragmentManager());
 
-        // Set up the ViewPager with the sections adapter.
         viewPager = (ViewPager) findViewById(R.id.programPager);
         viewPager.setAdapter(programPagerAdapter);
-
+        Intent intent = getIntent();
+        viewPager.setCurrentItem(intent.getIntExtra(HistoryActivity.CURRENT_ITEM, 0));
     }
 
     @Override
@@ -69,6 +57,7 @@ public class ProgramActivity extends FragmentActivity {
 
     public void startHistory(){
         Intent intent = new Intent(this, HistoryActivity.class);
+        intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
         startActivity(intent);
     }
 }

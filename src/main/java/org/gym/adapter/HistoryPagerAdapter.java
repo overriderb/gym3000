@@ -23,10 +23,6 @@ public class HistoryPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a DummySectionFragment (defined as a static inner class
-        // below) with the page number as its lone argument.
-
         Fragment currentFragment = new HistorySectionFragment();
         Bundle args = new Bundle();
         args.putInt(HistorySectionFragment.ARG_SECTION_NUMBER, position);
@@ -48,5 +44,6 @@ public class HistoryPagerAdapter extends FragmentPagerAdapter {
     public void setPageCount(int pageCount) {
         this.pageCount = pageCount;
     }
+
 
 }

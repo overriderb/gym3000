@@ -16,19 +16,18 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
     private int pageCount;
 
 
+
     public ProgramPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
         this.pageCount = WorkoutFactory.getExercisesCollection().size();
+
     }
 
     @Override
     public Fragment getItem(int position) {
-        // getItem is called to instantiate the fragment for the given page.
-        // Return a DummySectionFragment (defined as a static inner class
-        // below) with the page number as its lone argument.
-
         Fragment currentFragment = new ProgramSectionFragment();
         Bundle args = new Bundle();
+
         args.putInt(ProgramSectionFragment.ARG_SECTION_NUMBER, position);
         currentFragment.setArguments(args);
         return currentFragment;

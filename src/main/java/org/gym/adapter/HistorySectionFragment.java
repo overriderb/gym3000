@@ -5,8 +5,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import org.gym.Workout;
 import org.gym.WorkoutFactory;
@@ -21,7 +19,7 @@ public class HistorySectionFragment extends Fragment {
      * The fragment argument representing the section number for this
      * fragment.
      */
-    public static final String ARG_SECTION_NUMBER = "section_number";
+    public static final String ARG_SECTION_NUMBER = "org.gym.adapter.HistorySectionFragment.ARG_SECTION_NUMBER";
     Workout workoutItem;
     View rootView;
     TextView workoutNameTextView;
