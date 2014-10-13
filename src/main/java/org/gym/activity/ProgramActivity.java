@@ -31,6 +31,7 @@ public class ProgramActivity extends FragmentActivity {
         viewPager.setAdapter(programPagerAdapter);
         Intent intent = getIntent();
         viewPager.setCurrentItem(intent.getIntExtra(HistoryActivity.CURRENT_ITEM, 0));
+        overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
     }
 
     @Override

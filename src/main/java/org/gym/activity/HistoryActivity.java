@@ -27,6 +27,7 @@ public class HistoryActivity extends FragmentActivity {
         viewPager.setAdapter(historyPagerAdapter);
         Intent intent = getIntent();
         viewPager.setCurrentItem(intent.getIntExtra(ProgramActivity.CURRENT_ITEM, 0));
+        overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
     }
 
     @Override
