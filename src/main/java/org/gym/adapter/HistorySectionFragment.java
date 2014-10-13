@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 import org.gym.Workout;
 import org.gym.WorkoutFactory;
@@ -23,6 +24,8 @@ public class HistorySectionFragment extends Fragment {
     Workout workoutItem;
     View rootView;
     TextView workoutNameTextView;
+    //ListView workoutHistoryView;
+
 
 
     public HistorySectionFragment() {
@@ -32,8 +35,12 @@ public class HistorySectionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         workoutItem = (Workout) WorkoutFactory.getExercisesCollection().get(getArguments().getInt(ARG_SECTION_NUMBER));
         rootView = inflater.inflate(R.layout.history_pages, container, false);
-        workoutNameTextView = (TextView) rootView.findViewById(R.id.workout_title);
+        workoutNameTextView = (TextView) rootView.findViewById(R.id.history_workout_title);
         workoutNameTextView.setText(workoutItem.getName());
+        //workoutHistoryView = (ListView) rootView.findViewById(R.id.history_workout_list_view);
+        //workoutHistoryView.
+
+
         return rootView;
     }
 }
