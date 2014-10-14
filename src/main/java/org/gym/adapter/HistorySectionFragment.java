@@ -43,6 +43,9 @@ public class HistorySectionFragment extends Fragment {
         listOfWorkoutResult.add("12.10.14");
         listOfWorkoutResult.add("14.10.14");
         listOfWorkoutResult.add("16.10.14");
+        listOfWorkoutResult.add("18.10.14");
+        listOfWorkoutResult.add("20.10.14");
+        listOfWorkoutResult.add("22.10.14");
 
 
         ArrayAdapter<String> historyWorkoutAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.history_list_item_layout, R.id.history_workoutItem_date, listOfWorkoutResult);
