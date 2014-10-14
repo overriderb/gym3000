@@ -39,13 +39,13 @@ public class HistorySectionFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        listOfWorkoutResult.add("result1");
-        listOfWorkoutResult.add("result2");
-        listOfWorkoutResult.add("result3");
-        listOfWorkoutResult.add("result4");
+        listOfWorkoutResult.add("10.10.14");
+        listOfWorkoutResult.add("12.10.14");
+        listOfWorkoutResult.add("14.10.14");
+        listOfWorkoutResult.add("16.10.14");
 
 
-        ArrayAdapter<String> historyWorkoutAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.history_list_item_layout, R.id.history_workoutItem_text, listOfWorkoutResult);
+        ArrayAdapter<String> historyWorkoutAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.history_list_item_layout, R.id.history_workoutItem_date, listOfWorkoutResult);
 
         workoutItem = (Workout) WorkoutFactory.getExercisesCollection().get(getArguments().getInt(ARG_SECTION_NUMBER));
         rootView = inflater.inflate(R.layout.history_pages, container, false);
