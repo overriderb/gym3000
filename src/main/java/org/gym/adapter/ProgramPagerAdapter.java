@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import org.gym.Workout;
+import org.gym.object.Workout;
 import org.gym.WorkoutFactory;
 
 /**
@@ -19,7 +19,7 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
     public ProgramPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
-        this.pageCount = WorkoutFactory.getExercisesCollection().size();
+        this.pageCount = WorkoutFactory.getTestExercisesCollection().size();
 
     }
 
@@ -40,7 +40,7 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        Workout workoutItem = (Workout) WorkoutFactory.getExercisesCollection().get(position);
+        Workout workoutItem = (Workout) WorkoutFactory.getTestExercisesCollection().get(position);
         return position + 1 + ". " + workoutItem.getName();
     }
 

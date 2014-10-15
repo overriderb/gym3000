@@ -1,8 +1,14 @@
-package org.gym;
+package org.gym.object;
+
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 /**
  * Created by anni0913 on 07.07.2014.
  */
+
+@DatabaseTable(tableName = "workouts")
 public class Workout {
 
     public Workout(){ }
@@ -18,8 +24,16 @@ public class Workout {
         this.pictureId = picturePath;
     }
 
+    @DatabaseField(generatedId = true)
+    private int id;
+
+    @DatabaseField(canBeNull = false, dataType = DataType.STRING)
     private String name;
+
+    @DatabaseField(dataType = DataType.STRING)
     private String description;
+
+    @DatabaseField
     private int pictureId;
 
     public String getName() {

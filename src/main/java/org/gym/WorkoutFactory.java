@@ -1,7 +1,10 @@
 package org.gym;
 
 import org.gym.activity.R;
+import org.gym.dao.HelperFactory;
+import org.gym.object.Workout;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +13,7 @@ import java.util.List;
  */
 public class WorkoutFactory {
 
-    public static List getExercisesCollection(){
+    public static List getTestExercisesCollection(){
 
         //Workout copipasted from: http://www.workoutbox.com/workouts/muscle-building-workouts/team-player/2-day-split-muscle-building-workout/
 
@@ -53,5 +56,10 @@ public class WorkoutFactory {
                 "somebody's ass on street, only likes pedalling", R.drawable.cardio_trainings));
 
         return exercisesCollection;
+    }
+
+    public void setWorkoutListToDb() throws SQLException{
+        /*HelperFactory.getHelper().getWorkoutDAO().createSome(new Workout("Warm-up", "Some warm-up exercises. It is important to warming-up and " +
+                "stretch every muscle which will be burden.", R.drawable.warm_up));*/
     }
 }
