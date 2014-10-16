@@ -18,7 +18,7 @@ public class HistoryPagerAdapter extends FragmentPagerAdapter {
 
     public HistoryPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
-        this.pageCount = WorkoutFactory.getTestExercisesCollection().size();
+        this.pageCount = WorkoutFactory.getWorkoutsFromDb().size();
     }
 
     @Override
@@ -37,7 +37,7 @@ public class HistoryPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        Workout workoutItem = (Workout) WorkoutFactory.getTestExercisesCollection().get(position);
+        Workout workoutItem = WorkoutFactory.getWorkoutsFromDb().get(position);
         return position + 1 + ". " + workoutItem.getName();
     }
 

@@ -50,7 +50,7 @@ public class HistorySectionFragment extends Fragment {
 
         ArrayAdapter<String> historyWorkoutAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.history_list_item_layout, R.id.history_workoutItem_date, listOfWorkoutResult);
 
-        workoutItem = (Workout) WorkoutFactory.getTestExercisesCollection().get(getArguments().getInt(ARG_SECTION_NUMBER));
+        workoutItem = WorkoutFactory.getWorkoutsFromDb().get(getArguments().getInt(ARG_SECTION_NUMBER));
         rootView = inflater.inflate(R.layout.history_pages, container, false);
         workoutNameTextView = (TextView) rootView.findViewById(R.id.history_workout_title);
         workoutNameTextView.setText(workoutItem.getName());
