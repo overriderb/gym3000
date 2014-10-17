@@ -4,6 +4,8 @@ import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.List;
+
 /**
  * Created by anni0913 on 07.07.2014.
  */
@@ -35,6 +37,16 @@ public class Workout {
 
     @DatabaseField
     private int pictureId;
+
+    public List<Set> getListOfSets() {
+        return listOfSets;
+    }
+
+    public void setListOfSets(List<Set> listOfSets) {
+        this.listOfSets = listOfSets;
+    }
+
+    private List<Set> listOfSets;
 
     public String getName() {
         return name;

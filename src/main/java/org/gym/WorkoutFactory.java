@@ -82,10 +82,15 @@ public class WorkoutFactory {
         List <Workout> exercisesCollection = new LinkedList<Workout>();
         try {
             //setWorkoutListToDb();
+            //HelperFactory.getHelper().getWorkoutDAO().
             exercisesCollection = HelperFactory.getHelper().getWorkoutDAO().queryForAll();
         } catch (SQLException e) {
             exercisesCollection.add(new Workout("DB exception", "DB exception", 0));
         }
         return exercisesCollection;
     }
+
+   public static void deleteAll(){
+      // HelperFactory.getHelper().getWorkoutDAO().dele
+   }
 }
