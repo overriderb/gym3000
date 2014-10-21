@@ -2,8 +2,11 @@ package org.gym.object;
 
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
+import org.gym.dao.HelperFactory;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -31,7 +34,31 @@ public class Program {
     @DatabaseField(dataType = DataType.STRING)
     private String description;
 
+    @ForeignCollectionField(eager = true)
     private List<Workout> listOfWorkouts;
+
+
+
+    public void addWorkout(Workout workout){
+        workout.setParentProgram(this);
+        try {
+            HelperFactory.getHelper().getWorkoutDAO().create(workout);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        listOfWorkouts.add(workout);
+    }
+
+    public void removeWorkout(Workout workout){
+        listOfWorkouts.remove(workout);
+        try {
+            HelperFactory.getHelper().getWorkoutDAO().delete(workout);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     public String getName() {
         return name;

@@ -29,6 +29,9 @@ public class Workout {
     @DatabaseField(generatedId = true)
     private int id;
 
+    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
+    private Program parentProgram;
+
     @DatabaseField(canBeNull = false, dataType = DataType.STRING)
     private String name;
 
@@ -38,6 +41,17 @@ public class Workout {
     @DatabaseField
     private int pictureId;
 
+    private List<Set> listOfSets;
+
+
+    public Program getParentProgram() {
+        return parentProgram;
+    }
+
+    public void setParentProgram(Program parentProgram) {
+        this.parentProgram = parentProgram;
+    }
+
     public List<Set> getListOfSets() {
         return listOfSets;
     }
@@ -45,8 +59,6 @@ public class Workout {
     public void setListOfSets(List<Set> listOfSets) {
         this.listOfSets = listOfSets;
     }
-
-    private List<Set> listOfSets;
 
     public String getName() {
         return name;

@@ -55,6 +55,10 @@ public class WorkoutFactory {
                 "somebody's ass on street, only likes pedalling", R.drawable.cardio_trainings));
     }
 
+    public static void setProgramsAndWorkouts() throws SQLException {
+
+    }
+
     public static List<Workout> getWorkoutsFromDb(){
         List <Workout> exercisesCollection = new LinkedList<Workout>();
         try {
