@@ -7,6 +7,7 @@ import com.j256.ormlite.table.DatabaseTable;
 import org.gym.dao.HelperFactory;
 
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -19,10 +20,9 @@ public class Program {
     public Program() {
     }
 
-    public Program(String name, String description, List<Workout> listOfWorkouts) {
+    public Program(String name, String description) {
         this.name = name;
         this.description = description;
-        this.listOfWorkouts = listOfWorkouts;
     }
 
     @DatabaseField(generatedId = true)
@@ -35,7 +35,7 @@ public class Program {
     private String description;
 
     @ForeignCollectionField(eager = true)
-    private List<Workout> listOfWorkouts;
+    private Collection<Workout> listOfWorkouts;
 
 
 
@@ -76,11 +76,11 @@ public class Program {
         this.description = description;
     }
 
-    public List<Workout> getListOfWorkouts() {
+    public Collection<Workout> getListOfWorkouts() {
         return listOfWorkouts;
     }
 
-    public void setListOfWorkouts(List<Workout> listOfWorkouts) {
+    public void setListOfWorkouts(Collection<Workout> listOfWorkouts) {
         this.listOfWorkouts = listOfWorkouts;
     }
 }

@@ -4,6 +4,7 @@ import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -41,7 +42,7 @@ public class Workout {
     @DatabaseField
     private int pictureId;
 
-    private List<Set> listOfSets;
+    private Collection<Set> listOfSets;
 
 
     public Program getParentProgram() {
@@ -52,11 +53,11 @@ public class Workout {
         this.parentProgram = parentProgram;
     }
 
-    public List<Set> getListOfSets() {
+    public Collection<Set> getListOfSets() {
         return listOfSets;
     }
 
-    public void setListOfSets(List<Set> listOfSets) {
+    public void setListOfSets(Collection<Set> listOfSets) {
         this.listOfSets = listOfSets;
     }
 

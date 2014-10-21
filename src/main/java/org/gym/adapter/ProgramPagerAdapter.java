@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import org.gym.Factory;
 import org.gym.object.Workout;
-import org.gym.WorkoutFactory;
 
 /**
  * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to
@@ -19,7 +19,7 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
     public ProgramPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
-        this.pageCount = WorkoutFactory.getWorkoutsFromDb().size();
+        this.pageCount = Factory.getWorkoutsFromDb().size();
 
     }
 
@@ -40,7 +40,7 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        Workout workoutItem = WorkoutFactory.getWorkoutsFromDb().get(position);
+        Workout workoutItem = Factory.getWorkoutsFromDb().get(position);
         return position + 1 + ". " + workoutItem.getName();
     }
 

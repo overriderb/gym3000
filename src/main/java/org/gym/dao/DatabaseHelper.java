@@ -7,6 +7,7 @@ import android.util.Log;
 import com.j256.ormlite.android.apptools.OrmLiteSqliteOpenHelper;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+import org.gym.Factory;
 import org.gym.object.Program;
 import org.gym.object.Workout;
 

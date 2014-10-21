@@ -15,6 +15,4 @@ public class ProgramDAO extends BaseDaoImpl<Program, Integer> {
     protected ProgramDAO(ConnectionSource connectionSource, Class<Program> dataClass) throws SQLException {
         super(connectionSource, dataClass);
     }
-
-    //make methods
 }
