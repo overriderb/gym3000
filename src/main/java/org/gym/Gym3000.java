@@ -13,6 +13,7 @@ public class Gym3000 extends Application {
         super.onCreate();
         HelperFactory.setHelper(getApplicationContext());
     }
+
     @Override
     public void onTerminate() {
         HelperFactory.releaseHelper();

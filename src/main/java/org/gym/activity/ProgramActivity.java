@@ -16,20 +16,18 @@ import org.gym.adapter.ProgramPagerAdapter;
  */
 public class ProgramActivity extends FragmentActivity {
 
+    public final static String CURRENT_ITEM = "org.gym.activity.ProgramActivity.CURRENT_ITEM";
     ProgramPagerAdapter programPagerAdapter;
     ViewPager viewPager;
-    public final static String CURRENT_ITEM = "org.gym.activity.ProgramActivity.CURRENT_ITEM";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Intent intent = getIntent();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.program_layout);
-
         programPagerAdapter = new ProgramPagerAdapter(getSupportFragmentManager());
-
         viewPager = (ViewPager) findViewById(R.id.programPager);
         viewPager.setAdapter(programPagerAdapter);
-        Intent intent = getIntent();
         viewPager.setCurrentItem(intent.getIntExtra(HistoryActivity.CURRENT_ITEM, 0));
         overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
     }
@@ -40,11 +38,12 @@ public class ProgramActivity extends FragmentActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu (Menu menu){       //TODO need to discuss what options do we need in options menu
+    public boolean onCreateOptionsMenu (Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.program_layout_actions, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
     @Override
     public boolean onOptionsItemSelected (MenuItem item) {
         switch (item.getItemId()) {

@@ -15,7 +15,6 @@ public class HistoryPagerAdapter extends FragmentPagerAdapter {
 
     private int pageCount;
 
-
     public HistoryPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
         this.pageCount = Factory.getWorkoutsFromDb().size();
@@ -44,6 +43,4 @@ public class HistoryPagerAdapter extends FragmentPagerAdapter {
     public void setPageCount(int pageCount) {
         this.pageCount = pageCount;
     }
-
-
 }

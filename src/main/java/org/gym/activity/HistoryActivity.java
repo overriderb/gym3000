@@ -14,18 +14,18 @@ import org.gym.adapter.HistoryPagerAdapter;
  */
 public class HistoryActivity extends FragmentActivity {
 
+    public final static String CURRENT_ITEM = "org.gym.activity.HistoryActivity.CURRENT_ITEM";
     HistoryPagerAdapter historyPagerAdapter;
     ViewPager viewPager;
-    public final static String CURRENT_ITEM = "org.gym.activity.HistoryActivity.CURRENT_ITEM";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Intent intent = getIntent();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history_layout);
         historyPagerAdapter = new HistoryPagerAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.historyPager);
         viewPager.setAdapter(historyPagerAdapter);
-        Intent intent = getIntent();
         viewPager.setCurrentItem(intent.getIntExtra(ProgramActivity.CURRENT_ITEM, 0));
         overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
     }
@@ -36,7 +36,7 @@ public class HistoryActivity extends FragmentActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu (Menu menu){       //TODO need to discuss what options do we need in options menu
+    public boolean onCreateOptionsMenu (Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.history_layout_actions, menu);
         return super.onCreateOptionsMenu(menu);
@@ -58,5 +58,4 @@ public class HistoryActivity extends FragmentActivity {
         intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
         startActivity(intent);
     }
-
 }

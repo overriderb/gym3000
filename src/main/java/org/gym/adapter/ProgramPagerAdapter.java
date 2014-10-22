@@ -15,8 +15,6 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
     private int pageCount;
 
-
-
     public ProgramPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
         this.pageCount = Factory.getWorkoutsFromDb().size();
@@ -47,5 +45,4 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
     public void setPageCount(int pageCount) {
         this.pageCount = pageCount;
     }
-
 }

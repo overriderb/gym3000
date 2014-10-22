@@ -47,7 +47,6 @@ public class HistorySectionFragment extends Fragment {
         listOfWorkoutResult.add("20.10.14");
         listOfWorkoutResult.add("22.10.14");
 
-
         ArrayAdapter<String> historyWorkoutAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.history_list_item_layout, R.id.history_workoutItem_date, listOfWorkoutResult);
 
         workoutItem = Factory.getWorkoutsFromDb().get(getArguments().getInt(ARG_SECTION_NUMBER));
@@ -57,7 +56,6 @@ public class HistorySectionFragment extends Fragment {
         workoutHistoryView = (ListView) rootView.findViewById(R.id.history_workout_list_view);
 
         workoutHistoryView.setAdapter(historyWorkoutAdapter);
-
 
         return rootView;
     }
