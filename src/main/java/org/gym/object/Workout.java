@@ -2,10 +2,12 @@ package org.gym.object;
 
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
+import org.gym.dao.HelperFactory;
 
+import java.sql.SQLException;
 import java.util.Collection;
-import java.util.List;
 
 /**
  * Created by anni0913 on 07.07.2014.
@@ -42,8 +44,27 @@ public class Workout {
     @DatabaseField
     private int pictureId;
 
-    private Collection<Set> listOfSets;
+    @ForeignCollectionField(eager = true)
+    private Collection<Exercise> listOfExercises;
 
+    public void addExercise(Exercise exercise){
+        exercise.setParentWorkout(this);
+        try {
+            HelperFactory.getHelper().getExerciseDAO().create(exercise);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        listOfExercises.add(exercise);
+    }
+
+    public void removeExercise(Exercise exercise){
+        listOfExercises.remove(exercise);
+        try {
+            HelperFactory.getHelper().getExerciseDAO().delete(exercise);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Program getParentProgram() {
         return parentProgram;
@@ -53,12 +74,12 @@ public class Workout {
         this.parentProgram = parentProgram;
     }
 
-    public Collection<Set> getListOfSets() {
-        return listOfSets;
+    public Collection<Exercise> getListOfExercises() {
+        return listOfExercises;
     }
 
-    public void setListOfSets(Collection<Set> listOfSets) {
-        this.listOfSets = listOfSets;
+    public void setListOfExercises(Collection<Exercise> listOfExercises) {
+        this.listOfExercises = listOfExercises;
     }
 
     public String getName() {
