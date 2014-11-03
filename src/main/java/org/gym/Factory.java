@@ -102,13 +102,14 @@ public class Factory {
     }
 
     public static List<Workout> getWorkoutsFromDb(){
-        List <Workout> exercisesCollection = new LinkedList<Workout>();
+        List <Workout> exercisesCollection = null;
         try {
             //exercisesCollection = HelperFactory.getHelper().getWorkoutDAO().queryForAll();
             List<Program> listOfPrograms = HelperFactory.getHelper().getProgramDAO().getProgramByName("Program #1");
+            //Log.d("getWorkoutsFromDb", "listOfPrograms is empty" + listOfPrograms.isEmpty())
             Program firstProgram = listOfPrograms.get(0);
-            Collection<Workout> coll = firstProgram.getListOfWorkouts();
-
+            exercisesCollection = new LinkedList<Workout>(firstProgram.getListOfWorkouts());
+            HelperFactory.getHelper().getProgramDAO().refresh(firstProgram);
         } catch (SQLException e) {
             Log.e("SQLException", e.getMessage());
         }
