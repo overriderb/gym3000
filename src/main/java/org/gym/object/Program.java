@@ -26,16 +26,18 @@ public class Program {
         this.description = description;
     }
 
+    public final static String NAME = "name";
+
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField(canBeNull = false, dataType = DataType.STRING)
+    @DatabaseField(canBeNull = false, dataType = DataType.STRING, columnName = NAME)
     private String name;
 
     @DatabaseField(dataType = DataType.STRING)
     private String description;
 
-    //@ForeignCollectionField(eager = true)
+    @ForeignCollectionField(eager = true)
     private Collection<Workout> listOfWorkouts = new LinkedList<Workout>();
 
 
@@ -78,6 +80,7 @@ public class Program {
     }
 
     public Collection<Workout> getListOfWorkouts() {
+
         return listOfWorkouts;
     }
 

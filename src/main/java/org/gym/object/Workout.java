@@ -33,7 +33,7 @@ public class Workout {
     @DatabaseField(generatedId = true)
     private int id;
 
-    //@DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
+    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private Program parentProgram;
 
     @DatabaseField(canBeNull = false, dataType = DataType.STRING)

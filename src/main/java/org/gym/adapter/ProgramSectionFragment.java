@@ -37,6 +37,7 @@ public class ProgramSectionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         workoutItem = Factory.getWorkoutsFromDb().get(getArguments().getInt(ARG_SECTION_NUMBER));
 
+
         rootView = inflater.inflate(R.layout.program_pages, container, false);
         workoutNameTextView = (TextView) rootView.findViewById(R.id.workout_title);
         workoutDescrTextView = (TextView) rootView.findViewById(R.id.workout_descr);

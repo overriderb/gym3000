@@ -17,10 +17,10 @@ public class Gym3000 extends Application {
     public void onCreate() {
         super.onCreate();
         HelperFactory.setHelper(getApplicationContext());
-        Log.d("Gym3000::onCreate", "isFirstStart(): " + isFirstStart());
-        if(isFirstStart()){
+        //Log.d("Gym3000::onCreate", "isFirstStart(): " + isFirstStart());
+        if(false){
             try {
-                Factory.setWorkoutListToDb();
+                Factory.setProgramsAndWorkouts();
             } catch (SQLException e) {
                 Log.e("SQLException onCreate app", e.getMessage());
             }
