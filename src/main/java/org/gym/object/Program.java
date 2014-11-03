@@ -8,6 +8,7 @@ import org.gym.dao.HelperFactory;
 
 import java.sql.SQLException;
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -34,8 +35,8 @@ public class Program {
     @DatabaseField(dataType = DataType.STRING)
     private String description;
 
-    @ForeignCollectionField(eager = true)
-    private Collection<Workout> listOfWorkouts;
+    //@ForeignCollectionField(eager = true)
+    private Collection<Workout> listOfWorkouts = new LinkedList<Workout>();
 
 
 

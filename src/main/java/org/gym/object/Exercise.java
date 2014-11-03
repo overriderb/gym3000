@@ -8,6 +8,7 @@ import org.gym.dao.HelperFactory;
 import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedList;
 
 /**
  * Created by anni0913 on 15.10.2014.
@@ -26,7 +27,7 @@ public class Exercise {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
+    //@DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private Workout parentWorkout;
 
     @DatabaseField(canBeNull = false, dataType = DataType.DATE)
@@ -35,8 +36,8 @@ public class Exercise {
     @DatabaseField(dataType = DataType.CHAR)
     private char typeOfExercise;
 
-    @ForeignCollectionField(eager = true)
-    private Collection<Set> listOfSets;
+    //@ForeignCollectionField(eager = true)
+    private Collection<Set> listOfSets = new LinkedList<Set>();
 
     public void addSet(Set set){
         set.setParentExercise(this);

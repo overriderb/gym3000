@@ -19,7 +19,7 @@ public class Set {
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
+    //@DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
     private Exercise parentExercise;
 
     @DatabaseField(dataType = DataType.INTEGER)

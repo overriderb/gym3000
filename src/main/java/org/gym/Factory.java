@@ -61,7 +61,7 @@ public class Factory {
 
     public static void setProgramsAndWorkouts() throws SQLException {
         Program program1 = new Program("Program #1", "Description of first program");
-        Program program2 = new Program("Program #2", "Description of second program");
+        //Program program2 = new Program("Program #2", "Description of second program");
 
         program1.addWorkout(new Workout("Warm-up", "Some warm-up exercises. It is important to warming-up and " +
                 "stretch every muscle which will be burden.", R.drawable.warm_up));
@@ -85,17 +85,17 @@ public class Factory {
         program1.addWorkout(new Workout("Lat pulldown", "The lat pulldown works the major muscles in the back and " +
                 "also the biceps in the arms. It's a good exercise to progress up to doing pull ups as it develops " +
                 "strength in the back and arms, so its ideal for beginners.", R.drawable.lat_pulldown));
-        program2.addWorkout(new Workout("Cable rows", "Seated cable rows are a great way to work the back muscles. " +
+       /* program2.addWorkout(new Workout("Cable rows", "Seated cable rows are a great way to work the back muscles. " +
                 "Varying the width of your hands focuses the intensity on different areas of the back. Because it's a " +
                 "pulling exercise you are also working your biceps.", R.drawable.cable_rows));
         program2.addWorkout(new Workout("Cable rows", "Seated cable rows are a great way to work the back muscles. " +
                 "Varying the width of your hands focuses the intensity on different areas of the back. Because it's a " +
                 "pulling exercise you are also working your biceps.", R.drawable.cable_rows));
         program2.addWorkout(new Workout("Cardio trainings", "Training for pussy-man, which doesn't want to kick " +
-                "somebody's ass on street, only likes pedalling", R.drawable.cardio_trainings));
+                "somebody's ass on street, only likes pedalling", R.drawable.cardio_trainings));*/
 
         HelperFactory.getHelper().getProgramDAO().create(program1);
-        HelperFactory.getHelper().getProgramDAO().create(program2);
+        //HelperFactory.getHelper().getProgramDAO().create(program2);
     }
 
     public static List<Workout> getWorkoutsFromDb(){
@@ -103,7 +103,7 @@ public class Factory {
         try {
             exercisesCollection = HelperFactory.getHelper().getWorkoutDAO().queryForAll();
         } catch (SQLException e) {
-            Log.w("SQLException", e.getMessage());
+            Log.e("SQLException", e.getMessage());
         }
         return exercisesCollection;
     }
