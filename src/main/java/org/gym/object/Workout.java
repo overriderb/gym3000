@@ -30,10 +30,20 @@ public class Workout {
         this.pictureId = picturePath;
     }
 
+    public Workout(Program parentProgram, String name, String description, int pictureId) {
+        this.parentProgram = parentProgram;
+        this.name = name;
+        this.description = description;
+        this.pictureId = pictureId;
+    }
+
+    public static final String PARENT_PROGRAM_ID = "parentProgram_id";
+
+
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
+    @DatabaseField(foreign = true, foreignAutoRefresh = true, columnName = PARENT_PROGRAM_ID)
     private Program parentProgram;
 
     @DatabaseField(canBeNull = false, dataType = DataType.STRING)
@@ -65,6 +75,14 @@ public class Workout {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Program getParentProgram() {

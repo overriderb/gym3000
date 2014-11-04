@@ -21,12 +21,18 @@ public class ProgramDAO extends BaseDaoImpl<Program, Integer> {
     }
 
     public List<Program> getProgramByName(String name) throws SQLException {
-
         QueryBuilder<Program, Integer> queryBuilder = queryBuilder();
         queryBuilder.where().eq(Program.NAME, name);
         PreparedQuery<Program> preparedQuery = queryBuilder.prepare();
         List<Program> listOfPrograms = query(preparedQuery);
         return listOfPrograms;
+    }
 
+    public List<Program> getProgramById(int id) throws SQLException {
+        QueryBuilder<Program, Integer> queryBuilder = queryBuilder();
+        queryBuilder.where().eq("id", id);
+        PreparedQuery<Program> preparedQuery = queryBuilder.prepare();
+        List<Program> listOfPrograms = query(preparedQuery);
+        return listOfPrograms;
     }
 }

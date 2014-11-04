@@ -27,8 +27,11 @@ public class Program {
     }
 
     public final static String NAME = "name";
+    public final static String ID = "id";
 
-    @DatabaseField(generatedId = true)
+
+
+    @DatabaseField(generatedId = true, columnName = ID)
     private int id;
 
     @DatabaseField(canBeNull = false, dataType = DataType.STRING, columnName = NAME)
@@ -37,7 +40,7 @@ public class Program {
     @DatabaseField(dataType = DataType.STRING)
     private String description;
 
-    @ForeignCollectionField(eager = true)
+    @ForeignCollectionField(eager = false)
     private Collection<Workout> listOfWorkouts = new LinkedList<Workout>();
 
 
@@ -62,6 +65,14 @@ public class Program {
 
     }
 
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;

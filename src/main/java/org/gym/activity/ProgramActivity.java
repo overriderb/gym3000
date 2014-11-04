@@ -7,8 +7,11 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import org.gym.Factory;
 import org.gym.adapter.ProgramPagerAdapter;
+import org.gym.object.Workout;
 
+import java.util.List;
 
 
 /**
@@ -19,12 +22,15 @@ public class ProgramActivity extends FragmentActivity {
     public final static String CURRENT_ITEM = "org.gym.activity.ProgramActivity.CURRENT_ITEM";
     ProgramPagerAdapter programPagerAdapter;
     ViewPager viewPager;
+    //List<Workout> listOfWorkouts;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         Intent intent = getIntent();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.program_layout);
+        //listOfWorkouts = Factory.getWorkoutsByProgramId(intent.getIntExtra(MenuActivity.SELECTED_PROGRAM, 0));
+        //programPagerAdapter = new ProgramPagerAdapter(getSupportFragmentManager(), listOfWorkouts);
         programPagerAdapter = new ProgramPagerAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.programPager);
         viewPager.setAdapter(programPagerAdapter);
