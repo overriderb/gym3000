@@ -13,6 +13,8 @@ import org.gym.Factory;
 import org.gym.object.Workout;
 import org.gym.activity.R;
 
+import java.util.List;
+
 /**
  * A dummy fragment representing a section of the app, but that simply
  * displays dummy text.
@@ -29,13 +31,17 @@ public class ProgramSectionFragment extends Fragment {
     TextView workoutDescrTextView;
     ImageView imageView;
     FrameLayout frameLayout;
+    private List<Workout> workoutList;
 
-    public ProgramSectionFragment() {
+
+    public ProgramSectionFragment(List<Workout> workoutList) {
+        this.workoutList = workoutList;
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        workoutItem = Factory.getWorkoutsFromDb().get(getArguments().getInt(ARG_SECTION_NUMBER));
+        workoutItem = workoutList.get(getArguments().getInt(ARG_SECTION_NUMBER));
 
 
         rootView = inflater.inflate(R.layout.program_pages, container, false);

@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class MenuActivity extends Activity {
 
-    //public final static String SELECTED_PROGRAM = "org.gym.activity.MenuActivity.SELECTED_PROGRAM";
+    public final static String SELECTED_PROGRAM_ID = "org.gym.activity.MenuActivity.SELECTED_PROGRAM_ID";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,8 +34,8 @@ public class MenuActivity extends Activity {
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    //sendProgramToActivity(view, program.getId());
-                    startActivity(view);
+                    sendProgramToActivity(view, program.getId());
+                    //startActivity(view);
                 }
             });
             linearLayout.addView(button);
@@ -61,7 +61,10 @@ public class MenuActivity extends Activity {
 
     public void sendProgramToActivity(View view, int programId){
         Intent intent = new Intent(this, ProgramActivity.class);
-        //intent.putExtra(SELECTED_PROGRAM, programId);
+        intent.putExtra(SELECTED_PROGRAM_ID, programId);
         startActivity(intent);
+        //TODO: Maybe instead of sending program ID and getting workoutsList on every changing of activity
+        //TODO: we will create some singletone of current Program and Workouts in it?
+
     }
 }

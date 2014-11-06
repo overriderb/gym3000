@@ -7,7 +7,11 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import org.gym.Factory;
 import org.gym.adapter.HistoryPagerAdapter;
+import org.gym.object.Workout;
+
+import java.util.List;
 
 /**
  * Created by anni0913 on 08.07.2014.
@@ -15,18 +19,23 @@ import org.gym.adapter.HistoryPagerAdapter;
 public class HistoryActivity extends FragmentActivity {
 
     public final static String CURRENT_ITEM = "org.gym.activity.HistoryActivity.CURRENT_ITEM";
-    HistoryPagerAdapter historyPagerAdapter;
-    ViewPager viewPager;
+    public final static String SELECTED_PROGRAM_ID = "org.gym.activity.HistoryActivity.SELECTED_PROGRAM_ID";
+
+    private HistoryPagerAdapter historyPagerAdapter;
+    private ViewPager viewPager;
+    private int currentItem;
+    private int selectedProgramId;
+    private List<Workout> listOfWorkouts;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Intent intent = getIntent();
+        fillParams();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history_layout);
-        historyPagerAdapter = new HistoryPagerAdapter(getSupportFragmentManager());
+        historyPagerAdapter = new HistoryPagerAdapter(getSupportFragmentManager(), listOfWorkouts);
         viewPager = (ViewPager) findViewById(R.id.historyPager);
         viewPager.setAdapter(historyPagerAdapter);
-        viewPager.setCurrentItem(intent.getIntExtra(ProgramActivity.CURRENT_ITEM, 0));
+        viewPager.setCurrentItem(currentItem);
         overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
     }
 
@@ -53,9 +62,17 @@ public class HistoryActivity extends FragmentActivity {
         }
     }
 
-    public void startProgram(){
+    private void startProgram(){
         Intent intent = new Intent(this, ProgramActivity.class);
         intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
+        intent.putExtra(SELECTED_PROGRAM_ID, selectedProgramId);
         startActivity(intent);
+    }
+
+    private void fillParams(){
+        Intent intent = getIntent();
+        currentItem = intent.getIntExtra(ProgramActivity.CURRENT_ITEM, 0);
+        selectedProgramId = intent.getIntExtra(ProgramActivity.SELECTED_PROGRAM_ID, 0);
+        listOfWorkouts = Factory.getWorkoutsByProgramId(selectedProgramId);
     }
 }

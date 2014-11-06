@@ -21,7 +21,7 @@ import java.sql.SQLException;
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
 
     private static final String TAG = DatabaseHelper.class.getSimpleName();
-    private static final String DATABASE_NAME ="test3.db";
+    private static final String DATABASE_NAME ="test4.db";
 
     //onUpgrade method will be called on every increase of DB version
     private static final int DATABASE_VERSION = 1;

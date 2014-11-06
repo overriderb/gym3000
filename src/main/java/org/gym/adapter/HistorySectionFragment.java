@@ -30,10 +30,12 @@ public class HistorySectionFragment extends Fragment {
     TextView workoutNameTextView;
     ListView workoutHistoryView;
     List<String> listOfWorkoutResult = new LinkedList<String>();
+    private List<Workout> workoutList;
 
 
 
-    public HistorySectionFragment() {
+    public HistorySectionFragment(List<Workout> workoutList) {
+        this.workoutList = workoutList;
     }
 
     @Override
@@ -49,7 +51,7 @@ public class HistorySectionFragment extends Fragment {
 
         ArrayAdapter<String> historyWorkoutAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.history_list_item_layout, R.id.history_workoutItem_date, listOfWorkoutResult);
 
-        workoutItem = Factory.getWorkoutsFromDb().get(getArguments().getInt(ARG_SECTION_NUMBER));
+        workoutItem = workoutList.get(getArguments().getInt(ARG_SECTION_NUMBER));
         rootView = inflater.inflate(R.layout.history_pages, container, false);
         workoutNameTextView = (TextView) rootView.findViewById(R.id.history_workout_title);
         workoutNameTextView.setText(workoutItem.getName());

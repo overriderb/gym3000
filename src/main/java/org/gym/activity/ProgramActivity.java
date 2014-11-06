@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -20,21 +21,25 @@ import java.util.List;
 public class ProgramActivity extends FragmentActivity {
 
     public final static String CURRENT_ITEM = "org.gym.activity.ProgramActivity.CURRENT_ITEM";
-    ProgramPagerAdapter programPagerAdapter;
-    ViewPager viewPager;
-    //List<Workout> listOfWorkouts;
+    public final static String SELECTED_PROGRAM_ID = "org.gym.activity.ProgramActivity.SELECTED_PROGRAM_ID";
+
+    private ProgramPagerAdapter programPagerAdapter;
+    private ViewPager viewPager;
+    private int currentItem;
+    private int selectedProgramIdFromMenu;
+    private int selectedProgramIdFromHistory;
+    private List<Workout> listOfWorkouts;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        Intent intent = getIntent();
+        fillParams();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.program_layout);
-        //listOfWorkouts = Factory.getWorkoutsByProgramId(intent.getIntExtra(MenuActivity.SELECTED_PROGRAM, 0));
-        //programPagerAdapter = new ProgramPagerAdapter(getSupportFragmentManager(), listOfWorkouts);
-        programPagerAdapter = new ProgramPagerAdapter(getSupportFragmentManager());
+        programPagerAdapter = new ProgramPagerAdapter(getSupportFragmentManager(), listOfWorkouts);
+        //programPagerAdapter = new ProgramPagerAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.programPager);
         viewPager.setAdapter(programPagerAdapter);
-        viewPager.setCurrentItem(intent.getIntExtra(HistoryActivity.CURRENT_ITEM, 0));
+        viewPager.setCurrentItem(currentItem);
         overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
     }
 
@@ -61,9 +66,23 @@ public class ProgramActivity extends FragmentActivity {
         }
     }
 
-    public void startHistory(){
+    private void startHistory(){
         Intent intent = new Intent(this, HistoryActivity.class);
         intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
+        intent.putExtra(SELECTED_PROGRAM_ID, selectedProgramIdFromMenu);
         startActivity(intent);
+    }
+
+    private void fillParams(){
+        Intent intent = getIntent();
+        currentItem = intent.getIntExtra(HistoryActivity.CURRENT_ITEM, 0);
+        selectedProgramIdFromMenu = intent.getIntExtra(MenuActivity.SELECTED_PROGRAM_ID, 0);
+        selectedProgramIdFromHistory = intent.getIntExtra(HistoryActivity.SELECTED_PROGRAM_ID, 0);
+        if(selectedProgramIdFromMenu==0){
+            listOfWorkouts = Factory.getWorkoutsByProgramId(selectedProgramIdFromHistory);
+        } else {
+            listOfWorkouts = Factory.getWorkoutsByProgramId(selectedProgramIdFromMenu);
+        }
+
     }
 }
