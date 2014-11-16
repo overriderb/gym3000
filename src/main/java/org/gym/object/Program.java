@@ -40,12 +40,12 @@ public class Program {
     @DatabaseField(dataType = DataType.STRING)
     private String description;
 
-    @ForeignCollectionField(eager = false)
-    private Collection<Workout> listOfWorkouts = new LinkedList<Workout>();
+    //@ForeignCollectionField(eager = false)
+    //private Collection<Workout> listOfWorkouts = new LinkedList<Workout>();
 
 
 
-    public void addWorkout(Workout workout){
+    /*public void addWorkout(Workout workout){
         workout.setParentProgram(this);
         try {
             HelperFactory.getHelper().getWorkoutDAO().create(workout);
@@ -62,8 +62,7 @@ public class Program {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-    }
+    }*/
 
 
     public int getId() {
@@ -90,12 +89,11 @@ public class Program {
         this.description = description;
     }
 
-    public Collection<Workout> getListOfWorkouts() {
-
+    /*public Collection<Workout> getListOfWorkouts() {
         return listOfWorkouts;
     }
 
     public void setListOfWorkouts(Collection<Workout> listOfWorkouts) {
         this.listOfWorkouts = listOfWorkouts;
-    }
+    }*/
 }

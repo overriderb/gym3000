@@ -1,9 +1,13 @@
 package org.gym;
 
+import android.content.Context;
 import com.j256.ormlite.dao.CloseableIterator;
 import com.j256.ormlite.dao.ForeignCollection;
+import org.gym.activity.ProgramActivity;
 import org.gym.activity.R;
+import org.gym.dao.DatabaseInstance;
 import org.gym.dao.HelperFactory;
+import org.gym.dao.ProgramAdapter;
 import org.gym.dao.WorkoutDAO;
 import org.gym.object.Program;
 import org.gym.object.Workout;
@@ -17,7 +21,7 @@ import java.util.*;
  */
 public class Factory {
 
-    public static void setPreparedProgramsAndWorkouts() throws SQLException {
+    /*public static void setPreparedProgramsAndWorkouts() throws SQLException {
         Program HandsChestProgram = new Program("Hands/Chest training day", "Blah-blah, hands and chest");
         HelperFactory.getHelper().getProgramDAO().create(HandsChestProgram);
 
@@ -60,8 +64,16 @@ public class Factory {
                 "an exercise that works the lower back and also the buttocks and hamstrings.", R.drawable.back_extensions));
         LegsBackProgram.addWorkout(new Workout("Cardio trainings", "Training for pussy-man, who doesn't want to kick " +
                 "somebody's ass on street, only likes pedalling", R.drawable.cardio_trainings));
-    }
+    }*/
 
+    public static void setPrograms(Context context){
+
+        List<Program> programList = new LinkedList<Program>();
+        programList.add(new Program("First program", "First description"));
+        programList.add(new Program("Second program", "Second description"));
+        programList.add(new Program("Third program", "Third description"));
+        //getProgramAdapter().setPrograms(programList);
+    }
     public static List<Program> getAllProgramsFromDb(){
         List<Program> programsCollection = null;
         try {
@@ -70,7 +82,8 @@ public class Factory {
         } catch (SQLException e) {
             Log.e("SQLException", e.getMessage());
         }
-        return programsCollection;
+        //return programsCollection;
+        return null;
     }
     public static List<Workout> getWorkoutsByProgramId (int programId){
         List<Workout> workoutsCollection = null;
@@ -79,7 +92,8 @@ public class Factory {
         } catch (SQLException e) {
             Log.e("SQLException", e.getMessage());
         }
-        return workoutsCollection;
+        //return workoutsCollection;
+        return null;
     }
       /*
             //Workout copipasted from: http://www.workoutbox.com/workouts/muscle-building-workouts/team-player/2-day-split-muscle-building-workout/

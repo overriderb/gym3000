@@ -73,7 +73,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
             programDAO = new ProgramDAO(getConnectionSource(), Program.class);
         }
         return programDAO;
-    }
+        }
 
     public WorkoutDAO getWorkoutDAO() throws SQLException{
         if(workoutDAO == null){

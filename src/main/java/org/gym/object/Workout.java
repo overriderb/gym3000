@@ -56,9 +56,9 @@ public class Workout {
     private int pictureId;
 
     //@ForeignCollectionField(eager = true)
-    private Collection<Exercise> listOfExercises = new LinkedList<Exercise>();
+    //private Collection<Exercise> listOfExercises = new LinkedList<Exercise>();
 
-    public void addExercise(Exercise exercise){
+   /* public void addExercise(Exercise exercise){
         exercise.setParentWorkout(this);
         try {
             HelperFactory.getHelper().getExerciseDAO().create(exercise);
@@ -75,7 +75,7 @@ public class Workout {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public int getId() {
         return id;
@@ -93,13 +93,13 @@ public class Workout {
         this.parentProgram = parentProgram;
     }
 
-    public Collection<Exercise> getListOfExercises() {
+   /* public Collection<Exercise> getListOfExercises() {
         return listOfExercises;
     }
 
     public void setListOfExercises(Collection<Exercise> listOfExercises) {
         this.listOfExercises = listOfExercises;
-    }
+    }*/
 
     public String getName() {
         return name;
