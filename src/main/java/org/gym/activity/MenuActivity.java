@@ -12,6 +12,7 @@ import org.gym.Factory;
 import org.gym.activity.R;
 import org.gym.object.Program;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -26,7 +27,8 @@ public class MenuActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_layout);
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.menu_linear_layout);
-        List<Program> programsList = Factory.getAllProgramsFromDb();
+        //List<Program> programsList = Factory.getAllProgramsFromDb();
+        List<Program> programsList = new LinkedList<Program>();
         for(final Program program : programsList){
             Button button = new Button(this);
             button.setText(program.getName());

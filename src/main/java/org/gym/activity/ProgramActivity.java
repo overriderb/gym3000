@@ -79,9 +79,9 @@ public class ProgramActivity extends FragmentActivity {
         selectedProgramIdFromMenu = intent.getIntExtra(MenuActivity.SELECTED_PROGRAM_ID, 0);
         selectedProgramIdFromHistory = intent.getIntExtra(HistoryActivity.SELECTED_PROGRAM_ID, 0);
         if(selectedProgramIdFromMenu==0){
-            listOfWorkouts = Factory.getWorkoutsByProgramId(selectedProgramIdFromHistory);
+            //listOfWorkouts = Factory.getWorkoutsByProgramId(selectedProgramIdFromHistory);
         } else {
-            listOfWorkouts = Factory.getWorkoutsByProgramId(selectedProgramIdFromMenu);
+            //listOfWorkouts = Factory.getWorkoutsByProgramId(selectedProgramIdFromMenu);
         }
 
     }

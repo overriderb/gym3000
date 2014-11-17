@@ -3,13 +3,7 @@ package org.gym;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
-import org.gym.dao.DatabaseInstance;
-import org.gym.dao.DbHelper;
-import org.gym.dao.HelperFactory;
 
-import java.sql.SQLException;
 
 /**
  * Created by anni0913 on 15.10.2014.
@@ -34,7 +28,7 @@ public class Gym3000 extends Application {
             }
         }*/
 
-        Factory.setPrograms();
+        //Factory.setPrograms();
     }
 
     @Override

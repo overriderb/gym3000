@@ -4,11 +4,7 @@ import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
-import org.gym.dao.HelperFactory;
 
-import java.sql.SQLException;
-import java.util.Collection;
-import java.util.LinkedList;
 
 /**
  * Created by anni0913 on 07.07.2014.

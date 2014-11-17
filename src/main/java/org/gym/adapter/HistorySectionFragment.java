@@ -24,6 +24,10 @@ public class HistorySectionFragment extends Fragment {
      * The fragment argument representing the section number for this
      * fragment.
      */
+    public HistorySectionFragment(List<Workout> workoutList) {
+        this.workoutList = workoutList;
+    }
+
     public static final String ARG_SECTION_NUMBER = "org.gym.adapter.HistorySectionFragment.ARG_SECTION_NUMBER";
     Workout workoutItem;
     View rootView;
@@ -31,12 +35,6 @@ public class HistorySectionFragment extends Fragment {
     ListView workoutHistoryView;
     List<String> listOfWorkoutResult = new LinkedList<String>();
     private List<Workout> workoutList;
-
-
-
-    public HistorySectionFragment(List<Workout> workoutList) {
-        this.workoutList = workoutList;
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

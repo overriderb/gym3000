@@ -3,9 +3,7 @@ package org.gym.object;
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
-import org.gym.dao.HelperFactory;
 
-import java.sql.SQLException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.LinkedList;
@@ -39,7 +37,7 @@ public class Exercise {
     //@ForeignCollectionField(eager = true)
     private Collection<Set> listOfSets = new LinkedList<Set>();
 
-    public void addSet(Set set){
+   /* public void addSet(Set set){
         set.setParentExercise(this);
         try {
             HelperFactory.getHelper().getSetDAO().create(set);
@@ -56,7 +54,7 @@ public class Exercise {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     public Date getDate() {
         return date;

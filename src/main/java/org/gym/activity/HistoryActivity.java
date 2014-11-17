@@ -7,7 +7,6 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import org.gym.Factory;
 import org.gym.adapter.HistoryPagerAdapter;
 import org.gym.object.Workout;
 
@@ -73,6 +72,6 @@ public class HistoryActivity extends FragmentActivity {
         Intent intent = getIntent();
         currentItem = intent.getIntExtra(ProgramActivity.CURRENT_ITEM, 0);
         selectedProgramId = intent.getIntExtra(ProgramActivity.SELECTED_PROGRAM_ID, 0);
-        listOfWorkouts = Factory.getWorkoutsByProgramId(selectedProgramId);
+        //listOfWorkouts = Factory.getWorkoutsByProgramId(selectedProgramId);
     }
 }
