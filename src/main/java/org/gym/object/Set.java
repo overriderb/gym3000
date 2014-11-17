@@ -1,8 +1,5 @@
 package org.gym.object;
 
-import com.j256.ormlite.field.DataType;
-import com.j256.ormlite.field.DatabaseField;
-
 /**
  * Created by anni0913 on 22.10.2014.
  */
@@ -11,29 +8,26 @@ public class Set {
     public Set() {
     }
 
-    public Set(int weight, int times) {
+    public Set(long parentId, int weight, int times) {
+        this.parentId = parentId;
         this.weight = weight;
         this.times = times;
     }
 
-    @DatabaseField(generatedId = true)
-    private int id;
+    private long id;
 
-    //@DatabaseField(canBeNull = false, foreign = true, foreignAutoRefresh = true)
-    private Exercise parentExercise;
+    private long parentId;
 
-    @DatabaseField(dataType = DataType.INTEGER)
     private int weight;
 
-    @DatabaseField(dataType = DataType.INTEGER)
     private int times;
 
-    public Exercise getParentExercise() {
-        return parentExercise;
+    public long getParentId() {
+        return parentId;
     }
 
-    public void setParentExercise(Exercise parentExercise) {
-        this.parentExercise = parentExercise;
+    public void setParentId(long parentId) {
+        this.parentId = parentId;
     }
 
     public int getWeight() {
@@ -52,7 +46,11 @@ public class Set {
         this.times = times;
     }
 
+    public long getId() {
+        return id;
+    }
 
-
-
+    public void setId(long id) {
+        this.id = id;
+    }
 }

@@ -1,16 +1,12 @@
 package org.gym.object;
 
-import com.j256.ormlite.field.DataType;
-import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
-import com.j256.ormlite.table.DatabaseTable;
 
 
 /**
  * Created by anni0913 on 15.10.2014.
  */
 
-@DatabaseTable(tableName = "programs")
+
 public class Program {
 
     public Program() {
@@ -21,50 +17,16 @@ public class Program {
         this.description = description;
     }
 
-    public final static String NAME = "name";
-    public final static String ID = "id";
-
-
-
-    @DatabaseField(generatedId = true, columnName = ID)
-    private int id;
-
-    @DatabaseField(canBeNull = false, dataType = DataType.STRING, columnName = NAME)
+    private long id;
     private String name;
-
-    @DatabaseField(dataType = DataType.STRING)
     private String description;
 
-    //@ForeignCollectionField(eager = false)
-    //private Collection<Workout> listOfWorkouts = new LinkedList<Workout>();
 
-
-
-    /*public void addWorkout(Workout workout){
-        workout.setParentProgram(this);
-        try {
-            HelperFactory.getHelper().getWorkoutDAO().create(workout);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        listOfWorkouts.add(workout);
-    }
-
-    public void removeWorkout(Workout workout){
-        listOfWorkouts.remove(workout);
-        try {
-            HelperFactory.getHelper().getWorkoutDAO().delete(workout);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }*/
-
-
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -83,12 +45,4 @@ public class Program {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    /*public Collection<Workout> getListOfWorkouts() {
-        return listOfWorkouts;
-    }
-
-    public void setListOfWorkouts(Collection<Workout> listOfWorkouts) {
-        this.listOfWorkouts = listOfWorkouts;
-    }*/
 }

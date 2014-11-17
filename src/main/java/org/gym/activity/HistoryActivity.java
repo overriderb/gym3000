@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import org.gym.adapter.HistoryPagerAdapter;
+import org.gym.dao.DatabaseHelper;
 import org.gym.object.Workout;
 
 import java.util.List;
@@ -23,8 +24,9 @@ public class HistoryActivity extends FragmentActivity {
     private HistoryPagerAdapter historyPagerAdapter;
     private ViewPager viewPager;
     private int currentItem;
-    private int selectedProgramId;
+    private long selectedProgramId;
     private List<Workout> listOfWorkouts;
+    private DatabaseHelper databaseHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,9 +71,10 @@ public class HistoryActivity extends FragmentActivity {
     }
 
     private void fillParams(){
+        databaseHelper = new DatabaseHelper(this);
         Intent intent = getIntent();
         currentItem = intent.getIntExtra(ProgramActivity.CURRENT_ITEM, 0);
-        selectedProgramId = intent.getIntExtra(ProgramActivity.SELECTED_PROGRAM_ID, 0);
-        //listOfWorkouts = Factory.getWorkoutsByProgramId(selectedProgramId);
+        selectedProgramId = intent.getLongExtra(ProgramActivity.SELECTED_PROGRAM_ID, 0);
+        listOfWorkouts = databaseHelper.getWorkoutAdapter().getWorkoutsListByParentId(selectedProgramId);
     }
 }

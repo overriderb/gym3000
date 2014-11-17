@@ -1,7 +1,5 @@
 package org.gym;
 
-import android.content.Context;
-
 import org.gym.object.Program;
 import java.util.*;
 
@@ -55,13 +53,12 @@ public class Factory {
                 "somebody's ass on street, only likes pedalling", R.drawable.cardio_trainings));
     }*/
 
-    public static void setPrograms(Context context){
+    public static List<Program> getProgramList(){
 
         List<Program> programList = new LinkedList<Program>();
         programList.add(new Program("First program", "First description"));
         programList.add(new Program("Second program", "Second description"));
         programList.add(new Program("Third program", "Third description"));
-        //getProgramAdapter().setPrograms(programList);
+        return programList;
     }
-
 }
