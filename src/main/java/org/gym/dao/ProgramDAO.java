@@ -7,7 +7,6 @@ import com.j256.ormlite.support.ConnectionSource;
 import org.gym.object.Program;
 
 import java.sql.SQLException;
-import java.util.LinkedList;
 import java.util.List;
 
 

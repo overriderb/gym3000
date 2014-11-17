@@ -2,9 +2,9 @@ package org.gym.object;
 
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import org.gym.dao.HelperFactory;
+import org.gym.logging.Logger;
 
 import java.sql.SQLException;
 import java.util.Collection;
@@ -17,28 +17,7 @@ import java.util.LinkedList;
 @DatabaseTable(tableName = "workouts")
 public class Workout {
 
-    public Workout(){ }
-
-    public Workout(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
-    public Workout(String name, String description, int picturePath) {
-        this.name = name;
-        this.description = description;
-        this.pictureId = picturePath;
-    }
-
-    public Workout(Program parentProgram, String name, String description, int pictureId) {
-        this.parentProgram = parentProgram;
-        this.name = name;
-        this.description = description;
-        this.pictureId = pictureId;
-    }
-
     public static final String PARENT_PROGRAM_ID = "parentProgram_id";
-
 
     @DatabaseField(generatedId = true)
     private int id;
@@ -58,22 +37,43 @@ public class Workout {
     //@ForeignCollectionField(eager = true)
     private Collection<Exercise> listOfExercises = new LinkedList<Exercise>();
 
-    public void addExercise(Exercise exercise){
+    public Workout() {
+    }
+
+    public Workout(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
+    public Workout(String name, String description, int picturePath) {
+        this.name = name;
+        this.description = description;
+        this.pictureId = picturePath;
+    }
+
+    public Workout(Program parentProgram, String name, String description, int pictureId) {
+        this.parentProgram = parentProgram;
+        this.name = name;
+        this.description = description;
+        this.pictureId = pictureId;
+    }
+
+    public void addExercise(Exercise exercise) {
         exercise.setParentWorkout(this);
         try {
             HelperFactory.getHelper().getExerciseDAO().create(exercise);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger.error("SQL exception occurred while storing Exercise", e, Workout.class);
         }
         listOfExercises.add(exercise);
     }
 
-    public void removeExercise(Exercise exercise){
+    public void removeExercise(Exercise exercise) {
         listOfExercises.remove(exercise);
         try {
             HelperFactory.getHelper().getExerciseDAO().delete(exercise);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger.error("SQL exception occurred while removing Exercise", e, Workout.class);
         }
     }
 
