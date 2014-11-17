@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.gym.Factory;
 import org.gym.object.Workout;
 import org.gym.activity.R;
 

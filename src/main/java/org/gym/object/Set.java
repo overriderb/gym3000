@@ -8,14 +8,6 @@ import com.j256.ormlite.field.DatabaseField;
  */
 public class Set {
 
-    public Set() {
-    }
-
-    public Set(int weight, int times) {
-        this.weight = weight;
-        this.times = times;
-    }
-
     @DatabaseField(generatedId = true)
     private int id;
 
@@ -27,6 +19,14 @@ public class Set {
 
     @DatabaseField(dataType = DataType.INTEGER)
     private int times;
+
+    public Set() {
+    }
+
+    public Set(int weight, int times) {
+        this.weight = weight;
+        this.times = times;
+    }
 
     public Exercise getParentExercise() {
         return parentExercise;
