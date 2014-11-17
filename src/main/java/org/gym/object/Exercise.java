@@ -2,8 +2,8 @@ package org.gym.object;
 
 import com.j256.ormlite.field.DataType;
 import com.j256.ormlite.field.DatabaseField;
-import com.j256.ormlite.field.ForeignCollectionField;
 import org.gym.dao.HelperFactory;
+import org.gym.logging.Logger;
 
 import java.sql.SQLException;
 import java.util.Collection;
@@ -14,15 +14,6 @@ import java.util.LinkedList;
  * Created by anni0913 on 15.10.2014.
  */
 public class Exercise {
-
-    public Exercise() {
-    }
-
-    public Exercise(Date date, char typeOfExercise, Collection<Set> listOfSets) {
-        this.date = date;
-        this.typeOfExercise = typeOfExercise;
-        this.listOfSets = listOfSets;
-    }
 
     @DatabaseField(generatedId = true)
     private int id;
@@ -39,12 +30,21 @@ public class Exercise {
     //@ForeignCollectionField(eager = true)
     private Collection<Set> listOfSets = new LinkedList<Set>();
 
-    public void addSet(Set set){
+    public Exercise() {
+    }
+
+    public Exercise(Date date, char typeOfExercise, Collection<Set> listOfSets) {
+        this.date = date;
+        this.typeOfExercise = typeOfExercise;
+        this.listOfSets = listOfSets;
+    }
+
+    public void addSet(Set set) {
         set.setParentExercise(this);
         try {
             HelperFactory.getHelper().getSetDAO().create(set);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger.error("SQL exception occurred while storing Set", e, Exercise.class);
         }
         listOfSets.add(set);
     }
@@ -54,7 +54,7 @@ public class Exercise {
         try {
             HelperFactory.getHelper().getSetDAO().delete(set);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger.error("SQL exception occurred while removing Set", e, Exercise.class);
         }
     }
 

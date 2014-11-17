@@ -1,13 +1,10 @@
 package org.gym;
 
-import com.j256.ormlite.dao.CloseableIterator;
-import com.j256.ormlite.dao.ForeignCollection;
 import org.gym.activity.R;
 import org.gym.dao.HelperFactory;
-import org.gym.dao.WorkoutDAO;
+import org.gym.logging.Logger;
 import org.gym.object.Program;
 import org.gym.object.Workout;
-import android.util.Log;
 
 import java.sql.SQLException;
 import java.util.*;
@@ -62,22 +59,23 @@ public class Factory {
                 "somebody's ass on street, only likes pedalling", R.drawable.cardio_trainings));
     }
 
-    public static List<Program> getAllProgramsFromDb(){
+    public static List<Program> getAllProgramsFromDb() {
+        Logger.info("Entered getAllProgramsFromDb()", Factory.class);
         List<Program> programsCollection = null;
         try {
             programsCollection = HelperFactory.getHelper().getProgramDAO().queryForAll();
-
         } catch (SQLException e) {
-            Log.e("SQLException", e.getMessage());
+            Logger.error("Can't load programs from database", e, Factory.class);
         }
         return programsCollection;
     }
-    public static List<Workout> getWorkoutsByProgramId (int programId){
+    public static List<Workout> getWorkoutsByProgramId (int programId) {
+        Logger.info("Entered getWorkoutsByProgramId()", Factory.class);
         List<Workout> workoutsCollection = null;
         try {
             workoutsCollection = HelperFactory.getHelper().getWorkoutDAO().getWorkoutsByProgramId(programId);
         } catch (SQLException e) {
-            Log.e("SQLException", e.getMessage());
+            Logger.error("Can't load workout from database", e, Factory.class);
         }
         return workoutsCollection;
     }

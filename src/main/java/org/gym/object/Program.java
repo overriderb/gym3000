@@ -5,6 +5,7 @@ import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 import org.gym.dao.HelperFactory;
+import org.gym.logging.Logger;
 
 import java.sql.SQLException;
 import java.util.Collection;
@@ -18,18 +19,8 @@ import java.util.List;
 @DatabaseTable(tableName = "programs")
 public class Program {
 
-    public Program() {
-    }
-
-    public Program(String name, String description) {
-        this.name = name;
-        this.description = description;
-    }
-
     public final static String NAME = "name";
     public final static String ID = "id";
-
-
 
     @DatabaseField(generatedId = true, columnName = ID)
     private int id;
@@ -43,24 +34,30 @@ public class Program {
     @ForeignCollectionField(eager = false)
     private Collection<Workout> listOfWorkouts = new LinkedList<Workout>();
 
+    public Program() {
+    }
 
+    public Program(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
 
-    public void addWorkout(Workout workout){
+    public void addWorkout(Workout workout) {
         workout.setParentProgram(this);
         try {
             HelperFactory.getHelper().getWorkoutDAO().create(workout);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger.error("SQL exception occurred while storing workout", e, Program.class);
         }
         listOfWorkouts.add(workout);
     }
 
-    public void removeWorkout(Workout workout){
+    public void removeWorkout(Workout workout) {
         listOfWorkouts.remove(workout);
         try {
             HelperFactory.getHelper().getWorkoutDAO().delete(workout);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Logger.error("SQL exception occurred while removing workout", e, Program.class);
         }
 
     }
