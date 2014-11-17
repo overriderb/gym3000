@@ -5,11 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.*;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.RadioGroup;
 import org.gym.Factory;
-import org.gym.activity.R;
 import org.gym.object.Program;
 
 import java.util.List;
@@ -64,7 +61,7 @@ public class MenuActivity extends Activity {
         intent.putExtra(SELECTED_PROGRAM_ID, programId);
         startActivity(intent);
         //TODO: Maybe instead of sending program ID and getting workoutsList on every changing of activity
-        //TODO: we will create some singletone of current Program and Workouts in it?
+        //TODO: we will create some singleton of current Program and Workouts in it?
 
     }
 }
