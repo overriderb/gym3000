@@ -3,23 +3,26 @@ package org.gym.object;
 /**
  * Created by anni0913 on 22.10.2014.
  */
-public class Set {
+public class Attempt {
 
-    public Set() {
+    public Attempt() {
     }
 
-    public Set(long parentId, int weight, int times) {
+    public Attempt(long parentId, int weight, int times) {
         this.parentId = parentId;
         this.weight = weight;
         this.times = times;
     }
 
+    public Attempt(Exercise exercise, int weight, int times) {
+        this.parentId = exercise.getId();
+        this.weight = weight;
+        this.times = times;
+    }
+
     private long id;
-
     private long parentId;
-
     private int weight;
-
     private int times;
 
     public long getParentId() {

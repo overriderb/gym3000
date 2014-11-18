@@ -19,10 +19,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "SQLite";
+    private static final String DATABASE_NAME = "SQLite2";
 
     private ProgramAdapter programAdapter = null;
-    private WorkoutAdapter workoutAdapter= null;
+    private WorkoutAdapter workoutAdapter = null;
+    private ExerciseAdapter exerciseAdapter = null;
+    private AttemptAdapter attemptAdapter = null;
 
     private static final String CREATE_PROGRAM = "CREATE TABLE " + ProgramAdapter.TABLE_NAME + " ("
             + ProgramAdapter.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -36,17 +38,34 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + WorkoutAdapter.PICTURE_ID + " INTEGER, "
             + WorkoutAdapter.DESCRIPTION + " TEXT);";
 
+    private static final String CREATE_EXERCISE = "CREATE TABLE " + ExerciseAdapter.TABLE_NAME + " ("
+            + ExerciseAdapter.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + ExerciseAdapter.PARENT_ID + " INTEGER NOT NULL, "
+            + ExerciseAdapter.DATE + " DATE NOT NULL, "
+            + ExerciseAdapter.TYPE_OF_EXERCISE + " CHAR);";
+
+    private static final String CREATE_ATTEMPT = "CREATE TABLE " + AttemptAdapter.TABLE_NAME + " ("
+            + AttemptAdapter.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + AttemptAdapter.PARENT_ID + " INTEGER NOT NULL, "
+            + AttemptAdapter.WEIGHT + " INTEGER NOT NULL, "
+            + AttemptAdapter.TIMES + " INTEGER NOT NULL);";
+
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_PROGRAM);
         db.execSQL(CREATE_WORKOUT);
+        db.execSQL(CREATE_EXERCISE);
+        db.execSQL(CREATE_ATTEMPT);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + ProgramAdapter.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + WorkoutAdapter.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ExerciseAdapter.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + AttemptAdapter.TABLE_NAME);
         onCreate(db);
     }
 
@@ -62,6 +81,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             workoutAdapter = new WorkoutAdapter(this);
         }
         return workoutAdapter;
+    }
+
+    public ExerciseAdapter getExerciseAdapter(){
+        if(exerciseAdapter == null){
+            exerciseAdapter = new ExerciseAdapter(this);
+        }
+        return exerciseAdapter;
+
+    }
+
+    public AttemptAdapter getAttemptAdapter(){
+        if(attemptAdapter == null){
+            attemptAdapter = new AttemptAdapter(this);
+        }
+        return attemptAdapter;
+
     }
 
 }

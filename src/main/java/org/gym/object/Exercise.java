@@ -12,8 +12,14 @@ public class Exercise {
     public Exercise() {
     }
 
-    public Exercise(long parentId, Date date, char typeOfExercise) {
+    public Exercise(long parentId, String date, String typeOfExercise) {
         this.parentId = parentId;
+        this.date = date;
+        this.typeOfExercise = typeOfExercise;
+    }
+
+    public Exercise(Workout workout, String date, String typeOfExercise) {
+        this.parentId = workout.getId();
         this.date = date;
         this.typeOfExercise = typeOfExercise;
     }
@@ -21,23 +27,23 @@ public class Exercise {
 
     private long id;
     private long parentId;
-    private Date date;
-    private char typeOfExercise;
+    private String date;   //TODO check type
+    private String typeOfExercise;       //   TODO check type
 
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public char getTypeOfExercise() {
+    public String getTypeOfExercise() {
         return typeOfExercise;
     }
 
-    public void setTypeOfExercise(char typeOfExercise) {
+    public void setTypeOfExercise(String typeOfExercise) {
         this.typeOfExercise = typeOfExercise;
     }
 

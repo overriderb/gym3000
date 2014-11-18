@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import org.gym.Factory;
+import org.gym.dao.DatabaseHelper;
 import org.gym.object.Workout;
 import org.gym.activity.R;
 
@@ -34,10 +35,12 @@ public class HistorySectionFragment extends Fragment {
     TextView workoutNameTextView;
     ListView workoutHistoryView;
     List<String> listOfWorkoutResult = new LinkedList<String>();
+    //private DatabaseHelper databaseHelper;
     private List<Workout> workoutList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        //databaseHelper = new DatabaseHelper(this.getActivity());
 
         listOfWorkoutResult.add("10.10.14");
         listOfWorkoutResult.add("12.10.14");
@@ -47,13 +50,16 @@ public class HistorySectionFragment extends Fragment {
         listOfWorkoutResult.add("20.10.14");
         listOfWorkoutResult.add("22.10.14");
 
-        ArrayAdapter<String> historyWorkoutAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.history_list_item_layout, R.id.history_workoutItem_date, listOfWorkoutResult);
+
 
         workoutItem = workoutList.get(getArguments().getInt(ARG_SECTION_NUMBER));
         rootView = inflater.inflate(R.layout.history_pages, container, false);
         workoutNameTextView = (TextView) rootView.findViewById(R.id.history_workout_title);
         workoutNameTextView.setText(workoutItem.getName());
         workoutHistoryView = (ListView) rootView.findViewById(R.id.history_workout_list_view);
+        //databaseHelper.getExerciseAdapter().getExerciseListByParentId(workoutItem.getId()
+
+        ArrayAdapter<String> historyWorkoutAdapter = new ArrayAdapter<String>(this.getActivity(), R.layout.history_list_item_layout, R.id.history_workoutItem_date, listOfWorkoutResult);
 
         workoutHistoryView.setAdapter(historyWorkoutAdapter);
 

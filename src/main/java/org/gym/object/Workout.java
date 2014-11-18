@@ -19,6 +19,13 @@ public class Workout {
         this.pictureId = pictureId;
     }
 
+    public Workout(Program program, String name, String description, int pictureId) {
+        this.parentId = program.getId();
+        this.name = name;
+        this.description = description;
+        this.pictureId = pictureId;
+    }
+
     private long id;
     private long parentId;
     private String name;
