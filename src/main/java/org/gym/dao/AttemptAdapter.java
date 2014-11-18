@@ -36,6 +36,7 @@ public class AttemptAdapter {
         values.put(TIMES, attempt.getTimes());
 
         long id = database.insert(TABLE_NAME, null, values);
+        attempt.setId(id);
 
         closeDb();
         return id;

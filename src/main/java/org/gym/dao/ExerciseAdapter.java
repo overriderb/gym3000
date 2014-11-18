@@ -36,6 +36,7 @@ public class ExerciseAdapter {
         values.put(TYPE_OF_EXERCISE, exercise.getTypeOfExercise());
 
         long id = database.insert(TABLE_NAME, null, values);
+        exercise.setId(id);
 
         closeDb();
         return id;

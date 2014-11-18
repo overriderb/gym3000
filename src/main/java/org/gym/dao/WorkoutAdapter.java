@@ -47,6 +47,7 @@ public class WorkoutAdapter {
         values.put(DESCRIPTION, workout.getDescription());
 
         long id = database.insert(TABLE_NAME, null, values);
+        workout.setId(id);
 
         closeDb();
         return id;

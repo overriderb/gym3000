@@ -70,6 +70,7 @@ public class ProgramAdapter {
         values.put(DESCRIPTION, program.getDescription());
 
         long id = database.insert(TABLE_NAME, null, values);
+        program.setId(id);
 
         closeDb();
         return id;

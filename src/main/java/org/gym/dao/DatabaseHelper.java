@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "SQLite2";
+    private static final String DATABASE_NAME = "SQLite3";
 
     private ProgramAdapter programAdapter = null;
     private WorkoutAdapter workoutAdapter = null;
