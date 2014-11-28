@@ -77,6 +77,14 @@ public class WorkoutAdapter {
         return workoutList;
     }
 
+    public Cursor getWorkoutsCursorByParentId(long parentId){
+        instantiateDb();
+        String query = "SELECT  * FROM " + TABLE_NAME + " WHERE " + PARENT_ID + " = " + parentId;
+        Cursor cursor = database.rawQuery(query, null);
+        closeDb();
+        return cursor;
+    }
+
     private void instantiateDb(){
         database = databaseHelper.getWritableDatabase();
     }
