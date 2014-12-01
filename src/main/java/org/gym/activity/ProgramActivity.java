@@ -7,8 +7,8 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import org.gym.Factory;
 import org.gym.adapter.ProgramPagerAdapter;
+import org.gym.dao.DatabaseHelper;
 import org.gym.object.Workout;
 
 import java.util.List;
@@ -25,9 +25,10 @@ public class ProgramActivity extends FragmentActivity {
     private ProgramPagerAdapter programPagerAdapter;
     private ViewPager viewPager;
     private int currentItem;
-    private int selectedProgramIdFromMenu;
-    private int selectedProgramIdFromHistory;
+    private long selectedProgramIdFromMenu;
+    private long selectedProgramIdFromHistory;
     private List<Workout> listOfWorkouts;
+    private DatabaseHelper databaseHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,14 +74,15 @@ public class ProgramActivity extends FragmentActivity {
     }
 
     private void fillParams(){
+        databaseHelper = new DatabaseHelper(this);
         Intent intent = getIntent();
         currentItem = intent.getIntExtra(HistoryActivity.CURRENT_ITEM, 0);
-        selectedProgramIdFromMenu = intent.getIntExtra(MenuActivity.SELECTED_PROGRAM_ID, 0);
-        selectedProgramIdFromHistory = intent.getIntExtra(HistoryActivity.SELECTED_PROGRAM_ID, 0);
+        selectedProgramIdFromMenu = intent.getLongExtra(MenuActivity.SELECTED_PROGRAM_ID, 0);
+        selectedProgramIdFromHistory = intent.getLongExtra(HistoryActivity.SELECTED_PROGRAM_ID, 0);
         if(selectedProgramIdFromMenu==0){
-            listOfWorkouts = Factory.getWorkoutsByProgramId(selectedProgramIdFromHistory);
+            listOfWorkouts = databaseHelper.getWorkoutAdapter().getWorkoutsListByParentId(selectedProgramIdFromHistory);
         } else {
-            listOfWorkouts = Factory.getWorkoutsByProgramId(selectedProgramIdFromMenu);
+            listOfWorkouts = databaseHelper.getWorkoutAdapter().getWorkoutsListByParentId(selectedProgramIdFromMenu);
         }
 
     }
