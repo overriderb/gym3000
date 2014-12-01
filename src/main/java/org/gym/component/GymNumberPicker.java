@@ -1,6 +1,6 @@
 package org.gym.component;
 
-//import android.support.annotation.NonNull;
+import android.support.annotation.NonNull;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
