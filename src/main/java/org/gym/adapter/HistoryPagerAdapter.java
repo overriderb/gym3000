@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import org.gym.cache.CurrentProgramCache;
 import org.gym.object.Workout;
 
 import java.util.List;
@@ -15,17 +16,17 @@ import java.util.List;
 public class HistoryPagerAdapter extends FragmentPagerAdapter {
 
     private int pageCount;
-    private List<Workout> workoutList;
+    private CurrentProgramCache cache;
 
-    public HistoryPagerAdapter(FragmentManager fragmentManager, List<Workout> workoutList) {
+    public HistoryPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
-        this.workoutList = workoutList;
-        this.pageCount = workoutList.size();
+        cache = CurrentProgramCache.getInstance();
+        this.pageCount = cache.getWorkoutList().size();
     }
 
     @Override
     public Fragment getItem(int position) {
-        Fragment currentFragment = new HistorySectionFragment(workoutList);
+        Fragment currentFragment = new HistorySectionFragment();
         Bundle args = new Bundle();
         args.putInt(HistorySectionFragment.ARG_SECTION_NUMBER, position);
         currentFragment.setArguments(args);
@@ -39,7 +40,7 @@ public class HistoryPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        Workout workoutItem = workoutList.get(position);
+        Workout workoutItem = cache.getWorkoutList().get(position);
         return position + 1 + ". " + workoutItem.getName();
     }
 

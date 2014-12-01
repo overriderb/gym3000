@@ -20,23 +20,17 @@ import java.util.List;
 public class ProgramActivity extends FragmentActivity {
 
     public final static String CURRENT_ITEM = "org.gym.activity.ProgramActivity.CURRENT_ITEM";
-    public final static String SELECTED_PROGRAM_ID = "org.gym.activity.ProgramActivity.SELECTED_PROGRAM_ID";
 
     private ProgramPagerAdapter programPagerAdapter;
     private ViewPager viewPager;
     private int currentItem;
-    private long selectedProgramIdFromMenu;
-    private long selectedProgramIdFromHistory;
-    private List<Workout> listOfWorkouts;
-    private DatabaseHelper databaseHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         fillParams();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.program_layout);
-        programPagerAdapter = new ProgramPagerAdapter(getSupportFragmentManager(), listOfWorkouts);
-        //programPagerAdapter = new ProgramPagerAdapter(getSupportFragmentManager());
+        programPagerAdapter = new ProgramPagerAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.programPager);
         viewPager.setAdapter(programPagerAdapter);
         viewPager.setCurrentItem(currentItem);
@@ -69,21 +63,11 @@ public class ProgramActivity extends FragmentActivity {
     private void startHistory(){
         Intent intent = new Intent(this, HistoryActivity.class);
         intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
-        intent.putExtra(SELECTED_PROGRAM_ID, selectedProgramIdFromMenu);
         startActivity(intent);
     }
 
     private void fillParams(){
-        databaseHelper = new DatabaseHelper(this);
         Intent intent = getIntent();
         currentItem = intent.getIntExtra(HistoryActivity.CURRENT_ITEM, 0);
-        selectedProgramIdFromMenu = intent.getLongExtra(MenuActivity.SELECTED_PROGRAM_ID, 0);
-        selectedProgramIdFromHistory = intent.getLongExtra(HistoryActivity.SELECTED_PROGRAM_ID, 0);
-        if(selectedProgramIdFromMenu==0){
-            listOfWorkouts = databaseHelper.getWorkoutAdapter().getWorkoutsListByParentId(selectedProgramIdFromHistory);
-        } else {
-            listOfWorkouts = databaseHelper.getWorkoutAdapter().getWorkoutsListByParentId(selectedProgramIdFromMenu);
-        }
-
     }
 }
