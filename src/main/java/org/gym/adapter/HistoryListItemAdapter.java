@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewStub;
 import android.widget.ArrayAdapter;
 import android.widget.GridLayout;
 import android.widget.LinearLayout;
@@ -52,6 +53,21 @@ public class HistoryListItemAdapter extends ArrayAdapter<Exercise> {
                 .setText(exercise.getDate());
         ((TextView) convertView.findViewById(R.id.history_workoutItem_letter_S_M_L))
                 .setText(exercise.getTypeOfExercise());
+
+        String result = "";
+        for(Attempt attempt: attemptList){
+            result = result + attempt.getWeight() + "/" + attempt.getTimes() + " ";
+        }
+        ((TextView) convertView.findViewById(R.id.history_attempts_list))
+                .setText(result);
+
+        //attemptsLayout = (GridLayout) convertView.findViewById(R.id.history_attempts_linear_layout);
+        //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        /*innerAttemptLayout = (LinearLayout)LayoutInflater.from(context).inflate(R.layout.history_list_item_inner_frame, null);
+        ((TextView) innerAttemptLayout.findViewById(R.id.history_inner_frame_weight))
+                .setText("115 kg");
+        attemptsLayout.addView(innerAttemptLayout);*/
 
         /*attemptsLayout = (GridLayout) convertView.findViewById(R.id.history_attempts_linear_layout);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
