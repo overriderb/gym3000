@@ -28,9 +28,6 @@ public class HistoryListItemAdapter extends ArrayAdapter<Exercise> {
     private DatabaseHelper databaseHelper;
     private Context context;
 
-    private GridLayout attemptsLayout;
-    private LinearLayout innerAttemptLayout;
-
     public HistoryListItemAdapter(Context context, int resource, List<Exercise> objects) {
         super(context, resource, objects);
         this.context = context;
@@ -41,9 +38,7 @@ public class HistoryListItemAdapter extends ArrayAdapter<Exercise> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         Exercise exercise = exerciseList.get(position);
-        Logger.debug("exercise " + exercise.getDate(), HistoryListItemAdapter.class);
         attemptList = databaseHelper.getAttemptAdapter().getAttemptListByParentId(exercise.getId());
-        Logger.debug("attemptList size: " + attemptList.size(), HistoryListItemAdapter.class);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext())
@@ -60,6 +55,10 @@ public class HistoryListItemAdapter extends ArrayAdapter<Exercise> {
         }
         ((TextView) convertView.findViewById(R.id.history_attempts_list))
                 .setText(result);
+
+        return convertView;
+
+        //it could be useful for future implementing attempts by inserting layout to layout instead of TextView
 
         //attemptsLayout = (GridLayout) convertView.findViewById(R.id.history_attempts_linear_layout);
         //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -82,6 +81,5 @@ public class HistoryListItemAdapter extends ArrayAdapter<Exercise> {
                     .setText(attempt.getTimes());*//*
             attemptsLayout.addView(innerAttemptLayout);
         }*/
-        return convertView;
     }
 }
