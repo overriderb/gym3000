@@ -67,6 +67,14 @@ public class ProgramSectionFragment extends Fragment {
         this.workoutList = workoutList;
     }
 
+    /**
+     * Demonstration implementation
+     * Build and prepare custom number picker
+     * TODO: organize controls according to view.
+     *
+     * @param context parent layout context
+     * @return created gym number picker
+     */
     private GymNumberPicker buildNumberPicker(Context context) {
         GymNumberPicker numberPicker = new GymNumberPicker(context);
         numberPicker.configureRange(20, 100, 2.5f);
