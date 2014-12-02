@@ -26,7 +26,8 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment currentFragment = new ProgramSectionFragment(workoutList);
+        ProgramSectionFragment currentFragment = new ProgramSectionFragment();
+        currentFragment.setWorkoutList(workoutList);
         Bundle args = new Bundle();
 
         args.putInt(ProgramSectionFragment.ARG_SECTION_NUMBER, position);
