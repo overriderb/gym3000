@@ -18,7 +18,7 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/history_attempts_linear_layout">
+            android:id="@+id/history_type_of_trainings_and_attempts_linear_layout">
         <FrameLayout
                 android:layout_width="30dp"
                 android:layout_height="match_parent"
@@ -40,6 +40,24 @@
                     android:gravity="center_vertical|center_horizontal"/>
         </FrameLayout>
 
-    </LinearLayout>
+       <GridLayout
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:columnCount="5"
+               android:useDefaultMargins="true"
+               android:id="@+id/history_attempts_linear_layout">
+
+           <!-- <include android:id="@+id/inner1" layout="@layout/history_list_item_inner_frame"></include>
+          <include android:id="@+id/inner2" layout="@layout/history_list_item_inner_frame"></include>
+           <include android:id="@+id/inner3" layout="@layout/history_list_item_inner_frame"></include>
+           <include android:id="@+id/inner4" layout="@layout/history_list_item_inner_frame"></include>
+           <include android:id="@+id/inner5" layout="@layout/history_list_item_inner_frame"></include>
+           <include android:id="@+id/inner6" layout="@layout/history_list_item_inner_frame"></include>
+           <include android:id="@+id/inner7" layout="@layout/history_list_item_inner_frame"></include>
+           <include android:id="@+id/inner8" layout="@layout/history_list_item_inner_frame"></include>
+           <include android:id="@+id/inner9" layout="@layout/history_list_item_inner_frame"></include>-->
+
+    </GridLayout>
+        </LinearLayout>
 
 </LinearLayout>

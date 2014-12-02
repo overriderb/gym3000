@@ -5,10 +5,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.gym.activity.R;
 import org.gym.dao.DatabaseHelper;
+import org.gym.logging.Logger;
 import org.gym.object.Attempt;
 import org.gym.object.Exercise;
 
@@ -32,13 +34,15 @@ public class HistoryListItemAdapter extends ArrayAdapter<Exercise> {
     private DatabaseHelper databaseHelper;
     private Context context;
 
-    private LinearLayout attemptsLayout;
+    private GridLayout attemptsLayout;
     private LinearLayout innerAttemptLayout;
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         Exercise exercise = exerciseList.get(position);
+        Logger.debug("exercise " + exercise.getDate(), HistoryListItemAdapter.class);
         attemptList = databaseHelper.getAttemptAdapter().getAttemptListByParentId(exercise.getId());
+        Logger.debug("attemptList size: " + attemptList.size(), HistoryListItemAdapter.class);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext())
@@ -49,14 +53,19 @@ public class HistoryListItemAdapter extends ArrayAdapter<Exercise> {
         ((TextView) convertView.findViewById(R.id.history_workoutItem_letter_S_M_L))
                 .setText(exercise.getTypeOfExercise());
 
-        //attemptsLayout = (LinearLayout) convertView.findViewById(R.id.history_attempts_linear_layout);
-        //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        /*for(Attempt attempt: attemptList){
-            innerAttemptLayout = (LinearLayout) inflater.inflate(R.layout.history_list_item_inner_frame, (ViewGroup) convertView.findViewById(R.layout.history_list_item_inner_frame));
+        attemptsLayout = (GridLayout) convertView.findViewById(R.id.history_attempts_linear_layout);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+        for(Attempt attempt: attemptList){
+            Logger.debug("attempt " + attempt.getWeight() + "/" + attempt.getTimes(), HistoryListItemAdapter.class);
+            innerAttemptLayout = (LinearLayout) inflater.inflate(R.layout.history_list_item_inner_frame,
+                    (ViewGroup) convertView.findViewById(R.layout.history_list_item_inner_frame));
+            /*((TextView) convertView.findViewById(R.id.history_inner_frame_weight))
+                    .setText(attempt.getWeight() + " kg");
+            ((TextView) convertView.findViewById(R.id.history_inner_frame_times))
+                    .setText(attempt.getTimes());*/
             attemptsLayout.addView(innerAttemptLayout);
-        }*/
-        //innerAttemptLayout = (LinearLayout) inflater.inflate(R.layout.history_list_item_inner_frame, (ViewGroup) convertView.findViewById(R.layout.history_list_item_inner_frame));
-        //attemptsLayout.addView(innerAttemptLayout);
+        }
         return convertView;
     }
 }

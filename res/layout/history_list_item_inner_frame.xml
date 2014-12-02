@@ -11,7 +11,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="60kg"
-            android:id="@+id/textView"/>
+            android:id="@+id/history_inner_frame_weight"/>
     <View
             android:layout_width="fill_parent"
             android:layout_height="1dp"
@@ -21,6 +21,6 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="14"
-            android:id="@+id/textView2"
+            android:id="@+id/history_inner_frame_times"
             android:layout_gravity="center_horizontal"/>
 </LinearLayout>
