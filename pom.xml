@@ -27,6 +27,11 @@
             <version>r7</version>
         </dependency>
         <dependency>
+            <groupId>com.android.support</groupId>
+            <artifactId>support-annotations</artifactId>
+            <version>21.0.2</version>
+        </dependency>
+        <dependency>
             <groupId>com.j256.ormlite</groupId>
             <artifactId>ormlite-android</artifactId>
             <version>${ormlite.version}</version>
