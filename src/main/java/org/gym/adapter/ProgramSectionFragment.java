@@ -14,10 +14,10 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import org.gym.component.GymNumberPicker;
-import org.gym.dao.DatabaseHelper;
-import org.gym.object.Attempt;
-import org.gym.object.Exercise;
-import org.gym.object.Workout;
+import org.gym.repository.DatabaseHelper;
+import org.gym.domain.Attempt;
+import org.gym.domain.Exercise;
+import org.gym.domain.Workout;
 import org.gym.activity.R;
 
 import java.text.SimpleDateFormat;
@@ -34,6 +34,7 @@ public class ProgramSectionFragment extends Fragment {
      * fragment.
      */
     public static final String ARG_SECTION_NUMBER = "org.gym.adapter.ProgramSectionFragment.ARG_SECTION_NUMBER";
+    private static final String DATE_FORMAT = "dd.MM.yyyy";
     Workout workoutItem;
     View rootView;
     TextView workoutNameTextView;
@@ -93,8 +94,7 @@ public class ProgramSectionFragment extends Fragment {
      */
     private GymNumberPicker buildWeightPicker(Context context) {
         GymNumberPicker numberPicker = new GymNumberPicker(context);
-//        numberPicker.configureRange(20, 100, 2.5f);
-        numberPicker.setMaxValue(150);
+        numberPicker.configureRange(20, 100, 2.5f);
         numberPicker.setWrapSelectorWheel(false);
         numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         numberPicker.scaleSize(0.6f);
@@ -120,13 +120,12 @@ public class ProgramSectionFragment extends Fragment {
         Attempt attempt = new Attempt();
         attempt.setParentId(exerciseId);
         attempt.setCount(countPicker.getValue());
-//        attempt.setWeight(Integer.parseInt(weightPicker.getDisplayedValues()[weightPicker.getValue()]));
-        attempt.setWeight(weightPicker.getValue());
+        attempt.setWeight(weightPicker.getDisplayedValues()[weightPicker.getValue()]);
         databaseHelper.getAttemptRepository().storeAttempt(attempt);
     }
 
     private String getCurrentDate() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
         return dateFormat.format(Calendar.getInstance().getTime());
     }
 }
