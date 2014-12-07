@@ -1,13 +1,21 @@
 package org.gym.object;
 
-
-
 /**
  * Created by anni0913 on 15.10.2014.
  */
-
-
 public class Program {
+
+    public static final String TABLE_NAME = "PROGRAM";
+
+    private Long id;
+    private String name;
+    private String description;
+
+    public enum Column {
+        ID,
+        NAME,
+        DESCRIPTION
+    }
 
     public Program() {
     }
@@ -17,16 +25,11 @@ public class Program {
         this.description = description;
     }
 
-    private long id;
-    private String name;
-    private String description;
-
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -3,10 +3,6 @@ package org.gym.dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import org.gym.object.Program;
 import org.gym.object.Workout;
 
 import java.util.LinkedList;
@@ -15,54 +11,46 @@ import java.util.List;
 /**
  * Created by AndreyNick on 13.11.2014.
  */
-public class WorkoutAdapter {
+public class WorkoutRepository {
 
-    protected WorkoutAdapter(DatabaseHelper databaseHelper){
-        this.databaseHelper = databaseHelper;
-
-    }
-
-    public static String TABLE_NAME = "workout";
-    public static String ID = "_id";
-    public static String PARENT_ID = "patent_id";
-    public static String NAME = "name";
-    public static String PICTURE_ID = "picture_id";
-    public static String DESCRIPTION = "description";
     private DatabaseHelper databaseHelper;
     private SQLiteDatabase database;
 
-    public void setWorkouts(List<Workout> workoutList){  //TODO think about posibility of adding collection and return their own ids
+    protected WorkoutRepository(DatabaseHelper databaseHelper){
+        this.databaseHelper = databaseHelper;
+    }
+
+    public void storeWorkouts(List<Workout> workoutList){  //TODO think about posibility of adding collection and return their own ids
         for(Workout workout : workoutList){              //now it doesn't return
-            setWorkout(workout);
+            storeWorkout(workout);
         }
     }
 
-    public long setWorkout(Workout workout) {
+    public Long storeWorkout(Workout workout) {
         instantiateDb();
 
         ContentValues values = new ContentValues();
-        values.put(PARENT_ID, workout.getParentId());
-        values.put(NAME, workout.getName());
-        values.put(PICTURE_ID, workout.getPictureId());
-        values.put(DESCRIPTION, workout.getDescription());
+        values.put(Workout.Column.PARENT_ID.name(), workout.getParentId());
+        values.put(Workout.Column.NAME.name(), workout.getName());
+        values.put(Workout.Column.PICTURE_ID.name(), workout.getPictureId());
+        values.put(Workout.Column.DESCRIPTION.name(), workout.getDescription());
 
-        long id = database.insert(TABLE_NAME, null, values);
+        Long id = database.insert(Workout.TABLE_NAME, null, values);
         workout.setId(id);
 
         closeDb();
         return id;
     }
 
-    public List<Workout> getWorkoutsListByParentId(long parentId){
+    public List<Workout> findWorkoutsListByParentId(long parentId){
         instantiateDb();
         List<Workout> workoutList = new LinkedList<Workout>();
-        String query = "SELECT  * FROM " + TABLE_NAME + " WHERE " + PARENT_ID + " = " + parentId;
+        String query = "SELECT  * FROM " + Workout.TABLE_NAME + " WHERE " + Workout.Column.PARENT_ID + " = " + parentId;
 
         Cursor cursor = database.rawQuery(query, null);
-        Workout workout = null;
         if (cursor.moveToFirst()) {
             do {
-                workout = new Workout();
+                Workout workout = new Workout();
                 workout.setId(Long.parseLong(cursor.getString(0)));
                 workout.setParentId(Long.parseLong(cursor.getString(1)));
                 workout.setName(cursor.getString(2));
@@ -79,7 +67,7 @@ public class WorkoutAdapter {
 
     public Cursor getWorkoutsCursorByParentId(long parentId){
         instantiateDb();
-        String query = "SELECT  * FROM " + TABLE_NAME + " WHERE " + PARENT_ID + " = " + parentId;
+        String query = "SELECT  * FROM " + Workout.TABLE_NAME + " WHERE " + Workout.Column.PARENT_ID + " = " + parentId;
         Cursor cursor = database.rawQuery(query, null);
         closeDb();
         return cursor;

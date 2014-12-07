@@ -6,13 +6,27 @@ package org.gym.object;
 /**
  * Created by anni0913 on 07.07.2014.
  */
-
-
 public class Workout {
 
-    public Workout(){ }
+    public static final String TABLE_NAME = "workout";
 
-    public Workout(long parentProgram, String name, String description, int pictureId) {
+    private Long id;
+    private Long parentId;
+    private String name;
+    private String description;
+    private int pictureId;
+
+    public enum Column {
+        ID,
+        PARENT_ID,
+        NAME,
+        PICTURE_ID,
+        DESCRIPTION
+    }
+
+    public Workout() { }
+
+    public Workout(Long parentProgram, String name, String description, int pictureId) {
         this.parentId = parentProgram;
         this.name = name;
         this.description = description;
@@ -26,25 +40,19 @@ public class Workout {
         this.pictureId = pictureId;
     }
 
-    private long id;
-    private long parentId;
-    private String name;
-    private String description;
-    private int pictureId;
-
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(long parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 

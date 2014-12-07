@@ -7,10 +7,9 @@ import android.view.*;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import org.gym.dao.DatabaseHelper;
-import org.gym.dao.ProgramAdapter;
+import org.gym.dao.ProgramRepository;
 import org.gym.object.Program;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -27,8 +26,8 @@ public class MenuActivity extends Activity {
         databaseHelper = new DatabaseHelper(this);
         setContentView(R.layout.menu_layout);
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.menu_linear_layout);
-        ProgramAdapter programAdapter =  databaseHelper.getProgramAdapter();
-        List<Program> programsList = programAdapter.getAllProgramsList();
+        ProgramRepository programRepository =  databaseHelper.getProgramRepository();
+        List<Program> programsList = programRepository.findAllProgramsList();
         for(final Program program : programsList){
             Button button = new Button(this);
             button.setText(program.getName());

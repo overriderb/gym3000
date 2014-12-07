@@ -1,35 +1,44 @@
 package org.gym.object;
 
-import java.util.Collection;
 import java.util.Date;
-import java.util.LinkedList;
 
 /**
  * Created by anni0913 on 15.10.2014.
  */
 public class Exercise {
 
+    public static final String TABLE_NAME = "EXERCISE";
+
+    private Long id;
+    private Long parentId;
+    private String date;
+    private Enum type;
+
+    public enum TYPE {
+        S, M, L
+    }
+
+    public enum Column {
+        ID,
+        PARENT_ID,
+        DATE,
+        TYPE
+    }
+
     public Exercise() {
     }
 
-    public Exercise(long parentId, String date, String typeOfExercise) {
+    public Exercise(Long parentId, String date, Enum type) {
         this.parentId = parentId;
         this.date = date;
-        this.typeOfExercise = typeOfExercise;
+        this.type = type;
     }
 
-    public Exercise(Workout workout, String date, String typeOfExercise) {
+    public Exercise(Workout workout, String date, Enum type) {
         this.parentId = workout.getId();
         this.date = date;
-        this.typeOfExercise = typeOfExercise;
+        this.type = type;
     }
-
-
-    private long id;
-    private long parentId;
-    private String date;   //TODO check type
-    private String typeOfExercise;       //   TODO check type
-
 
     public String getDate() {
         return date;
@@ -39,15 +48,15 @@ public class Exercise {
         this.date = date;
     }
 
-    public String getTypeOfExercise() {
-        return typeOfExercise;
+    public Enum getType() {
+        return type;
     }
 
-    public void setTypeOfExercise(String typeOfExercise) {
-        this.typeOfExercise = typeOfExercise;
+    public void setType(Enum type) {
+        this.type = type;
     }
 
-    public long getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
@@ -55,11 +64,11 @@ public class Exercise {
         this.parentId = parentId;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }

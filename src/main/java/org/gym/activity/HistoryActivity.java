@@ -75,6 +75,6 @@ public class HistoryActivity extends FragmentActivity {
         Intent intent = getIntent();
         currentItem = intent.getIntExtra(ProgramActivity.CURRENT_ITEM, 0);
         selectedProgramId = intent.getLongExtra(ProgramActivity.SELECTED_PROGRAM_ID, 0);
-        listOfWorkouts = databaseHelper.getWorkoutAdapter().getWorkoutsListByParentId(selectedProgramId);
+        listOfWorkouts = databaseHelper.getWorkoutRepository().findWorkoutsListByParentId(selectedProgramId);
     }
 }

@@ -5,31 +5,40 @@ package org.gym.object;
  */
 public class Attempt {
 
+    public static final String TABLE_NAME = "ATTEMPT";
+
+    private Long id;
+    private Long parentId;
+    private int weight;
+    private int count;
+
+    public enum Column {
+        ID,
+        PARENT_ID,
+        WEIGHT,
+        COUNT
+    }
+
     public Attempt() {
     }
 
-    public Attempt(long parentId, int weight, int times) {
+    public Attempt(Long parentId, int weight, int count) {
         this.parentId = parentId;
         this.weight = weight;
-        this.times = times;
+        this.count = count;
     }
 
-    public Attempt(Exercise exercise, int weight, int times) {
+    public Attempt(Exercise exercise, int weight, int count) {
         this.parentId = exercise.getId();
         this.weight = weight;
-        this.times = times;
+        this.count = count;
     }
 
-    private long id;
-    private long parentId;
-    private int weight;
-    private int times;
-
-    public long getParentId() {
+    public Long getParentId() {
         return parentId;
     }
 
-    public void setParentId(long parentId) {
+    public void setParentId(Long parentId) {
         this.parentId = parentId;
     }
 
@@ -41,19 +50,19 @@ public class Attempt {
         this.weight = weight;
     }
 
-    public int getTimes() {
-        return times;
+    public int getCount() {
+        return count;
     }
 
-    public void setTimes(int times) {
-        this.times = times;
+    public void setCount(int count) {
+        this.count = count;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }
