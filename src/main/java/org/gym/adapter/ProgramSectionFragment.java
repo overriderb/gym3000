@@ -7,20 +7,26 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import org.gym.component.GymNumberPicker;
+import org.gym.dao.DatabaseHelper;
+import org.gym.object.Attempt;
+import org.gym.object.Exercise;
 import org.gym.object.Workout;
 import org.gym.activity.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 /**
- * A dummy fragment representing a section of the app, but that simply
- * displays dummy text.
+ * A section fragment representing programs
  */
 public class ProgramSectionFragment extends Fragment {
     /**
@@ -34,12 +40,13 @@ public class ProgramSectionFragment extends Fragment {
     TextView workoutDescrTextView;
     ImageView imageView;
     FrameLayout frameLayout;
+    private GymNumberPicker weightPicker;
+    private GymNumberPicker countPicker;
     private List<Workout> workoutList;
 
 
     public ProgramSectionFragment() {
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,8 +64,17 @@ public class ProgramSectionFragment extends Fragment {
         imageView.setImageResource(workoutItem.getPictureId());
 
         LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.bigLinear);
-        GymNumberPicker numberPicker = buildNumberPicker(layout.getContext());
-        layout.addView(numberPicker);
+        countPicker = buildCountPicker(layout.getContext());
+        layout.addView(countPicker);
+        weightPicker = buildWeightPicker(layout.getContext());
+        layout.addView(weightPicker);
+
+        final Button button = (Button) rootView.findViewById(R.id.save_attempt);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                persistAttempt(button.getContext());
+            }
+        });
 
         return rootView;
     }
@@ -75,12 +91,42 @@ public class ProgramSectionFragment extends Fragment {
      * @param context parent layout context
      * @return created gym number picker
      */
-    private GymNumberPicker buildNumberPicker(Context context) {
+    private GymNumberPicker buildWeightPicker(Context context) {
         GymNumberPicker numberPicker = new GymNumberPicker(context);
-        numberPicker.configureRange(20, 100, 2.5f);
+//        numberPicker.configureRange(20, 100, 2.5f);
+        numberPicker.setMaxValue(150);
         numberPicker.setWrapSelectorWheel(false);
         numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         numberPicker.scaleSize(0.6f);
         return numberPicker;
+    }
+
+    private GymNumberPicker buildCountPicker(Context context) {
+        GymNumberPicker numberPicker = new GymNumberPicker(context);
+        numberPicker.setMaxValue(50);
+        numberPicker.setWrapSelectorWheel(false);
+        numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        numberPicker.scaleSize(0.6f);
+        return numberPicker;
+    }
+
+    private void persistAttempt(Context context) {
+        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+        Exercise exercise = new Exercise();
+        exercise.setParentId(workoutItem.getId());
+        exercise.setDate(getCurrentDate());
+        exercise.setType(Exercise.TYPE.M);
+        long exerciseId = databaseHelper.getExerciseRepository().storeExercise(exercise);
+        Attempt attempt = new Attempt();
+        attempt.setParentId(exerciseId);
+        attempt.setCount(countPicker.getValue());
+//        attempt.setWeight(Integer.parseInt(weightPicker.getDisplayedValues()[weightPicker.getValue()]));
+        attempt.setWeight(weightPicker.getValue());
+        databaseHelper.getAttemptRepository().storeAttempt(attempt);
+    }
+
+    private String getCurrentDate() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+        return dateFormat.format(Calendar.getInstance().getTime());
     }
 }
