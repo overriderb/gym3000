@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import org.gym.object.Workout;
+import org.gym.domain.Workout;
 
 import java.util.List;
 
@@ -25,7 +25,8 @@ public class HistoryPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        Fragment currentFragment = new HistorySectionFragment(workoutList);
+        HistorySectionFragment currentFragment = new HistorySectionFragment();
+        currentFragment.setWorkoutList(workoutList);
         Bundle args = new Bundle();
         args.putInt(HistorySectionFragment.ARG_SECTION_NUMBER, position);
         currentFragment.setArguments(args);

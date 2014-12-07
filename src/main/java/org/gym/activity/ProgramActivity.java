@@ -8,8 +8,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import org.gym.adapter.ProgramPagerAdapter;
-import org.gym.dao.DatabaseHelper;
-import org.gym.object.Workout;
+import org.gym.repository.DatabaseHelper;
+import org.gym.domain.Workout;
 
 import java.util.List;
 
@@ -80,9 +80,9 @@ public class ProgramActivity extends FragmentActivity {
         selectedProgramIdFromMenu = intent.getLongExtra(MenuActivity.SELECTED_PROGRAM_ID, 0);
         selectedProgramIdFromHistory = intent.getLongExtra(HistoryActivity.SELECTED_PROGRAM_ID, 0);
         if(selectedProgramIdFromMenu==0){
-            listOfWorkouts = databaseHelper.getWorkoutAdapter().getWorkoutsListByParentId(selectedProgramIdFromHistory);
+            listOfWorkouts = databaseHelper.getWorkoutRepository().findWorkoutsListByParentId(selectedProgramIdFromHistory);
         } else {
-            listOfWorkouts = databaseHelper.getWorkoutAdapter().getWorkoutsListByParentId(selectedProgramIdFromMenu);
+            listOfWorkouts = databaseHelper.getWorkoutRepository().findWorkoutsListByParentId(selectedProgramIdFromMenu);
         }
 
     }
