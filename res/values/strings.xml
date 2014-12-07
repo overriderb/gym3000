@@ -13,4 +13,6 @@
     <string name="menu_layout_add_workout">Change workout</string>
     <string name="program_layout_history">History</string>
     <string name="history_layout_workout">Workout</string>
+
+    <string name="save_attempt">Save Attempt</string>
 </resources>

@@ -59,6 +59,13 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
                     android:layout_below="@+id/absolute_layout"/>
+
+            <Button
+                    android:id="@+id/save_attempt"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:text="@string/save_attempt"
+                    android:onClick="saveAttempt"/>
         </LinearLayout>
 
     </ScrollView>
