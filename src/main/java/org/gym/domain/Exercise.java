@@ -1,6 +1,4 @@
-package org.gym.object;
-
-import java.util.Date;
+package org.gym.domain;
 
 /**
  * Created by anni0913 on 15.10.2014.

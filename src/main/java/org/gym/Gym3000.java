@@ -4,11 +4,11 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import org.gym.activity.R;
-import org.gym.dao.DatabaseHelper;
-import org.gym.object.Attempt;
-import org.gym.object.Exercise;
-import org.gym.object.Program;
-import org.gym.object.Workout;
+import org.gym.repository.DatabaseHelper;
+import org.gym.domain.Attempt;
+import org.gym.domain.Exercise;
+import org.gym.domain.Program;
+import org.gym.domain.Workout;
 
 
 /**

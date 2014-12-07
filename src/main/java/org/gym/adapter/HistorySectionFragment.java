@@ -8,9 +8,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import org.gym.dao.DatabaseHelper;
-import org.gym.object.Exercise;
-import org.gym.object.Workout;
+import org.gym.repository.DatabaseHelper;
+import org.gym.domain.Exercise;
+import org.gym.domain.Workout;
 import org.gym.activity.R;
 
 import java.util.List;

@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.view.*;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import org.gym.dao.DatabaseHelper;
-import org.gym.dao.ProgramRepository;
-import org.gym.object.Program;
+import org.gym.repository.DatabaseHelper;
+import org.gym.repository.ProgramRepository;
+import org.gym.domain.Program;
 
 import java.util.List;
 

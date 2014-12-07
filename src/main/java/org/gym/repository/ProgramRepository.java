@@ -1,9 +1,9 @@
-package org.gym.dao;
+package org.gym.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import org.gym.object.Program;
+import org.gym.domain.Program;
 
 import java.util.LinkedList;
 import java.util.List;

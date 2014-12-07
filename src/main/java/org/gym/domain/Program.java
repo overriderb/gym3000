@@ -1,4 +1,4 @@
-package org.gym.object;
+package org.gym.domain;
 
 /**
  * Created by anni0913 on 15.10.2014.

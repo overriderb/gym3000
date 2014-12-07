@@ -1,12 +1,12 @@
-package org.gym.dao;
+package org.gym.repository;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import org.gym.object.Attempt;
-import org.gym.object.Exercise;
-import org.gym.object.Program;
-import org.gym.object.Workout;
+import org.gym.domain.Attempt;
+import org.gym.domain.Exercise;
+import org.gym.domain.Program;
+import org.gym.domain.Workout;
 
 /**
  * Created by AndreyNick on 12.11.2014.

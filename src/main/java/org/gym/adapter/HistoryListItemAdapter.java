@@ -8,9 +8,9 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.gym.activity.R;
-import org.gym.dao.DatabaseHelper;
-import org.gym.object.Attempt;
-import org.gym.object.Exercise;
+import org.gym.repository.DatabaseHelper;
+import org.gym.domain.Attempt;
+import org.gym.domain.Exercise;
 
 import java.util.List;
 
