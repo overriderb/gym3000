@@ -46,7 +46,7 @@ public class AttemptRepository {
                 Attempt attempt = new Attempt();
                 attempt.setId(Long.parseLong(cursor.getString(0)));
                 attempt.setParentId(Long.parseLong(cursor.getString(1)));
-                attempt.setWeight(Integer.parseInt(cursor.getString(2)));
+                attempt.setWeight(cursor.getString(2));
                 attempt.setCount(Integer.parseInt(cursor.getString(3)));
 
                 attemptList.add(attempt);

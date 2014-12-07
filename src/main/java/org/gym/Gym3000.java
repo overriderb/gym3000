@@ -60,18 +60,18 @@ public class Gym3000 extends Application {
                 "stretch every muscle which will be burden.", R.drawable.warm_up));
 
         Long id2 = databaseHelper.getExerciseRepository().storeExercise(new Exercise(id1, "11.01.1989", Exercise.TYPE.M));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id2, 10, 15));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id2, 15, 13));
+        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id2, "10", 15));
+        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id2, "15", 13));
         Long id3 = databaseHelper.getExerciseRepository().storeExercise(new Exercise(id1, "25.01.1989", Exercise.TYPE.L));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, 8, 20));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, 10, 15));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, 15, 15));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, 20, 8));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, 25, 15));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, 115, 4));
+        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, "8", 20));
+        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, "10", 15));
+        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, "15", 15));
+        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, "20", 8));
+        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, "25", 15));
+        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, "115", 4));
         Long id4 = databaseHelper.getExerciseRepository().storeExercise(new Exercise(id1, "20.01.1989", Exercise.TYPE.S));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id4, 10, 15));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id4, 15, 13));
+        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id4, "10", 15));
+        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id4, "15", 13));
 
 
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram, "Lateral raise", "The lateral raise with dumbbells is an effective " +

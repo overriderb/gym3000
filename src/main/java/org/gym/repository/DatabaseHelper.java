@@ -13,7 +13,7 @@ import org.gym.domain.Workout;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 5;
     private static final String DATABASE_NAME = "SQLite3";
 
     private ProgramRepository programRepository = null;
@@ -42,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_ATTEMPT = "CREATE TABLE " + Attempt.TABLE_NAME + " ("
             + Attempt.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + Attempt.Column.PARENT_ID + " INTEGER NOT NULL, "
-            + Attempt.Column.WEIGHT + " INTEGER NOT NULL, "
+            + Attempt.Column.WEIGHT + " TEXT NOT NULL, "
             + Attempt.Column.COUNT + " INTEGER NOT NULL);";
 
     public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){

@@ -9,7 +9,7 @@ public class Attempt {
 
     private Long id;
     private Long parentId;
-    private int weight;
+    private String weight;
     private int count;
 
     public enum Column {
@@ -22,13 +22,13 @@ public class Attempt {
     public Attempt() {
     }
 
-    public Attempt(Long parentId, int weight, int count) {
+    public Attempt(Long parentId, String weight, int count) {
         this.parentId = parentId;
         this.weight = weight;
         this.count = count;
     }
 
-    public Attempt(Exercise exercise, int weight, int count) {
+    public Attempt(Exercise exercise, String weight, int count) {
         this.parentId = exercise.getId();
         this.weight = weight;
         this.count = count;
@@ -42,11 +42,11 @@ public class Attempt {
         this.parentId = parentId;
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
     }
 
