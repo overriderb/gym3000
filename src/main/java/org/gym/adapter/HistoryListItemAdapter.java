@@ -57,29 +57,5 @@ public class HistoryListItemAdapter extends ArrayAdapter<Exercise> {
                 .setText(result);
 
         return convertView;
-
-        //it could be useful for future implementing attempts by inserting layout to layout instead of TextView
-
-        //attemptsLayout = (GridLayout) convertView.findViewById(R.id.history_attempts_linear_layout);
-        //LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        /*innerAttemptLayout = (LinearLayout)LayoutInflater.from(context).inflate(R.layout.history_list_item_inner_frame, null);
-        ((TextView) innerAttemptLayout.findViewById(R.id.history_inner_frame_weight))
-                .setText("115 kg");
-        attemptsLayout.addView(innerAttemptLayout);*/
-
-        /*attemptsLayout = (GridLayout) convertView.findViewById(R.id.history_attempts_linear_layout);
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        for(Attempt attempt: attemptList){
-            Logger.debug("attempt " + attempt.getWeight() + "/" + attempt.getTimes(), HistoryListItemAdapter.class);
-            innerAttemptLayout = (LinearLayout) inflater.inflate(R.layout.history_list_item_inner_frame,
-                    (ViewGroup) convertView.findViewById(R.layout.history_list_item_inner_frame));
-            *//*((TextView) convertView.findViewById(R.id.history_inner_frame_weight))
-                    .setText(attempt.getWeight() + " kg");
-            ((TextView) convertView.findViewById(R.id.history_inner_frame_times))
-                    .setText(attempt.getTimes());*//*
-            attemptsLayout.addView(innerAttemptLayout);
-        }*/
     }
 }
