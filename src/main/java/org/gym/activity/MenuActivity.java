@@ -8,8 +8,8 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import org.gym.cache.CurrentProgramCache;
 import org.gym.repository.DatabaseHelper;
-import org.gym.repository.ProgramAdapter;
-import org.gym.repository.WorkoutAdapter;
+import org.gym.repository.ProgramRepository;
+import org.gym.repository.WorkoutRepository;
 import org.gym.domain.Program;
 import org.gym.domain.Workout;
 
@@ -64,8 +64,8 @@ public class MenuActivity extends Activity {
 
     public void fillCurrentProgramCache(Program program){
         CurrentProgramCache cache = CurrentProgramCache.getInstance();
-        WorkoutAdapter workoutAdapter = databaseHelper.getWorkoutAdapter();
-        List<Workout> workoutList = workoutAdapter.getWorkoutsListByParentId(program.getId());
+        WorkoutRepository workoutAdapter = databaseHelper.getWorkoutRepository();
+        List<Workout> workoutList = workoutAdapter.findWorkoutsListByParentId(program.getId());
         cache.setValues(program.getName(), program.getDescription(), workoutList);
     }
 }

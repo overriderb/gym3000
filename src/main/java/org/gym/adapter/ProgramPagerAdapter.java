@@ -7,8 +7,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import org.gym.cache.CurrentProgramCache;
 import org.gym.domain.Workout;
 
-import java.util.List;
-
 /**
  * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to
  * one of the sections/tabs/pages.
