@@ -19,21 +19,17 @@ import java.util.List;
 public class HistoryActivity extends FragmentActivity {
 
     public final static String CURRENT_ITEM = "org.gym.activity.HistoryActivity.CURRENT_ITEM";
-    public final static String SELECTED_PROGRAM_ID = "org.gym.activity.HistoryActivity.SELECTED_PROGRAM_ID";
 
     private HistoryPagerAdapter historyPagerAdapter;
     private ViewPager viewPager;
     private int currentItem;
-    private long selectedProgramId;
-    private List<Workout> listOfWorkouts;
-    private DatabaseHelper databaseHelper;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         fillParams();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.history_layout);
-        historyPagerAdapter = new HistoryPagerAdapter(getSupportFragmentManager(), listOfWorkouts);
+        historyPagerAdapter = new HistoryPagerAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.historyPager);
         viewPager.setAdapter(historyPagerAdapter);
         viewPager.setCurrentItem(currentItem);
@@ -66,15 +62,11 @@ public class HistoryActivity extends FragmentActivity {
     private void startProgram(){
         Intent intent = new Intent(this, ProgramActivity.class);
         intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
-        intent.putExtra(SELECTED_PROGRAM_ID, selectedProgramId);
         startActivity(intent);
     }
 
     private void fillParams(){
-        databaseHelper = new DatabaseHelper(this);
         Intent intent = getIntent();
         currentItem = intent.getIntExtra(ProgramActivity.CURRENT_ITEM, 0);
-        selectedProgramId = intent.getLongExtra(ProgramActivity.SELECTED_PROGRAM_ID, 0);
-        listOfWorkouts = databaseHelper.getWorkoutAdapter().getWorkoutsListByParentId(selectedProgramId);
     }
 }

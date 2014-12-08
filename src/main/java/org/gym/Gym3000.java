@@ -23,7 +23,7 @@ public class Gym3000 extends Application {
         super.onCreate();
         databaseHelper = new DatabaseHelper(this);
         if(isFirstStart()){                                //For first start of application please change change isFirstStart()
-            setInitialPrograms();                         //to true for correct setting to DB default programs
+            setInitialPrograms();                          //to true for correct setting to DB default programs
         }
     }
 

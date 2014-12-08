@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.NumberPicker;
 import android.widget.TextView;
 import org.gym.component.GymNumberPicker;
+import org.gym.cache.CurrentProgramCache;
 import org.gym.object.Workout;
 import org.gym.activity.R;
 
@@ -28,23 +29,24 @@ public class ProgramSectionFragment extends Fragment {
      * fragment.
      */
     public static final String ARG_SECTION_NUMBER = "org.gym.adapter.ProgramSectionFragment.ARG_SECTION_NUMBER";
+
     Workout workoutItem;
     View rootView;
     TextView workoutNameTextView;
     TextView workoutDescrTextView;
     ImageView imageView;
     FrameLayout frameLayout;
-    private List<Workout> workoutList;
+    CurrentProgramCache cache;
 
 
     public ProgramSectionFragment() {
+        cache = CurrentProgramCache.getInstance();
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        workoutItem = workoutList.get(getArguments().getInt(ARG_SECTION_NUMBER));
-
+        workoutItem = cache.getWorkoutList().get(getArguments().getInt(ARG_SECTION_NUMBER));
 
         rootView = inflater.inflate(R.layout.program_pages, container, false);
         workoutNameTextView = (TextView) rootView.findViewById(R.id.workout_title);
@@ -56,31 +58,6 @@ public class ProgramSectionFragment extends Fragment {
         workoutDescrTextView.setText(workoutItem.getDescription());
         imageView.setImageResource(workoutItem.getPictureId());
 
-        LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.bigLinear);
-        GymNumberPicker numberPicker = buildNumberPicker(layout.getContext());
-        layout.addView(numberPicker);
-
         return rootView;
-    }
-
-    public void setWorkoutList(List<Workout> workoutList) {
-        this.workoutList = workoutList;
-    }
-
-    /**
-     * Demonstration implementation
-     * Build and prepare custom number picker
-     * TODO: organize controls according to view.
-     *
-     * @param context parent layout context
-     * @return created gym number picker
-     */
-    private GymNumberPicker buildNumberPicker(Context context) {
-        GymNumberPicker numberPicker = new GymNumberPicker(context);
-        numberPicker.configureRange(20, 100, 2.5f);
-        numberPicker.setWrapSelectorWheel(false);
-        numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-        numberPicker.scaleSize(0.6f);
-        return numberPicker;
     }
 }
