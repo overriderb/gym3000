@@ -1,6 +1,6 @@
 package org.gym.cache;
 
-import org.gym.object.Workout;
+import org.gym.domain.Workout;
 
 import java.util.List;
 

@@ -1,10 +1,9 @@
-package org.gym.dao;
+package org.gym.repository;
 
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import org.gym.object.Exercise;
-import org.gym.object.Workout;
+import org.gym.domain.Exercise;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -12,50 +11,43 @@ import java.util.List;
 /**
  * Created by anni0913 on 18.11.2014.
  */
-public class ExerciseAdapter {
+public class ExerciseRepository {
 
-    public ExerciseAdapter(DatabaseHelper databaseHelper) {
-        this.databaseHelper = databaseHelper;
-    }
-
-    public static String TABLE_NAME = "exercise";
-    public static String ID = "_id";
-    public static String PARENT_ID = "patent_id";
-    public static String DATE = "date";
-    public static String TYPE_OF_EXERCISE = "type";
     private DatabaseHelper databaseHelper;
     private SQLiteDatabase database;
 
+    public ExerciseRepository(DatabaseHelper databaseHelper) {
+        this.databaseHelper = databaseHelper;
+    }
 
-    public long setExercise(Exercise exercise) {
+    public long storeExercise(Exercise exercise) {
         instantiateDb();
 
         ContentValues values = new ContentValues();
-        values.put(PARENT_ID, exercise.getParentId());
-        values.put(DATE, exercise.getDate());
-        values.put(TYPE_OF_EXERCISE, exercise.getTypeOfExercise());
+        values.put(Exercise.Column.PARENT_ID.name(), exercise.getParentId());
+        values.put(Exercise.Column.DATE.name(), exercise.getDate());
+        values.put(Exercise.Column.TYPE.name(), exercise.getType().name());
 
-        long id = database.insert(TABLE_NAME, null, values);
+        long id = database.insert(Exercise.TABLE_NAME, null, values);
         exercise.setId(id);
 
         closeDb();
         return id;
     }
 
-    public List<Exercise> getExerciseListByParentId(long parentId){
+    public List<Exercise> findExerciseListByParentId(Long parentId) {
         instantiateDb();
         List<Exercise> exerciseList = new LinkedList<Exercise>();
-        String query = "SELECT  * FROM " + TABLE_NAME + " WHERE " + PARENT_ID + " = " + parentId;
+        String query = "SELECT  * FROM " + Exercise.TABLE_NAME + " WHERE " + Exercise.Column.PARENT_ID + " = " + parentId;
 
         Cursor cursor = database.rawQuery(query, null);
-        Exercise exercise = null;
         if (cursor.moveToFirst()) {
             do {
-                exercise = new Exercise();
+                Exercise exercise = new Exercise();
                 exercise.setId(Long.parseLong(cursor.getString(0)));
                 exercise.setParentId(Long.parseLong(cursor.getString(1)));
                 exercise.setDate(cursor.getString(2));
-                exercise.setTypeOfExercise(cursor.getString(3));
+                exercise.setType(Exercise.TYPE.valueOf(cursor.getString(3)));
 
                 exerciseList.add(exercise);
             } while (cursor.moveToNext());

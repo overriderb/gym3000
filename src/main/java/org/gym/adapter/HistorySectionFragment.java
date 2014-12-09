@@ -9,23 +9,18 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import org.gym.cache.CurrentProgramCache;
-import org.gym.dao.DatabaseHelper;
-import org.gym.object.Exercise;
-import org.gym.object.Workout;
+import org.gym.repository.DatabaseHelper;
+import org.gym.domain.Exercise;
+import org.gym.domain.Workout;
 import org.gym.activity.R;
 
-import java.util.LinkedList;
 import java.util.List;
 
 /**
- * A dummy fragment representing a section of the app, but that simply
- * displays dummy text.
+ * A section fragment representing history
  */
 public class HistorySectionFragment extends Fragment {
-    /**
-     * The fragment argument representing the section number for this
-     * fragment.
-     */
+    
     public static final String ARG_SECTION_NUMBER = "org.gym.adapter.HistorySectionFragment.ARG_SECTION_NUMBER";
 
     Workout workoutItem;
@@ -52,7 +47,7 @@ public class HistorySectionFragment extends Fragment {
 
         ArrayAdapter<Exercise> historyWorkoutAdapter = new HistoryListItemAdapter(this.getActivity(),
             R.layout.history_list_item_layout,
-            databaseHelper.getExerciseAdapter().getExerciseListByParentId(workoutItem.getId()));
+            databaseHelper.getExerciseRepository().findExerciseListByParentId(workoutItem.getId()));
 
         workoutHistoryView.setAdapter(historyWorkoutAdapter);
         return rootView;

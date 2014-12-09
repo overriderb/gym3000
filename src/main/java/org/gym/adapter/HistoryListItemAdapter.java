@@ -4,16 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.widget.ArrayAdapter;
-import android.widget.GridLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.gym.activity.R;
-import org.gym.dao.DatabaseHelper;
-import org.gym.logging.Logger;
-import org.gym.object.Attempt;
-import org.gym.object.Exercise;
+import org.gym.repository.DatabaseHelper;
+import org.gym.domain.Attempt;
+import org.gym.domain.Exercise;
 
 import java.util.List;
 
@@ -38,7 +34,7 @@ public class HistoryListItemAdapter extends ArrayAdapter<Exercise> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         Exercise exercise = exerciseList.get(position);
-        attemptList = databaseHelper.getAttemptAdapter().getAttemptListByParentId(exercise.getId());
+        attemptList = databaseHelper.getAttemptRepository().findAttemptListByParentId(exercise.getId());
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext())
@@ -47,11 +43,11 @@ public class HistoryListItemAdapter extends ArrayAdapter<Exercise> {
         ((TextView) convertView.findViewById(R.id.history_workoutItem_date))
                 .setText(exercise.getDate());
         ((TextView) convertView.findViewById(R.id.history_workoutItem_letter_S_M_L))
-                .setText(exercise.getTypeOfExercise());
+                .setText(exercise.getType().name());
 
         String result = "";
         for(Attempt attempt: attemptList){
-            result = result + attempt.getWeight() + "/" + attempt.getTimes() + " ";
+            result = result + attempt.getWeight() + "/" + attempt.getCount() + " ";
         }
         ((TextView) convertView.findViewById(R.id.history_attempts_list))
                 .setText(result);

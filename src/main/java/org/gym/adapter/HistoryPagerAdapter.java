@@ -5,9 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import org.gym.cache.CurrentProgramCache;
-import org.gym.object.Workout;
-
-import java.util.List;
+import org.gym.domain.Workout;
 
 /**
  * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to
