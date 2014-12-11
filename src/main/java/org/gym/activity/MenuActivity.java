@@ -1,5 +1,6 @@
 package org.gym.activity;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,6 +56,22 @@ public class MenuActivity extends Activity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_layout_actions, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                startSettings();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void startSettings(){
+        Intent intent = new Intent(this, MenuSettingsActivity.class);
+        startActivity(intent);
     }
 
     public void startActivity(View view){

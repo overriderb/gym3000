@@ -1,6 +1,6 @@
 package org.gym.component;
 
-import android.support.annotation.NonNull;
+//import android.support.annotation.NonNull;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
@@ -26,19 +26,19 @@ public class GymNumberPicker extends NumberPicker {
     }
 
     @Override
-    public void addView(@NonNull View child) {
+    public void addView(/*@NonNull*/ View child) {
         super.addView(child);
         updateView(child);
     }
 
     @Override
-    public void addView(@NonNull View child, int index, android.view.ViewGroup.LayoutParams params) {
+    public void addView(/*@NonNull*/ View child, int index, android.view.ViewGroup.LayoutParams params) {
         super.addView(child, index, params);
         updateView(child);
     }
 
     @Override
-    public void addView(@NonNull View child, android.view.ViewGroup.LayoutParams params) {
+    public void addView(/*@NonNull*/ View child, android.view.ViewGroup.LayoutParams params) {
         super.addView(child, params);
         updateView(child);
     }

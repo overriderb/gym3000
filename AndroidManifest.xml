@@ -13,16 +13,24 @@
                  android:theme="@android:style/Theme.Holo">
         <activity
                 android:name="org.gym.activity.MenuActivity"
-                android:label="@string/appName" >
+                android:label="@string/appName">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ProgramActivity"
-                  android:parentActivityName=".MenuActivity"/>
+                  android:parentActivityName=".MenuActivity"
+                  android:label=""/>
         <activity android:name=".HistoryActivity"
-                  android:parentActivityName=".ProgramActivity"/>    <!--TODO bug, it should return us program activity to chosen program-->
+                  android:parentActivityName=".ProgramActivity"
+                  android:label=""/>
+        <activity android:name=".ProgramSettingsActivity"
+                  android:parentActivityName=".ProgramActivity"
+                  android:label=""/>
+        <activity android:name=".MenuSettingsActivity"
+                  android:parentActivityName=".MenuActivity"
+                  android:label=""/>
     </application>
 
 </manifest>

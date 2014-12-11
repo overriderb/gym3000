@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="appName">Gym 3000</string>
+    <string name="appName">Gym3000</string>
     <string name="menuTitle">Go to GYM right now</string>
-    <string name="firstProgramButton">First programm</string>
-    <string name="secondProgramButton">Second programm</string>
+    <string name="Back">Back</string>
+
 
     <string name="editMessage">edit_message</string>
     <string name="training">Today training</string>
@@ -13,4 +13,5 @@
     <string name="menu_layout_add_workout">Change workout</string>
     <string name="program_layout_history">History</string>
     <string name="history_layout_workout">Workout</string>
+
 </resources>

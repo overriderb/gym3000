@@ -1,5 +1,6 @@
 package org.gym.activity;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -55,6 +56,9 @@ public class ProgramActivity extends FragmentActivity {
             case R.id.action_history:
                 startHistory();
                 return true;
+            case R.id.action_program_settings:
+                startSettings();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -63,6 +67,11 @@ public class ProgramActivity extends FragmentActivity {
     private void startHistory(){
         Intent intent = new Intent(this, HistoryActivity.class);
         intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
+        startActivity(intent);
+    }
+
+    private void startSettings(){
+        Intent intent = new Intent(this, ProgramSettingsActivity.class);
         startActivity(intent);
     }
 
