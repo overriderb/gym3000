@@ -1,7 +1,5 @@
 package org.gym.adapter;
 
-
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,9 +8,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.NumberPicker;
 import android.widget.TextView;
+import org.gym.cache.CurrentProgramCache;
 import org.gym.component.GymNumberPicker;
 import org.gym.repository.DatabaseHelper;
 import org.gym.domain.Attempt;
@@ -41,18 +38,18 @@ public class ProgramSectionFragment extends Fragment {
     TextView workoutDescrTextView;
     ImageView imageView;
     FrameLayout frameLayout;
+    CurrentProgramCache cache;
     private GymNumberPicker weightPicker;
     private GymNumberPicker countPicker;
-    private List<Workout> workoutList;
 
 
     public ProgramSectionFragment() {
+        cache = CurrentProgramCache.getInstance();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        workoutItem = workoutList.get(getArguments().getInt(ARG_SECTION_NUMBER));
-
+        workoutItem = cache.getWorkoutList().get(getArguments().getInt(ARG_SECTION_NUMBER));
 
         rootView = inflater.inflate(R.layout.program_pages, container, false);
         workoutNameTextView = (TextView) rootView.findViewById(R.id.workout_title);

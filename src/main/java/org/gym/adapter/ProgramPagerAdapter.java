@@ -4,9 +4,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import org.gym.cache.CurrentProgramCache;
 import org.gym.domain.Workout;
-
-import java.util.List;
 
 /**
  * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to
@@ -15,19 +14,18 @@ import java.util.List;
 public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
     private int pageCount;
-    private List<Workout> workoutList;
+    private CurrentProgramCache cache;
 
-    public ProgramPagerAdapter(FragmentManager fragmentManager, List<Workout> workoutList) {
+    public ProgramPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
-        this.workoutList = workoutList;
-        this.pageCount = workoutList.size();
+        cache = CurrentProgramCache.getInstance();
+        this.pageCount = cache.getWorkoutList().size();
 
     }
 
     @Override
     public Fragment getItem(int position) {
-        ProgramSectionFragment currentFragment = new ProgramSectionFragment();
-        currentFragment.setWorkoutList(workoutList);
+        Fragment currentFragment = new ProgramSectionFragment();
         Bundle args = new Bundle();
 
         args.putInt(ProgramSectionFragment.ARG_SECTION_NUMBER, position);
@@ -42,7 +40,7 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        Workout workoutItem = workoutList.get(position);
+        Workout workoutItem = cache.getWorkoutList().get(position);
         return position + 1 + ". " + workoutItem.getName();
     }
 
