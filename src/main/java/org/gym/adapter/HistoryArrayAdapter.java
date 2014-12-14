@@ -17,14 +17,14 @@ import java.util.List;
  * This adapter is a part of history_pages.xml layout. It provides work of every item of layout.
  *
  */
-public class HistoryListItemAdapter extends ArrayAdapter<Exercise> {
+public class HistoryArrayAdapter extends ArrayAdapter<Exercise> {
 
     private List<Exercise> exerciseList = null;
     private List<Attempt> attemptList = null;
     private DatabaseHelper databaseHelper;
     private Context context;
 
-    public HistoryListItemAdapter(Context context, int resource, List<Exercise> objects) {
+    public HistoryArrayAdapter(Context context, int resource, List<Exercise> objects) {
         super(context, resource, objects);
         this.context = context;
         exerciseList = objects;

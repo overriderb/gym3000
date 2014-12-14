@@ -6,7 +6,7 @@ package org.gym.domain;
 /**
  * Created by anni0913 on 07.07.2014.
  */
-public class Workout {
+public class Workout implements HasNameAndDescription{
 
     public static final String TABLE_NAME = "workout";
 
@@ -56,10 +56,12 @@ public class Workout {
         this.parentId = parentId;
     }
 
+    @Override
     public String getName() {
         return name;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }

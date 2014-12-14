@@ -3,7 +3,7 @@ package org.gym.domain;
 /**
  * Created by anni0913 on 15.10.2014.
  */
-public class Program {
+public class Program implements HasNameAndDescription{
 
     public static final String TABLE_NAME = "PROGRAM";
 
@@ -33,6 +33,7 @@ public class Program {
         this.id = id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -41,6 +42,7 @@ public class Program {
         this.name = name;
     }
 
+    @Override
     public String getDescription() {
         return description;
     }

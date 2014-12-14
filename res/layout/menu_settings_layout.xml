@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -9,19 +9,16 @@
             android:id="@+id/menu_settings_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:baselineAligned="false"
-            android:weightSum="1">
+            android:orientation="vertical">
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Menu settings"/>
+                android:text="Menu settings" android:layout_gravity="center_horizontal" android:textSize="20dp"/>
 
-       <ListView android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:id="@+id/menu_settings_list_view">
-
-               </ListView>
+        <org.gym.DragNDropListView android:id="@+id/menu_settings_dnd_view"
+                                 android:background="#0000"
+                                 android:layout_width="match_parent"
+                                 android:layout_height="wrap_content"/>
     </LinearLayout>
-</ScrollView>
+</LinearLayout>
