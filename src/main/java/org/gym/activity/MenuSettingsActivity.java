@@ -3,7 +3,7 @@ package org.gym.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
-import org.gym.DragNDropListView;
+import org.gym.listView.DragNDropListView;
 import org.gym.adapter.SettingsArrayAdapter;
 import org.gym.domain.Program;
 import org.gym.repository.DatabaseHelper;

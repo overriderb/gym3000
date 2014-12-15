@@ -16,7 +16,7 @@
                 android:layout_height="wrap_content"
                 android:text="Menu settings" android:layout_gravity="center_horizontal" android:textSize="20dp"/>
 
-        <org.gym.DragNDropListView android:id="@+id/menu_settings_dnd_view"
+        <org.gym.listView.DragNDropListView android:id="@+id/menu_settings_dnd_view"
                                  android:background="#0000"
                                  android:layout_width="match_parent"
                                  android:layout_height="wrap_content"/>
