@@ -14,11 +14,13 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Menu settings" android:layout_gravity="center_horizontal" android:textSize="20dp"/>
+                android:text="Menu settings"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20dp"/>
 
-        <org.gym.listView.DragNDropListView android:id="@+id/menu_settings_dnd_view"
-                                 android:background="#0000"
-                                 android:layout_width="match_parent"
-                                 android:layout_height="wrap_content"/>
+        <org.gym.listView.DragNDropListView
+                android:id="@+id/menu_settings_dnd_view"
+                                 android:layout_width="fill_parent"
+                                 android:layout_height="fill_parent"/>
     </LinearLayout>
 </LinearLayout>

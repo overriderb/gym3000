@@ -14,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import org.gym.adapter.SettingsArrayAdapter;
+import org.gym.logging.Logger;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,7 @@ import java.util.ArrayList;
  * Created by AndreyNick on 14.12.2014.
  */
 public class DragNDropListView extends ListView {
+
     private final int SMOOTH_SCROLL_AMOUNT_AT_EDGE = 15;
     private final int MOVE_DURATION = 150;
     private final int LINE_THICKNESS = 15;
@@ -132,10 +134,9 @@ public class DragNDropListView extends ListView {
         Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
 
         Paint paint = new Paint();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(LINE_THICKNESS);
-        paint.setColor(Color.BLACK);
-
+        paint.setStyle(Paint.Style.FILL);
+        //paint.setStrokeWidth(LINE_THICKNESS);
+        paint.setColor(Color.GRAY);
         can.drawBitmap(bitmap, 0, 0, null);
         can.drawRect(rect, paint);
 
@@ -461,6 +462,11 @@ public class DragNDropListView extends ListView {
     public void setCheeseList(ArrayList<String> cheeseList) {
         mCheeseList = cheeseList;
     }
+
+    private void log(String message){
+        Logger.info(message, DragNDropListView.class);
+    }
+
 
     /**
      * This scroll listener is added to the listview in order to handle cell swapping
