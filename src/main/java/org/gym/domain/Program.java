@@ -10,11 +10,13 @@ public class Program implements HasNameAndDescription{
     private Long id;
     private String name;
     private String description;
+    private Long order_number;
 
     public enum Column {
         ID,
         NAME,
-        DESCRIPTION
+        DESCRIPTION,
+        ORDER_NUMBER
     }
 
     public Program() {
@@ -49,5 +51,13 @@ public class Program implements HasNameAndDescription{
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Long getOrder_number() {
+        return order_number;
+    }
+
+    public void setOrder_number(Long order_number) {
+        this.order_number = order_number;
     }
 }

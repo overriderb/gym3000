@@ -8,20 +8,22 @@ package org.gym.domain;
  */
 public class Workout implements HasNameAndDescription{
 
-    public static final String TABLE_NAME = "workout";
+    public static final String TABLE_NAME = "WORKOUT";
 
     private Long id;
     private Long parentId;
     private String name;
     private String description;
     private int pictureId;
+    private Long order_number;
 
     public enum Column {
         ID,
         PARENT_ID,
         NAME,
         PICTURE_ID,
-        DESCRIPTION
+        DESCRIPTION,
+        ORDER_NUMBER
     }
 
     public Workout() { }
@@ -80,5 +82,13 @@ public class Workout implements HasNameAndDescription{
 
     public void setPictureId(int pictureId) {
         this.pictureId = pictureId;
+    }
+
+    public Long getOrder_number() {
+        return order_number;
+    }
+
+    public void setOrder_number(Long order_number) {
+        this.order_number = order_number;
     }
 }
