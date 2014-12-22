@@ -34,6 +34,7 @@ public class WorkoutRepository {
         values.put(Workout.Column.NAME.name(), workout.getName());
         values.put(Workout.Column.PICTURE_ID.name(), workout.getPictureId());
         values.put(Workout.Column.DESCRIPTION.name(), workout.getDescription());
+        values.put(Workout.Column.ORDER_NUMBER.name(), workout.getOrderNumber());
 
         Long id = database.insert(Workout.TABLE_NAME, null, values);
         workout.setId(id);
@@ -56,6 +57,7 @@ public class WorkoutRepository {
                 workout.setName(cursor.getString(2));
                 workout.setPictureId(Integer.parseInt(cursor.getString(3)));
                 workout.setDescription(cursor.getString(4));
+                workout.setOrderNumber(Integer.parseInt(cursor.getString(5)));
 
                 workoutList.add(workout);
             } while (cursor.moveToNext());

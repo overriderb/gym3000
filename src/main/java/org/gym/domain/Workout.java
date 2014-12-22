@@ -15,7 +15,7 @@ public class Workout implements HasNameAndDescription{
     private String name;
     private String description;
     private int pictureId;
-    private Long order_number;
+    private int orderNumber;
 
     public enum Column {
         ID,
@@ -28,19 +28,23 @@ public class Workout implements HasNameAndDescription{
 
     public Workout() { }
 
-    public Workout(Long parentProgram, String name, String description, int pictureId) {
+    public Workout(Long parentProgram, String name, String description, int pictureId, int order_number) {
         this.parentId = parentProgram;
         this.name = name;
         this.description = description;
         this.pictureId = pictureId;
+        this.orderNumber = order_number;
     }
 
-    public Workout(Program program, String name, String description, int pictureId) {
+    public Workout(Program program, String name, String description, int pictureId, int order_number) {
         this.parentId = program.getId();
         this.name = name;
         this.description = description;
         this.pictureId = pictureId;
+        this.orderNumber = order_number;
     }
+
+
 
     public Long getId() {
         return id;
@@ -84,11 +88,11 @@ public class Workout implements HasNameAndDescription{
         this.pictureId = pictureId;
     }
 
-    public Long getOrder_number() {
-        return order_number;
+    public int getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setOrder_number(Long order_number) {
-        this.order_number = order_number;
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
     }
 }

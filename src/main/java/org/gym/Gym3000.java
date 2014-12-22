@@ -22,7 +22,7 @@ public class Gym3000 extends Application {
     public void onCreate() {
         super.onCreate();
         databaseHelper = new DatabaseHelper(this);
-        if(isFirstStart()){                                //For first start of application please change change isFirstStart()
+        if(true){                                //For first start of application please change change isFirstStart()
             setInitialPrograms();                          //to true for correct setting to DB default programs
         }
     }
@@ -53,11 +53,11 @@ public class Gym3000 extends Application {
      * Method sets to DB programs and workouts, which user will see after starting this application first time
      */
     private void setInitialPrograms() {
-        Program handsChestProgram = new Program("Hands/Chest training day", "Blah-blah, hands and chest");
+        Program handsChestProgram = new Program("Hands/Chest training day", "Blah-blah, hands and chest", 1);
         databaseHelper.getProgramRepository().storeProgram(handsChestProgram);
 
         Long id1 = databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram, "Warm-up", "Some warm-up exercises. It is important to warming-up and " +
-                "stretch every muscle which will be burden.", R.drawable.warm_up));
+                "stretch every muscle which will be burden.", R.drawable.warm_up, 1));
 
         Long id2 = databaseHelper.getExerciseRepository().storeExercise(new Exercise(id1, "11.01.1989", Exercise.TYPE.M));
         databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id2, "10", 15));
@@ -90,27 +90,27 @@ public class Gym3000 extends Application {
                 " lot of text \n" +
                 " lot of text \n" +
                 " lot of text \n" +
-                " lot of text", R.drawable.lateral_raise));
+                " lot of text", R.drawable.lateral_raise, 2));
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram, "Lat pulldown", "The lat pulldown works the major muscles in the back and " +
                 "also the biceps in the arms. It's a good exercise to progress up to doing pull ups as it develops " +
-                "strength in the back and arms, so its ideal for beginners.", R.drawable.lat_pulldown));
+                "strength in the back and arms, so its ideal for beginners.", R.drawable.lat_pulldown, 3));
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram, "Cable rows", "Seated cable rows are a great way to work the back muscles. " +
                 "Varying the width of your hands focuses the intensity on different areas of the back. Because it's a " +
-                "pulling exercise you are also working your biceps.", R.drawable.cable_rows));
+                "pulling exercise you are also working your biceps.", R.drawable.cable_rows, 4));
 
-        Program legsBackProgram = new Program("Legs/Back training day", "Description of Legs/Back program");
+        Program legsBackProgram = new Program("Legs/Back training day", "Description of Legs/Back program", 2);
         databaseHelper.getProgramRepository().storeProgram(legsBackProgram);
 
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram, "Tricep pushdowns", "Tricep pushdowns isolate the tricep muscles and are " +
                 "usually done at the tail end of a workout to give the triceps a real pump. It's a very easy exercise " +
-                "to perform and is ideal for beginners to weight training.", R.drawable.tricep_pushdowns));
+                "to perform and is ideal for beginners to weight training.", R.drawable.tricep_pushdowns, 6));
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram, "Crunch", " The standard abdominal crunch exercise targets the stomach " +
                 "muscles. The crunch is a safe and effective exercise that is great for beginners to help develop " +
-                "strong abdominal muscles.", R.drawable.crunch));
+                "strong abdominal muscles.", R.drawable.crunch, 7));
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram, "Back extensions", "Back extensions are also known as hyperextensions. It's " +
-                "an exercise that works the lower back and also the buttocks and hamstrings.", R.drawable.back_extensions));
+                "an exercise that works the lower back and also the buttocks and hamstrings.", R.drawable.back_extensions, 8));
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram, "Cardio trainings", "Training for pussy-man, who doesn't want to kick " +
-                "somebody's ass on street, only likes pedalling", R.drawable.cardio_trainings));
+                "somebody's ass on street, only likes pedalling", R.drawable.cardio_trainings, 9));
 
     }
 }

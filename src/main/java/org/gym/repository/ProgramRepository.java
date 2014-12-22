@@ -26,6 +26,7 @@ public class ProgramRepository {
         ContentValues values = new ContentValues();
         values.put(Program.Column.NAME.name(), program.getName());
         values.put(Program.Column.DESCRIPTION.name(), program.getDescription());
+        values.put(Program.Column.ORDER_NUMBER.name(), program.getOrderNumber());
 
         Long id = database.insert(Program.TABLE_NAME, null, values);
         program.setId(id);
@@ -46,6 +47,7 @@ public class ProgramRepository {
                 program.setId(Long.parseLong(cursor.getString(0)));
                 program.setName(cursor.getString(1));
                 program.setDescription(cursor.getString(2));
+                program.setOrderNumber(Integer.parseInt(cursor.getString(2)));
 
                 programList.add(program);
             } while (cursor.moveToNext());
