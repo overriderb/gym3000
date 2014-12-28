@@ -1,5 +1,6 @@
 package org.gym.adapter;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,19 +9,16 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import org.gym.cache.CurrentProgramCache;
-import org.gym.component.GymNumberPicker;
-import org.gym.repository.DatabaseHelper;
-import org.gym.domain.Attempt;
+import org.gym.component.GymValuePicker;
 import org.gym.domain.Exercise;
 import org.gym.domain.Workout;
 import org.gym.activity.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Locale;
+import org.gym.service.AttemptService;
+import org.gym.service.ExerciseService;
 
 /**
  * A section fragment representing programs
@@ -31,7 +29,6 @@ public class ProgramSectionFragment extends Fragment {
      * fragment.
      */
     public static final String ARG_SECTION_NUMBER = "org.gym.adapter.ProgramSectionFragment.ARG_SECTION_NUMBER";
-    private static final String DATE_FORMAT = "dd.MM.yyyy";
     Workout workoutItem;
     View rootView;
     TextView workoutNameTextView;
@@ -39,12 +36,20 @@ public class ProgramSectionFragment extends Fragment {
     ImageView imageView;
     FrameLayout frameLayout;
     CurrentProgramCache cache;
-    private GymNumberPicker weightPicker;
-    private GymNumberPicker countPicker;
+    private GymValuePicker weightPicker;
+    private GymValuePicker countPicker;
+    private GymValuePicker exerciseTypePicker;
 
+    private Long exerciseId;
+    private Long attemptId;
+
+    private AttemptService attemptService;
+    private ExerciseService exerciseService;
 
     public ProgramSectionFragment() {
         cache = CurrentProgramCache.getInstance();
+        attemptService = new AttemptService();
+        exerciseService = new ExerciseService();
     }
 
     @Override
@@ -61,24 +66,35 @@ public class ProgramSectionFragment extends Fragment {
         workoutDescrTextView.setText(workoutItem.getDescription());
         imageView.setImageResource(workoutItem.getPictureId());
 
-        LinearLayout layout = (LinearLayout) rootView.findViewById(R.id.bigLinear);
-        countPicker = buildCountPicker(layout.getContext());
-        layout.addView(countPicker);
-        weightPicker = buildWeightPicker(layout.getContext());
-        layout.addView(weightPicker);
-
-        final Button button = (Button) rootView.findViewById(R.id.save_attempt);
-        button.setOnClickListener(new View.OnClickListener() {
+        // Configuration of exercise type section
+        final LinearLayout attemptPickerLayout = (LinearLayout) rootView.findViewById(R.id.attemptPickerLayout);
+        final LinearLayout exerciseTypeLayout = (LinearLayout) rootView.findViewById(R.id.exerciseTypeLayout);
+        exerciseTypePicker = buildExerciseTypePicker(exerciseTypeLayout.getContext());
+        exerciseTypeLayout.addView(exerciseTypePicker);
+        final Button saveExerciseButton = (Button) rootView.findViewById(R.id.saveExerciseType);
+        saveExerciseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                persistAttempt(button.getContext());
+                persistExerciseType(saveExerciseButton.getContext());
+                exerciseTypeLayout.setVisibility(View.GONE);
+                attemptPickerLayout.setVisibility(View.VISIBLE);
+            }
+        });
+
+        // Configuration of attempt save section
+        LinearLayout countLayout = (LinearLayout) rootView.findViewById(R.id.countPickerLayout);
+        LinearLayout wightLayout = (LinearLayout) rootView.findViewById(R.id.wightPickerLayout);
+        countPicker = buildCountPicker(countLayout.getContext());
+        countLayout.addView(countPicker);
+        weightPicker = buildWeightPicker(wightLayout.getContext());
+        wightLayout.addView(weightPicker);
+        final Button saveAttemptButton = (Button) rootView.findViewById(R.id.saveAttempt);
+        saveAttemptButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                persistAttempt(saveAttemptButton.getContext(), exerciseId);
             }
         });
 
         return rootView;
-    }
-
-    public void setWorkoutList(List<Workout> workoutList) {
-        this.workoutList = workoutList;
     }
 
     /**
@@ -89,40 +105,43 @@ public class ProgramSectionFragment extends Fragment {
      * @param context parent layout context
      * @return created gym number picker
      */
-    private GymNumberPicker buildWeightPicker(Context context) {
-        GymNumberPicker numberPicker = new GymNumberPicker(context);
-        numberPicker.configureRange(20, 100, 2.5f);
-        numberPicker.setWrapSelectorWheel(false);
-        numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-        numberPicker.scaleSize(0.6f);
-        return numberPicker;
+    private GymValuePicker buildWeightPicker(Context context) {
+        GymValuePicker weightPicker = new GymValuePicker(context);
+        weightPicker.configureRange(10, 100, 2.5f);
+        weightPicker.scaleSize(0.6f);
+        weightPicker.setWrapSelectorWheel(false);
+        weightPicker.setDescendantFocusability(GymValuePicker.FOCUS_BLOCK_DESCENDANTS);
+        return weightPicker;
     }
 
-    private GymNumberPicker buildCountPicker(Context context) {
-        GymNumberPicker numberPicker = new GymNumberPicker(context);
-        numberPicker.setMaxValue(50);
-        numberPicker.setWrapSelectorWheel(false);
-        numberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-        numberPicker.scaleSize(0.6f);
-        return numberPicker;
+    private GymValuePicker buildCountPicker(Context context) {
+        GymValuePicker countPicker = new GymValuePicker(context);
+        countPicker.setMaxValue(50);
+        countPicker.scaleSize(0.6f);
+        countPicker.setWrapSelectorWheel(false);
+        countPicker.setDescendantFocusability(GymValuePicker.FOCUS_BLOCK_DESCENDANTS);
+        return countPicker;
     }
 
-    private void persistAttempt(Context context) {
-        DatabaseHelper databaseHelper = new DatabaseHelper(context);
-        Exercise exercise = new Exercise();
-        exercise.setParentId(workoutItem.getId());
-        exercise.setDate(getCurrentDate());
-        exercise.setType(Exercise.TYPE.M);
-        long exerciseId = databaseHelper.getExerciseRepository().storeExercise(exercise);
-        Attempt attempt = new Attempt();
-        attempt.setParentId(exerciseId);
-        attempt.setCount(countPicker.getValue());
-        attempt.setWeight(weightPicker.getDisplayedValues()[weightPicker.getValue()]);
-        databaseHelper.getAttemptRepository().storeAttempt(attempt);
+    private GymValuePicker buildExerciseTypePicker(Context context) {
+        GymValuePicker exerciseTypePicker = new GymValuePicker(context);
+        exerciseTypePicker.configureEnumValues(Exercise.TYPE.values());
+        exerciseTypePicker.scaleSize(0.6f);
+        exerciseTypePicker.setWrapSelectorWheel(false);
+        exerciseTypePicker.setDescendantFocusability(GymValuePicker.FOCUS_BLOCK_DESCENDANTS);
+        return exerciseTypePicker;
     }
 
-    private String getCurrentDate() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
-        return dateFormat.format(Calendar.getInstance().getTime());
+    private void persistAttempt(Context context, Long exerciseId) {
+        String weight = weightPicker.getDisplayedValues()[weightPicker.getValue()];
+        int count = countPicker.getValue();
+        attemptId = attemptService.persistAttempt(context, exerciseId, count, weight);
+        Toast.makeText(context, "Attempt " + weight + "/" + count + " persisted", Toast.LENGTH_SHORT).show();
+    }
+
+    private void persistExerciseType(Context context) {
+        String exerciseType = exerciseTypePicker.getDisplayedValues()[exerciseTypePicker.getValue()];
+        exerciseId = exerciseService.persistExercise(context, workoutItem.getId(), exerciseType);
+        Toast.makeText(context, "Exercise persisted", Toast.LENGTH_SHORT).show();
     }
 }
