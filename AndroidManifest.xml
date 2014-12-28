@@ -25,11 +25,14 @@
         <activity android:name=".HistoryActivity"
                   android:parentActivityName=".ProgramActivity"
                   android:label=""/>
-        <activity android:name=".ProgramSettingsActivity"
-                  android:parentActivityName=".ProgramActivity"
+        <activity android:name=".ChangeProgramActivity"
+                  android:parentActivityName=".SettingsInProgramActivity"
                   android:label=""/>
         <activity android:name=".MenuSettingsActivity"
                   android:parentActivityName=".MenuActivity"
+                  android:label=""/>
+        <activity android:name=".SettingsInProgramActivity"
+                  android:parentActivityName=".ProgramActivity"
                   android:label=""/>
     </application>
 

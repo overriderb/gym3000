@@ -31,16 +31,27 @@ public class MenuSettingsActivity extends Activity {
 
 
         ArrayList<String> resultList = new ArrayList<String>();
-        for(Program item: programsList){
+        /*for(Program item: programsList){
             resultList.add(item.getName());
-        }
+        }*/
+        resultList.add("One");
+        resultList.add("Two");
+        resultList.add("Two");
+        resultList.add("Three");
+        resultList.add("Four");
+        resultList.add("Five");
+        resultList.add("Six");
+        resultList.add("Seven");
+        resultList.add("Eight");
+        resultList.add("Nine");
+        resultList.add("Ten");
 
         SettingsArrayAdapter adapter = new SettingsArrayAdapter(this, R.layout.text_view, resultList);
         DragNDropListView listView = (DragNDropListView) findViewById(R.id.menu_settings_dnd_view);
 
         listView.setCheeseList(resultList);
         listView.setAdapter(adapter);
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
     }
 
     @Override

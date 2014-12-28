@@ -38,7 +38,7 @@ public class ExerciseRepository {
     public List<Exercise> findExerciseListByParentId(Long parentId) {
         instantiateDb();
         List<Exercise> exerciseList = new LinkedList<Exercise>();
-        String query = "SELECT  * FROM " + Exercise.TABLE_NAME + " WHERE " + Exercise.Column.PARENT_ID + " = " + parentId;
+        String query = "SELECT  * FROM " + Exercise.TABLE_NAME + " WHERE " + Exercise.Column.PARENT_ID + " = " + parentId+  " ORDER BY DATE";
 
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {

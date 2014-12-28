@@ -15,11 +15,11 @@ import java.util.List;
 /**
  * Created by anni0913 on 11.12.2014.
  */
-public class ProgramSettingsActivity extends Activity {
+public class ChangeProgramActivity extends Activity {
 
     CurrentProgramCache cache;
 
-    public ProgramSettingsActivity(){
+    public ChangeProgramActivity(){
        cache = CurrentProgramCache.getInstance();
     }
 

@@ -2,7 +2,7 @@
 <resources>
     <string name="appName">Gym3000</string>
     <string name="menuTitle">Go to GYM right now</string>
-    <string name="Back">Back</string>
+
 
 
     <string name="editMessage">edit_message</string>
@@ -13,5 +13,17 @@
     <string name="menu_layout_add_workout">Change workout</string>
     <string name="program_layout_history">History</string>
     <string name="history_layout_workout">Workout</string>
+
+
+
+    <string name="settings">Settings</string>
+    <!--SettingsInProgram-->
+    <string name="settings_program_hide_picture">Hide picture</string>
+    <string name="settings_program_hide_description">Hide description</string>
+    <string name="settings_program_change_programs">Change programs</string>
+
+    <string name="Back">180dp</string>
+
+
 
 </resources>

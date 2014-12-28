@@ -38,7 +38,7 @@ public class ProgramRepository {
     public List<Program> findAllProgramsList(){
         instantiateDb();
         List<Program> programList = new LinkedList<Program>();
-        String query = "SELECT  * FROM " + Program.TABLE_NAME;
+        String query = "SELECT  * FROM " + Program.TABLE_NAME +  " ORDER BY ORDER_NUMBER";
 
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
@@ -47,7 +47,7 @@ public class ProgramRepository {
                 program.setId(Long.parseLong(cursor.getString(0)));
                 program.setName(cursor.getString(1));
                 program.setDescription(cursor.getString(2));
-                program.setOrderNumber(Integer.parseInt(cursor.getString(2)));
+                program.setOrderNumber(Integer.parseInt(cursor.getString(3)));
 
                 programList.add(program);
             } while (cursor.moveToNext());

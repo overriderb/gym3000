@@ -25,7 +25,7 @@ public class DragNDropListView extends ListView {
 
     private final int SMOOTH_SCROLL_AMOUNT_AT_EDGE = 15;
     private final int MOVE_DURATION = 150;
-    private final int LINE_THICKNESS = 15;
+    private final int LINE_THICKNESS = 5;
 
     public ArrayList<String> mCheeseList;
 
@@ -134,11 +134,12 @@ public class DragNDropListView extends ListView {
         Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
 
         Paint paint = new Paint();
-        paint.setStyle(Paint.Style.FILL);
+        //paint.setStyle(Paint.Style.);
         //paint.setStrokeWidth(LINE_THICKNESS);
-        paint.setColor(Color.GRAY);
+        //paint.setColor(Color.BLACK);
         can.drawBitmap(bitmap, 0, 0, null);
         can.drawRect(rect, paint);
+        //it will get bitmap without border
 
         return bitmap;
     }

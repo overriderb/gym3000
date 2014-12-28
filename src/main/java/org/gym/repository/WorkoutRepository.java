@@ -46,7 +46,8 @@ public class WorkoutRepository {
     public List<Workout> findWorkoutsListByParentId(long parentId){
         instantiateDb();
         List<Workout> workoutList = new LinkedList<Workout>();
-        String query = "SELECT  * FROM " + Workout.TABLE_NAME + " WHERE " + Workout.Column.PARENT_ID + " = " + parentId;
+        String query = "SELECT  * FROM " + Workout.TABLE_NAME + " WHERE " + Workout.Column.PARENT_ID + " = " +
+                parentId+  " ORDER BY ORDER_NUMBER";
 
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {

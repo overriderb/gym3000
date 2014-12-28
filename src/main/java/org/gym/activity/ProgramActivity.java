@@ -1,6 +1,5 @@
 package org.gym.activity;
 
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -9,10 +8,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import org.gym.adapter.ProgramPagerAdapter;
-import org.gym.repository.DatabaseHelper;
-import org.gym.domain.Workout;
-
-import java.util.List;
 
 
 /**
@@ -71,7 +66,7 @@ public class ProgramActivity extends FragmentActivity {
     }
 
     private void startSettings(){
-        Intent intent = new Intent(this, ProgramSettingsActivity.class);
+        Intent intent = new Intent(this, SettingsInProgramActivity.class);
         startActivity(intent);
     }
 

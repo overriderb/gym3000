@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/settings"
+            android:id="@+id/settings_program_title_text"
+            android:layout_gravity="center_horizontal"/>
+
+    <Switch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_program_hide_picture"
+            android:id="@+id/settings_program_switch_hide_picture"
+            android:onClick="onToggleHidePicture"/>
+
+    <Switch
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_program_hide_description"
+            android:id="@+id/settings_program_switch_hide_description"/>
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_program_change_programs"
+            android:id="@+id/settings_program_button_change_programs"
+            android:layout_gravity="center_horizontal"
+            android:onClick="startChangeProgram"/>
+</LinearLayout>

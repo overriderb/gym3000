@@ -38,7 +38,7 @@ public class AttemptRepository {
     public List<Attempt> findAttemptListByParentId(Long parentId) {
         instantiateDb();
         List<Attempt> attemptList = new LinkedList<Attempt>();
-        String query = "SELECT  * FROM " + Attempt.TABLE_NAME + " WHERE " + Attempt.Column.PARENT_ID + " = " + parentId;
+        String query = "SELECT  * FROM " + Attempt.TABLE_NAME + " WHERE " + Attempt.Column.PARENT_ID + " = " + parentId +  " ORDER BY WEIGHT";
 
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
