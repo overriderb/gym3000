@@ -4,8 +4,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.View;
 import org.gym.cache.CurrentProgramCache;
 import org.gym.domain.Workout;
+
+import java.util.Map;
 
 /**
  * A {@link android.support.v4.app.FragmentPagerAdapter} that returns a fragment corresponding to
@@ -13,6 +16,8 @@ import org.gym.domain.Workout;
  */
 public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
+
+    public static Map<Integer, Fragment> map;
     private int pageCount;
     private CurrentProgramCache cache;
 
@@ -27,10 +32,14 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         Fragment currentFragment = new ProgramSectionFragment();
         Bundle args = new Bundle();
-
         args.putInt(ProgramSectionFragment.ARG_SECTION_NUMBER, position);
         currentFragment.setArguments(args);
         return currentFragment;
+    }
+
+    //http://tamsler.blogspot.com/2011/11/android-viewpager-and-fragments-part-ii.html
+    public void destroyItem(View container, int position, Object object){
+
     }
 
     @Override

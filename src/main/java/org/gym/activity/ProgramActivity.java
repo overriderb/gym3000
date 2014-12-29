@@ -7,7 +7,11 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.gym.adapter.ProgramPagerAdapter;
+import org.gym.helper.SharedPreferencesHelper;
+import org.gym.logging.Logger;
 
 
 /**
@@ -58,6 +62,7 @@ public class ProgramActivity extends FragmentActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
 
     private void startHistory(){
         Intent intent = new Intent(this, HistoryActivity.class);

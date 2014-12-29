@@ -9,6 +9,7 @@
     <item android:id="@+id/action_program_settings"
           android:title="@string/menu_layout_settings"
           android:showAsAction="always"
-          android:icon="@drawable/settings_blue_64x64"/>
+          />
+    <!--android:icon="@drawable/settings_blue_64x64"-->
 
 </menu>

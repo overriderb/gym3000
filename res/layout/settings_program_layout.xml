@@ -16,8 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/settings_program_hide_picture"
-            android:id="@+id/settings_program_switch_hide_picture"
-            android:onClick="onToggleHidePicture"/>
+            android:id="@+id/settings_program_switch_hide_picture"/>
 
     <Switch
             android:layout_width="match_parent"

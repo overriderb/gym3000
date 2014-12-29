@@ -13,8 +13,8 @@ import org.gym.domain.Workout;
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 2;
-    private static final String DATABASE_NAME = "SQLite6";
+    private static final int DATABASE_VERSION = 1;
+    private static final String DATABASE_NAME = "SQLite7";
 
     private ProgramRepository programRepository = null;
     private WorkoutRepository workoutRepository = null;

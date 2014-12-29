@@ -14,11 +14,9 @@
                       android:layout_height="wrap_content"
                       android:orientation="vertical"
                       android:id="@+id/bigLinear">
-
-
             <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@string/picture_height1"
+                    android:layout_height="match_parent"
                     android:id="@+id/absolute_layout">
                 <ImageView
                         android:layout_width="match_parent"
@@ -58,7 +56,8 @@
                     android:id="@+id/workout_descr"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
-                    android:layout_below="@+id/absolute_layout"/>
+                    android:layout_below="@+id/absolute_layout"
+                    android:clickable="true"/>
         </LinearLayout>
 
     </ScrollView>

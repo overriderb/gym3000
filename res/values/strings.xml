@@ -18,8 +18,8 @@
 
     <string name="settings">Settings</string>
     <!--SettingsInProgram-->
-    <string name="settings_program_hide_picture">Hide picture</string>
-    <string name="settings_program_hide_description">Hide description</string>
+    <string name="settings_program_hide_picture">Is picture open</string>
+    <string name="settings_program_hide_description">Is description open</string>
     <string name="settings_program_change_programs">Change programs</string>
 
     <string name="Back">180dp</string>
