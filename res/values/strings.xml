@@ -22,7 +22,16 @@
     <string name="settings_program_hide_description">Is description open</string>
     <string name="settings_program_change_programs">Change programs</string>
 
-    <string name="Back">180dp</string>
+    <!--ProgramPages-->
+    <string name="description">Description</string>
+
+
+    <dimen name="title_padding">20dp</dimen>
+    <dimen name="text_padding">5dp</dimen>
+    <dimen name="text_size_middle">20dp</dimen>
+    <dimen name="text_size_big">25dp</dimen>
+
+
 
 
 

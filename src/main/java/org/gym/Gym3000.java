@@ -120,7 +120,7 @@ public class Gym3000 extends Application {
     private void setInitialPreferences() {
         SharedPreferencesHelper.setBool(this, SharedPreferencesHelper.IS_PICTURE_OPEN, true);
         SharedPreferencesHelper.setBool(this, SharedPreferencesHelper.IS_DESCRIPTION_OPEN, true);
-        SharedPreferencesHelper.setInt(this, SharedPreferencesHelper.PICTURE_HEIGHT, 180);
+        SharedPreferencesHelper.setInt(this, SharedPreferencesHelper.PICTURE_HEIGHT, 200);
         SharedPreferencesHelper.setInt(this, SharedPreferencesHelper.DESCRIPTION_HEIGHT, FrameLayout.LayoutParams.WRAP_CONTENT);
     }
 }

@@ -17,7 +17,7 @@
             <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:id="@+id/absolute_layout">
+                    android:id="@+id/absolute_layout_picture">
                 <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -37,30 +37,69 @@
                         android:src="@drawable/black_gradient_50per"
                         android:rotation="180"
                         android:scaleType="centerCrop"/>
+                <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:id="@+id/open_hide_picture_button"
+                        android:src="@drawable/circule_blue_normal"
+                        android:paddingRight="@dimen/text_padding"
+                        android:layout_gravity="bottom|right"
+                        android:clickable="true"/>
                 <TextView
                         android:id="@+id/workout_title"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Workout"
-                        android:layout_gravity="center_horizontal|bottom"
-                        android:gravity="center_horizontal"
-                        android:clickable="true"/>
+                        android:gravity="left"
+                        android:clickable="true"
+                        android:textSize="@dimen/text_size_big"
+                        android:layout_gravity="bottom"
+                        android:paddingLeft="@dimen/title_padding"/>
             </FrameLayout>
-
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Workout description"
-                    android:textSize="20dp"
-                    android:id="@+id/workout_descr"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/absolute_layout"
-                    android:clickable="true"/>
+            <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/absolute_layout_description"
+                    android:layout_below="@+id/absolute_layout_picture">
+                <ImageView
+                        android:layout_width="fill_parent"
+                        android:layout_height="30dp"
+                        android:layout_gravity="top|center_horizontal"
+                        android:src="@drawable/black_gradient_50per"
+                        android:rotation="180"
+                        android:scaleType="centerCrop"/>
+                <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:id="@+id/open_hide_description_button"
+                        android:src="@drawable/circule_blue_normal"
+                        android:paddingRight="@dimen/text_padding"
+                        android:layout_gravity="top|right"
+                        android:clickable="true"/>
+                <LinearLayout
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                    <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/description"
+                            android:id="@+id/description_title"
+                            android:paddingLeft="@dimen/title_padding"
+                            android:textSize="@dimen/text_size_big"/>
+                    <TextView
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Workout description"
+                            android:textSize="@dimen/text_size_middle"
+                            android:paddingLeft="@dimen/text_padding"
+                            android:id="@+id/workout_descr"
+                            android:layout_alignParentLeft="true"
+                            android:layout_alignParentRight="true"
+                            />
+                </LinearLayout>
+            </FrameLayout>
         </LinearLayout>
-
     </ScrollView>
-
-
 </RelativeLayout>
