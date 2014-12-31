@@ -16,8 +16,6 @@ import java.util.Map;
  */
 public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
-
-    public static Map<Integer, Fragment> map;
     private int pageCount;
     private CurrentProgramCache cache;
 
@@ -25,7 +23,6 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
         super(fragmentManager);
         cache = CurrentProgramCache.getInstance();
         this.pageCount = cache.getWorkoutList().size();
-
     }
 
     @Override
