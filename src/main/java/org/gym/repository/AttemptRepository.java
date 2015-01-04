@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import org.gym.domain.Attempt;
+import org.gym.logging.Logger;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class AttemptRepository {
 
     public Long storeAttempt(Attempt attempt) {
         instantiateDb();
+        Logger.info("Storing attempt: " + attempt.toString(), AttemptRepository.class);
 
         ContentValues values = new ContentValues();
         values.put(Attempt.Column.PARENT_ID.name(), attempt.getParentId());
@@ -30,6 +32,7 @@ public class AttemptRepository {
 
         Long id = database.insert(Attempt.TABLE_NAME, null, values);
         attempt.setId(id);
+        Logger.info("Attempt stored: " + attempt.toString(), AttemptRepository.class);
 
         closeDb();
         return id;
@@ -37,8 +40,10 @@ public class AttemptRepository {
 
     public List<Attempt> findAttemptListByParentId(Long parentId) {
         instantiateDb();
+        Logger.info("Finding attempt list by parent id: " + parentId, AttemptRepository.class);
         List<Attempt> attemptList = new LinkedList<Attempt>();
         String query = "SELECT  * FROM " + Attempt.TABLE_NAME + " WHERE " + Attempt.Column.PARENT_ID + " = " + parentId;
+        Logger.info("Query: " + query, AttemptRepository.class);
 
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {

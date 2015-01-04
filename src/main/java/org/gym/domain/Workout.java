@@ -79,4 +79,15 @@ public class Workout {
     public void setPictureId(int pictureId) {
         this.pictureId = pictureId;
     }
+
+    @Override
+    public String toString() {
+        return "Workout{" +
+                "id=" + id +
+                ", parentId=" + parentId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", pictureId=" + pictureId +
+                '}';
+    }
 }

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import org.gym.domain.Program;
+import org.gym.logging.Logger;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class ProgramRepository {
 
     public Long storeProgram(Program program) {
         instantiateDb();
+        Logger.info("Storing program: " + program.toString(), ProgramRepository.class);
 
         ContentValues values = new ContentValues();
         values.put(Program.Column.NAME.name(), program.getName());
@@ -29,13 +31,15 @@ public class ProgramRepository {
 
         Long id = database.insert(Program.TABLE_NAME, null, values);
         program.setId(id);
+        Logger.info("Program stored: " + program.toString(), ProgramRepository.class);
 
         closeDb();
         return id;
     }
 
-    public List<Program> findAllProgramsList(){
+    public List<Program> findAllProgramsList() {
         instantiateDb();
+        Logger.info("Finding all programs", ProgramRepository.class);
         List<Program> programList = new LinkedList<Program>();
         String query = "SELECT  * FROM " + Program.TABLE_NAME;
 
