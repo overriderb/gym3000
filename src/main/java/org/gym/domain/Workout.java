@@ -44,8 +44,6 @@ public class Workout implements HasNameAndDescription{
         this.orderNumber = order_number;
     }
 
-
-
     public Long getId() {
         return id;
     }
@@ -94,5 +92,16 @@ public class Workout implements HasNameAndDescription{
 
     public void setOrderNumber(int orderNumber) {
         this.orderNumber = orderNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "Workout{" +
+                "id=" + id +
+                ", parentId=" + parentId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", pictureId=" + pictureId +
+                '}';
     }
 }

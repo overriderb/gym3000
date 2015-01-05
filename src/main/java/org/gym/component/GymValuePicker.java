@@ -13,14 +13,14 @@ import java.util.List;
 /**
  * Custom number picker for gym3000 application
  */
-public class GymNumberPicker extends NumberPicker {
+public class GymValuePicker extends NumberPicker {
 
     private static final int DEFAULT_FONT_SIZE = 25;
     private static final int DEFAULT_FONT_COLOR = Color.parseColor("white");
 
     private Context context;
 
-    public GymNumberPicker(Context context) {
+    public GymValuePicker(Context context) {
         super(context);
         this.context = context;
     }
@@ -67,6 +67,20 @@ public class GymNumberPicker extends NumberPicker {
 
         this.setDisplayedValues(values.toArray(new String[values.size()]));
         this.setMaxValue(values.size() - 1);
+    }
+
+    /**
+     * Configure value picker by enumeration names
+     *
+     * @param values array of enumeration values
+     */
+    public void configureEnumValues(Enum[] values) {
+        List<String> displayedValues = new ArrayList<String>();
+        for(Enum value : values) {
+            displayedValues.add(value.name());
+        }
+        this.setDisplayedValues(displayedValues.toArray(new String[displayedValues.size()]));
+        this.setMaxValue(displayedValues.size() - 1);
     }
 
     /**

@@ -14,10 +14,12 @@
                       android:layout_height="wrap_content"
                       android:orientation="vertical"
                       android:id="@+id/bigLinear">
+
+
             <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/absolute_layout_picture">
+                    android:layout_height="180dp"
+                    android:id="@+id/absolute_layout">
                 <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -99,6 +101,74 @@
                             />
                 </LinearLayout>
             </FrameLayout>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Workout description"
+                    android:textSize="20dp"
+                    android:id="@+id/workout_descr"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@+id/absolute_layout"/>
+
+            <LinearLayout
+                    android:id="@+id/exerciseTypeLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                <Button
+                        android:id="@+id/saveExerciseType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/start_exercise_button"/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/choose_exercise_type_text"
+                          android:layout_gravity="center"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/attemptPickerLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                <Button
+                        android:id="@+id/saveAttempt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="@string/save_attempt_button"/>
+
+                <LinearLayout
+                        android:id="@+id/countPickerLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"/>
+
+                <TextView android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/count_text"
+                        android:layout_gravity="center"/>
+
+                <LinearLayout
+                        android:id="@+id/wightPickerLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"/>
+
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:text="@string/kg_text"
+                          android:layout_gravity="center"/>
+
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

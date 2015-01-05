@@ -69,4 +69,14 @@ public class Exercise {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Exercise{" +
+                "id=" + id +
+                ", parentId=" + parentId +
+                ", date='" + date + '\'' +
+                ", type=" + type +
+                '}';
+    }
 }

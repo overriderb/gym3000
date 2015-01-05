@@ -65,4 +65,14 @@ public class Attempt {
     public void setId(Long id) {
         this.id = id;
     }
+
+    @Override
+    public String toString() {
+        return "Attempt{" +
+                "id=" + id +
+                ", parentId=" + parentId +
+                ", weight='" + weight + '\'' +
+                ", count=" + count +
+                '}';
+    }
 }

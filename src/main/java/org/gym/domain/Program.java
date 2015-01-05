@@ -61,4 +61,13 @@ public class Program implements HasNameAndDescription{
     public void setOrderNumber(int orderNumber) {
         this.orderNumber = orderNumber;
     }
+
+    @Override
+    public String toString() {
+        return "Program{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

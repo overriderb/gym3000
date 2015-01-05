@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import org.gym.domain.Exercise;
+import org.gym.logging.Logger;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -22,6 +23,7 @@ public class ExerciseRepository {
 
     public long storeExercise(Exercise exercise) {
         instantiateDb();
+        Logger.info("Storing exercise: " + exercise.toString(), ExerciseRepository.class);
 
         ContentValues values = new ContentValues();
         values.put(Exercise.Column.PARENT_ID.name(), exercise.getParentId());
@@ -30,6 +32,7 @@ public class ExerciseRepository {
 
         long id = database.insert(Exercise.TABLE_NAME, null, values);
         exercise.setId(id);
+        Logger.info("Exercise stored: " + exercise.toString(), ExerciseRepository.class);
 
         closeDb();
         return id;
@@ -37,8 +40,11 @@ public class ExerciseRepository {
 
     public List<Exercise> findExerciseListByParentId(Long parentId) {
         instantiateDb();
+        Logger.info("Finding exercise list by parent id: " + parentId, ExerciseRepository.class);
         List<Exercise> exerciseList = new LinkedList<Exercise>();
-        String query = "SELECT  * FROM " + Exercise.TABLE_NAME + " WHERE " + Exercise.Column.PARENT_ID + " = " + parentId+  " ORDER BY DATE";
+        String query = "SELECT  * FROM " + Exercise.TABLE_NAME + " WHERE " + Exercise.Column.PARENT_ID + " = " + 
+                parentId+  " ORDER BY DATE";
+        Logger.info("Query: " + query, ExerciseRepository.class);
 
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {

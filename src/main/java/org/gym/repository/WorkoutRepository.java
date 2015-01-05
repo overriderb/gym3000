@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import org.gym.domain.Workout;
+import org.gym.logging.Logger;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class WorkoutRepository {
 
     public Long storeWorkout(Workout workout) {
         instantiateDb();
+        Logger.info("Storing workout: " + workout.toString(), WorkoutRepository.class);
 
         ContentValues values = new ContentValues();
         values.put(Workout.Column.PARENT_ID.name(), workout.getParentId());
@@ -38,6 +40,7 @@ public class WorkoutRepository {
 
         Long id = database.insert(Workout.TABLE_NAME, null, values);
         workout.setId(id);
+        Logger.info("Workout stored: " + workout.toString(), WorkoutRepository.class);
 
         closeDb();
         return id;
@@ -45,9 +48,12 @@ public class WorkoutRepository {
 
     public List<Workout> findWorkoutsListByParentId(long parentId){
         instantiateDb();
+        Logger.info("Finding workout list by parent id: " + parentId, WorkoutRepository.class);
         List<Workout> workoutList = new LinkedList<Workout>();
         String query = "SELECT  * FROM " + Workout.TABLE_NAME + " WHERE " + Workout.Column.PARENT_ID + " = " +
                 parentId+  " ORDER BY ORDER_NUMBER";
+        
+        Logger.info("Query: " + query, WorkoutRepository.class);
 
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
