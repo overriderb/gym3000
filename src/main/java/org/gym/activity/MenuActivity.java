@@ -1,6 +1,5 @@
 package org.gym.activity;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -70,7 +69,7 @@ public class MenuActivity extends Activity {
     }
 
     private void startSettings(){
-        Intent intent = new Intent(this, MenuSettingsActivity.class);
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 

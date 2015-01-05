@@ -18,6 +18,7 @@
     <!--SettingsInProgram-->
     <string name="settings_program_hide_picture">Is picture open</string>
     <string name="settings_program_hide_description">Is description open</string>
+    <string name="settings_program_change_workouts">Change workouts</string>
     <string name="settings_program_change_programs">Change programs</string>
 
     <!--ProgramPages-->

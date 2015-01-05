@@ -26,12 +26,12 @@
                   android:parentActivityName=".ProgramActivity"
                   android:label=""/>
         <activity android:name=".ChangeProgramActivity"
-                  android:parentActivityName=".SettingsInProgramActivity"
+                  android:parentActivityName=".SettingsActivity"
                   android:label=""/>
-        <activity android:name=".MenuSettingsActivity"
+        <activity android:name=".ChangeMenuActivity"
                   android:parentActivityName=".MenuActivity"
                   android:label=""/>
-        <activity android:name=".SettingsInProgramActivity"
+        <activity android:name=".SettingsActivity"
                   android:parentActivityName=".ProgramActivity"
                   android:label=""/>
     </application>

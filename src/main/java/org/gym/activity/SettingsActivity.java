@@ -11,10 +11,8 @@ import org.gym.logging.Logger;
 /**
  * Created by AndreyNick on 28.12.2014.
  */
-public class SettingsInProgramActivity extends Activity {
+public class SettingsActivity extends Activity {
 
-    private Switch hidePictureSwitch;
-    private Switch hideDescriptionSwitch;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +23,12 @@ public class SettingsInProgramActivity extends Activity {
     //onClick was setted in xml
     public void startChangeProgram(View view){
         Intent intent = new Intent(this, ChangeProgramActivity.class);
+        startActivity(intent);
+    }
+
+    //onClick was setted in xml
+    public void startChangeMenu(View view){
+        Intent intent = new Intent(this, ChangeMenuActivity.class);
         startActivity(intent);
     }
 

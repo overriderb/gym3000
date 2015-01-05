@@ -66,7 +66,7 @@ public class ProgramActivity extends FragmentActivity {
     }
 
     private void startSettings(){
-        Intent intent = new Intent(this, SettingsInProgramActivity.class);
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 

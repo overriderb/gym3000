@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by anni0913 on 11.12.2014.
  */
-public class MenuSettingsActivity extends Activity {
+public class ChangeMenuActivity extends Activity {
 
     private DatabaseHelper databaseHelper;
 

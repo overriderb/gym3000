@@ -41,8 +41,6 @@ public class ChangeProgramActivity extends Activity {
         listView.setCheeseList(resultList);
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-
-
     }
 
     @Override

@@ -12,22 +12,22 @@
             android:id="@+id/settings_program_title_text"
             android:layout_gravity="center_horizontal"/>
 
-    <Switch
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_program_hide_picture"
-            android:id="@+id/settings_program_switch_hide_picture"/>
 
-    <Switch
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_program_hide_description"
-            android:id="@+id/settings_program_switch_hide_description"/>
     <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/settings_program_change_programs"
-            android:id="@+id/settings_program_button_change_programs"
+            android:id="@+id/settings_button_change_menu"
+            android:layout_gravity="center_horizontal"
+            android:onClick="startChangeMenu"/>
+
+    <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/settings_program_change_workouts"
+            android:id="@+id/settings_button_change_programs"
             android:layout_gravity="center_horizontal"
             android:onClick="startChangeProgram"/>
+    
+
 </LinearLayout>

@@ -33,13 +33,7 @@ public class ProgramSectionFragment extends Fragment {
      * fragment.
      */
     public static final String ARG_SECTION_NUMBER = "org.gym.adapter.ProgramSectionFragment.ARG_SECTION_NUMBER";
-    Workout workoutItem;
-    View rootView;
-    TextView workoutNameTextView;
-    TextView workoutDescrTextView;
-    ImageView imageView;
-    FrameLayout frameLayout;
-    CurrentProgramCache cache;
+
     private GymValuePicker weightPicker;
     private GymValuePicker countPicker;
     private GymValuePicker exerciseTypePicker;
@@ -86,7 +80,8 @@ public class ProgramSectionFragment extends Fragment {
 
         workoutNameTextView.setText(workoutItem.getName());
         workoutDescrTextView.setText(workoutItem.getDescription());
-        imageView.setImageResource(workoutItem.getPictureId());
+
+        //imageView.setImageResource(workoutItem.getPictureId());
 
 
         workoutNameTextView.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +99,7 @@ public class ProgramSectionFragment extends Fragment {
 
         fillPictureAndDescriptionHeight();
         fillOpenHideImages();
+
         // Configuration of exercise type section
         final LinearLayout attemptPickerLayout = (LinearLayout) rootView.findViewById(R.id.attemptPickerLayout);
         final LinearLayout exerciseTypeLayout = (LinearLayout) rootView.findViewById(R.id.exerciseTypeLayout);
@@ -219,7 +215,7 @@ public class ProgramSectionFragment extends Fragment {
         }
         DropDownAnimation animation = new DropDownAnimation(frameLayout,
                 SharedPreferencesHelper.getInt(getActivity(),
-                        SharedPreferencesHelper.PICTURE_HEIGHT), true);
+                        SharedPreferencesHelper.PICTURE_HEIGHT));
         frameLayout.startAnimation(animation);
     }
 
@@ -236,7 +232,7 @@ public class ProgramSectionFragment extends Fragment {
         }
         DropDownAnimation animation = new DropDownAnimation(workoutDescrTextView,
                 SharedPreferencesHelper.getInt(getActivity(),
-                        SharedPreferencesHelper.DESCRIPTION_HEIGHT), true);
+                        SharedPreferencesHelper.DESCRIPTION_HEIGHT));
         workoutDescrTextView.startAnimation(animation);
     }
 

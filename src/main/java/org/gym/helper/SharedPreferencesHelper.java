@@ -4,7 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
- * Created by anni0913 on 29.12.2014.
+ * Helper class which is used in work with settings
+ * All settings are stored in android's SharedPreferences
  */
 public class SharedPreferencesHelper {
 

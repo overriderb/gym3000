@@ -10,22 +10,15 @@ import android.view.animation.Transformation;
 public class DropDownAnimation extends Animation {
     private final int targetHeight;
     private final View view;
-    private final boolean down;
 
-    public DropDownAnimation(View view, int targetHeight, boolean down) {
+
+    public DropDownAnimation(View view, int targetHeight) {
         this.view = view;
         this.targetHeight = targetHeight;
-        this.down = down;
     }
 
     @Override
     protected void applyTransformation(float interpolatedTime, Transformation t) {
-       /* int newHeight;
-        if (down) {
-            newHeight = (int) (targetHeight * interpolatedTime);
-        } else {
-            newHeight = (int) (targetHeight * (1 - interpolatedTime));
-        }*/
         view.getLayoutParams().height = targetHeight;
         view.requestLayout();
     }
