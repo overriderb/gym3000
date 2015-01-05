@@ -16,7 +16,7 @@ import org.gym.domain.Workout;
 import java.util.List;
 
 /**
- * TODO: Add class description
+ * Main activity. It shows the list of programs stored in DB.
  */
 public class MenuActivity extends Activity {
 
@@ -61,15 +61,15 @@ public class MenuActivity extends Activity {
     public boolean onOptionsItemSelected (MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                startSettings();
+                startSettingsMenuActivity();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void startSettings(){
-        Intent intent = new Intent(this, SettingsActivity.class);
+    private void startSettingsMenuActivity(){
+        Intent intent = new Intent(this, SettingsMenuActivity.class);
         startActivity(intent);
     }
 

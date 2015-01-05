@@ -12,23 +12,22 @@
     <string name="program_layout_history">History</string>
     <string name="history_layout_workout">Workout</string>
 
-
-
     <string name="settings">Settings</string>
-    <!--SettingsInProgram-->
-    <string name="settings_program_hide_picture">Is picture open</string>
-    <string name="settings_program_hide_description">Is description open</string>
-    <string name="settings_program_change_workouts">Change workouts</string>
-    <string name="settings_program_change_programs">Change programs</string>
+    <string name="menu_settings">Menu settings</string>
+    <string name="program_settings">Program settings</string>
 
-    <!--ProgramPages-->
+    <string name="change_workouts">Change workouts</string>
+    <string name="change_programs">Change programs</string>
+
     <string name="description">Description</string>
 
 
-    <dimen name="title_padding">20dp</dimen>
-    <dimen name="text_padding">5dp</dimen>
-    <dimen name="text_size_middle">20dp</dimen>
-    <dimen name="text_size_big">25dp</dimen>
+    <dimen name="title_padding">20sp</dimen>
+    <dimen name="text_padding">5sp</dimen>
+
+    <dimen name="text_size_small">15sp</dimen>
+    <dimen name="text_size_middle">20sp</dimen>
+    <dimen name="text_size_big">25sp</dimen>
 
 
     <string name="save_attempt_button">Save Attempt</string>

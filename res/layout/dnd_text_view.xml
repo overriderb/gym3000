@@ -1,10 +1,10 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ff757575"
+    android:background="#ff1c1c1c"
 
     android:gravity="center_vertical"
-    android:paddingLeft="15dp"
-    android:paddingRight="15dp"
-    android:textColor="#ffffffff"
+    android:paddingLeft="@dimen/title_padding"
+    android:paddingRight="@dimen/title_padding"
+    android:textSize="@dimen/text_size_middle"
 />

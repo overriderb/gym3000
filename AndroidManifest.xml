@@ -25,14 +25,23 @@
         <activity android:name=".HistoryActivity"
                   android:parentActivityName=".ProgramActivity"
                   android:label=""/>
-        <activity android:name=".ChangeProgramActivity"
-                  android:parentActivityName=".SettingsActivity"
+        <activity android:name=".ChangeWorkoutsListActivity"
+                  android:parentActivityName=".SettingsProgramActivity"
                   android:label=""/>
-        <activity android:name=".ChangeMenuActivity"
+        <activity android:name=".ChangeProgramsListActivity"
+                  android:parentActivityName=".SettingsMenuActivity"
+                  android:label=""/>
+        <activity android:name=".SettingsMenuActivity"
                   android:parentActivityName=".MenuActivity"
                   android:label=""/>
-        <activity android:name=".SettingsActivity"
+        <activity android:name=".SettingsProgramActivity"
                   android:parentActivityName=".ProgramActivity"
+                  android:label=""/>
+        <activity android:name=".ChangeSingleProgramActivity"
+                  android:parentActivityName=".ChangeProgramsListActivity"
+                  android:label=""/>
+        <activity android:name=".ChangeSingleWorkoutActivity"
+                  android:parentActivityName=".ChangeWorkoutsListActivity"
                   android:label=""/>
     </application>
 

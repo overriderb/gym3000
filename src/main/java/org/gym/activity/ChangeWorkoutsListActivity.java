@@ -1,7 +1,9 @@
 package org.gym.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import org.gym.listView.DragNDropListView;
 import org.gym.adapter.SettingsArrayAdapter;
@@ -13,20 +15,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by anni0913 on 11.12.2014.
+ * Activity for changing order in list of workouts, add workout and change workout.
+ * It opens current list of workouts which has one parent program.
  */
-public class ChangeProgramActivity extends Activity {
+public class ChangeWorkoutsListActivity extends Activity {
 
     CurrentProgramCache cache;
 
-    public ChangeProgramActivity(){
+    public ChangeWorkoutsListActivity(){
        cache = CurrentProgramCache.getInstance();
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.program_settings_layout);
+        setContentView(R.layout.change_workouts_layout);
 
 
         List<Workout> workoutList = cache.getWorkoutList();
@@ -35,12 +38,20 @@ public class ChangeProgramActivity extends Activity {
             resultList.add(item.getName());
         }
 
-        SettingsArrayAdapter adapter = new SettingsArrayAdapter(this, R.layout.text_view, resultList);
-        DragNDropListView listView = (DragNDropListView) findViewById(R.id.program_settings_dnd_view);
+        SettingsArrayAdapter adapter = new SettingsArrayAdapter(this, R.layout.dnd_text_view, resultList);
+        DragNDropListView listView = (DragNDropListView) findViewById(R.id.change_workouts_dnd_view);
 
         listView.setCheeseList(resultList);
         listView.setAdapter(adapter);
         listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+    }
+
+    /**
+     * onClick is in xml file
+     */
+    public void startChangeSingleWorkoutActivity(View view){
+        Intent intent = new Intent(this, ChangeSingleWorkoutActivity.class);
+        startActivity(intent);
     }
 
     @Override

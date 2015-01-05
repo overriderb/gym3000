@@ -8,26 +8,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/settings"
-            android:id="@+id/settings_program_title_text"
+            android:text="@string/program_settings"
+            android:id="@+id/settings_menu_title_text"
             android:layout_gravity="center_horizontal"/>
 
 
     <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/settings_program_change_programs"
-            android:id="@+id/settings_button_change_menu"
+            android:text="@string/change_workouts"
+            android:id="@+id/settings_program_change_workouts_button"
             android:layout_gravity="center_horizontal"
-            android:onClick="startChangeMenu"/>
+            android:onClick="startChangeWorkoutsActivity"/>
 
-    <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/settings_program_change_workouts"
-            android:id="@+id/settings_button_change_programs"
-            android:layout_gravity="center_horizontal"
-            android:onClick="startChangeProgram"/>
-    
 
 </LinearLayout>

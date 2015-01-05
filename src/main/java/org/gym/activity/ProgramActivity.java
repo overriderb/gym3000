@@ -11,7 +11,7 @@ import org.gym.adapter.ProgramPagerAdapter;
 
 
 /**
- * TODO: Add class description
+ * Shows workouts list which has single parent program.
  */
 public class ProgramActivity extends FragmentActivity {
 
@@ -51,13 +51,12 @@ public class ProgramActivity extends FragmentActivity {
                 startHistory();
                 return true;
             case R.id.action_program_settings:
-                startSettings();
+                startSettingsProgramActivity();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
 
     private void startHistory(){
         Intent intent = new Intent(this, HistoryActivity.class);
@@ -65,8 +64,8 @@ public class ProgramActivity extends FragmentActivity {
         startActivity(intent);
     }
 
-    private void startSettings(){
-        Intent intent = new Intent(this, SettingsActivity.class);
+    private void startSettingsProgramActivity(){
+        Intent intent = new Intent(this, SettingsProgramActivity.class);
         startActivity(intent);
     }
 

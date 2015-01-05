@@ -5,7 +5,8 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 
 /**
- * Created by anni0913 on 29.12.2014.
+ * Animation class for changing size elements(Views).
+ * Currently it provides work with change height elements.
  */
 public class DropDownAnimation extends Animation {
     private final int targetHeight;

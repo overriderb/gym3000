@@ -15,7 +15,7 @@ import org.gym.domain.Workout;
 import java.util.List;
 
 /**
- * Created by anni0913 on 08.07.2014.
+ * Activity shows exercises and attempts which are binded to current workouts list and single program
  */
 public class HistoryActivity extends FragmentActivity {
 
