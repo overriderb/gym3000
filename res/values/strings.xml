@@ -19,7 +19,14 @@
     <string name="change_workouts">Change workouts</string>
     <string name="change_programs">Change programs</string>
 
+    <string name="title">Title</string>
     <string name="description">Description</string>
+    <string name="picture">Picture</string>
+    <string name="title_dot">Title:</string>
+    <string name="description_dot">Description:</string>
+    <string name="picture_dot">Picture:</string>
+    <string name="save_program">Save program</string>
+    <string name="save_workout">Save workout</string>
 
 
     <dimen name="title_padding">20sp</dimen>

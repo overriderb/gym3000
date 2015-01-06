@@ -7,8 +7,34 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Program title"
-            android:id="@+id/textView"
+            android:text="@string/title"
+            android:id="@+id/change_single_program_top_title"
             android:textSize="@dimen/text_size_middle"
             android:layout_gravity="center_horizontal"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/title_dot"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/change_single_program_title_edit"/>
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/description_dot"/>
+    <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/change_single_program_description_edit"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save_program"
+            android:id="@+id/change_single_program_save_button"
+            android:layout_gravity="center_horizontal"
+            android:clickable="true"
+            android:onClick="saveProgram"/>
 </LinearLayout>

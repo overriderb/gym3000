@@ -38,7 +38,6 @@ public class ChangeProgramsListActivity extends Activity {
         }*/
         resultList.add("One");
         resultList.add("Two");
-        resultList.add("Two");
         resultList.add("Three");
         resultList.add("Four");
         resultList.add("Five");
