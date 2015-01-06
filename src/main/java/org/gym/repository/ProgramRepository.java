@@ -82,7 +82,7 @@ public class ProgramRepository {
     }
 
     private void closeDb(){
-        database.close();
+        //database.close();
     }
 
 }

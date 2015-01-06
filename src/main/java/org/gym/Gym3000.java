@@ -20,10 +20,13 @@ public class Gym3000 extends Application {
 
     private DatabaseHelper databaseHelper;
 
+    //TODO instantiate DB in one place, for example in Gym3000 class, onStart, and close DB in onTerminate
+
     @Override
     public void onCreate() {
         super.onCreate();
         databaseHelper = new DatabaseHelper(this);
+        databaseHelper.getWritableDatabase();
         if(false){                                //For first start of application please change change isFirstStart()
             setInitialPrograms();
             setInitialPreferences();              //to true for correct setting to DB default programs
@@ -33,6 +36,13 @@ public class Gym3000 extends Application {
     @Override
     public void onTerminate() {
         super.onTerminate();
+        databaseHelper.close();
+    }
+
+    @Override
+    public void onLowMemory(){
+        super.onLowMemory();
+        databaseHelper.close();
     }
 
 

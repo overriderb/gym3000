@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import org.gym.cache.CurrentProgramCache;
+import org.gym.domain.Workout;
+import org.gym.logging.Logger;
 import org.gym.repository.DatabaseHelper;
 
 /**
@@ -23,18 +25,20 @@ public class ChangeSingleWorkoutActivity extends Activity {
         setContentView(R.layout.change_single_workout_layout);
         databaseHelper = new DatabaseHelper(this);
         cache = CurrentProgramCache.getInstance();
+
     }
 
     public void saveWorkout(View view){
-        EditText title = (EditText)view.findViewById(R.id.change_single_workout_title_edit);
-        EditText description = (EditText)view.findViewById(R.id.change_single_workout_description_edit);
 
-        Cursor allPrograms = databaseHelper.getProgramRepository().getAllProgramsCursor();
-        //allPrograms.moveToLast();
-        //Logger.info("Last program with highest order_number: " + allPrograms.getString(1) + " " + allPrograms.getString(3), ChangeSingleProgramActivity.class);
-        //Program program = new Program(title.getText().toString(), description.getText().toString(), /*Integer.parseInt(allPrograms.getString(3)) + 1*/ 1);
-        //Logger.info("Save program : " + program.getName() + "\n" + program.getDescription() + "\n" + program.getOrderNumber(), ChangeSingleProgramActivity.class);
-        //databaseHelper.getProgramRepository().storeProgram(program);
+        EditText title = (EditText)findViewById(R.id.change_single_workout_title_edit);
+        EditText description = (EditText)findViewById(R.id.change_single_workout_description_edit);
+
+        Logger.info("Title :" + title.getText().toString() + " Descr : " + description.getText().toString(), ChangeSingleWorkoutActivity.class);
+
+        Workout workout = new Workout(cache.getId(), title.getText().toString(), description.getText().toString(), 0, 12);
+        cache.setWorkout(workout);
+
+
         Intent intent = new Intent(this, ProgramActivity.class);
         startActivity(intent);
     }

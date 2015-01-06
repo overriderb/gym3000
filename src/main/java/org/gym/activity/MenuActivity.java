@@ -81,7 +81,7 @@ public class MenuActivity extends Activity {
     public void fillCurrentProgramCache(Program program){
         CurrentProgramCache cache = CurrentProgramCache.getInstance();
         WorkoutRepository workoutAdapter = databaseHelper.getWorkoutRepository();
-        List<Workout> workoutList = workoutAdapter.findWorkoutsListByParentId(program.getId());
-        cache.setValues(program.getName(), program.getDescription(), workoutList);
+        List<Workout> workoutList = workoutAdapter.getWorkoutsListByParentId(program.getId());
+        cache.setValues(program.getId(), program.getName(), program.getDescription(), workoutList);
     }
 }

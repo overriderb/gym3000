@@ -6,8 +6,10 @@ import android.database.sqlite.SQLiteDatabase;
 import org.gym.domain.Workout;
 import org.gym.logging.Logger;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by AndreyNick on 13.11.2014.
@@ -46,7 +48,7 @@ public class WorkoutRepository {
         return id;
     }
 
-    public List<Workout> findWorkoutsListByParentId(long parentId){
+    public List<Workout> getWorkoutsListByParentId(Long parentId){
         instantiateDb();
         Logger.info("Finding workout list by parent id: " + parentId, WorkoutRepository.class);
         List<Workout> workoutList = new LinkedList<Workout>();
@@ -72,6 +74,35 @@ public class WorkoutRepository {
 
         closeDb();
         return workoutList;
+    }
+
+    public Map<Integer, Workout> getWorkoutsMapByParentId(Long parentId){
+        instantiateDb();
+        Logger.info("Finding workout map by parent id: " + parentId, WorkoutRepository.class);
+        Map<Integer, Workout> workoutMap = new HashMap<Integer, Workout>(15);
+        String query = "SELECT  * FROM " + Workout.TABLE_NAME + " WHERE " + Workout.Column.PARENT_ID + " = " +
+                parentId+  " ORDER BY ORDER_NUMBER";
+
+        Logger.info("Query: " + query, WorkoutRepository.class);
+
+        Cursor cursor = database.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            do {
+                Workout workout = new Workout();
+                workout.setId(Long.parseLong(cursor.getString(0)));
+                workout.setParentId(Long.parseLong(cursor.getString(1)));
+                workout.setName(cursor.getString(2));
+                workout.setPictureId(Integer.parseInt(cursor.getString(3)));
+                workout.setDescription(cursor.getString(4));
+                workout.setOrderNumber(Integer.parseInt(cursor.getString(5)));
+
+                workoutMap.put(workout.getOrderNumber(), workout);
+            } while (cursor.moveToNext());
+        }
+
+        closeDb();
+        return workoutMap;
+
     }
 
     public Cursor getWorkoutsCursorByParentId(long parentId){
