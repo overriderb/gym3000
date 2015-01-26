@@ -191,15 +191,15 @@ public class ProgramSectionFragment extends Fragment {
 
     private void fillOpenHideImages(){
         if(SharedPreferencesHelper.getBool(getActivity(),SharedPreferencesHelper.IS_PICTURE_OPEN)){
-            openHidePictureImage.setImageResource(R.drawable.circule_blue_normal_minus);
+            openHidePictureImage.setImageResource(R.drawable.minus_white);
         } else {
-            openHidePictureImage.setImageResource(R.drawable.circule_blue_normal_plus);
+            openHidePictureImage.setImageResource(R.drawable.plus_white);
         }
 
         if(SharedPreferencesHelper.getBool(getActivity(),SharedPreferencesHelper.IS_DESCRIPTION_OPEN)){
-            openHideDescriptionImage.setImageResource(R.drawable.circule_blue_normal_minus);
+            openHideDescriptionImage.setImageResource(R.drawable.minus_white);
         } else {
-            openHideDescriptionImage.setImageResource(R.drawable.circule_blue_normal_plus);
+            openHideDescriptionImage.setImageResource(R.drawable.plus_white);
         }
     }
 
@@ -207,11 +207,11 @@ public class ProgramSectionFragment extends Fragment {
         if(SharedPreferencesHelper.getBool(getActivity(),SharedPreferencesHelper.IS_PICTURE_OPEN)){
             SharedPreferencesHelper.setBool(getActivity(), SharedPreferencesHelper.IS_PICTURE_OPEN, false);
             SharedPreferencesHelper.setInt(getActivity(), SharedPreferencesHelper.PICTURE_HEIGHT, 50);
-            openHidePictureImage.setImageResource(R.drawable.circule_blue_normal_plus);
+            openHidePictureImage.setImageResource(R.drawable.plus_white);
         } else {
             SharedPreferencesHelper.setBool(getActivity(), SharedPreferencesHelper.IS_PICTURE_OPEN, true);
             SharedPreferencesHelper.setInt(getActivity(), SharedPreferencesHelper.PICTURE_HEIGHT, 200);
-            openHidePictureImage.setImageResource(R.drawable.circule_blue_normal_minus);
+            openHidePictureImage.setImageResource(R.drawable.minus_white);
         }
         DropDownAnimation animation = new DropDownAnimation(frameLayout,
                 SharedPreferencesHelper.getInt(getActivity(),
@@ -223,12 +223,12 @@ public class ProgramSectionFragment extends Fragment {
         if(SharedPreferencesHelper.getBool(getActivity(),SharedPreferencesHelper.IS_DESCRIPTION_OPEN)){
             SharedPreferencesHelper.setBool(getActivity(), SharedPreferencesHelper.IS_DESCRIPTION_OPEN, false);
             SharedPreferencesHelper.setInt(getActivity(), SharedPreferencesHelper.DESCRIPTION_HEIGHT, 1);
-            openHideDescriptionImage.setImageResource(R.drawable.circule_blue_normal_plus);
+            openHideDescriptionImage.setImageResource(R.drawable.plus_white);
 
         } else {
             SharedPreferencesHelper.setBool(getActivity(), SharedPreferencesHelper.IS_DESCRIPTION_OPEN, true);
             SharedPreferencesHelper.setInt(getActivity(), SharedPreferencesHelper.DESCRIPTION_HEIGHT, FrameLayout.LayoutParams.WRAP_CONTENT);
-            openHideDescriptionImage.setImageResource(R.drawable.circule_blue_normal_minus);
+            openHideDescriptionImage.setImageResource(R.drawable.minus_white);
         }
         DropDownAnimation animation = new DropDownAnimation(workoutDescrTextView,
                 SharedPreferencesHelper.getInt(getActivity(),

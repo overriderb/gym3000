@@ -8,8 +8,8 @@
     <application android:label="@string/appName"
                  android:name="org.gym.Gym3000"
                  android:debuggable="true"
-                 android:logo="@drawable/gym3000_sign_64x64"
-                 android:icon="@drawable/gym3000_sign_256x256"
+                 android:logo="@drawable/gym3000_sign"
+                 android:icon="@drawable/gym3000_sign"
                  android:theme="@android:style/Theme.Holo">
         <activity
                 android:name="org.gym.activity.MenuActivity"
