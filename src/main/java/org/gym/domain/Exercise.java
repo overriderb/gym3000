@@ -1,65 +1,31 @@
 package org.gym.domain;
 
+import java.util.List;
+
 /**
- * Created by anni0913 on 15.10.2014.
+ * Exercise is list of attempts
  */
 public class Exercise {
 
     public static final String TABLE_NAME = "EXERCISE";
 
     private Long id;
-    private Long parentId;
-    private String date;
-    private Enum type;
-
-    public enum TYPE {
-        S, M, L
-    }
+    private Long workoutId;
+    private Long exerciseTypeId;
+    private List<Attempt> attempts;
 
     public enum Column {
         ID,
-        PARENT_ID,
-        DATE,
-        TYPE
+        TYPE,
+        WORKOUT_ID
     }
 
     public Exercise() {
     }
 
-    public Exercise(Long parentId, String date, Enum type) {
-        this.parentId = parentId;
-        this.date = date;
-        this.type = type;
-    }
-
-    public Exercise(Workout workout, String date, Enum type) {
-        this.parentId = workout.getId();
-        this.date = date;
-        this.type = type;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public Enum getType() {
-        return type;
-    }
-
-    public void setType(Enum type) {
-        this.type = type;
-    }
-
-    public Long getParentId() {
-        return parentId;
-    }
-
-    public void setParentId(long parentId) {
-        this.parentId = parentId;
+    public Exercise(Long workoutId, Long exerciseTypeId) {
+        this.workoutId = workoutId;
+        this.exerciseTypeId = exerciseTypeId;
     }
 
     public Long getId() {
@@ -70,13 +36,27 @@ public class Exercise {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Exercise{" +
-                "id=" + id +
-                ", parentId=" + parentId +
-                ", date='" + date + '\'' +
-                ", type=" + type +
-                '}';
+    public Long getExerciseTypeId() {
+        return exerciseTypeId;
+    }
+
+    public void setExerciseTypeId(Long exerciseTypeId) {
+        this.exerciseTypeId = exerciseTypeId;
+    }
+
+    public Long getWorkoutId() {
+        return workoutId;
+    }
+
+    public void setWorkoutId(Long workoutId) {
+        this.workoutId = workoutId;
+    }
+
+    public List<Attempt> getAttempts() {
+        return attempts;
+    }
+
+    public void setAttempts(List<Attempt> attempts) {
+        this.attempts = attempts;
     }
 }

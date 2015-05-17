@@ -1,7 +1,9 @@
 package org.gym.domain;
 
+import java.util.List;
+
 /**
- * Created by anni0913 on 15.10.2014.
+ * Program is type of workout that contains excercises of different types
  */
 public class Program {
 
@@ -10,6 +12,7 @@ public class Program {
     private Long id;
     private String name;
     private String description;
+    private List<ExerciseType> exerciseTypes;
 
     public enum Column {
         ID,
@@ -49,12 +52,11 @@ public class Program {
         this.description = description;
     }
 
-    @Override
-    public String toString() {
-        return "Program{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+    public List<ExerciseType> getExerciseTypes() {
+        return exerciseTypes;
+    }
+
+    public void setExerciseTypes(List<ExerciseType> exerciseTypes) {
+        this.exerciseTypes = exerciseTypes;
     }
 }

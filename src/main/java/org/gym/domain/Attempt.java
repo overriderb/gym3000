@@ -1,45 +1,56 @@
 package org.gym.domain;
 
 /**
- * Created by anni0913 on 22.10.2014.
+ * Attempt class is described attempt to certain exercise
  */
 public class Attempt {
 
     public static final String TABLE_NAME = "ATTEMPT";
 
     private Long id;
-    private Long parentId;
+    private Long exerciseId;
     private String weight;
     private int count;
+    private Type type;
+    private String comment;
 
     public enum Column {
         ID,
-        PARENT_ID,
+        EXERCISE_ID,
         WEIGHT,
-        COUNT
+        COUNT,
+        TYPE,
+        COMMENT
+    }
+
+    public enum Type {
+        S, M, L, W
     }
 
     public Attempt() {
     }
 
-    public Attempt(Long parentId, String weight, int count) {
-        this.parentId = parentId;
+    public Attempt(Long exerciseId, String weight, int count, Type type) {
+        this.exerciseId = exerciseId;
         this.weight = weight;
         this.count = count;
+        this.type = type;
     }
 
-    public Attempt(Exercise exercise, String weight, int count) {
-        this.parentId = exercise.getId();
-        this.weight = weight;
-        this.count = count;
+    public Long getId() {
+        return id;
     }
 
-    public Long getParentId() {
-        return parentId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
+    public Long getExerciseId() {
+        return exerciseId;
+    }
+
+    public void setExerciseId(Long exerciseId) {
+        this.exerciseId = exerciseId;
     }
 
     public String getWeight() {
@@ -58,21 +69,19 @@ public class Attempt {
         this.count = count;
     }
 
-    public Long getId() {
-        return id;
+    public Type getType() {
+        return type;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setType(Type type) {
+        this.type = type;
     }
 
-    @Override
-    public String toString() {
-        return "Attempt{" +
-                "id=" + id +
-                ", parentId=" + parentId +
-                ", weight='" + weight + '\'' +
-                ", count=" + count +
-                '}';
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }

@@ -1,43 +1,46 @@
 package org.gym.domain;
 
-
-
+import java.util.List;
 
 /**
- * Created by anni0913 on 07.07.2014.
+ * Workout is certain training day
  */
 public class Workout {
 
-    public static final String TABLE_NAME = "workout";
+    public static final String TABLE_NAME = "WORKOUT";
 
     private Long id;
-    private Long parentId;
-    private String name;
-    private String description;
-    private int pictureId;
+    private Long programId;
+    private Long startDate;
+    private Long endDate;
+    private WorkoutStatus status;
+    private List<Exercise> exercises;
+
+    public enum WorkoutStatus {
+        IN_PROGRESS, FINISHED, NOT_STARTED
+    }
 
     public enum Column {
         ID,
-        PARENT_ID,
-        NAME,
-        PICTURE_ID,
-        DESCRIPTION
+        PROGRAM_ID,
+        START_DATE,
+        END_DATE,
+        STATUS
     }
 
-    public Workout() { }
-
-    public Workout(Long parentProgram, String name, String description, int pictureId) {
-        this.parentId = parentProgram;
-        this.name = name;
-        this.description = description;
-        this.pictureId = pictureId;
+    public Workout() {
     }
 
-    public Workout(Program program, String name, String description, int pictureId) {
-        this.parentId = program.getId();
-        this.name = name;
-        this.description = description;
-        this.pictureId = pictureId;
+    public Workout(Long programId, Long startDate) {
+        this.programId = programId;
+        this.startDate = startDate;
+    }
+
+    public Workout(Long programId, Long startDate, Long endDate, WorkoutStatus status) {
+        this.programId = programId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
     }
 
     public Long getId() {
@@ -48,46 +51,43 @@ public class Workout {
         this.id = id;
     }
 
-    public Long getParentId() {
-        return parentId;
+    public Long getProgramId() {
+        return programId;
     }
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
+    public void setProgramId(Long programId) {
+        this.programId = programId;
     }
 
-    public String getName() {
-        return name;
+    public Long getStartDate() {
+        return startDate;
     }
 
-    public String getDescription() {
-        return description;
+    public void setStartDate(Long startDate) {
+        this.startDate = startDate;
     }
 
-    public int getPictureId() {
-        return pictureId;
+    public Long getEndDate() {
+        return endDate;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEndDate(Long endDate) {
+        this.endDate = endDate;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public WorkoutStatus getStatus() {
+        return status;
     }
 
-    public void setPictureId(int pictureId) {
-        this.pictureId = pictureId;
+    public void setStatus(WorkoutStatus status) {
+        this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "Workout{" +
-                "id=" + id +
-                ", parentId=" + parentId +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", pictureId=" + pictureId +
-                '}';
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
     }
 }
