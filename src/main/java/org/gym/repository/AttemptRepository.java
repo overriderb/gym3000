@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import org.gym.domain.Attempt;
+import org.gym.domain.Exercise;
 import org.gym.logging.Logger;
 
 import java.util.LinkedList;
@@ -51,10 +52,10 @@ public class AttemptRepository {
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             attempt = new Attempt();
-            attempt.setId(Long.parseLong(cursor.getString(0)));
-            attempt.setExerciseId(Long.parseLong(cursor.getString(1)));
+            attempt.setId(cursor.getLong(0));
+            attempt.setExerciseId(cursor.getLong(1));
             attempt.setWeight(cursor.getString(2));
-            attempt.setCount(Integer.parseInt(cursor.getString(3)));
+            attempt.setCount(cursor.getInt(3));
             attempt.setType(Attempt.Type.valueOf(cursor.getString(4)));
             attempt.setComment(cursor.getString(5));
         }
@@ -74,10 +75,10 @@ public class AttemptRepository {
         if (cursor.moveToFirst()) {
             do {
                 Attempt attempt = new Attempt();
-                attempt.setId(Long.parseLong(cursor.getString(0)));
-                attempt.setExerciseId(Long.parseLong(cursor.getString(1)));
+                attempt.setId(cursor.getLong(0));
+                attempt.setExerciseId(cursor.getLong(1));
                 attempt.setWeight(cursor.getString(2));
-                attempt.setCount(Integer.parseInt(cursor.getString(3)));
+                attempt.setCount(cursor.getInt(3));
                 attempt.setType(Attempt.Type.valueOf(cursor.getString(4)));
                 attempt.setComment(cursor.getString(5));
 

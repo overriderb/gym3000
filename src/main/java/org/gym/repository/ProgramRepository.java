@@ -56,7 +56,7 @@ public class ProgramRepository {
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             program = new Program();
-            program.setId(Long.parseLong(cursor.getString(0)));
+            program.setId(cursor.getLong(0));
             program.setName(cursor.getString(1));
             program.setDescription(cursor.getString(2));
         }
@@ -75,7 +75,7 @@ public class ProgramRepository {
         if (cursor.moveToFirst()) {
             do {
                 Program program = new Program();
-                program.setId(Long.parseLong(cursor.getString(0)));
+                program.setId(cursor.getLong(0));
                 program.setName(cursor.getString(1));
                 program.setDescription(cursor.getString(2));
 

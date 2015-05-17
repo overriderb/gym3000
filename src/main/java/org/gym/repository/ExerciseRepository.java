@@ -48,8 +48,8 @@ public class ExerciseRepository {
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             exercise = new Exercise();
-            exercise.setId(Long.parseLong(cursor.getString(0)));
-            exercise.setWorkoutId(Long.parseLong(cursor.getString(1)));
+            exercise.setId(cursor.getLong(0));
+            exercise.setWorkoutId(cursor.getLong(1));
             exercise.setExerciseTypeId(cursor.getLong(2));
         }
 
@@ -68,9 +68,9 @@ public class ExerciseRepository {
         if (cursor.moveToFirst()) {
             do {
                 Exercise exercise = new Exercise();
-                exercise.setId(Long.parseLong(cursor.getString(0)));
-                exercise.setWorkoutId(Long.parseLong(cursor.getString(1)));
-                exercise.setExerciseTypeId(cursor.getLong(2));
+                exercise.setId(cursor.getLong(0));
+                exercise.setWorkoutId(cursor.getLong(1));
+                exercise.setExerciseTypeId(cursor.getLong(2));;
 
                 exercises.add(exercise);
             } while (cursor.moveToNext());
