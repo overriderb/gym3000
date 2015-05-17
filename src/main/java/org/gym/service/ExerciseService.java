@@ -14,18 +14,12 @@ public class ExerciseService {
 
     public static final String GYM_DATE_FORMAT = "dd.MM.yyyy";
 
-    public Long persistExercise(Context context, Long workoutId, String exerciseType) {
+    public Long persistExercise(Context context, Long workoutId, Long exerciseTypeId) {
         DatabaseHelper databaseHelper = new DatabaseHelper(context);
 
         Exercise exercise = new Exercise();
-        exercise.setDate(getCurrentDate());
-        exercise.setParentId(workoutId);
-
-        for (Exercise.TYPE type: Exercise.TYPE.values()) {
-            if (type.name().equals(exerciseType)) {
-                exercise.setType(type);
-            }
-        }
+        exercise.setWorkoutId(workoutId);
+        exercise.setExerciseTypeId(exerciseTypeId);
 
         return databaseHelper.getExerciseRepository().storeExercise(exercise);
     }

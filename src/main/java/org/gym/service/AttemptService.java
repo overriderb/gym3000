@@ -9,13 +9,15 @@ import org.gym.repository.DatabaseHelper;
  */
 public class AttemptService {
 
-    public Long persistAttempt(Context context, Long exerciseId, int count, String weight) {
+    public Long persistAttempt(Context context, Long exerciseId, int count, String weight, Long excerciseTypeId, String comment) {
         DatabaseHelper databaseHelper = new DatabaseHelper(context);
 
         Attempt attempt = new Attempt();
-        attempt.setParentId(exerciseId);
+        attempt.setExerciseId(exerciseId);
         attempt.setCount(count);
         attempt.setWeight(weight);
+        attempt.setExerciseId(excerciseTypeId);
+        attempt.setComment(comment);
 
         return databaseHelper.getAttemptRepository().storeAttempt(attempt);
     }
