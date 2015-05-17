@@ -21,16 +21,16 @@ public class WorkoutRepository {
         this.databaseHelper = databaseHelper;
     }
 
-    public List<Long> storeWorkouts(List<Workout> workoutList) {
+    public List<Long> store(List<Workout> workoutList) {
         List<Long> storedIds = new LinkedList<>();
         for(Workout workout : workoutList){
-            Long storedId = storeWorkout(workout);
+            Long storedId = store(workout);
             storedIds.add(storedId);
         }
         return storedIds;
     }
 
-    public Long storeWorkout(Workout workout) {
+    public Long store(Workout workout) {
         instantiateDb();
         Logger.info("Storing workout: " + workout.toString(), WorkoutRepository.class);
 
@@ -48,7 +48,29 @@ public class WorkoutRepository {
         return id;
     }
 
-    public List<Workout> findWorkoutsListByProgramId(Long programId){
+    public Workout find(Long workoutId){
+        instantiateDb();
+        Logger.info("Finding workout by id: " + workoutId, WorkoutRepository.class);
+        String query = "SELECT  * FROM " + Workout.TABLE_NAME + " WHERE " + Workout.Column.ID + " = " + workoutId;
+        Logger.info("Query: " + query, WorkoutRepository.class);
+
+        Workout workout = null;
+
+        Cursor cursor = database.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            workout = new Workout();
+            workout.setId(cursor.getLong(0));
+            workout.setProgramId(cursor.getLong(1));
+            workout.setStartDate(cursor.getLong(2));
+            workout.setEndDate(cursor.getLong(3));
+            workout.setStatus(Workout.WorkoutStatus.valueOf(cursor.getString(4)));
+        }
+
+        closeDb();
+        return workout;
+    }
+
+    public List<Workout> findByProgramId(Long programId){
         instantiateDb();
         Logger.info("Finding workout list by program id: " + programId, WorkoutRepository.class);
         List<Workout> workouts = new LinkedList<>();
@@ -73,14 +95,6 @@ public class WorkoutRepository {
         return workouts;
     }
 
-    /*public Cursor getWorkoutsCursorByParentId(long parentId){
-        instantiateDb();
-        String query = "SELECT  * FROM " + Workout.TABLE_NAME + " WHERE " + Workout.Column.PARENT_ID + " = " + parentId;
-        Cursor cursor = database.rawQuery(query, null);
-        closeDb();
-        return cursor;
-    }*/
-
     private void instantiateDb(){
         database = databaseHelper.getWritableDatabase();
     }
@@ -88,7 +102,4 @@ public class WorkoutRepository {
     private void closeDb(){
         database.close();
     }
-
-
-
 }

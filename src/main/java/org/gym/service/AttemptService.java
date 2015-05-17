@@ -19,6 +19,6 @@ public class AttemptService {
         attempt.setExerciseId(excerciseTypeId);
         attempt.setComment(comment);
 
-        return databaseHelper.getAttemptRepository().storeAttempt(attempt);
+        return databaseHelper.getAttemptRepository().store(attempt);
     }
 }

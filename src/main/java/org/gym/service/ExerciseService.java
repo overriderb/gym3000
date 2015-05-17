@@ -21,7 +21,7 @@ public class ExerciseService {
         exercise.setWorkoutId(workoutId);
         exercise.setExerciseTypeId(exerciseTypeId);
 
-        return databaseHelper.getExerciseRepository().storeExercise(exercise);
+        return databaseHelper.getExerciseRepository().store(exercise);
     }
 
     private String getCurrentDate() {

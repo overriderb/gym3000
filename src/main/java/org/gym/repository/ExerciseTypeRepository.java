@@ -24,13 +24,13 @@ public class ExerciseTypeRepository {
     public List<Long> storeExerciseTypes(List<ExerciseType> exerciseTypes) {
         List<Long> storedIds = new LinkedList<>();
         for(ExerciseType exerciseType : exerciseTypes){
-            Long storedId = storeExerciseType(exerciseType);
+            Long storedId = store(exerciseType);
             storedIds.add(storedId);
         }
         return storedIds;
     }
 
-    public Long storeExerciseType(ExerciseType exerciseType) {
+    public Long store(ExerciseType exerciseType) {
         instantiateDb();
         Logger.info("Storing exercise type: " + exerciseType.toString(), ExerciseTypeRepository.class);
 
@@ -48,7 +48,29 @@ public class ExerciseTypeRepository {
         return id;
     }
 
-    public List<ExerciseType> findExerciseTypesByProgramId(Long programId){
+    public ExerciseType find(Long exerciseTypeId){
+        instantiateDb();
+        Logger.info("Finding exercise type id: " + exerciseTypeId, ExerciseTypeRepository.class);
+        String query = "SELECT  * FROM " + ExerciseType.TABLE_NAME + " WHERE " + ExerciseType.Column.ID + " = " + exerciseTypeId;
+        Logger.info("Query: " + query, WorkoutRepository.class);
+
+        ExerciseType exerciseType = null;
+
+        Cursor cursor = database.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            exerciseType = new ExerciseType();
+            exerciseType.setId(cursor.getLong(0));
+            exerciseType.setProgramId(cursor.getLong(1));
+            exerciseType.setName(cursor.getString(2));
+            exerciseType.setDescription(cursor.getString(3));
+            exerciseType.setPictureId(cursor.getInt(4));
+        }
+
+        closeDb();
+        return exerciseType;
+    }
+
+    public List<ExerciseType> findByProgramId(Long programId){
         instantiateDb();
         Logger.info("Finding exercise types by program id: " + programId, ExerciseTypeRepository.class);
         List<ExerciseType> exerciseTypes = new LinkedList<>();

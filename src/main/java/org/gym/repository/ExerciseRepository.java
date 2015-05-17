@@ -21,7 +21,7 @@ public class ExerciseRepository {
         this.databaseHelper = databaseHelper;
     }
 
-    public long storeExercise(Exercise exercise) {
+    public long store(Exercise exercise) {
         instantiateDb();
         Logger.info("Storing exercise: " + exercise.toString(), ExerciseRepository.class);
 
@@ -37,7 +37,27 @@ public class ExerciseRepository {
         return id;
     }
 
-    public List<Exercise> findExerciseListByWorkoutId(Long workoutId) {
+    public Exercise find(Long exerciseId) {
+        instantiateDb();
+        Logger.info("Finding exercise id: " + exerciseId, ExerciseRepository.class);
+        String query = "SELECT  * FROM " + Exercise.TABLE_NAME + " WHERE " + Exercise.Column.ID + " = " + exerciseId;
+        Logger.info("Query: " + query, ExerciseRepository.class);
+
+        Exercise exercise = null;
+
+        Cursor cursor = database.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            exercise = new Exercise();
+            exercise.setId(Long.parseLong(cursor.getString(0)));
+            exercise.setWorkoutId(Long.parseLong(cursor.getString(1)));
+            exercise.setExerciseTypeId(cursor.getLong(2));
+        }
+
+        closeDb();
+        return exercise;
+    }
+
+    public List<Exercise> findByWorkoutId(Long workoutId) {
         instantiateDb();
         Logger.info("Finding exercise list by workout id: " + workoutId, ExerciseRepository.class);
         List<Exercise> exercises = new LinkedList<>();

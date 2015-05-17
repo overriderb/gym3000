@@ -21,7 +21,7 @@ public class AttemptRepository {
         this.databaseHelper = databaseHelper;
     }
 
-    public Long storeAttempt(Attempt attempt) {
+    public Long store(Attempt attempt) {
         instantiateDb();
         Logger.info("Storing attempt: " + attempt.toString(), AttemptRepository.class);
 
@@ -40,7 +40,30 @@ public class AttemptRepository {
         return id;
     }
 
-    public List<Attempt> findAttemptListByExerciseId(Long exerciseId) {
+    public Attempt find(Long attemptId) {
+        instantiateDb();
+        Logger.info("Finding attempt id: " + attemptId, AttemptRepository.class);
+        String query = "SELECT  * FROM " + Attempt.TABLE_NAME + " WHERE " + Attempt.Column.ID + " = " + attemptId;
+        Logger.info("Query: " + query, AttemptRepository.class);
+
+        Attempt attempt = null;
+
+        Cursor cursor = database.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            attempt = new Attempt();
+            attempt.setId(Long.parseLong(cursor.getString(0)));
+            attempt.setExerciseId(Long.parseLong(cursor.getString(1)));
+            attempt.setWeight(cursor.getString(2));
+            attempt.setCount(Integer.parseInt(cursor.getString(3)));
+            attempt.setType(Attempt.Type.valueOf(cursor.getString(4)));
+            attempt.setComment(cursor.getString(5));
+        }
+
+        closeDb();
+        return attempt;
+    }
+
+    public List<Attempt> findByExerciseId(Long exerciseId) {
         instantiateDb();
         Logger.info("Finding attempt list by exercise id: " + exerciseId, AttemptRepository.class);
         List<Attempt> attempts = new LinkedList<>();

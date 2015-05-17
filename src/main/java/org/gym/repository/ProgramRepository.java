@@ -21,16 +21,16 @@ public class ProgramRepository {
         this.databaseHelper = dh;
     }
 
-    public List<Long> storePrograms(List<Program> programList){
+    public List<Long> store(List<Program> programList){
         List<Long> storedIds = new LinkedList<>();
         for(Program program : programList){
-            Long storedId = storeProgram(program);
+            Long storedId = store(program);
             storedIds.add(storedId);
         }
         return storedIds;
     }
 
-    public Long storeProgram(Program program) {
+    public Long store(Program program) {
         instantiateDb();
         Logger.info("Storing program: " + program.toString(), ProgramRepository.class);
 
@@ -46,7 +46,26 @@ public class ProgramRepository {
         return id;
     }
 
-    public List<Program> findAllProgramsList() {
+    public Program find(Long programId) {
+        instantiateDb();
+        Logger.info("Finding program by id = " + programId, ProgramRepository.class);
+        String query = "SELECT  * FROM " + Program.TABLE_NAME;
+
+        Program program = null;
+
+        Cursor cursor = database.rawQuery(query, null);
+        if (cursor.moveToFirst()) {
+            program = new Program();
+            program.setId(Long.parseLong(cursor.getString(0)));
+            program.setName(cursor.getString(1));
+            program.setDescription(cursor.getString(2));
+        }
+
+        closeDb();
+        return program;
+    }
+
+    public List<Program> findAll() {
         instantiateDb();
         Logger.info("Finding all programs", ProgramRepository.class);
         List<Program> programs = new LinkedList<>();
@@ -67,15 +86,6 @@ public class ProgramRepository {
         closeDb();
         return programs;
     }
-
-    /*// Do we need this?
-    public Cursor getAllProgramsCursor(){
-        instantiateDb();
-        String query = "SELECT  * FROM " + Program.TABLE_NAME;
-        Cursor cursor = database.rawQuery(query, null);
-        closeDb();
-        return cursor;
-    }*/
 
     private void instantiateDb(){
         database = databaseHelper.getWritableDatabase();
