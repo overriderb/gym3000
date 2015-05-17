@@ -26,9 +26,11 @@ public class AttemptRepository {
         Logger.info("Storing attempt: " + attempt.toString(), AttemptRepository.class);
 
         ContentValues values = new ContentValues();
-        values.put(Attempt.Column.PARENT_ID.name(), attempt.getParentId());
+        values.put(Attempt.Column.EXERCISE_ID.name(), attempt.getExerciseId());
         values.put(Attempt.Column.WEIGHT.name(), attempt.getWeight());
         values.put(Attempt.Column.COUNT.name(), attempt.getCount());
+        values.put(Attempt.Column.TYPE.name(), attempt.getType().name());
+        values.put(Attempt.Column.COMMENT.name(), attempt.getComment());
 
         Long id = database.insert(Attempt.TABLE_NAME, null, values);
         attempt.setId(id);
@@ -38,11 +40,11 @@ public class AttemptRepository {
         return id;
     }
 
-    public List<Attempt> findAttemptListByParentId(Long parentId) {
+    public List<Attempt> findAttemptListByExerciseId(Long exerciseId) {
         instantiateDb();
-        Logger.info("Finding attempt list by parent id: " + parentId, AttemptRepository.class);
-        List<Attempt> attemptList = new LinkedList<Attempt>();
-        String query = "SELECT  * FROM " + Attempt.TABLE_NAME + " WHERE " + Attempt.Column.PARENT_ID + " = " + parentId;
+        Logger.info("Finding attempt list by exercise id: " + exerciseId, AttemptRepository.class);
+        List<Attempt> attempts = new LinkedList<>();
+        String query = "SELECT  * FROM " + Attempt.TABLE_NAME + " WHERE " + Attempt.Column.EXERCISE_ID + " = " + exerciseId;
         Logger.info("Query: " + query, AttemptRepository.class);
 
         Cursor cursor = database.rawQuery(query, null);
@@ -50,16 +52,18 @@ public class AttemptRepository {
             do {
                 Attempt attempt = new Attempt();
                 attempt.setId(Long.parseLong(cursor.getString(0)));
-                attempt.setParentId(Long.parseLong(cursor.getString(1)));
+                attempt.setExerciseId(Long.parseLong(cursor.getString(1)));
                 attempt.setWeight(cursor.getString(2));
                 attempt.setCount(Integer.parseInt(cursor.getString(3)));
+                attempt.setType(Attempt.Type.valueOf(cursor.getString(4)));
+                attempt.setComment(cursor.getString(5));
 
-                attemptList.add(attempt);
+                attempts.add(attempt);
             } while (cursor.moveToNext());
         }
 
         closeDb();
-        return attemptList;
+        return attempts;
     }
 
     private void instantiateDb(){

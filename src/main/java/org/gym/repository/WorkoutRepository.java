@@ -21,10 +21,13 @@ public class WorkoutRepository {
         this.databaseHelper = databaseHelper;
     }
 
-    public void storeWorkouts(List<Workout> workoutList){  //TODO think about posibility of adding collection and return their own ids
-        for(Workout workout : workoutList){              //now it doesn't return
-            storeWorkout(workout);
+    public List<Long> storeWorkouts(List<Workout> workoutList) {
+        List<Long> storedIds = new LinkedList<>();
+        for(Workout workout : workoutList){
+            Long storedId = storeWorkout(workout);
+            storedIds.add(storedId);
         }
+        return storedIds;
     }
 
     public Long storeWorkout(Workout workout) {
@@ -32,10 +35,10 @@ public class WorkoutRepository {
         Logger.info("Storing workout: " + workout.toString(), WorkoutRepository.class);
 
         ContentValues values = new ContentValues();
-        values.put(Workout.Column.PARENT_ID.name(), workout.getParentId());
-        values.put(Workout.Column.NAME.name(), workout.getName());
-        values.put(Workout.Column.PICTURE_ID.name(), workout.getPictureId());
-        values.put(Workout.Column.DESCRIPTION.name(), workout.getDescription());
+        values.put(Workout.Column.PROGRAM_ID.name(), workout.getProgramId());
+        values.put(Workout.Column.START_DATE.name(), workout.getStartDate());
+        values.put(Workout.Column.END_DATE.name(), workout.getEndDate());
+        values.put(Workout.Column.STATUS.name(), workout.getStatus().name());
 
         Long id = database.insert(Workout.TABLE_NAME, null, values);
         workout.setId(id);
@@ -45,38 +48,38 @@ public class WorkoutRepository {
         return id;
     }
 
-    public List<Workout> findWorkoutsListByParentId(long parentId){
+    public List<Workout> findWorkoutsListByProgramId(Long programId){
         instantiateDb();
-        Logger.info("Finding workout list by parent id: " + parentId, WorkoutRepository.class);
-        List<Workout> workoutList = new LinkedList<Workout>();
-        String query = "SELECT  * FROM " + Workout.TABLE_NAME + " WHERE " + Workout.Column.PARENT_ID + " = " + parentId;
+        Logger.info("Finding workout list by program id: " + programId, WorkoutRepository.class);
+        List<Workout> workouts = new LinkedList<>();
+        String query = "SELECT  * FROM " + Workout.TABLE_NAME + " WHERE " + Workout.Column.PROGRAM_ID + " = " + programId;
         Logger.info("Query: " + query, WorkoutRepository.class);
 
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
                 Workout workout = new Workout();
-                workout.setId(Long.parseLong(cursor.getString(0)));
-                workout.setParentId(Long.parseLong(cursor.getString(1)));
-                workout.setName(cursor.getString(2));
-                workout.setPictureId(Integer.parseInt(cursor.getString(3)));
-                workout.setDescription(cursor.getString(4));
+                workout.setId(cursor.getLong(0));
+                workout.setProgramId(cursor.getLong(1));
+                workout.setStartDate(cursor.getLong(2));
+                workout.setEndDate(cursor.getLong(3));
+                workout.setStatus(Workout.WorkoutStatus.valueOf(cursor.getString(4)));
 
-                workoutList.add(workout);
+                workouts.add(workout);
             } while (cursor.moveToNext());
         }
 
         closeDb();
-        return workoutList;
+        return workouts;
     }
 
-    public Cursor getWorkoutsCursorByParentId(long parentId){
+    /*public Cursor getWorkoutsCursorByParentId(long parentId){
         instantiateDb();
         String query = "SELECT  * FROM " + Workout.TABLE_NAME + " WHERE " + Workout.Column.PARENT_ID + " = " + parentId;
         Cursor cursor = database.rawQuery(query, null);
         closeDb();
         return cursor;
-    }
+    }*/
 
     private void instantiateDb(){
         database = databaseHelper.getWritableDatabase();

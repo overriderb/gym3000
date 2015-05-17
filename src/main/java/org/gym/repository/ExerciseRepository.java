@@ -26,9 +26,8 @@ public class ExerciseRepository {
         Logger.info("Storing exercise: " + exercise.toString(), ExerciseRepository.class);
 
         ContentValues values = new ContentValues();
-        values.put(Exercise.Column.PARENT_ID.name(), exercise.getParentId());
-        values.put(Exercise.Column.DATE.name(), exercise.getDate());
-        values.put(Exercise.Column.TYPE.name(), exercise.getType().name());
+        values.put(Exercise.Column.TYPE.name(), exercise.getExerciseTypeId());
+        values.put(Exercise.Column.WORKOUT_ID.name(), exercise.getWorkoutId());
 
         long id = database.insert(Exercise.TABLE_NAME, null, values);
         exercise.setId(id);
@@ -38,11 +37,11 @@ public class ExerciseRepository {
         return id;
     }
 
-    public List<Exercise> findExerciseListByParentId(Long parentId) {
+    public List<Exercise> findExerciseListByWorkoutId(Long workoutId) {
         instantiateDb();
-        Logger.info("Finding exercise list by parent id: " + parentId, ExerciseRepository.class);
-        List<Exercise> exerciseList = new LinkedList<Exercise>();
-        String query = "SELECT  * FROM " + Exercise.TABLE_NAME + " WHERE " + Exercise.Column.PARENT_ID + " = " + parentId;
+        Logger.info("Finding exercise list by workout id: " + workoutId, ExerciseRepository.class);
+        List<Exercise> exercises = new LinkedList<>();
+        String query = "SELECT  * FROM " + Exercise.TABLE_NAME + " WHERE " + Exercise.Column.WORKOUT_ID + " = " + workoutId;
         Logger.info("Query: " + query, ExerciseRepository.class);
 
         Cursor cursor = database.rawQuery(query, null);
@@ -50,16 +49,15 @@ public class ExerciseRepository {
             do {
                 Exercise exercise = new Exercise();
                 exercise.setId(Long.parseLong(cursor.getString(0)));
-                exercise.setParentId(Long.parseLong(cursor.getString(1)));
-                exercise.setDate(cursor.getString(2));
-                exercise.setType(Exercise.TYPE.valueOf(cursor.getString(3)));
+                exercise.setWorkoutId(Long.parseLong(cursor.getString(1)));
+                exercise.setExerciseTypeId(cursor.getLong(2));
 
-                exerciseList.add(exercise);
+                exercises.add(exercise);
             } while (cursor.moveToNext());
         }
 
         closeDb();
-        return exerciseList;
+        return exercises;
     }
 
     private void instantiateDb(){

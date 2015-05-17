@@ -21,6 +21,15 @@ public class ProgramRepository {
         this.databaseHelper = dh;
     }
 
+    public List<Long> storePrograms(List<Program> programList){
+        List<Long> storedIds = new LinkedList<>();
+        for(Program program : programList){
+            Long storedId = storeProgram(program);
+            storedIds.add(storedId);
+        }
+        return storedIds;
+    }
+
     public Long storeProgram(Program program) {
         instantiateDb();
         Logger.info("Storing program: " + program.toString(), ProgramRepository.class);
@@ -40,7 +49,7 @@ public class ProgramRepository {
     public List<Program> findAllProgramsList() {
         instantiateDb();
         Logger.info("Finding all programs", ProgramRepository.class);
-        List<Program> programList = new LinkedList<Program>();
+        List<Program> programs = new LinkedList<>();
         String query = "SELECT  * FROM " + Program.TABLE_NAME;
 
         Cursor cursor = database.rawQuery(query, null);
@@ -51,29 +60,22 @@ public class ProgramRepository {
                 program.setName(cursor.getString(1));
                 program.setDescription(cursor.getString(2));
 
-                programList.add(program);
+                programs.add(program);
             } while (cursor.moveToNext());
         }
 
         closeDb();
-        return programList;
+        return programs;
     }
 
-    // Do we need this?
+    /*// Do we need this?
     public Cursor getAllProgramsCursor(){
         instantiateDb();
         String query = "SELECT  * FROM " + Program.TABLE_NAME;
         Cursor cursor = database.rawQuery(query, null);
         closeDb();
         return cursor;
-    }
-
-
-    public void storePrograms(List<Program> programList){  //TODO think about posibility of adding collection and return their own ids
-        for(Program program : programList){              //now it doesn't return
-            storeProgram(program);
-        }
-    }
+    }*/
 
     private void instantiateDb(){
         database = databaseHelper.getWritableDatabase();

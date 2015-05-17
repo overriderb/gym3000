@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import org.gym.domain.Attempt;
 import org.gym.domain.Exercise;
+import org.gym.domain.ExerciseType;
 import org.gym.domain.Program;
 import org.gym.domain.Workout;
 
@@ -19,6 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private ProgramRepository programRepository = null;
     private WorkoutRepository workoutRepository = null;
     private ExerciseRepository exerciseRepository = null;
+    private ExerciseTypeRepository exerciseTypeRepository = null;
     private AttemptRepository attemptRepository = null;
 
     private static final String CREATE_PROGRAM = "CREATE TABLE " + Program.TABLE_NAME + " ("
@@ -28,22 +30,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_WORKOUT = "CREATE TABLE " + Workout.TABLE_NAME + " ("
             + Workout.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Workout.Column.PARENT_ID + " INTEGER NOT NULL, "
-            + Workout.Column.NAME + " TEXT NOT NULL, "
-            + Workout.Column.PICTURE_ID + " INTEGER, "
-            + Workout.Column.DESCRIPTION + " TEXT);";
+            + Workout.Column.PROGRAM_ID + " INTEGER NOT NULL, "
+            + Workout.Column.START_DATE + " INTEGER, "
+            + Workout.Column.END_DATE + " INTEGER, "
+            + Workout.Column.STATUS + " TEXT);";
 
     private static final String CREATE_EXERCISE = "CREATE TABLE " + Exercise.TABLE_NAME + " ("
             + Exercise.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Exercise.Column.PARENT_ID + " INTEGER NOT NULL, "
-            + Exercise.Column.DATE + " DATE NOT NULL, "
-            + Exercise.Column.TYPE + " CHAR);";
+            + Exercise.Column.WORKOUT_ID + " INTEGER NOT NULL, "
+            + Exercise.Column.TYPE + " INTEGER NOT NULL);";
+
+    private static final String CREATE_EXERCISE_TYPE = "CREATE TABLE " + ExerciseType.TABLE_NAME + " ("
+            + ExerciseType.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + ExerciseType.Column.NAME + " TEXT, "
+            + ExerciseType.Column.PICTURE_ID + " INTEGER, "
+            + ExerciseType.Column.DESCRIPTION + " TEXT);";
 
     private static final String CREATE_ATTEMPT = "CREATE TABLE " + Attempt.TABLE_NAME + " ("
             + Attempt.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Attempt.Column.PARENT_ID + " INTEGER NOT NULL, "
+            + Attempt.Column.EXERCISE_ID + " INTEGER NOT NULL, "
             + Attempt.Column.WEIGHT + " TEXT NOT NULL, "
-            + Attempt.Column.COUNT + " INTEGER NOT NULL);";
+            + Attempt.Column.COUNT + " INTEGER NOT NULL, "
+            + Attempt.Column.TYPE + " TEXT NOT NULL, "
+            + Attempt.Column.COMMENT + " TEXT);";
 
     public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
         super(context, name, factory, version);
@@ -58,6 +67,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_PROGRAM);
         db.execSQL(CREATE_WORKOUT);
         db.execSQL(CREATE_EXERCISE);
+        db.execSQL(CREATE_EXERCISE_TYPE);
         db.execSQL(CREATE_ATTEMPT);
     }
 
@@ -66,6 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + Program.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + Workout.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + Exercise.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ExerciseType.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + Attempt.TABLE_NAME);
         onCreate(db);
     }
@@ -89,7 +100,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             exerciseRepository = new ExerciseRepository(this);
         }
         return exerciseRepository;
+    }
 
+    public ExerciseTypeRepository getExerciseTypeRepository(){
+        if(exerciseTypeRepository == null){
+            exerciseTypeRepository = new ExerciseTypeRepository(this);
+        }
+        return exerciseTypeRepository;
     }
 
     public AttemptRepository getAttemptRepository(){
@@ -97,7 +114,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             attemptRepository = new AttemptRepository(this);
         }
         return attemptRepository;
-
     }
 
 }
