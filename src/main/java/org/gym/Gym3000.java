@@ -66,66 +66,82 @@ public class Gym3000 extends Application {
      * Method sets to DB programs and workouts, which user will see after starting this application first time
      */
     private void setInitialPrograms() {
-        Program handsChestProgram = new Program("Hands/Chest training day", "Blah-blah, hands and chest", 1);
-        databaseHelper.getProgramRepository().storeProgram(handsChestProgram);
+        Program handsChestProgram1 = new Program("1. Руки/грудь", "Тренировка групп мышц груди и рук", 1);
+        databaseHelper.getProgramRepository().storeProgram(handsChestProgram1);
 
-        Long id1 = databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram, "Warm-up", "Some warm-up exercises. It is important to warming-up and " +
-                "stretch every muscle which will be burden.", R.drawable.warm_up, 1));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram1, "Разминка", "Согревающие/разминающие упражнения:\n" +
+                "-Растяжка/разминка\n" +
+                "-Бег/велотренажер", R.drawable.warm_up, 1));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram1, "Жим лежа, 90", "Жим лежа на лавке под углом 90", R.drawable.lateral_raise, 2));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram1, "Разводы гантелей сидя, 45", "Развод гантелей сидя на лавке под углом 45", R.drawable.lat_pulldown, 3));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram1, "Брусья","Отжимания от брусьев, можно с отягощением", R.drawable.cable_rows, 4));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram1, "Французский жим", "Французский жим лежа на лавке", R.drawable.cable_rows, 5));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram1, "Кроссовер, вниз, металл. ручка", "Трицепс на кроссовере с металлической ручкой", R.drawable.lat_pulldown, 6));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram1, "Молотки","Поочередное поднимание гантелей к плечам на бицепс", R.drawable.cable_rows, 7));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram1, "Штанга обратным хватом", "Поднимание штанги к плечам на бицепс обратным хватом", R.drawable.cable_rows, 8));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram1, "Пресс", "Пресс на римском стуле", R.drawable.lat_pulldown, 9));
 
-        Long id2 = databaseHelper.getExerciseRepository().storeExercise(new Exercise(id1, "11.01.1989", Exercise.TYPE.M));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id2, "10", 15));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id2, "15", 13));
-        Long id3 = databaseHelper.getExerciseRepository().storeExercise(new Exercise(id1, "25.01.1989", Exercise.TYPE.L));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, "8", 20));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, "10", 15));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, "15", 15));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, "20", 8));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, "25", 15));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id3, "115", 4));
-        Long id4 = databaseHelper.getExerciseRepository().storeExercise(new Exercise(id1, "20.01.1989", Exercise.TYPE.S));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id4, "10", 15));
-        databaseHelper.getAttemptRepository().storeAttempt(new Attempt(id4, "15", 13));
+        Program legsBackProgram1 = new Program("2. Ноги/спина", "Тренировка групп мышц спины и ног", 2);
+        databaseHelper.getProgramRepository().storeProgram(legsBackProgram1);
 
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram1, "Разминка", "Согревающие/разминающие упражнения:\n" +
+                "-Растяжка/разминка\n" +
+                "-Бег/велотренажер\n" +
+                "-Гиперэкстензия\n" +
+                "-Разминка ног на тренажерах", R.drawable.warm_up, 1));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram1, "Приседания",
+                "Приседания со штангой", R.drawable.crunch, 2));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram1, "Армейский жим",
+                "Поднимания штанги стоя/сидя над головой с груди. При выполнении смотреть строго перед собой, " +
+                        "руки шире плеч", R.drawable.back_extensions, 3));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram1, "Подьем гантелей",
+                "Попеременный подьем гантелей перед собой на вытянутых руках. Подымать по широкой дуге, " +
+                        "одна рука опускается, другая - поднимается, расходясь у лица", R.drawable.cardio_trainings, 4));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram1, "Тяга к подбородку",
+                "Тяга штанги к подбородку узким хватом", R.drawable.crunch, 5));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram1, "Спина",
+                "Упражнения на спину, которые я пока не придумал", R.drawable.crunch, 6));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram1, "Пресс",
+                "Пресс на сжигание", R.drawable.crunch, 7));
 
-        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram, "Lateral raise", "The lateral raise with dumbbells is an effective " +
-                "exercise for developing the deltoids, and is performed by extending the arm to the side of the body " +
-                "with the elbow extended.\n lot of text \n" +
-                " lot of text \n" +
-                " lot of text \n" +
-                " lot of text \n" +
-                " lot of text \n" +
-                " lot of text \n" +
-                " lot of text \n" +
-                " lot of text \n" +
-                " lot of text \n" +
-                " lot of text \n" +
-                " lot of text \n" +
-                " lot of text \n" +
-                " lot of text \n" +
-                " lot of text \n" +
-                " lot of text", R.drawable.lateral_raise, 2));
-        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram, "Lat pulldown", "The lat pulldown works the major muscles in the back and " +
-                "also the biceps in the arms. It's a good exercise to progress up to doing pull ups as it develops " +
-                "strength in the back and arms, so its ideal for beginners.", R.drawable.lat_pulldown, 3));
-        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram, "Cable rows", "Seated cable rows are a great way to work the back muscles. " +
-                "Varying the width of your hands focuses the intensity on different areas of the back. Because it's a " +
-                "pulling exercise you are also working your biceps.", R.drawable.cable_rows, 4));
+        Program handsChestProgram2 = new Program("3. Руки/грудь", "Тренировка групп мышц груди и рук", 3);
+        databaseHelper.getProgramRepository().storeProgram(handsChestProgram2);
 
-        Program legsBackProgram = new Program("Legs/Back training day", "Description of Legs/Back program", 2);
-        databaseHelper.getProgramRepository().storeProgram(legsBackProgram);
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram2, "Разминка", "Согревающие/разминающие упражнения:\n" +
+                "-Растяжка/разминка\n" +
+                "-Бег/велотренажер", R.drawable.warm_up, 1));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram2, "Жим лежа, обратный угол", "Жим лежа на лавке под обратным углом", R.drawable.lateral_raise, 2));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram2, "Бабочка", "Разведение вытянутых рукна тренажере", R.drawable.lat_pulldown, 3));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram2, "Жим узким хватом, 90","Жим лежа на лавке под 90, узкий хват", R.drawable.cable_rows, 4));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram2, "Кроссовер, вверх, веревка", "Трицепс на кроссовере с веревкой. Тяга троса из-за голвы вверх", R.drawable.cable_rows, 5));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram2, "Кроссовер, вниз, веревка", "Трицепс на кроссовере с веревкой", R.drawable.lat_pulldown, 6));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram2, "Штанга прямым хватом","Поднимание штанги к плечам на бицепс прямым хватом", R.drawable.cable_rows, 7));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram2, "Гантель через колено", "Поднимание гантели к плечу через колено, выполняется сидя", R.drawable.cable_rows, 8));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram2, "Пресс", "Пресс на римском стуле", R.drawable.lat_pulldown, 9));
 
-        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram, "Tricep pushdowns", "Tricep pushdowns isolate the tricep muscles and are " +
-                "usually done at the tail end of a workout to give the triceps a real pump. It's a very easy exercise " +
-                "to perform and is ideal for beginners to weight training.", R.drawable.tricep_pushdowns, 6));
-        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram, "Crunch", " The standard abdominal crunch exercise targets the stomach " +
-                "muscles. The crunch is a safe and effective exercise that is great for beginners to help develop " +
-                "strong abdominal muscles.", R.drawable.crunch, 7));
-        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram, "Back extensions", "Back extensions are also known as hyperextensions. It's " +
-                "an exercise that works the lower back and also the buttocks and hamstrings.", R.drawable.back_extensions, 8));
-        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram, "Cardio trainings", "Training for pussy-man, who doesn't want to kick " +
-                "somebody's ass on street, only likes pedalling", R.drawable.cardio_trainings, 9));
+        Program legsBackProgram2 = new Program("4. Ноги/спина", "Тренировка групп мышц спины и ног", 4);
+        databaseHelper.getProgramRepository().storeProgram(legsBackProgram2);
 
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram2, "Разминка", "Согревающие/разминающие упражнения:\n" +
+                "-Растяжка/разминка\n" +
+                "-Бег/велотренажер\n" +
+                "-Гиперэкстензия\n" +
+                "-Разминка ног на тренажерах", R.drawable.warm_up, 1));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram2, "Становая тяга",
+                "Тяга штанги", R.drawable.crunch, 2));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram2, "Жим штанги из-за головы",
+                "Выполняется стоя/сидя, голова прямо, не наклонять ее вперед, слегка прогнуться в пояснице", R.drawable.back_extensions, 3));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram2, "Разведение гантелей",
+                "Одновременное разведение гантелей стоя. Выполнение: не раскачиваться, в верхней точке разварачивать " +
+                        "кисти рук внутрь, чтобы задняя часть гантели была выше передней", R.drawable.cardio_trainings, 4));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram2, "Шраги",
+                "Шраги гантелями/штангой", R.drawable.crunch, 5));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram2, "Спина",
+                "Упражнения на спину, которые я пока не придумал", R.drawable.crunch, 6));
+        databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram2, "Пресс",
+                "Пресс на сжигание", R.drawable.crunch, 7));
     }
+
 
     private void setInitialPreferences() {
         SharedPreferencesHelper.setBool(this, SharedPreferencesHelper.IS_PICTURE_OPEN, true);

@@ -1,0 +1,28 @@
+<resources>
+
+    <string name="appName">Gym3000</string>
+    <string name="change_programs">Изменить программу</string>
+    <string name="change_workouts">Изменить упражнение</string>
+    <string name="choose_exercise_type_text">Выберите тип</string>
+    <string name="count_text">раз</string>
+    <string name="description">Описание</string>
+    <string name="description_dot">Описание:</string>
+    <string name="history_layout_workout">Упражнение</string>
+    <string name="kg_text">кг</string>
+    <string name="menu_layout_add_program">Изменить программу</string>
+    <string name="menu_layout_add_workout">Изменить упражнение</string>
+    <string name="menu_layout_settings">Настройки</string>
+    <string name="menu_settings">Настройки меню</string>
+    <string name="picture">Картинка</string>
+    <string name="picture_dot">Картинка:</string>
+    <string name="program_layout_history">История</string>
+    <string name="program_settings">Настройки программ</string>
+    <string name="save_attempt_button">Сохранить</string>
+    <string name="save_program">Сохранить программу</string>
+    <string name="save_workout">Сохранить упражнение</string>
+    <string name="settings">Настройки</string>
+    <string name="start_exercise_button">Старт</string>
+    <string name="title">Название</string>
+    <string name="title_dot">Название:</string>
+
+</resources>

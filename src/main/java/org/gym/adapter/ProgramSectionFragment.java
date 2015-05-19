@@ -81,7 +81,7 @@ public class ProgramSectionFragment extends Fragment {
         workoutNameTextView.setText(workoutItem.getName());
         workoutDescrTextView.setText(workoutItem.getDescription());
 
-        //imageView.setImageResource(workoutItem.getPictureId());
+        imageView.setImageResource(workoutItem.getPictureId());
 
 
         workoutNameTextView.setOnClickListener(new View.OnClickListener() {
