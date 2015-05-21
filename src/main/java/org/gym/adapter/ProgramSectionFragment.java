@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import org.gym.animation.DropDownAnimation;
 import android.widget.Toast;
@@ -43,6 +44,7 @@ public class ProgramSectionFragment extends Fragment {
     private TextView workoutNameTextView;
     private TextView workoutDescrTextView;
     private TextView workoutDescrTitleTextView;
+    //private ProgressBar progressBar;
 
     private Long exerciseId;
     private Long attemptId;
@@ -82,6 +84,9 @@ public class ProgramSectionFragment extends Fragment {
         workoutDescrTextView.setText(workoutItem.getDescription());
 
         imageView.setImageResource(workoutItem.getPictureId());
+
+/*        progressBar.setMax(2);
+        progressBar.setProgress(1);*/
 
 
         workoutNameTextView.setOnClickListener(new View.OnClickListener() {
