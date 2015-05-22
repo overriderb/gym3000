@@ -8,6 +8,8 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
+
 import org.gym.adapter.HistoryPagerAdapter;
 import org.gym.repository.DatabaseHelper;
 import org.gym.domain.Workout;
@@ -23,6 +25,7 @@ public class HistoryActivity extends FragmentActivity {
 
     private HistoryPagerAdapter historyPagerAdapter;
     private ViewPager viewPager;
+    private ProgressBar progressBar;
     private int currentItem;
 
     @Override
@@ -34,6 +37,8 @@ public class HistoryActivity extends FragmentActivity {
         viewPager = (ViewPager) findViewById(R.id.historyPager);
         viewPager.setAdapter(historyPagerAdapter);
         viewPager.setCurrentItem(currentItem);
+        progressBar = (ProgressBar)findViewById(R.id.historyProgressBar);
+        progressBar.setProgress(60);
         overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
     }
 

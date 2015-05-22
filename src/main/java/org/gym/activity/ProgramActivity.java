@@ -7,6 +7,8 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
+
 import org.gym.adapter.ProgramPagerAdapter;
 
 
@@ -18,6 +20,7 @@ public class ProgramActivity extends FragmentActivity {
     public final static String CURRENT_ITEM = "org.gym.activity.ProgramActivity.CURRENT_ITEM";
 
     private ViewPager viewPager;
+    private ProgressBar progressBar;
     private int currentItem;
 
     @Override
@@ -29,6 +32,9 @@ public class ProgramActivity extends FragmentActivity {
         viewPager = (ViewPager) findViewById(R.id.program_pager);
         viewPager.setAdapter(programPagerAdapter);
         viewPager.setCurrentItem(currentItem);
+        progressBar = (ProgressBar)findViewById(R.id.programProgressBar);
+        progressBar.setMax(100);
+        progressBar.setProgress(75);
         overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
     }
 
