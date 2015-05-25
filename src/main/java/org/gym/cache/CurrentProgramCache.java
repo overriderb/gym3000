@@ -5,7 +5,7 @@ import org.gym.domain.Workout;
 import java.util.List;
 
 /**
- * Created by anni0913 on 01.12.2014.
+ * TODO: add description
  */
 public class CurrentProgramCache {
 

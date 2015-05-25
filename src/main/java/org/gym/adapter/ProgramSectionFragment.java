@@ -44,7 +44,6 @@ public class ProgramSectionFragment extends Fragment {
     private TextView workoutNameTextView;
     private TextView workoutDescrTextView;
     private TextView workoutDescrTitleTextView;
-    //private ProgressBar progressBar;
 
     private Long exerciseId;
     private Long attemptId;
@@ -84,9 +83,6 @@ public class ProgramSectionFragment extends Fragment {
         workoutDescrTextView.setText(workoutItem.getDescription());
 
         imageView.setImageResource(workoutItem.getPictureId());
-
-/*        progressBar.setMax(2);
-        progressBar.setProgress(1);*/
 
 
         workoutNameTextView.setOnClickListener(new View.OnClickListener() {

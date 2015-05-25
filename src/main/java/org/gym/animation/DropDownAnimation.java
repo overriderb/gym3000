@@ -25,8 +25,7 @@ public class DropDownAnimation extends Animation {
     }
 
     @Override
-    public void initialize(int width, int height, int parentWidth,
-                           int parentHeight) {
+    public void initialize(int width, int height, int parentWidth, int parentHeight) {
         super.initialize(width, height, parentWidth, parentHeight);
     }
 
