@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by AndreyNick on 12.11.2014.
+ * It provides methods for DB working with Program objects
  */
 public class ProgramRepository {
 

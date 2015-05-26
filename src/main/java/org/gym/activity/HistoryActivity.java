@@ -1,6 +1,6 @@
 package org.gym.activity;
 
-import android.app.ActionBar;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -9,12 +9,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ProgressBar;
-
 import org.gym.adapter.HistoryPagerAdapter;
-import org.gym.repository.DatabaseHelper;
-import org.gym.domain.Workout;
 
-import java.util.List;
 
 /**
  * Activity shows exercises and attempts which are binded to current workouts list and single program

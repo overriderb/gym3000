@@ -10,31 +10,30 @@ import org.gym.activity.R;
 import org.gym.repository.DatabaseHelper;
 import org.gym.domain.Attempt;
 import org.gym.domain.Exercise;
+import org.gym.service.AttemptService;
 
 import java.util.List;
 
 /**
  * This adapter is a part of history_pages.xml layout. It provides work of every item of layout.
- *
  */
 public class HistoryArrayAdapter extends ArrayAdapter<Exercise> {
 
-    private List<Exercise> exerciseList = null;
-    private List<Attempt> attemptList = null;
-    private DatabaseHelper databaseHelper;
+    private List<Exercise> exerciseList;
     private Context context;
+    private AttemptService attemptService;
 
     public HistoryArrayAdapter(Context context, int resource, List<Exercise> objects) {
         super(context, resource, objects);
         this.context = context;
         exerciseList = objects;
-        databaseHelper = new DatabaseHelper(this.getContext());
+        attemptService = new AttemptService();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         Exercise exercise = exerciseList.get(position);
-        attemptList = databaseHelper.getAttemptRepository().findAttemptListByParentId(exercise.getId());
+        List<Attempt> attemptList = attemptService.getAttempts(context, exercise.getId());
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext())

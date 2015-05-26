@@ -9,7 +9,7 @@ import org.gym.domain.Program;
 import org.gym.domain.Workout;
 
 /**
- * Created by AndreyNick on 12.11.2014.
+ * Main DB work class
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 

@@ -5,7 +5,9 @@ import org.gym.domain.Workout;
 import java.util.List;
 
 /**
- * TODO: add description
+ * This cache is used for coordinating History and Program activities
+ * When user selects some program on Main activity, this program is added to cache and is used till
+ * user moves back to main menu
  */
 public class CurrentProgramCache {
 

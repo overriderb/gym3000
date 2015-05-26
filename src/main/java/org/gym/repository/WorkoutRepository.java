@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by AndreyNick on 13.11.2014.
+ * It provides methods for DB working with Workout objects
  */
 public class WorkoutRepository {
 

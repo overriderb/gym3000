@@ -7,14 +7,12 @@ import android.widget.FrameLayout;
 import org.gym.activity.R;
 import org.gym.helper.SharedPreferencesHelper;
 import org.gym.repository.DatabaseHelper;
-import org.gym.domain.Attempt;
-import org.gym.domain.Exercise;
 import org.gym.domain.Program;
 import org.gym.domain.Workout;
 
 
 /**
- * Created by anni0913 on 15.10.2014.
+ * Main application class
  */
 public class Gym3000 extends Application {
 

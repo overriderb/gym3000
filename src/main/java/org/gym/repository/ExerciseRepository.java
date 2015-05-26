@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by anni0913 on 18.11.2014.
+ * It provides methods for DB working with Exercise objects
  */
 public class ExerciseRepository {
 
