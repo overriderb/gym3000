@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.FrameLayout;
 import org.gym.activity.R;
+import org.gym.domain.User;
 import org.gym.helper.SharedPreferencesHelper;
 import org.gym.repository.DatabaseHelper;
 import org.gym.domain.Program;
@@ -64,7 +65,8 @@ public class Gym3000 extends Application {
      * Method sets to DB programs and workouts, which user will see after starting this application first time
      */
     private void setInitialPrograms() {
-        Program handsChestProgram1 = new Program("1. Руки/грудь", "Тренировка групп мышц груди и рук", 1);
+        User user = new User("Andrew");
+        Program handsChestProgram1 = new Program(user.getId(), "1. Руки/грудь", "Тренировка групп мышц груди и рук", 1);
         databaseHelper.getProgramRepository().storeProgram(handsChestProgram1);
 
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram1, "Разминка", "Согревающие/разминающие упражнения:\n" +
@@ -79,7 +81,7 @@ public class Gym3000 extends Application {
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram1, "Штанга обратным хватом", "Поднимание штанги к плечам на бицепс обратным хватом", R.drawable.cable_rows, 8));
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram1, "Пресс", "Пресс на римском стуле", R.drawable.lat_pulldown, 9));
 
-        Program legsBackProgram1 = new Program("2. Ноги/спина", "Тренировка групп мышц спины и ног", 2);
+        Program legsBackProgram1 = new Program(user.getId(), "2. Ноги/спина", "Тренировка групп мышц спины и ног", 2);
         databaseHelper.getProgramRepository().storeProgram(legsBackProgram1);
 
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram1, "Разминка", "Согревающие/разминающие упражнения:\n" +
@@ -102,7 +104,7 @@ public class Gym3000 extends Application {
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram1, "Пресс",
                 "Пресс на сжигание", R.drawable.crunch, 7));
 
-        Program handsChestProgram2 = new Program("3. Руки/грудь", "Тренировка групп мышц груди и рук", 3);
+        Program handsChestProgram2 = new Program(user.getId(), "3. Руки/грудь", "Тренировка групп мышц груди и рук", 3);
         databaseHelper.getProgramRepository().storeProgram(handsChestProgram2);
 
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram2, "Разминка", "Согревающие/разминающие упражнения:\n" +
@@ -117,7 +119,7 @@ public class Gym3000 extends Application {
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram2, "Гантель через колено", "Поднимание гантели к плечу через колено, выполняется сидя", R.drawable.cable_rows, 8));
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(handsChestProgram2, "Пресс", "Пресс на римском стуле", R.drawable.lat_pulldown, 9));
 
-        Program legsBackProgram2 = new Program("4. Ноги/спина", "Тренировка групп мышц спины и ног", 4);
+        Program legsBackProgram2 = new Program(user.getId(), "4. Ноги/спина", "Тренировка групп мышц спины и ног", 4);
         databaseHelper.getProgramRepository().storeProgram(legsBackProgram2);
 
         databaseHelper.getWorkoutRepository().storeWorkout(new Workout(legsBackProgram2, "Разминка", "Согревающие/разминающие упражнения:\n" +

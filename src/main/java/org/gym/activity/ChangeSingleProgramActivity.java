@@ -33,8 +33,8 @@ public class ChangeSingleProgramActivity extends Activity {
         Cursor allPrograms = databaseHelper.getProgramRepository().getAllProgramsCursor();
         allPrograms.moveToLast();
         Logger.info("Last program with highest order_number: " + allPrograms.getString(1) + " " + allPrograms.getString(3), ChangeSingleProgramActivity.class);
-        Program program = new Program(title.getText().toString(), description.getText().toString(), /*Integer.parseInt(allPrograms.getString(3)) + 1*/ 1);
-        Logger.info("Save program : " + program.getName() + "\n" + program.getDescription() + "\n" + program.getOrderNumber(), ChangeSingleProgramActivity.class);
+        //Program program = new Program(title.getText().toString(), description.getText().toString(), /*Integer.parseInt(allPrograms.getString(3)) + 1*/ 1);
+        //Logger.info("Save program : " + program.getName() + "\n" + program.getDescription() + "\n" + program.getOrderNumber(), ChangeSingleProgramActivity.class);
         //databaseHelper.getProgramRepository().storeProgram(program);
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);

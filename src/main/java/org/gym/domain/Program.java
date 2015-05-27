@@ -8,12 +8,14 @@ public class Program implements HasNameAndDescription{
     public static final String TABLE_NAME = "PROGRAM";
 
     private Long id;
+    private Long userId;
     private String name;
     private String description;
     private int orderNumber;
 
     public enum Column {
         ID,
+        PARENT_ID,
         NAME,
         DESCRIPTION,
         ORDER_NUMBER
@@ -22,10 +24,11 @@ public class Program implements HasNameAndDescription{
     public Program() {
     }
 
-    public Program(String name, String description, int order_number) {
+    public Program(Long userId, String name, String description, int orderNumber) {
+        this.userId = userId;
         this.name = name;
         this.description = description;
-        this.orderNumber = order_number;
+        this.orderNumber = orderNumber;
     }
 
     public Long getId() {
@@ -60,6 +63,14 @@ public class Program implements HasNameAndDescription{
 
     public void setOrderNumber(int orderNumber) {
         this.orderNumber = orderNumber;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Override

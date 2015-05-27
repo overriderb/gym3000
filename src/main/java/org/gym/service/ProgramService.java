@@ -12,10 +12,10 @@ import java.util.List;
  */
 public class ProgramService {
 
-    public Long persistProgram(Context context, String name, String description, int order_number){
+    public Long persistProgram(Context context, Long userId, String name, String description, int order_number){
         DatabaseHelper databaseHelper = new DatabaseHelper(context);
 
-        Program program = new Program(name, description, order_number);
+        Program program = new Program(userId, name, description, order_number);
         return databaseHelper.getProgramRepository().storeProgram(program);
     }
 
