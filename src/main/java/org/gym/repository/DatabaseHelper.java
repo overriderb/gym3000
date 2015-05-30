@@ -3,63 +3,82 @@ package org.gym.repository;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import org.gym.domain.Attempt;
-import org.gym.domain.Exercise;
-import org.gym.domain.ExerciseType;
-import org.gym.domain.Program;
-import org.gym.domain.Workout;
+import org.gym.domain.AttemptEntity;
+import org.gym.domain.ExerciseEntity;
+import org.gym.domain.ExerciseTypeEntity;
+import org.gym.domain.ProgramEntity;
+import org.gym.domain.WorkoutEntity;
 
 /**
  * Created by AndreyNick on 12.11.2014.
  */
 public class DatabaseHelper extends SQLiteOpenHelper {
 
-    private static final int DATABASE_VERSION = 5;
+    private static DatabaseHelper instance;
+
+    private static final int DATABASE_VERSION = 7;
     private static final String DATABASE_NAME = "SQLite3";
 
-    private ProgramRepository programRepository = null;
-    private WorkoutRepository workoutRepository = null;
-    private ExerciseRepository exerciseRepository = null;
-    private ExerciseTypeRepository exerciseTypeRepository = null;
-    private AttemptRepository attemptRepository = null;
+    private static final String CREATE_PROGRAM = "CREATE TABLE " + ProgramEntity.TABLE_NAME + " ("
+            + ProgramEntity.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + ProgramEntity.Column.NAME + " TEXT NOT NULL, "
+            + ProgramEntity.Column.DESCRIPTION + " TEXT);";
 
-    private static final String CREATE_PROGRAM = "CREATE TABLE " + Program.TABLE_NAME + " ("
-            + Program.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Program.Column.NAME + " TEXT NOT NULL, "
-            + Program.Column.DESCRIPTION + " TEXT);";
+    private static final String CREATE_WORKOUT = "CREATE TABLE " + WorkoutEntity.TABLE_NAME + " ("
+            + WorkoutEntity.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + WorkoutEntity.Column.PROGRAM_ID + " INTEGER NOT NULL, "
+            + WorkoutEntity.Column.START_DATE + " INTEGER, "
+            + WorkoutEntity.Column.END_DATE + " INTEGER, "
+            + WorkoutEntity.Column.STATUS + " TEXT, "
+            + "FOREIGN KEY (" + WorkoutEntity.Column.PROGRAM_ID + ") "
+            + "REFERENCES " + ProgramEntity.TABLE_NAME + "(" + ProgramEntity.Column.ID + ")"
+            + ");";
 
-    private static final String CREATE_WORKOUT = "CREATE TABLE " + Workout.TABLE_NAME + " ("
-            + Workout.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Workout.Column.PROGRAM_ID + " INTEGER NOT NULL, "
-            + Workout.Column.START_DATE + " INTEGER, "
-            + Workout.Column.END_DATE + " INTEGER, "
-            + Workout.Column.STATUS + " TEXT);";
+    private static final String CREATE_EXERCISE = "CREATE TABLE " + ExerciseEntity.TABLE_NAME + " ("
+            + ExerciseEntity.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + ExerciseEntity.Column.TYPE + " INTEGER NOT NULL, "
+            + ExerciseEntity.Column.WORKOUT_ID + " INTEGER NOT NULL, "
+            + "FOREIGN KEY (" + ExerciseEntity.Column.WORKOUT_ID + ") "
+            + "REFERENCES " + WorkoutEntity.TABLE_NAME + "(" + WorkoutEntity.Column.ID + ")"
+            + ");";
 
-    private static final String CREATE_EXERCISE = "CREATE TABLE " + Exercise.TABLE_NAME + " ("
-            + Exercise.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Exercise.Column.WORKOUT_ID + " INTEGER NOT NULL, "
-            + Exercise.Column.TYPE + " INTEGER NOT NULL);";
+    private static final String CREATE_EXERCISE_TYPE = "CREATE TABLE " + ExerciseTypeEntity.TABLE_NAME + " ("
+            + ExerciseTypeEntity.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + ExerciseTypeEntity.Column.PROGRAM_ID + " INTEGER NOT NULL, "
+            + ExerciseTypeEntity.Column.NAME + " TEXT, "
+            + ExerciseTypeEntity.Column.DESCRIPTION + " TEXT, "
+            + ExerciseTypeEntity.Column.PICTURE_ID + " INTEGER, "
+            + "FOREIGN KEY (" + ExerciseTypeEntity.Column.PROGRAM_ID + ") "
+            + "REFERENCES " + ProgramEntity.TABLE_NAME + "(" + ProgramEntity.Column.ID + ")"
+            + ");";
 
-    private static final String CREATE_EXERCISE_TYPE = "CREATE TABLE " + ExerciseType.TABLE_NAME + " ("
-            + ExerciseType.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + ExerciseType.Column.NAME + " TEXT, "
-            + ExerciseType.Column.PICTURE_ID + " INTEGER, "
-            + ExerciseType.Column.DESCRIPTION + " TEXT);";
+    private static final String CREATE_ATTEMPT = "CREATE TABLE " + AttemptEntity.TABLE_NAME + " ("
+            + AttemptEntity.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + AttemptEntity.Column.EXERCISE_ID + " INTEGER NOT NULL, "
+            + AttemptEntity.Column.WEIGHT + " TEXT NOT NULL, "
+            + AttemptEntity.Column.COUNT + " INTEGER NOT NULL, "
+            + AttemptEntity.Column.TYPE + " TEXT NOT NULL, "
+            + AttemptEntity.Column.COMMENT + " TEXT, "
+            + "FOREIGN KEY (" + AttemptEntity.Column.EXERCISE_ID + ") "
+            + "REFERENCES " + ExerciseEntity.TABLE_NAME + "(" + ExerciseEntity.Column.ID + ")"
+            + ");";
 
-    private static final String CREATE_ATTEMPT = "CREATE TABLE " + Attempt.TABLE_NAME + " ("
-            + Attempt.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + Attempt.Column.EXERCISE_ID + " INTEGER NOT NULL, "
-            + Attempt.Column.WEIGHT + " TEXT NOT NULL, "
-            + Attempt.Column.COUNT + " INTEGER NOT NULL, "
-            + Attempt.Column.TYPE + " TEXT NOT NULL, "
-            + Attempt.Column.COMMENT + " TEXT);";
-
-    public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
+    private DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
         super(context, name, factory, version);
     }
 
-    public DatabaseHelper(Context context){
+    private DatabaseHelper(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    public static void init(Context context) {
+        if (instance == null) {
+            instance = new DatabaseHelper(context);
+        }
+    }
+
+    public static DatabaseHelper getInstance() {
+        return instance;
     }
 
     @Override
@@ -73,47 +92,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + Program.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + Workout.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + Exercise.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + ExerciseType.TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXISTS " + Attempt.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ProgramEntity.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + WorkoutEntity.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ExerciseEntity.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ExerciseTypeEntity.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + AttemptEntity.TABLE_NAME);
         onCreate(db);
     }
-
-    public ProgramRepository getProgramRepository(){
-        if(programRepository == null){
-            programRepository = new ProgramRepository(this);
-        }
-        return programRepository;
-    }
-
-    public WorkoutRepository getWorkoutRepository(){
-        if(workoutRepository == null){
-            workoutRepository = new WorkoutRepository(this);
-        }
-        return workoutRepository;
-    }
-
-    public ExerciseRepository getExerciseRepository(){
-        if(exerciseRepository == null){
-            exerciseRepository = new ExerciseRepository(this);
-        }
-        return exerciseRepository;
-    }
-
-    public ExerciseTypeRepository getExerciseTypeRepository(){
-        if(exerciseTypeRepository == null){
-            exerciseTypeRepository = new ExerciseTypeRepository(this);
-        }
-        return exerciseTypeRepository;
-    }
-
-    public AttemptRepository getAttemptRepository(){
-        if(attemptRepository == null){
-            attemptRepository = new AttemptRepository(this);
-        }
-        return attemptRepository;
-    }
-
 }

@@ -3,8 +3,7 @@ package org.gym.repository;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import org.gym.domain.Attempt;
-import org.gym.domain.Exercise;
+import org.gym.domain.AttemptEntity;
 import org.gym.logging.Logger;
 
 import java.util.LinkedList;
@@ -15,79 +14,88 @@ import java.util.List;
  */
 public class AttemptRepository {
 
+    private static AttemptRepository instance;
+
     private DatabaseHelper databaseHelper;
     private SQLiteDatabase database;
 
-    public AttemptRepository(DatabaseHelper databaseHelper) {
+    private AttemptRepository(DatabaseHelper databaseHelper) {
         this.databaseHelper = databaseHelper;
     }
 
-    public Long store(Attempt attempt) {
+    public static AttemptRepository getInstance() {
+        if (instance == null) {
+            instance = new AttemptRepository(DatabaseHelper.getInstance());
+        }
+        return instance;
+    }
+
+    public Long store(AttemptEntity attemptEntity) {
         instantiateDb();
-        Logger.info("Storing attempt: " + attempt.toString(), AttemptRepository.class);
+        Logger.info("Storing attempt: " + attemptEntity.toString(), AttemptRepository.class);
 
         ContentValues values = new ContentValues();
-        values.put(Attempt.Column.EXERCISE_ID.name(), attempt.getExerciseId());
-        values.put(Attempt.Column.WEIGHT.name(), attempt.getWeight());
-        values.put(Attempt.Column.COUNT.name(), attempt.getCount());
-        values.put(Attempt.Column.TYPE.name(), attempt.getType().name());
-        values.put(Attempt.Column.COMMENT.name(), attempt.getComment());
+        values.put(AttemptEntity.Column.EXERCISE_ID.name(), attemptEntity.getExerciseId());
+        values.put(AttemptEntity.Column.WEIGHT.name(), attemptEntity.getWeight());
+        values.put(AttemptEntity.Column.COUNT.name(), attemptEntity.getCount());
+        values.put(AttemptEntity.Column.TYPE.name(), attemptEntity.getType());
+        values.put(AttemptEntity.Column.COMMENT.name(), attemptEntity.getComment());
 
-        Long id = database.insert(Attempt.TABLE_NAME, null, values);
-        attempt.setId(id);
-        Logger.info("Attempt stored: " + attempt.toString(), AttemptRepository.class);
+        Long id = database.insert(AttemptEntity.TABLE_NAME, null, values);
+        attemptEntity.setId(id);
+        Logger.info("Attempt stored: " + attemptEntity.toString(), AttemptRepository.class);
 
         closeDb();
         return id;
     }
 
-    public Attempt find(Long attemptId) {
+    public AttemptEntity find(Long attemptId) {
         instantiateDb();
         Logger.info("Finding attempt id: " + attemptId, AttemptRepository.class);
-        String query = "SELECT  * FROM " + Attempt.TABLE_NAME + " WHERE " + Attempt.Column.ID + " = " + attemptId;
+        String query = "SELECT  * FROM " + AttemptEntity.TABLE_NAME + " WHERE " + AttemptEntity.Column.ID + " = " + attemptId;
         Logger.info("Query: " + query, AttemptRepository.class);
 
-        Attempt attempt = null;
+        AttemptEntity attemptEntity = null;
 
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
-            attempt = new Attempt();
-            attempt.setId(cursor.getLong(0));
-            attempt.setExerciseId(cursor.getLong(1));
-            attempt.setWeight(cursor.getString(2));
-            attempt.setCount(cursor.getInt(3));
-            attempt.setType(Attempt.Type.valueOf(cursor.getString(4)));
-            attempt.setComment(cursor.getString(5));
+            attemptEntity = new AttemptEntity();
+            attemptEntity.setId(cursor.getLong(0));
+            attemptEntity.setExerciseId(cursor.getLong(1));
+            attemptEntity.setWeight(cursor.getString(2));
+            attemptEntity.setCount(cursor.getInt(3));
+            attemptEntity.setType(cursor.getString(4));
+            attemptEntity.setComment(cursor.getString(5));
         }
 
         closeDb();
-        return attempt;
+        return attemptEntity;
     }
 
-    public List<Attempt> findByExerciseId(Long exerciseId) {
+    public List<AttemptEntity> findByExerciseId(Long exerciseId) {
         instantiateDb();
         Logger.info("Finding attempt list by exercise id: " + exerciseId, AttemptRepository.class);
-        List<Attempt> attempts = new LinkedList<>();
-        String query = "SELECT  * FROM " + Attempt.TABLE_NAME + " WHERE " + Attempt.Column.EXERCISE_ID + " = " + exerciseId;
+        List<AttemptEntity> attemptEntities = new LinkedList<>();
+        String query = "SELECT  * FROM " + AttemptEntity.TABLE_NAME + " WHERE " + AttemptEntity.Column.EXERCISE_ID + " = " + exerciseId;
         Logger.info("Query: " + query, AttemptRepository.class);
 
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
-                Attempt attempt = new Attempt();
-                attempt.setId(cursor.getLong(0));
-                attempt.setExerciseId(cursor.getLong(1));
-                attempt.setWeight(cursor.getString(2));
-                attempt.setCount(cursor.getInt(3));
-                attempt.setType(Attempt.Type.valueOf(cursor.getString(4)));
-                attempt.setComment(cursor.getString(5));
+                AttemptEntity attemptEntity = new AttemptEntity();
+                attemptEntity.setId(cursor.getLong(0));
+                attemptEntity.setExerciseId(cursor.getLong(1));
+                attemptEntity.setWeight(cursor.getString(2));
+                attemptEntity.setCount(cursor.getInt(3));
+                attemptEntity.setType(cursor.getString(4));
+                attemptEntity.setComment(cursor.getString(5));
 
-                attempts.add(attempt);
+                attemptEntities.add(attemptEntity);
             } while (cursor.moveToNext());
         }
 
         closeDb();
-        return attempts;
+        return attemptEntities;
     }
 
     private void instantiateDb(){

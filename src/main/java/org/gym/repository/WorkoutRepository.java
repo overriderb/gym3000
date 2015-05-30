@@ -3,7 +3,7 @@ package org.gym.repository;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import org.gym.domain.Workout;
+import org.gym.domain.WorkoutEntity;
 import org.gym.logging.Logger;
 
 import java.util.LinkedList;
@@ -14,85 +14,94 @@ import java.util.List;
  */
 public class WorkoutRepository {
 
+    private static WorkoutRepository instance;
+
     private DatabaseHelper databaseHelper;
     private SQLiteDatabase database;
 
-    protected WorkoutRepository(DatabaseHelper databaseHelper){
+    private WorkoutRepository(DatabaseHelper databaseHelper){
         this.databaseHelper = databaseHelper;
     }
 
-    public List<Long> store(List<Workout> workoutList) {
+    public static WorkoutRepository getInstance() {
+        if (instance == null) {
+            instance = new WorkoutRepository(DatabaseHelper.getInstance());
+        }
+        return instance;
+    }
+
+    public List<Long> store(List<WorkoutEntity> workoutEntityList) {
         List<Long> storedIds = new LinkedList<>();
-        for(Workout workout : workoutList){
-            Long storedId = store(workout);
+        for(WorkoutEntity workoutEntity : workoutEntityList){
+            Long storedId = store(workoutEntity);
             storedIds.add(storedId);
         }
         return storedIds;
     }
 
-    public Long store(Workout workout) {
+    public Long store(WorkoutEntity workoutEntity) {
         instantiateDb();
-        Logger.info("Storing workout: " + workout.toString(), WorkoutRepository.class);
+        Logger.info("Storing workout: " + workoutEntity.toString(), WorkoutRepository.class);
 
         ContentValues values = new ContentValues();
-        values.put(Workout.Column.PROGRAM_ID.name(), workout.getProgramId());
-        values.put(Workout.Column.START_DATE.name(), workout.getStartDate());
-        values.put(Workout.Column.END_DATE.name(), workout.getEndDate());
-        values.put(Workout.Column.STATUS.name(), workout.getStatus().name());
+        values.put(WorkoutEntity.Column.PROGRAM_ID.name(), workoutEntity.getProgramId());
+        values.put(WorkoutEntity.Column.START_DATE.name(), workoutEntity.getStartDate());
+        values.put(WorkoutEntity.Column.END_DATE.name(), workoutEntity.getEndDate());
+        values.put(WorkoutEntity.Column.STATUS.name(), workoutEntity.getStatus());
 
-        Long id = database.insert(Workout.TABLE_NAME, null, values);
-        workout.setId(id);
-        Logger.info("Workout stored: " + workout.toString(), WorkoutRepository.class);
+        Long id = database.insert(WorkoutEntity.TABLE_NAME, null, values);
+        workoutEntity.setId(id);
+        Logger.info("Workout stored: " + workoutEntity.toString(), WorkoutRepository.class);
 
         closeDb();
         return id;
     }
 
-    public Workout find(Long workoutId){
+    public WorkoutEntity find(Long workoutId){
         instantiateDb();
         Logger.info("Finding workout by id: " + workoutId, WorkoutRepository.class);
-        String query = "SELECT  * FROM " + Workout.TABLE_NAME + " WHERE " + Workout.Column.ID + " = " + workoutId;
+        String query = "SELECT  * FROM " + WorkoutEntity.TABLE_NAME + " WHERE " + WorkoutEntity.Column.ID + " = " + workoutId;
         Logger.info("Query: " + query, WorkoutRepository.class);
 
-        Workout workout = null;
+        WorkoutEntity workoutEntity = null;
 
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
-            workout = new Workout();
-            workout.setId(cursor.getLong(0));
-            workout.setProgramId(cursor.getLong(1));
-            workout.setStartDate(cursor.getLong(2));
-            workout.setEndDate(cursor.getLong(3));
-            workout.setStatus(Workout.WorkoutStatus.valueOf(cursor.getString(4)));
+            workoutEntity = new WorkoutEntity();
+            workoutEntity.setId(cursor.getLong(0));
+            workoutEntity.setProgramId(cursor.getLong(1));
+            workoutEntity.setStartDate(cursor.getLong(2));
+            workoutEntity.setEndDate(cursor.getLong(3));
+            workoutEntity.setStatus(cursor.getString(4));
         }
 
         closeDb();
-        return workout;
+        return workoutEntity;
     }
 
-    public List<Workout> findByProgramId(Long programId){
+    public List<WorkoutEntity> findByProgramId(Long programId){
         instantiateDb();
         Logger.info("Finding workout list by program id: " + programId, WorkoutRepository.class);
-        List<Workout> workouts = new LinkedList<>();
-        String query = "SELECT  * FROM " + Workout.TABLE_NAME + " WHERE " + Workout.Column.PROGRAM_ID + " = " + programId;
+        List<WorkoutEntity> workoutEntities = new LinkedList<>();
+        String query = "SELECT  * FROM " + WorkoutEntity.TABLE_NAME + " WHERE " + WorkoutEntity.Column.PROGRAM_ID + " = " + programId;
         Logger.info("Query: " + query, WorkoutRepository.class);
 
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
             do {
-                Workout workout = new Workout();
-                workout.setId(cursor.getLong(0));
-                workout.setProgramId(cursor.getLong(1));
-                workout.setStartDate(cursor.getLong(2));
-                workout.setEndDate(cursor.getLong(3));
-                workout.setStatus(Workout.WorkoutStatus.valueOf(cursor.getString(4)));
+                WorkoutEntity workoutEntity = new WorkoutEntity();
+                workoutEntity.setId(cursor.getLong(0));
+                workoutEntity.setProgramId(cursor.getLong(1));
+                workoutEntity.setStartDate(cursor.getLong(2));
+                workoutEntity.setEndDate(cursor.getLong(3));
+                workoutEntity.setStatus(cursor.getString(4));
 
-                workouts.add(workout);
+                workoutEntities.add(workoutEntity);
             } while (cursor.moveToNext());
         }
 
         closeDb();
-        return workouts;
+        return workoutEntities;
     }
 
     private void instantiateDb(){
