@@ -58,8 +58,8 @@ public class ExerciseRepository {
         if (cursor.moveToFirst()) {
             exerciseEntity = new ExerciseEntity();
             exerciseEntity.setId(cursor.getLong(0));
-            exerciseEntity.setExerciseTypeId(cursor.getLong(2));
-            exerciseEntity.setWorkoutId(cursor.getLong(1));
+            exerciseEntity.setExerciseTypeId(cursor.getLong(1));
+            exerciseEntity.setWorkoutId(cursor.getLong(2));
         }
 
         closeDb();
@@ -78,8 +78,8 @@ public class ExerciseRepository {
             do {
                 ExerciseEntity exerciseEntity = new ExerciseEntity();
                 exerciseEntity.setId(cursor.getLong(0));
-                exerciseEntity.setExerciseTypeId(cursor.getLong(2));
-                exerciseEntity.setWorkoutId(cursor.getLong(1));
+                exerciseEntity.setExerciseTypeId(cursor.getLong(1));
+                exerciseEntity.setWorkoutId(cursor.getLong(2));
 
                 exerciseEntities.add(exerciseEntity);
             } while (cursor.moveToNext());
@@ -101,8 +101,8 @@ public class ExerciseRepository {
             do {
                 ExerciseEntity exerciseEntity = new ExerciseEntity();
                 exerciseEntity.setId(cursor.getLong(0));
-                exerciseEntity.setExerciseTypeId(cursor.getLong(2));
-                exerciseEntity.setWorkoutId(cursor.getLong(1));
+                exerciseEntity.setExerciseTypeId(cursor.getLong(1));
+                exerciseEntity.setWorkoutId(cursor.getLong(2));
 
                 exerciseEntities.add(exerciseEntity);
             } while (cursor.moveToNext());
