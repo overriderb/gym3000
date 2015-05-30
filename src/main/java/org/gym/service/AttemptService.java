@@ -1,24 +1,37 @@
 package org.gym.service;
 
 import android.content.Context;
-import org.gym.domain.Attempt;
-import org.gym.repository.DatabaseHelper;
+import org.gym.domain.AttemptEntity;
+import org.gym.repository.AttemptRepository;
 
 /**
  * Service for processing logic about attempt entity
  */
 public class AttemptService {
 
-    public Long persistAttempt(Context context, Long exerciseId, int count, String weight, Long excerciseTypeId, String comment) {
-        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+    private static AttemptService instance;
 
-        Attempt attempt = new Attempt();
-        attempt.setExerciseId(exerciseId);
-        attempt.setCount(count);
-        attempt.setWeight(weight);
-        attempt.setExerciseId(excerciseTypeId);
-        attempt.setComment(comment);
+    private AttemptRepository attemptRepository;
 
-        return databaseHelper.getAttemptRepository().store(attempt);
+    private AttemptService() {
+        attemptRepository = AttemptRepository.getInstance();
+    }
+
+    public static AttemptService getInstance() {
+        if (instance == null) {
+            instance = new AttemptService();
+        }
+        return instance;
+    }
+
+    public Long save(Long exerciseId, int count, String weight, Long excerciseTypeId, String comment) {
+        AttemptEntity attemptEntity = new AttemptEntity();
+        attemptEntity.setExerciseId(exerciseId);
+        attemptEntity.setCount(count);
+        attemptEntity.setWeight(weight);
+        attemptEntity.setExerciseId(excerciseTypeId);
+        attemptEntity.setComment(comment);
+
+        return attemptRepository.store(attemptEntity);
     }
 }
