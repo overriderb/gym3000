@@ -5,14 +5,13 @@ import java.util.List;
 /**
  * Program is type of workout that contains excercises of different types
  */
-public class Program {
+public class ProgramEntity {
 
     public static final String TABLE_NAME = "PROGRAM";
 
     private Long id;
     private String name;
     private String description;
-    private List<ExerciseType> exerciseTypes;
 
     public enum Column {
         ID,
@@ -20,10 +19,10 @@ public class Program {
         DESCRIPTION
     }
 
-    public Program() {
+    public ProgramEntity() {
     }
 
-    public Program(String name, String description) {
+    public ProgramEntity(String name, String description) {
         this.name = name;
         this.description = description;
     }
@@ -50,13 +49,5 @@ public class Program {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<ExerciseType> getExerciseTypes() {
-        return exerciseTypes;
-    }
-
-    public void setExerciseTypes(List<ExerciseType> exerciseTypes) {
-        this.exerciseTypes = exerciseTypes;
     }
 }

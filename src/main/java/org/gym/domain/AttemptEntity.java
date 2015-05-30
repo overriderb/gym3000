@@ -3,7 +3,7 @@ package org.gym.domain;
 /**
  * Attempt class is described attempt to certain exercise
  */
-public class Attempt {
+public class AttemptEntity {
 
     public static final String TABLE_NAME = "ATTEMPT";
 
@@ -11,7 +11,7 @@ public class Attempt {
     private Long exerciseId;
     private String weight;
     private int count;
-    private Type type;
+    private String type;
     private String comment;
 
     public enum Column {
@@ -23,14 +23,9 @@ public class Attempt {
         COMMENT
     }
 
-    public enum Type {
-        S, M, L, W
-    }
+    public AttemptEntity() {}
 
-    public Attempt() {
-    }
-
-    public Attempt(Long exerciseId, String weight, int count, Type type) {
+    public AttemptEntity(Long exerciseId, String weight, int count, String type) {
         this.exerciseId = exerciseId;
         this.weight = weight;
         this.count = count;
@@ -69,11 +64,11 @@ public class Attempt {
         this.count = count;
     }
 
-    public Type getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(String type) {
         this.type = type;
     }
 

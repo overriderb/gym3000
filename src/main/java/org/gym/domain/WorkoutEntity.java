@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Workout is certain training day
  */
-public class Workout {
+public class WorkoutEntity {
 
     public static final String TABLE_NAME = "WORKOUT";
 
@@ -13,12 +13,7 @@ public class Workout {
     private Long programId;
     private Long startDate;
     private Long endDate;
-    private WorkoutStatus status;
-    private List<Exercise> exercises;
-
-    public enum WorkoutStatus {
-        IN_PROGRESS, FINISHED, NOT_STARTED
-    }
+    private String status;
 
     public enum Column {
         ID,
@@ -28,15 +23,9 @@ public class Workout {
         STATUS
     }
 
-    public Workout() {
-    }
+    public WorkoutEntity() {}
 
-    public Workout(Long programId, Long startDate) {
-        this.programId = programId;
-        this.startDate = startDate;
-    }
-
-    public Workout(Long programId, Long startDate, Long endDate, WorkoutStatus status) {
+    public WorkoutEntity(Long programId, Long startDate, Long endDate, String status) {
         this.programId = programId;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -75,19 +64,11 @@ public class Workout {
         this.endDate = endDate;
     }
 
-    public WorkoutStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(WorkoutStatus status) {
+    public void setStatus(String status) {
         this.status = status;
-    }
-
-    public List<Exercise> getExercises() {
-        return exercises;
-    }
-
-    public void setExercises(List<Exercise> exercises) {
-        this.exercises = exercises;
     }
 }

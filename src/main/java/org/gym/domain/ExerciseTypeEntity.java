@@ -3,7 +3,7 @@ package org.gym.domain;
 /**
  * Exercise type describe details of exercise
  */
-public class ExerciseType {
+public class ExerciseTypeEntity {
 
     public static final String TABLE_NAME = "EXERCISE_TYPE";
 
@@ -21,10 +21,10 @@ public class ExerciseType {
         PICTURE_ID
     }
 
-    public ExerciseType() {
+    public ExerciseTypeEntity() {
     }
 
-    public ExerciseType(Long programId, String name, String description, int pictureId) {
+    public ExerciseTypeEntity(Long programId, String name, String description, int pictureId) {
         this.programId = programId;
         this.name = name;
         this.description = description;

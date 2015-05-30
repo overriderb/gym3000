@@ -5,14 +5,13 @@ import java.util.List;
 /**
  * Exercise is list of attempts
  */
-public class Exercise {
+public class ExerciseEntity {
 
     public static final String TABLE_NAME = "EXERCISE";
 
     private Long id;
     private Long workoutId;
     private Long exerciseTypeId;
-    private List<Attempt> attempts;
 
     public enum Column {
         ID,
@@ -20,10 +19,10 @@ public class Exercise {
         WORKOUT_ID
     }
 
-    public Exercise() {
+    public ExerciseEntity() {
     }
 
-    public Exercise(Long workoutId, Long exerciseTypeId) {
+    public ExerciseEntity(Long workoutId, Long exerciseTypeId) {
         this.workoutId = workoutId;
         this.exerciseTypeId = exerciseTypeId;
     }
@@ -52,11 +51,4 @@ public class Exercise {
         this.workoutId = workoutId;
     }
 
-    public List<Attempt> getAttempts() {
-        return attempts;
-    }
-
-    public void setAttempts(List<Attempt> attempts) {
-        this.attempts = attempts;
-    }
 }
