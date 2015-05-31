@@ -4,6 +4,7 @@ import org.gym.domain.AttemptEntity;
 import org.gym.domain.ExerciseEntity;
 import org.gym.domain.ExerciseTypeEntity;
 import org.gym.domain.WorkoutEntity;
+import org.gym.model.Attempt;
 import org.gym.model.Exercise;
 import org.gym.repository.AttemptRepository;
 import org.gym.repository.ExerciseTypeRepository;
@@ -37,34 +38,54 @@ public class ExerciseAssembler {
     }
 
     public Exercise domainToModel(ExerciseEntity exerciseEntity) {
-        Exercise exercise = new Exercise();
-        exercise.setId(exerciseEntity.getId());
-        ExerciseTypeEntity exerciseTypeEntity = exerciseTypeRepository.find(exerciseEntity.getExerciseTypeId());
-        exercise.setExerciseType(exerciseTypeAssembler.domainToModel(exerciseTypeEntity));
-        WorkoutEntity workoutEntity = workoutRepository.find(exerciseEntity.getWorkoutId());
-        exercise.setWorkout(workoutAssembler.domainToModel(workoutEntity));
-        List<AttemptEntity> attemptEntities = attemptRepository.findByExerciseId(exerciseEntity.getId());
-        exercise.setAttempts(attemptAssembler.domainListToModelList(attemptEntities));
-
-        return exercise;
+        return domainToModel(exerciseEntity, true);
     }
 
     public List<Exercise> domainListToModelList(List<ExerciseEntity> exerciseEntities) {
-        List<Exercise> exercises = new LinkedList<>();
-        for (ExerciseEntity exerciseEntity : exerciseEntities) {
-            exercises.add(domainToModel(exerciseEntity));
-        }
-
-        return exercises;
+        return domainListToModelList(exerciseEntities, true);
     }
 
-    public ExerciseEntity ModelToDomain(Exercise exercise) {
+    public ExerciseEntity modelToDomain(Exercise exercise) {
         ExerciseEntity exerciseEntity = new ExerciseEntity();
         exerciseEntity.setId(exercise.getId());
         exerciseEntity.setExerciseTypeId(exercise.getExerciseType().getId());
         exerciseEntity.setWorkoutId(exercise.getWorkout().getId());
 
         return exerciseEntity;
+    }
+
+    Exercise domainToModel(ExerciseEntity exerciseEntity, boolean withDependencies) {
+        Exercise exercise = new Exercise();
+        exercise.setId(exerciseEntity.getId());
+        ExerciseTypeEntity exerciseTypeEntity = exerciseTypeRepository.find(exerciseEntity.getExerciseTypeId());
+        exercise.setExerciseType(exerciseTypeAssembler.domainToModel(exerciseTypeEntity));
+        List<AttemptEntity> attemptEntities = attemptRepository.findByExerciseId(exerciseEntity.getId());
+        List<Attempt> attempts = attemptAssembler.domainListToModelList(attemptEntities, false);
+        exercise.setAttempts(fillAttempts(attempts, exercise));
+        // Need for correct filling field with cyclic dependencies
+        if (withDependencies) {
+            WorkoutEntity workoutEntity = workoutRepository.find(exerciseEntity.getWorkoutId());
+            exercise.setWorkout(workoutAssembler.domainToModel(workoutEntity));
+        }
+
+        return exercise;
+    }
+
+    List<Exercise> domainListToModelList(List<ExerciseEntity> exerciseEntities, boolean withDependencies) {
+        List<Exercise> exercises = new LinkedList<>();
+        for (ExerciseEntity exerciseEntity : exerciseEntities) {
+            exercises.add(domainToModel(exerciseEntity, withDependencies));
+        }
+
+        return exercises;
+    }
+
+    private List<Attempt> fillAttempts(List<Attempt> attempts, Exercise exercise) {
+        for (Attempt attempt : attempts) {
+            attempt.setExercise(exercise);
+        }
+
+        return attempts;
     }
 
     private void initFields() {

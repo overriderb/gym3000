@@ -2,6 +2,7 @@ package org.gym.assembler;
 
 import org.gym.domain.ExerciseTypeEntity;
 import org.gym.domain.ProgramEntity;
+import org.gym.model.ExerciseType;
 import org.gym.model.Program;
 import org.gym.repository.ExerciseTypeRepository;
 
@@ -34,7 +35,8 @@ public class ProgramAssembler {
         program.setName(programEntity.getName());
         program.setDescription(programEntity.getDescription());
         List<ExerciseTypeEntity> exerciseTypeEntities = exerciseTypeRepository.findByProgramId(programEntity.getId());
-        program.setExerciseTypes(exerciseTypeAssembler.domainListToModelList(exerciseTypeEntities));
+        List<ExerciseType> exerciseTypes = exerciseTypeAssembler.domainListToModelList(exerciseTypeEntities, false);
+        program.setExerciseTypes(fillExerciseTypes(exerciseTypes, program));
 
         return program;
     }
@@ -55,6 +57,13 @@ public class ProgramAssembler {
         programEntity.setDescription(program.getDescription());
 
         return programEntity;
+    }
+
+    private List<ExerciseType> fillExerciseTypes(List<ExerciseType> exerciseTypes, Program program) {
+        for (ExerciseType exerciseType : exerciseTypes) {
+            exerciseType.setProgram(program);
+        }
+        return exerciseTypes;
     }
 
     private void initFields() {

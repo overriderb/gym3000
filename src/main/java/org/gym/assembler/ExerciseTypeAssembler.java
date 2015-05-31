@@ -29,24 +29,11 @@ public class ExerciseTypeAssembler {
     }
 
     public ExerciseType domainToModel(ExerciseTypeEntity exerciseTypeEntity) {
-        ExerciseType exerciseType = new ExerciseType();
-        exerciseType.setId(exerciseTypeEntity.getId());
-        exerciseType.setName(exerciseTypeEntity.getName());
-        exerciseType.setDescription(exerciseTypeEntity.getDescription());
-        exerciseType.setPictureId(exerciseTypeEntity.getPictureId());
-        ProgramEntity programEntity = programRepository.find(exerciseTypeEntity.getProgramId());
-//        exerciseType.setProgram(programAssembler.domainToModel(programEntity));
-
-        return exerciseType;
+        return domainToModel(exerciseTypeEntity, true);
     }
 
     public List<ExerciseType> domainListToModelList(List<ExerciseTypeEntity> exerciseTypeEntities) {
-        List<ExerciseType> exerciseTypes = new LinkedList<>();
-        for (ExerciseTypeEntity exerciseTypeEntity : exerciseTypeEntities) {
-            exerciseTypes.add(domainToModel(exerciseTypeEntity));
-        }
-
-        return exerciseTypes;
+        return domainListToModelList(exerciseTypeEntities, true);
     }
 
     public ExerciseTypeEntity modelToDomain(ExerciseType exerciseType) {
@@ -58,6 +45,30 @@ public class ExerciseTypeAssembler {
         exerciseTypeEntity.setProgramId(exerciseType.getProgram().getId());
 
         return exerciseTypeEntity;
+    }
+
+    ExerciseType domainToModel(ExerciseTypeEntity exerciseTypeEntity, boolean withDependencies) {
+        ExerciseType exerciseType = new ExerciseType();
+        exerciseType.setId(exerciseTypeEntity.getId());
+        exerciseType.setName(exerciseTypeEntity.getName());
+        exerciseType.setDescription(exerciseTypeEntity.getDescription());
+        exerciseType.setPictureId(exerciseTypeEntity.getPictureId());
+        // Need for correct filling field with cyclic dependencies
+        if (withDependencies) {
+            ProgramEntity programEntity = programRepository.find(exerciseTypeEntity.getProgramId());
+            exerciseType.setProgram(programAssembler.domainToModel(programEntity));
+        }
+
+        return exerciseType;
+    }
+
+    List<ExerciseType> domainListToModelList(List<ExerciseTypeEntity> exerciseTypeEntities, boolean withDependencies) {
+        List<ExerciseType> exerciseTypes = new LinkedList<>();
+        for (ExerciseTypeEntity exerciseTypeEntity : exerciseTypeEntities) {
+            exerciseTypes.add(domainToModel(exerciseTypeEntity, withDependencies));
+        }
+
+        return exerciseTypes;
     }
 
     private void initFields() {

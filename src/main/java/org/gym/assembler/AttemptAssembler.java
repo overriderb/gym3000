@@ -29,25 +29,11 @@ public class AttemptAssembler {
     }
 
     public Attempt domainToModel(AttemptEntity attemptEntity) {
-        Attempt attempt = new Attempt();
-        attempt.setId(attemptEntity.getId());
-        Exercise exercise = exerciseAssembler.domainToModel(exerciseRepository.find(attemptEntity.getExerciseId()));
-        attempt.setExercise(exercise);
-        attempt.setWeight(attemptEntity.getWeight());
-        attempt.setCount(attemptEntity.getCount());
-        attempt.setType(Attempt.Type.valueOf(attemptEntity.getType()));
-        attempt.setComment(attemptEntity.getComment());
-
-        return attempt;
+        return domainToModel(attemptEntity, true);
     }
 
     public List<Attempt> domainListToModelList(List<AttemptEntity> attemptEntities) {
-        List<Attempt> attempts = new LinkedList<>();
-        for (AttemptEntity attemptEntity : attemptEntities) {
-            attempts.add(domainToModel(attemptEntity));
-        }
-
-        return attempts;
+        return domainListToModelList(attemptEntities, true);
     }
 
     public AttemptEntity modelToDomain(Attempt attempt) {
@@ -60,6 +46,31 @@ public class AttemptAssembler {
         attemptEntity.setComment(attempt.getComment());
 
         return attemptEntity;
+    }
+
+    Attempt domainToModel(AttemptEntity attemptEntity, boolean withDependencies) {
+        Attempt attempt = new Attempt();
+        attempt.setId(attemptEntity.getId());
+        attempt.setWeight(attemptEntity.getWeight());
+        attempt.setCount(attemptEntity.getCount());
+        attempt.setType(Attempt.Type.valueOf(attemptEntity.getType()));
+        attempt.setComment(attemptEntity.getComment());
+        // Need for correct filling field with cyclic dependencies
+        if (withDependencies) {
+            Exercise exercise = exerciseAssembler.domainToModel(exerciseRepository.find(attemptEntity.getExerciseId()));
+            attempt.setExercise(exercise);
+        }
+
+        return attempt;
+    }
+
+    List<Attempt> domainListToModelList(List<AttemptEntity> attemptEntities, boolean withDependencies) {
+        List<Attempt> attempts = new LinkedList<>();
+        for (AttemptEntity attemptEntity : attemptEntities) {
+            attempts.add(domainToModel(attemptEntity, withDependencies));
+        }
+
+        return attempts;
     }
 
     private void initFields() {
