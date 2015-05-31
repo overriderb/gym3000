@@ -22,14 +22,12 @@ public class ExerciseService {
     private ExerciseAssembler exerciseAssembler;
     private ExerciseRepository exerciseRepository;
 
-    private ExerciseService() {
-        exerciseAssembler = ExerciseAssembler.getInstance();
-        exerciseRepository = ExerciseRepository.getInstance();
-    }
+    private ExerciseService() {}
 
     public static ExerciseService getInstance() {
         if (instance == null) {
             instance = new ExerciseService();
+            instance.initFields();
         }
         return instance;
     }
@@ -47,6 +45,11 @@ public class ExerciseService {
         List<ExerciseEntity> exerciseEntities = exerciseRepository.findByTypeId(typeId);
 
         return exerciseAssembler.domainListToModelList(exerciseEntities);
+    }
+
+    private void initFields() {
+        exerciseAssembler = ExerciseAssembler.getInstance();
+        exerciseRepository = ExerciseRepository.getInstance();
     }
 
     private String getCurrentDate() {

@@ -13,13 +13,12 @@ public class AttemptService {
 
     private AttemptRepository attemptRepository;
 
-    private AttemptService() {
-        attemptRepository = AttemptRepository.getInstance();
-    }
+    private AttemptService() {}
 
     public static AttemptService getInstance() {
         if (instance == null) {
             instance = new AttemptService();
+            instance.initFields();
         }
         return instance;
     }
@@ -33,5 +32,9 @@ public class AttemptService {
         attemptEntity.setComment(comment);
 
         return attemptRepository.store(attemptEntity);
+    }
+
+    private void initFields() {
+        attemptRepository = AttemptRepository.getInstance();
     }
 }

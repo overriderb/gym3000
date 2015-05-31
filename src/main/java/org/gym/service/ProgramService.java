@@ -16,14 +16,12 @@ public class ProgramService {
     private ProgramAssembler programAssembler;
     private ProgramRepository programRepository;
 
-    private ProgramService() {
-        programAssembler = ProgramAssembler.getInstance();
-        programRepository = ProgramRepository.getInstance();
-    }
+    private ProgramService() {}
 
     public static ProgramService getInstance() {
         if (instance == null) {
             instance = new ProgramService();
+            instance.initFields();
         }
         return instance;
     }
@@ -38,5 +36,10 @@ public class ProgramService {
 
     public List<Program> findAll() {
         return programAssembler.domainListToModelList(programRepository.findAll());
+    }
+
+    private void initFields() {
+        programAssembler = ProgramAssembler.getInstance();
+        programRepository = ProgramRepository.getInstance();
     }
 }
