@@ -1,6 +1,8 @@
 package org.gym.cache;
 
-import org.gym.domain.Workout;
+//import org.gym.domain.Workout;
+
+import org.gym.model.ExerciseType;
 
 import java.util.List;
 
@@ -12,7 +14,7 @@ public class CurrentProgramCache {
     private static CurrentProgramCache instance = null;
     private String name;
     private String description;
-    private List<Workout> workoutList;
+    private List<ExerciseType> exerciseTypes;
 
     private CurrentProgramCache(){}
 
@@ -23,10 +25,10 @@ public class CurrentProgramCache {
         return instance;
     }
 
-    public void setValues(String name, String description, List<Workout> workoutList){
+    public void setValues(String name, String description, List<ExerciseType> exerciseTypes){
         this.name = name;
         this.description = description;
-        this.workoutList = workoutList;
+        this.exerciseTypes = exerciseTypes;
     }
 
     public String getName() {
@@ -37,7 +39,7 @@ public class CurrentProgramCache {
         return description;
     }
 
-    public List<Workout> getWorkoutList() {
-        return workoutList;
+    public List<ExerciseType> getExerciseTypes() {
+        return exerciseTypes;
     }
 }
