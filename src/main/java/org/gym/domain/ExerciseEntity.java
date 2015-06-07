@@ -10,11 +10,13 @@ public class ExerciseEntity {
     public static final String TABLE_NAME = "EXERCISE";
 
     private Long id;
+    private String level;
     private Long workoutId;
     private Long exerciseTypeId;
 
     public enum Column {
         ID,
+        LEVEL,
         TYPE,
         WORKOUT_ID
     }
@@ -22,7 +24,8 @@ public class ExerciseEntity {
     public ExerciseEntity() {
     }
 
-    public ExerciseEntity(Long workoutId, Long exerciseTypeId) {
+    public ExerciseEntity(String level, Long workoutId, Long exerciseTypeId) {
+        this.level = level;
         this.workoutId = workoutId;
         this.exerciseTypeId = exerciseTypeId;
     }
@@ -33,6 +36,14 @@ public class ExerciseEntity {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 
     public Long getExerciseTypeId() {

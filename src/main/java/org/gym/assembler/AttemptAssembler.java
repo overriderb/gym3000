@@ -42,7 +42,6 @@ public class AttemptAssembler {
         attemptEntity.setExerciseId(attempt.getExercise().getId());
         attemptEntity.setWeight(attempt.getWeight());
         attemptEntity.setCount(attempt.getCount());
-        attemptEntity.setType(attempt.getType().name());
         attemptEntity.setComment(attempt.getComment());
 
         return attemptEntity;
@@ -53,7 +52,6 @@ public class AttemptAssembler {
         attempt.setId(attemptEntity.getId());
         attempt.setWeight(attemptEntity.getWeight());
         attempt.setCount(attemptEntity.getCount());
-        attempt.setType(Attempt.Type.valueOf(attemptEntity.getType()));
         attempt.setComment(attemptEntity.getComment());
         // Need for correct filling field with cyclic dependencies
         if (withDependencies) {

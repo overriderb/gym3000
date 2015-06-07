@@ -36,6 +36,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_EXERCISE = "CREATE TABLE " + ExerciseEntity.TABLE_NAME + " ("
             + ExerciseEntity.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + ExerciseEntity.Column.LEVEL + " TEXT NOT NULL, "
             + ExerciseEntity.Column.TYPE + " INTEGER NOT NULL, "
             + ExerciseEntity.Column.WORKOUT_ID + " INTEGER NOT NULL, "
             + "FOREIGN KEY (" + ExerciseEntity.Column.WORKOUT_ID + ") "
@@ -57,7 +58,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + AttemptEntity.Column.EXERCISE_ID + " INTEGER NOT NULL, "
             + AttemptEntity.Column.WEIGHT + " TEXT NOT NULL, "
             + AttemptEntity.Column.COUNT + " INTEGER NOT NULL, "
-            + AttemptEntity.Column.TYPE + " TEXT NOT NULL, "
             + AttemptEntity.Column.COMMENT + " TEXT, "
             + "FOREIGN KEY (" + AttemptEntity.Column.EXERCISE_ID + ") "
             + "REFERENCES " + ExerciseEntity.TABLE_NAME + "(" + ExerciseEntity.Column.ID + ")"

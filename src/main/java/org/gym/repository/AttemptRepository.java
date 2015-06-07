@@ -38,7 +38,6 @@ public class AttemptRepository {
         values.put(AttemptEntity.Column.EXERCISE_ID.name(), attemptEntity.getExerciseId());
         values.put(AttemptEntity.Column.WEIGHT.name(), attemptEntity.getWeight());
         values.put(AttemptEntity.Column.COUNT.name(), attemptEntity.getCount());
-        values.put(AttemptEntity.Column.TYPE.name(), attemptEntity.getType());
         values.put(AttemptEntity.Column.COMMENT.name(), attemptEntity.getComment());
 
         Long id = database.insert(AttemptEntity.TABLE_NAME, null, values);
@@ -64,8 +63,7 @@ public class AttemptRepository {
             attemptEntity.setExerciseId(cursor.getLong(1));
             attemptEntity.setWeight(cursor.getString(2));
             attemptEntity.setCount(cursor.getInt(3));
-            attemptEntity.setType(cursor.getString(4));
-            attemptEntity.setComment(cursor.getString(5));
+            attemptEntity.setComment(cursor.getString(4));
         }
 
         closeDb();
@@ -87,8 +85,7 @@ public class AttemptRepository {
                 attemptEntity.setExerciseId(cursor.getLong(1));
                 attemptEntity.setWeight(cursor.getString(2));
                 attemptEntity.setCount(cursor.getInt(3));
-                attemptEntity.setType(cursor.getString(4));
-                attemptEntity.setComment(cursor.getString(5));
+                attemptEntity.setComment(cursor.getString(4));
 
                 attemptEntities.add(attemptEntity);
             } while (cursor.moveToNext());

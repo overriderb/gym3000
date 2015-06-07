@@ -8,9 +8,14 @@ import java.util.List;
 public class Exercise {
 
     private Long id;
+    private Level level;
     private Workout workout;
     private ExerciseType exerciseType;
     private List<Attempt> attempts;
+
+    public enum Level {
+        S, M, L
+    }
 
     public Long getId() {
         return id;
@@ -18,6 +23,14 @@ public class Exercise {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
     }
 
     public Workout getWorkout() {

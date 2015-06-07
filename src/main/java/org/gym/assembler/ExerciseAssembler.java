@@ -48,6 +48,7 @@ public class ExerciseAssembler {
     public ExerciseEntity modelToDomain(Exercise exercise) {
         ExerciseEntity exerciseEntity = new ExerciseEntity();
         exerciseEntity.setId(exercise.getId());
+        exerciseEntity.setLevel(exercise.getLevel().name());
         exerciseEntity.setExerciseTypeId(exercise.getExerciseType().getId());
         exerciseEntity.setWorkoutId(exercise.getWorkout().getId());
 
@@ -57,6 +58,7 @@ public class ExerciseAssembler {
     Exercise domainToModel(ExerciseEntity exerciseEntity, boolean withDependencies) {
         Exercise exercise = new Exercise();
         exercise.setId(exerciseEntity.getId());
+        exercise.setLevel(Exercise.Level.valueOf(exerciseEntity.getLevel()));
         ExerciseTypeEntity exerciseTypeEntity = exerciseTypeRepository.find(exerciseEntity.getExerciseTypeId());
         exercise.setExerciseType(exerciseTypeAssembler.domainToModel(exerciseTypeEntity));
         List<AttemptEntity> attemptEntities = attemptRepository.findByExerciseId(exerciseEntity.getId());

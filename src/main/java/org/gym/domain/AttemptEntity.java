@@ -11,7 +11,6 @@ public class AttemptEntity {
     private Long exerciseId;
     private String weight;
     private int count;
-    private String type;
     private String comment;
 
     public enum Column {
@@ -19,17 +18,15 @@ public class AttemptEntity {
         EXERCISE_ID,
         WEIGHT,
         COUNT,
-        TYPE,
         COMMENT
     }
 
     public AttemptEntity() {}
 
-    public AttemptEntity(Long exerciseId, String weight, int count, String type) {
+    public AttemptEntity(Long exerciseId, String weight, int count) {
         this.exerciseId = exerciseId;
         this.weight = weight;
         this.count = count;
-        this.type = type;
     }
 
     public Long getId() {
@@ -62,14 +59,6 @@ public class AttemptEntity {
 
     public void setCount(int count) {
         this.count = count;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public String getComment() {

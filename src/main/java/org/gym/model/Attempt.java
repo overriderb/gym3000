@@ -9,12 +9,7 @@ public class Attempt {
     private Exercise exercise;
     private String weight;
     private int count;
-    private Type type;
     private String comment;
-
-    public enum Type {
-        S, M, L, W
-    }
 
     public Long getId() {
         return id;
@@ -46,14 +41,6 @@ public class Attempt {
 
     public void setCount(int count) {
         this.count = count;
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
     }
 
     public String getComment() {

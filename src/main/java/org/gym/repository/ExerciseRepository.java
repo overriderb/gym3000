@@ -35,6 +35,7 @@ public class ExerciseRepository {
         Logger.info("Storing exercise: " + exerciseEntity.toString(), ExerciseRepository.class);
 
         ContentValues values = new ContentValues();
+        values.put(ExerciseEntity.Column.LEVEL.name(), exerciseEntity.getLevel());
         values.put(ExerciseEntity.Column.TYPE.name(), exerciseEntity.getExerciseTypeId());
         values.put(ExerciseEntity.Column.WORKOUT_ID.name(), exerciseEntity.getWorkoutId());
 
@@ -58,8 +59,9 @@ public class ExerciseRepository {
         if (cursor.moveToFirst()) {
             exerciseEntity = new ExerciseEntity();
             exerciseEntity.setId(cursor.getLong(0));
-            exerciseEntity.setExerciseTypeId(cursor.getLong(1));
-            exerciseEntity.setWorkoutId(cursor.getLong(2));
+            exerciseEntity.setLevel(cursor.getString(1));
+            exerciseEntity.setExerciseTypeId(cursor.getLong(2));
+            exerciseEntity.setWorkoutId(cursor.getLong(3));
         }
 
         closeDb();
@@ -78,8 +80,9 @@ public class ExerciseRepository {
             do {
                 ExerciseEntity exerciseEntity = new ExerciseEntity();
                 exerciseEntity.setId(cursor.getLong(0));
-                exerciseEntity.setExerciseTypeId(cursor.getLong(1));
-                exerciseEntity.setWorkoutId(cursor.getLong(2));
+                exerciseEntity.setLevel(cursor.getString(1));
+                exerciseEntity.setExerciseTypeId(cursor.getLong(2));
+                exerciseEntity.setWorkoutId(cursor.getLong(3));
 
                 exerciseEntities.add(exerciseEntity);
             } while (cursor.moveToNext());
@@ -101,8 +104,9 @@ public class ExerciseRepository {
             do {
                 ExerciseEntity exerciseEntity = new ExerciseEntity();
                 exerciseEntity.setId(cursor.getLong(0));
-                exerciseEntity.setExerciseTypeId(cursor.getLong(1));
-                exerciseEntity.setWorkoutId(cursor.getLong(2));
+                exerciseEntity.setLevel(cursor.getString(1));
+                exerciseEntity.setExerciseTypeId(cursor.getLong(2));
+                exerciseEntity.setWorkoutId(cursor.getLong(3));
 
                 exerciseEntities.add(exerciseEntity);
             } while (cursor.moveToNext());
