@@ -1,6 +1,5 @@
 package org.gym.service;
 
-import android.content.Context;
 import org.gym.domain.AttemptEntity;
 import org.gym.repository.AttemptRepository;
 
@@ -23,12 +22,12 @@ public class AttemptService {
         return instance;
     }
 
-    public Long save(Long exerciseId, int count, String weight, Long excerciseTypeId, String comment) {
+    public Long save(Long exerciseId, int count, String weight, Long exerciseTypeId, String comment) {
         AttemptEntity attemptEntity = new AttemptEntity();
         attemptEntity.setExerciseId(exerciseId);
         attemptEntity.setCount(count);
         attemptEntity.setWeight(weight);
-        attemptEntity.setExerciseId(excerciseTypeId);
+        attemptEntity.setExerciseId(exerciseTypeId);
         attemptEntity.setComment(comment);
 
         return attemptRepository.store(attemptEntity);

@@ -32,10 +32,11 @@ public class ExerciseService {
         return instance;
     }
 
-    public Long save(Context context, Long workoutId, Long exerciseTypeId) {
+    public Long save(Context context, Exercise.Level level, Long workoutId, Long exerciseTypeId) {
         ExerciseEntity exerciseEntity = new ExerciseEntity();
         exerciseEntity.setWorkoutId(workoutId);
         exerciseEntity.setExerciseTypeId(exerciseTypeId);
+        exerciseEntity.setLevel(level.name());
 
         return exerciseRepository.store(exerciseEntity);
     }
