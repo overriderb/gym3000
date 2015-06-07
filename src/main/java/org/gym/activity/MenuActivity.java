@@ -7,11 +7,8 @@ import android.view.*;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import org.gym.cache.CurrentProgramCache;
-import org.gym.repository.DatabaseHelper;
-import org.gym.repository.ProgramRepository;
-import org.gym.repository.WorkoutRepository;
-import org.gym.domain.Program;
-import org.gym.domain.Workout;
+import org.gym.model.Program;
+import org.gym.service.ProgramService;
 
 import java.util.List;
 
@@ -20,17 +17,13 @@ import java.util.List;
  */
 public class MenuActivity extends Activity {
 
-    private DatabaseHelper databaseHelper;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        databaseHelper = new DatabaseHelper(this);
         setContentView(R.layout.menu_layout);
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.menu_linear_layout);
-        ProgramRepository programRepository =  databaseHelper.getProgramRepository();
-        List<Program> programsList = programRepository.findAllProgramsList();
-        for(final Program program : programsList){
+        List<Program> programs = ProgramService.getInstance().findAll();
+        for(final Program program : programs) {
             Button button = new Button(this);
             button.setText(program.getName());
             button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -64,8 +57,6 @@ public class MenuActivity extends Activity {
 
     public void fillCurrentProgramCache(Program program){
         CurrentProgramCache cache = CurrentProgramCache.getInstance();
-        WorkoutRepository workoutAdapter = databaseHelper.getWorkoutRepository();
-        List<Workout> workoutList = workoutAdapter.findWorkoutsListByParentId(program.getId());
-        cache.setValues(program.getName(), program.getDescription(), workoutList);
+        cache.setValues(program.getName(), program.getDescription(), program.getExerciseTypes());
     }
 }

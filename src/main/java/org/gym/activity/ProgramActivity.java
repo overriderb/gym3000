@@ -8,10 +8,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import org.gym.adapter.ProgramPagerAdapter;
-import org.gym.repository.DatabaseHelper;
-import org.gym.domain.Workout;
-
-import java.util.List;
 
 
 /**

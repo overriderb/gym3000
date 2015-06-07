@@ -7,9 +7,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import org.gym.activity.R;
-import org.gym.repository.DatabaseHelper;
-import org.gym.domain.Attempt;
-import org.gym.domain.Exercise;
+import org.gym.model.Attempt;
+import org.gym.model.Exercise;
 
 import java.util.List;
 
@@ -19,34 +18,30 @@ import java.util.List;
  */
 public class HistoryListItemAdapter extends ArrayAdapter<Exercise> {
 
-    private List<Exercise> exerciseList = null;
-    private List<Attempt> attemptList = null;
-    private DatabaseHelper databaseHelper;
+    private List<Exercise> exercises;
     private Context context;
 
-    public HistoryListItemAdapter(Context context, int resource, List<Exercise> objects) {
-        super(context, resource, objects);
+    public HistoryListItemAdapter(Context context, int resource, List<Exercise> exercises) {
+        super(context, resource, exercises);
         this.context = context;
-        exerciseList = objects;
-        databaseHelper = new DatabaseHelper(this.getContext());
+        this.exercises = exercises;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-        Exercise exercise = exerciseList.get(position);
-        attemptList = databaseHelper.getAttemptRepository().findAttemptListByParentId(exercise.getId());
+        Exercise exercise = exercises.get(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext())
                     .inflate(R.layout.history_list_item_layout, null);
         }
         ((TextView) convertView.findViewById(R.id.history_workoutItem_date))
-                .setText(exercise.getDate());
+                .setText(exercise.getWorkout().getStartDate().toString());
         ((TextView) convertView.findViewById(R.id.history_workoutItem_letter_S_M_L))
-                .setText(exercise.getType().name());
+                .setText(exercise.getLevel().name());
 
         String result = "";
-        for(Attempt attempt: attemptList){
+        for(Attempt attempt: exercise.getAttempts()) {
             result = result + attempt.getWeight() + "/" + attempt.getCount() + " ";
         }
         ((TextView) convertView.findViewById(R.id.history_attempts_list))
