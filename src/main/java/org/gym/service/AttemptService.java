@@ -4,6 +4,8 @@ import android.content.Context;
 import org.gym.domain.Attempt;
 import org.gym.repository.DatabaseHelper;
 
+import java.util.List;
+
 /**
  * Service for processing logic about attempt entity
  */
@@ -18,5 +20,10 @@ public class AttemptService {
         attempt.setWeight(weight);
 
         return databaseHelper.getAttemptRepository().storeAttempt(attempt);
+    }
+
+    public List<Attempt> getAttempts(Context context, Long exerciseId){
+        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+        return databaseHelper.getAttemptRepository().findAttemptListByParentId(exerciseId);
     }
 }

@@ -14,8 +14,6 @@ import org.gym.domain.Exercise;
 import org.gym.domain.Workout;
 import org.gym.activity.R;
 
-import java.util.List;
-
 /**
  * A section fragment representing history
  */
@@ -45,7 +43,7 @@ public class HistorySectionFragment extends Fragment {
         workoutNameTextView.setText(workoutItem.getName());
         workoutHistoryView = (ListView) rootView.findViewById(R.id.history_workout_list_view);
 
-        ArrayAdapter<Exercise> historyWorkoutAdapter = new HistoryListItemAdapter(this.getActivity(),
+        ArrayAdapter<Exercise> historyWorkoutAdapter = new HistoryArrayAdapter(this.getActivity(),
             R.layout.history_list_item_layout,
             databaseHelper.getExerciseRepository().findExerciseListByParentId(workoutItem.getId()));
 

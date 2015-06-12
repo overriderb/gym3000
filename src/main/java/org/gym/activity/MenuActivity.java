@@ -7,29 +7,70 @@ import android.view.*;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import org.gym.cache.CurrentProgramCache;
-import org.gym.repository.DatabaseHelper;
-import org.gym.repository.ProgramRepository;
-import org.gym.repository.WorkoutRepository;
 import org.gym.domain.Program;
 import org.gym.domain.Workout;
+import org.gym.service.ProgramService;
+import org.gym.service.WorkoutService;
 
 import java.util.List;
 
 /**
- * TODO: Add class description
+ * Main activity. It shows the list of programs stored in DB.
  */
 public class MenuActivity extends Activity {
 
-    private DatabaseHelper databaseHelper;
+    private ProgramService programService;
+    private WorkoutService workoutService;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        databaseHelper = new DatabaseHelper(this);
+
+        programService = new ProgramService();
+        workoutService = new WorkoutService();
+
         setContentView(R.layout.menu_layout);
+        createMenuButtons();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu (Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_layout_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                startSettingsMenuActivity();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void startActivity(View view){
+        Intent intent = new Intent(this, ProgramActivity.class);
+        startActivity(intent);
+    }
+
+    private void startSettingsMenuActivity(){
+        Intent intent = new Intent(this, SettingsMenuActivity.class);
+        startActivity(intent);
+    }
+
+    private void createMenuButtons(){
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.menu_linear_layout);
-        ProgramRepository programRepository =  databaseHelper.getProgramRepository();
-        List<Program> programsList = programRepository.findAllProgramsList();
+
+        List<Program> programsList = programService.getPrograms(this);
+
         for(final Program program : programsList){
             Button button = new Button(this);
             button.setText(program.getName());
@@ -45,27 +86,9 @@ public class MenuActivity extends Activity {
         }
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu (Menu menu){
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_layout_actions, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    public void startActivity(View view){
-        Intent intent = new Intent(this, ProgramActivity.class);
-        startActivity(intent);
-    }
-
-    public void fillCurrentProgramCache(Program program){
+    private void fillCurrentProgramCache(Program program){
         CurrentProgramCache cache = CurrentProgramCache.getInstance();
-        WorkoutRepository workoutAdapter = databaseHelper.getWorkoutRepository();
-        List<Workout> workoutList = workoutAdapter.findWorkoutsListByParentId(program.getId());
-        cache.setValues(program.getName(), program.getDescription(), workoutList);
+        List<Workout> workoutList = workoutService.getWorkouts(this, program.getId());
+        cache.setValues(program.getId(), program.getName(), program.getDescription(), workoutList);
     }
 }

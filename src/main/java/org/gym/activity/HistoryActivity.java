@@ -1,5 +1,6 @@
 package org.gym.activity;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -7,14 +8,12 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import org.gym.adapter.HistoryPagerAdapter;
-import org.gym.repository.DatabaseHelper;
-import org.gym.domain.Workout;
 
-import java.util.List;
 
 /**
- * Created by anni0913 on 08.07.2014.
+ * Activity shows exercises and attempts which are binded to current workouts list and single program
  */
 public class HistoryActivity extends FragmentActivity {
 
@@ -22,6 +21,7 @@ public class HistoryActivity extends FragmentActivity {
 
     private HistoryPagerAdapter historyPagerAdapter;
     private ViewPager viewPager;
+    private ProgressBar progressBar;
     private int currentItem;
 
     @Override
@@ -33,6 +33,8 @@ public class HistoryActivity extends FragmentActivity {
         viewPager = (ViewPager) findViewById(R.id.historyPager);
         viewPager.setAdapter(historyPagerAdapter);
         viewPager.setCurrentItem(currentItem);
+        progressBar = (ProgressBar)findViewById(R.id.historyProgressBar);
+        progressBar.setProgress(60);
         overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
     }
 

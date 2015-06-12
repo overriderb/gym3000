@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+    <LinearLayout
+            android:id="@+id/change_programs_linear_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/menu_settings"
+                android:layout_gravity="center_horizontal"
+                android:textSize="@dimen/text_size_middle"/>
+
+        <org.gym.listView.DragNDropListView
+                android:id="@+id/change_programs_dnd_view"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"/>
+            <View
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#ffffff"/>
+        <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="+"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/text_size_middle"
+                android:clickable="true"
+                android:background="#ff1c1c1c"
+                android:onClick="startChangeSingleProgramActivity"/>
+    </LinearLayout>
+</LinearLayout>

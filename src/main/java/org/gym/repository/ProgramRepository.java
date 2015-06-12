@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by AndreyNick on 12.11.2014.
+ * It provides methods for DB working with Program objects
  */
 public class ProgramRepository {
 
@@ -28,6 +28,7 @@ public class ProgramRepository {
         ContentValues values = new ContentValues();
         values.put(Program.Column.NAME.name(), program.getName());
         values.put(Program.Column.DESCRIPTION.name(), program.getDescription());
+        values.put(Program.Column.ORDER_NUMBER.name(), program.getOrderNumber());
 
         Long id = database.insert(Program.TABLE_NAME, null, values);
         program.setId(id);
@@ -41,7 +42,7 @@ public class ProgramRepository {
         instantiateDb();
         Logger.info("Finding all programs", ProgramRepository.class);
         List<Program> programList = new LinkedList<Program>();
-        String query = "SELECT  * FROM " + Program.TABLE_NAME;
+        String query = "SELECT  * FROM " + Program.TABLE_NAME +  " ORDER BY ORDER_NUMBER";
 
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
@@ -50,6 +51,7 @@ public class ProgramRepository {
                 program.setId(Long.parseLong(cursor.getString(0)));
                 program.setName(cursor.getString(1));
                 program.setDescription(cursor.getString(2));
+                program.setOrderNumber(Integer.parseInt(cursor.getString(3)));
 
                 programList.add(program);
             } while (cursor.moveToNext());
@@ -80,7 +82,7 @@ public class ProgramRepository {
     }
 
     private void closeDb(){
-        database.close();
+        //database.close();
     }
 
 }

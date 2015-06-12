@@ -2,15 +2,8 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/action_add_program"
-          android:title="@string/menu_layout_add_program"
-          android:showAsAction="never" />
-
-    <item android:id="@+id/action_add_workout"
-          android:title="@string/menu_layout_add_workout"
-          android:showAsAction="never" />
-
     <item android:id="@+id/action_settings"
           android:title="@string/menu_layout_settings"
-          android:showAsAction="never" />
+          android:icon="@drawable/settings_white"
+          android:showAsAction = "always"/>
 </menu>

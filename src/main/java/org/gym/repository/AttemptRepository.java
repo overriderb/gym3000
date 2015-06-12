@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by anni0913 on 18.11.2014.
+ * It provides methods for DB working with Attempt objects
  */
 public class AttemptRepository {
 
@@ -42,7 +42,8 @@ public class AttemptRepository {
         instantiateDb();
         Logger.info("Finding attempt list by parent id: " + parentId, AttemptRepository.class);
         List<Attempt> attemptList = new LinkedList<Attempt>();
-        String query = "SELECT  * FROM " + Attempt.TABLE_NAME + " WHERE " + Attempt.Column.PARENT_ID + " = " + parentId;
+        String query = "SELECT  * FROM " + Attempt.TABLE_NAME + " WHERE " + Attempt.Column.PARENT_ID + " = " + parentId +  " ORDER BY WEIGHT";
+        
         Logger.info("Query: " + query, AttemptRepository.class);
 
         Cursor cursor = database.rawQuery(query, null);
