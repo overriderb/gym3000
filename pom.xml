@@ -26,11 +26,11 @@
             <artifactId>support-v4</artifactId>
             <version>r7</version>
         </dependency>
-        <dependency>
+        <!--<dependency>
             <groupId>com.android.support</groupId>
             <artifactId>support-annotations</artifactId>
             <version>21.0.2</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <build>
@@ -38,10 +38,10 @@
             <plugin>
                 <groupId>com.jayway.maven.plugins.android.generation2</groupId>
                 <artifactId>android-maven-plugin</artifactId>
-                <version>3.9.0-rc.1</version>
+                <version>3.9.0-rc.2</version>
                 <configuration>
                     <sdk>
-                        <platform>19</platform>
+                        <platform>22</platform>
                     </sdk>
                     <!--<deleteConflictingFiles>true</deleteConflictingFiles>-->
                     <undeployBeforeDeploy>true</undeployBeforeDeploy>
