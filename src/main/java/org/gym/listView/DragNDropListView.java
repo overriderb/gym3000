@@ -19,7 +19,8 @@ import org.gym.logging.Logger;
 import java.util.ArrayList;
 
 /**
- * Created by AndreyNick on 14.12.2014.
+ *  It was decided do NOT use this class
+ *  till we'll understand how it works)))
  */
 public class DragNDropListView extends ListView {
 
@@ -27,7 +28,7 @@ public class DragNDropListView extends ListView {
     private final int MOVE_DURATION = 150;
     private final int LINE_THICKNESS = 0;
 
-    public ArrayList<String> mCheeseList;
+    private ArrayList<String> mCheeseList;
 
     private int mLastEventY = -1;
 

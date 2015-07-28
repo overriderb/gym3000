@@ -20,8 +20,8 @@
                 android:textSize="@dimen/text_size_middle"
                 android:layout_gravity="center_horizontal"/>
 
-        <org.gym.listView.DragNDropListView
-                android:id="@+id/change_workouts_dnd_view"
+        <ListView
+                android:id="@+id/change_workouts_list_view"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"/>
 

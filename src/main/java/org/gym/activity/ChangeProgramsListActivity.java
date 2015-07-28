@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import org.gym.listView.DragNDropListView;
-import org.gym.adapter.SettingsArrayAdapter;
+
 import org.gym.domain.Program;
 import org.gym.repository.DatabaseHelper;
 import org.gym.repository.ProgramRepository;
@@ -30,29 +30,14 @@ public class ChangeProgramsListActivity extends Activity {
         ProgramRepository programRepository =  databaseHelper.getProgramRepository();
         List<Program> programsList = programRepository.findAllProgramsList();
 
-
-
         ArrayList<String> resultList = new ArrayList<String>();
-        /*for(Program item: programsList){
+        for(Program item: programsList){
             resultList.add(item.getName());
-        }*/
-        resultList.add("One");
-        resultList.add("Two");
-        resultList.add("Three");
-        resultList.add("Four");
-        resultList.add("Five");
-        resultList.add("Six");
-        resultList.add("Seven");
-        resultList.add("Eight");
-        resultList.add("Nine");
-        resultList.add("Ten");
+        }
 
-        SettingsArrayAdapter adapter = new SettingsArrayAdapter(this, R.layout.dnd_text_view, resultList);
-        DragNDropListView listView = (DragNDropListView) findViewById(R.id.change_programs_dnd_view);
-
-        listView.setCheeseList(resultList);
+        ListView listView = (ListView)findViewById(R.id.change_programs_list_view);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.change_item_name_text_view, resultList);
         listView.setAdapter(adapter);
-        listView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
     }
 
     /**

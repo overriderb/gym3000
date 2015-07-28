@@ -8,7 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 
 /**
- * Created by AndreyNick on 14.12.2014.
+ * It was decided do NOT use this class
+ * This class is a part of drag'n'drop lis value class
  */
 public class SettingsArrayAdapter extends ArrayAdapter<String> {
 
