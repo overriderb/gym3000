@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import org.gym.domain.Program;
 import org.gym.logging.Logger;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
