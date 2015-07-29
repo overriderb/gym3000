@@ -2,7 +2,11 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/action_settings"
+    <item android:id="@+id/menu_action_user"
+        android:title="Andrew"
+        android:showAsAction="always"/>
+    
+    <item android:id="@+id/menu_action_settings"
           android:title="@string/menu_layout_settings"
           android:icon="@drawable/settings_white"
           android:showAsAction = "always"/>

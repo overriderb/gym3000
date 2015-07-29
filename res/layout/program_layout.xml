@@ -5,13 +5,43 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ProgressBar
-        style="?android:attr/progressBarStyleHorizontal"
+
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/programProgressBar"
-        android:progressDrawable="@layout/progress_bar_drawable"
-        android:layout_gravity="center_horizontal" />
+        android:id="@+id/program_frame_layout">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/programProgressBar"
+            android:progressDrawable="@layout/progress_bar_drawable"
+            android:layout_gravity="center_horizontal"
+
+            android:text="@string/program_layout_history"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/program_plus_picture"
+            android:src="@drawable/plus_white"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center_horizontal|top"
+            android:onClick="startHistory"/>
+    </FrameLayout>
+
+
+    <!--<Button-->
+        <!--style="?android:attr/buttonStyleSmall"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/program_layout_history"-->
+        <!--android:id="@+id/program_to_history_button"-->
+        <!--android:onClick="startHistory"/>-->
+
+
 
     <android.support.v4.view.ViewPager
             xmlns:android="http://schemas.android.com/apk/res/android"

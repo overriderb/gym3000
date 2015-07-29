@@ -11,7 +11,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/historyProgressBar"
         android:progressDrawable="@layout/progress_bar_drawable"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="center_horizontal"
+        />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/history_frame_layout">
 
     <android.support.v4.view.ViewPager
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -27,4 +33,13 @@
                 android:background="#33b5e5"
                 android:textColor="#fff" />
     </android.support.v4.view.ViewPager>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:id="@+id/history_plus_picture"
+            android:src="@drawable/plus_white"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center_horizontal|bottom"
+            android:onClick="startProgram"/>
+    </FrameLayout>
 </LinearLayout>

@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ProgressBar;
 import org.gym.adapter.HistoryPagerAdapter;
 
@@ -35,7 +36,7 @@ public class HistoryActivity extends FragmentActivity {
         viewPager.setCurrentItem(currentItem);
         progressBar = (ProgressBar)findViewById(R.id.historyProgressBar);
         progressBar.setProgress(60);
-        overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
+        //overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
     }
 
     @Override
@@ -53,15 +54,16 @@ public class HistoryActivity extends FragmentActivity {
     @Override
     public boolean onOptionsItemSelected (MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_workout:
-                startProgram();
+            case R.id.history_action_settings:
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    private void startProgram(){
+    //it is called from xml
+    public void startProgram(View view){
         Intent intent = new Intent(this, ProgramActivity.class);
         intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
         startActivity(intent);

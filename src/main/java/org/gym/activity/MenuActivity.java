@@ -48,7 +48,7 @@ public class MenuActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected (MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case R.id.menu_action_settings:
                 startSettingsMenuActivity();
                 return true;
             default:
