@@ -80,6 +80,7 @@ public class MenuActivity extends Activity {
                 public void onClick(View view) {
                     fillCurrentProgramCache(program);
                     startActivity(view);
+                    overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 }
             });
             linearLayout.addView(button);

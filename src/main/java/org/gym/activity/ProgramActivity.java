@@ -36,7 +36,6 @@ public class ProgramActivity extends FragmentActivity {
         progressBar = (ProgressBar)findViewById(R.id.programProgressBar);
         progressBar.setMax(100);
         progressBar.setProgress(75);
-        //overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
     }
 
     @Override
@@ -67,6 +66,7 @@ public class ProgramActivity extends FragmentActivity {
         Intent intent = new Intent(this, HistoryActivity.class);
         intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
         startActivity(intent);
+        overridePendingTransition(R.anim.buttom_out, R.anim.top_in);
     }
 
     private void startSettingsProgramActivity(){
