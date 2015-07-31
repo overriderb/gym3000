@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import org.gym.adapter.HistoryPagerAdapter;
+import org.gym.logging.Logger;
 
 
 /**
@@ -41,6 +42,13 @@ public class HistoryActivity extends FragmentActivity {
     public void onStart() {
         super.onStart();
     }
+
+   /* @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(R.anim.right_in, R.anim.left_out);
+
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu){

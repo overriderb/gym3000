@@ -28,15 +28,6 @@
     <string name="save_program">Save program</string>
     <string name="save_workout">Save workout</string>
 
-
-    <dimen name="title_padding">20sp</dimen>
-    <dimen name="text_padding">5sp</dimen>
-
-    <dimen name="text_size_small">15sp</dimen>
-    <dimen name="text_size_middle">20sp</dimen>
-    <dimen name="text_size_big">25sp</dimen>
-
-
     <string name="save_attempt_button">Save Attempt</string>
     <string name="start_exercise_button">Start Exercise</string>
     <string name="choose_exercise_type_text">Choose your type</string>

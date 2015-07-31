@@ -6,9 +6,13 @@ import android.os.Bundle;
 import android.view.*;
 import android.widget.Button;
 import android.widget.LinearLayout;
+
+import com.sun.xml.internal.bind.annotation.OverrideAnnotationOf;
+
 import org.gym.cache.CurrentProgramCache;
 import org.gym.domain.Program;
 import org.gym.domain.Workout;
+import org.gym.logging.Logger;
 import org.gym.service.ProgramService;
 import org.gym.service.WorkoutService;
 
@@ -39,6 +43,13 @@ public class MenuActivity extends Activity {
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        Logger.info("onPause()", MenuActivity.class);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu (Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_layout_actions, menu);
@@ -59,6 +70,7 @@ public class MenuActivity extends Activity {
     public void startActivity(View view){
         Intent intent = new Intent(this, ProgramActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
 
     private void startSettingsMenuActivity(){
@@ -80,7 +92,6 @@ public class MenuActivity extends Activity {
                 public void onClick(View view) {
                     fillCurrentProgramCache(program);
                     startActivity(view);
-                    overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 }
             });
             linearLayout.addView(button);

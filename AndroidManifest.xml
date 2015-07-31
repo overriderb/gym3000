@@ -23,7 +23,7 @@
                   android:parentActivityName=".MenuActivity"
                   android:label=""/>
         <activity android:name=".HistoryActivity"
-                  android:parentActivityName=".ProgramActivity"
+                  android:parentActivityName=".MenuActivity"
                   android:label=""/>
         <activity android:name=".ChangeWorkoutsListActivity"
                   android:parentActivityName=".SettingsProgramActivity"
