@@ -42,4 +42,16 @@ public class ProgramService {
         programAssembler = ProgramAssembler.getInstance();
         programRepository = ProgramRepository.getInstance();
     }
+
+//    public Long persistProgram(Context context, Long userId, String name, String description, int order_number){
+//        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+//
+//        Program program = new Program(userId, name, description, order_number);
+//        return databaseHelper.getProgramRepository().storeProgram(program);
+//    }
+//
+//    public List<Program> getPrograms(Context context){
+//        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+//        return databaseHelper.getProgramRepository().findAllProgramsList();
+//    }
 }

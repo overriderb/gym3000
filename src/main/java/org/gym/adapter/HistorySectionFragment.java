@@ -14,8 +14,6 @@ import org.gym.model.Exercise;
 import org.gym.model.ExerciseType;
 import org.gym.service.ExerciseService;
 
-import java.util.List;
-
 /**
  * A section fragment representing history
  */
@@ -45,7 +43,7 @@ public class HistorySectionFragment extends Fragment {
 
         List<Exercise> exercises = ExerciseService.getInstance().findByTypeId(exerciseType.getId());
 
-        ArrayAdapter<Exercise> historyExerciseTypeAdapter = new HistoryListItemAdapter(this.getActivity(),
+        ArrayAdapter<Exercise> historyExerciseTypeAdapter = new HistoryArrayAdapter(this.getActivity(),
             R.layout.history_list_item_layout,
             exercises);
 

@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by anni0913 on 18.11.2014.
+ * It provides methods for DB working with Exercise objects
  */
 public class ExerciseRepository {
 
@@ -51,6 +51,10 @@ public class ExerciseRepository {
         instantiateDb();
         Logger.info("Finding exercise id: " + exerciseId, ExerciseRepository.class);
         String query = "SELECT  * FROM " + ExerciseEntity.TABLE_NAME + " WHERE " + ExerciseEntity.Column.ID + " = " + exerciseId;
+//        Logger.info("Finding exercise list by parent id: " + parentId, ExerciseRepository.class);
+//        List<Exercise> exerciseList = new LinkedList<Exercise>();
+//        String query = "SELECT  * FROM " + Exercise.TABLE_NAME + " WHERE " + Exercise.Column.PARENT_ID + " = " + 
+//                parentId+  " ORDER BY DATE";
         Logger.info("Query: " + query, ExerciseRepository.class);
 
         ExerciseEntity exerciseEntity = null;

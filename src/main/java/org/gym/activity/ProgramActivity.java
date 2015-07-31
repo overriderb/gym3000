@@ -7,18 +7,19 @@ import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
+
 import org.gym.adapter.ProgramPagerAdapter;
 
-
 /**
- * TODO: Add class description
+ * Shows workouts list which has single parent program.
  */
 public class ProgramActivity extends FragmentActivity {
 
     public final static String CURRENT_ITEM = "org.gym.activity.ProgramActivity.CURRENT_ITEM";
 
-    private ProgramPagerAdapter programPagerAdapter;
     private ViewPager viewPager;
+    private ProgressBar progressBar;
     private int currentItem;
 
     @Override
@@ -26,10 +27,13 @@ public class ProgramActivity extends FragmentActivity {
         fillParams();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.program_layout);
-        programPagerAdapter = new ProgramPagerAdapter(getSupportFragmentManager());
-        viewPager = (ViewPager) findViewById(R.id.programPager);
+        ProgramPagerAdapter programPagerAdapter = new ProgramPagerAdapter(getSupportFragmentManager());
+        viewPager = (ViewPager) findViewById(R.id.program_pager);
         viewPager.setAdapter(programPagerAdapter);
         viewPager.setCurrentItem(currentItem);
+        progressBar = (ProgressBar)findViewById(R.id.programProgressBar);
+        progressBar.setMax(100);
+        progressBar.setProgress(75);
         overridePendingTransition(R.anim.push_down_in, R.anim.push_down_out);
     }
 
@@ -51,6 +55,9 @@ public class ProgramActivity extends FragmentActivity {
             case R.id.action_history:
                 startHistory();
                 return true;
+            case R.id.action_program_settings:
+                startSettingsProgramActivity();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -59,6 +66,11 @@ public class ProgramActivity extends FragmentActivity {
     private void startHistory(){
         Intent intent = new Intent(this, HistoryActivity.class);
         intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
+        startActivity(intent);
+    }
+
+    private void startSettingsProgramActivity(){
+        Intent intent = new Intent(this, SettingsProgramActivity.class);
         startActivity(intent);
     }
 

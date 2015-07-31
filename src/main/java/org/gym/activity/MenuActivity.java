@@ -9,17 +9,26 @@ import android.widget.LinearLayout;
 import org.gym.cache.CurrentProgramCache;
 import org.gym.model.Program;
 import org.gym.service.ProgramService;
+import org.gym.service.WorkoutService;
 
 import java.util.List;
 
 /**
- * TODO: Add class description
+ * Main activity. It shows the list of programs stored in DB.
  */
 public class MenuActivity extends Activity {
+
+    private ProgramService programService;
+    private WorkoutService workoutService;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        databaseHelper = new DatabaseHelper(this);
+
+//        programService = new ProgramService();
+//        workoutService = new WorkoutService();
+        
         setContentView(R.layout.menu_layout);
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.menu_linear_layout);
         List<Program> programs = ProgramService.getInstance().findAll();
@@ -36,6 +45,8 @@ public class MenuActivity extends Activity {
             });
             linearLayout.addView(button);
         }
+
+//        createMenuButtons();
     }
 
     @Override
@@ -50,13 +61,51 @@ public class MenuActivity extends Activity {
         return super.onCreateOptionsMenu(menu);
     }
 
+    @Override
+    public boolean onOptionsItemSelected (MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                startSettingsMenuActivity();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     public void startActivity(View view){
         Intent intent = new Intent(this, ProgramActivity.class);
         startActivity(intent);
     }
 
-    public void fillCurrentProgramCache(Program program){
+    private void startSettingsMenuActivity(){
+        Intent intent = new Intent(this, SettingsMenuActivity.class);
+        startActivity(intent);
+    }
+
+    private void createMenuButtons(){
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.menu_linear_layout);
+
+        List<Program> programsList = programService.getPrograms(this);
+
+        for(final Program program : programsList){
+            Button button = new Button(this);
+            button.setText(program.getName());
+            button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    fillCurrentProgramCache(program);
+                    startActivity(view);
+                }
+            });
+            linearLayout.addView(button);
+        }
+    }
+
+    private void fillCurrentProgramCache(Program program){
         CurrentProgramCache cache = CurrentProgramCache.getInstance();
         cache.setValues(program.getName(), program.getDescription(), program.getExerciseTypes());
+//        List<Workout> workoutList = workoutService.getWorkouts(this, program.getId());
+//        cache.setValues(program.getId(), program.getName(), program.getDescription(), workoutList);
     }
 }

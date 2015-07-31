@@ -3,6 +3,8 @@ package org.gym.service;
 import org.gym.domain.AttemptEntity;
 import org.gym.repository.AttemptRepository;
 
+import java.util.List;
+
 /**
  * Service for processing logic about attempt entity
  */
@@ -35,5 +37,10 @@ public class AttemptService {
 
     private void initFields() {
         attemptRepository = AttemptRepository.getInstance();
+    }
+
+    public List<Attempt> getAttempts(Context context, Long exerciseId){
+        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+        return databaseHelper.getAttemptRepository().findAttemptListByParentId(exerciseId);
     }
 }

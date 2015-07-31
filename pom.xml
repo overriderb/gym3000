@@ -51,7 +51,7 @@
                 <version>3.9.0-rc.2</version>
                 <configuration>
                     <sdk>
-                        <platform>19</platform>
+                        <platform>22</platform>
                     </sdk>
                     <!--<deleteConflictingFiles>true</deleteConflictingFiles>-->
                     <undeployBeforeDeploy>true</undeployBeforeDeploy>

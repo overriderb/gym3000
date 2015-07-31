@@ -8,21 +8,41 @@
     <application android:label="@string/appName"
                  android:name="org.gym.Gym3000"
                  android:debuggable="true"
-                 android:logo="@drawable/gym3000_sign_64x64"
-                 android:icon="@drawable/gym3000_sign_256x256"
+                 android:logo="@drawable/gym3000_sign"
+                 android:icon="@drawable/gym3000_sign"
                  android:theme="@android:style/Theme.Holo">
         <activity
                 android:name="org.gym.activity.MenuActivity"
-                android:label="@string/appName" >
+                android:label="@string/appName">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ProgramActivity"
-                  android:parentActivityName=".MenuActivity"/>
+                  android:parentActivityName=".MenuActivity"
+                  android:label=""/>
         <activity android:name=".HistoryActivity"
-                  android:parentActivityName=".ProgramActivity"/>    <!--TODO bug, it should return us program activity to chosen program-->
+                  android:parentActivityName=".ProgramActivity"
+                  android:label=""/>
+        <activity android:name=".ChangeWorkoutsListActivity"
+                  android:parentActivityName=".SettingsProgramActivity"
+                  android:label=""/>
+        <activity android:name=".ChangeProgramsListActivity"
+                  android:parentActivityName=".SettingsMenuActivity"
+                  android:label=""/>
+        <activity android:name=".SettingsMenuActivity"
+                  android:parentActivityName=".MenuActivity"
+                  android:label=""/>
+        <activity android:name=".SettingsProgramActivity"
+                  android:parentActivityName=".ProgramActivity"
+                  android:label=""/>
+        <activity android:name=".ChangeSingleProgramActivity"
+                  android:parentActivityName=".ChangeProgramsListActivity"
+                  android:label=""/>
+        <activity android:name=".ChangeSingleWorkoutActivity"
+                  android:parentActivityName=".ChangeWorkoutsListActivity"
+                  android:label=""/>
     </application>
 
 </manifest>

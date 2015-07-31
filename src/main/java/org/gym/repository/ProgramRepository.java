@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by AndreyNick on 12.11.2014.
+ * It provides methods for DB working with Program objects
  */
 public class ProgramRepository {
 
@@ -46,6 +46,7 @@ public class ProgramRepository {
         ContentValues values = new ContentValues();
         values.put(ProgramEntity.Column.NAME.name(), programEntity.getName());
         values.put(ProgramEntity.Column.DESCRIPTION.name(), programEntity.getDescription());
+        values.put(Program.Column.ORDER_NUMBER.name(), program.getOrderNumber());
 
         Long id = database.insert(ProgramEntity.TABLE_NAME, null, values);
         programEntity.setId(id);
@@ -59,6 +60,9 @@ public class ProgramRepository {
         instantiateDb();
         Logger.info("Finding program by id = " + programId, ProgramRepository.class);
         String query = "SELECT  * FROM " + ProgramEntity.TABLE_NAME;
+//        Logger.info("Finding all programs", ProgramRepository.class);
+//        List<Program> programList = new LinkedList<Program>();
+//        String query = "SELECT  * FROM " + Program.TABLE_NAME +  " ORDER BY ORDER_NUMBER";
 
         ProgramEntity programEntity = null;
 
@@ -68,6 +72,15 @@ public class ProgramRepository {
             programEntity.setId(cursor.getLong(0));
             programEntity.setName(cursor.getString(1));
             programEntity.setDescription(cursor.getString(2));
+//            do {
+//                Program program = new Program();
+//                program.setId(Long.parseLong(cursor.getString(0)));
+//                program.setName(cursor.getString(1));
+//                program.setDescription(cursor.getString(2));
+//                program.setOrderNumber(Integer.parseInt(cursor.getString(3)));
+//
+//                programList.add(program);
+//            } while (cursor.moveToNext());
         }
 
         closeDb();
@@ -101,7 +114,7 @@ public class ProgramRepository {
     }
 
     private void closeDb(){
-        database.close();
+        //database.close();
     }
 
 }
