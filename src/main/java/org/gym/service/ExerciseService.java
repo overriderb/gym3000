@@ -2,8 +2,10 @@ package org.gym.service;
 
 import android.content.Context;
 import org.gym.assembler.ExerciseAssembler;
-import org.gym.domain.ExerciseEntity;
+import org.gym.model.Attempt;
 import org.gym.model.Exercise;
+import org.gym.model.ExerciseType;
+import org.gym.model.Workout;
 import org.gym.repository.ExerciseRepository;
 
 import java.text.SimpleDateFormat;
@@ -32,20 +34,21 @@ public class ExerciseService {
         return instance;
     }
 
-    public Long save(Context context, Exercise.Level level, Long workoutId, Long exerciseTypeId) {
-        ExerciseEntity exerciseEntity = new ExerciseEntity();
-        exerciseEntity.setWorkoutId(workoutId);
-        exerciseEntity.setExerciseTypeId(exerciseTypeId);
-        exerciseEntity.setLevel(level.name());
+    public Long save(Exercise.Level level, Workout workout, ExerciseType exerciseType) {
+        Exercise exercise = new Exercise();
+        exercise.setLevel(level);
+        exercise.setWorkout(workout);
+        exercise.setExerciseType(exerciseType);
 
-        return exerciseRepository.store(exerciseEntity);
+        return save(exercise);
     }
 
-    public List<Exercise> findByTypeId(Long typeId) {
+    public Long save(Exercise exercise) {
+        return exerciseRepository.store(exerciseAssembler.modelToDomain(exercise));
+    }
 
-        List<ExerciseEntity> exerciseEntities = exerciseRepository.findByTypeId(typeId);
-
-        return exerciseAssembler.domainListToModelList(exerciseEntities);
+    public List<Exercise> findByType(ExerciseType exerciseType) {
+        return exerciseAssembler.domainListToModelList(exerciseRepository.findByTypeId(exerciseType.getId()));
     }
 
     private void initFields() {

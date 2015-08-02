@@ -26,8 +26,17 @@ public class ProgramService {
         return instance;
     }
 
-    public Long save() {
-        return null;
+    public Long save(String name, String description, int order) {
+        Program program = new Program();
+        program.setName(name);
+        program.setDescription(description);
+        program.setOrder(order);
+
+        return save(program);
+    }
+
+    public Long save(Program program) {
+        return programRepository.store(programAssembler.modelToDomain(program));
     }
 
     public Program find() {
@@ -42,16 +51,4 @@ public class ProgramService {
         programAssembler = ProgramAssembler.getInstance();
         programRepository = ProgramRepository.getInstance();
     }
-
-//    public Long persistProgram(Context context, Long userId, String name, String description, int order_number){
-//        DatabaseHelper databaseHelper = new DatabaseHelper(context);
-//
-//        Program program = new Program(userId, name, description, order_number);
-//        return databaseHelper.getProgramRepository().storeProgram(program);
-//    }
-//
-//    public List<Program> getPrograms(Context context){
-//        DatabaseHelper databaseHelper = new DatabaseHelper(context);
-//        return databaseHelper.getProgramRepository().findAllProgramsList();
-//    }
 }

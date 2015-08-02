@@ -1,8 +1,8 @@
 package org.gym.service;
 
 import org.gym.assembler.ExerciseTypeAssembler;
-import org.gym.domain.ExerciseTypeEntity;
 import org.gym.model.ExerciseType;
+import org.gym.model.Program;
 import org.gym.repository.ExerciseTypeRepository;
 
 import java.util.List;
@@ -39,9 +39,8 @@ public class ExerciseTypeService {
         return null;
     }
 
-    public List<ExerciseType> findByProgramId(Long programId) {
-        List<ExerciseTypeEntity> exerciseTypeEntityList = exerciseTypeRepository.findByProgramId(programId);
-        return exerciseTypeAssembler.domainListToModelList(exerciseTypeEntityList);
+    public List<ExerciseType> findByProgram(Program program) {
+        return exerciseTypeAssembler.domainListToModelList(exerciseTypeRepository.findByProgramId(program.getId()));
     }
 
     private void initFields() {
