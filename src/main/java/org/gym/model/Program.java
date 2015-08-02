@@ -10,6 +10,7 @@ public class Program {
     private Long id;
     private String name;
     private String description;
+    private int order;
     private List<ExerciseType> exerciseTypes;
 
     public Long getId() {
@@ -34,6 +35,14 @@ public class Program {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
     }
 
     public List<ExerciseType> getExerciseTypes() {
