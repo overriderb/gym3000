@@ -1,7 +1,5 @@
 package org.gym.domain;
 
-import java.util.List;
-
 /**
  * Workout is certain training day
  */
@@ -11,6 +9,7 @@ public class WorkoutEntity {
 
     private Long id;
     private Long programId;
+    private Long userId;
     private Long startDate;
     private Long endDate;
     private String status;
@@ -25,7 +24,8 @@ public class WorkoutEntity {
 
     public WorkoutEntity() {}
 
-    public WorkoutEntity(Long programId, Long startDate, Long endDate, String status) {
+    public WorkoutEntity(Long userId, Long programId, Long startDate, Long endDate, String status) {
+        this.userId = userId;
         this.programId = programId;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -46,6 +46,14 @@ public class WorkoutEntity {
 
     public void setProgramId(Long programId) {
         this.programId = programId;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Long getStartDate() {

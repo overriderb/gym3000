@@ -9,6 +9,7 @@ public class Workout {
 
     private Long id;
     private Program program;
+    private User user;
     private Long startDate;
     private Long endDate;
     private WorkoutStatus status;
@@ -32,6 +33,14 @@ public class Workout {
 
     public void setProgram(Program program) {
         this.program = program;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getStartDate() {
