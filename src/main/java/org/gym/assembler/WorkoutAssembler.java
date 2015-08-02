@@ -8,6 +8,7 @@ import org.gym.model.Workout;
 import org.gym.repository.ExerciseRepository;
 import org.gym.repository.ProgramRepository;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -45,6 +46,14 @@ public class WorkoutAssembler {
         workout.setExercises(fillExercises(exercises, workout));
 
         return workout;
+    }
+
+    public List<Workout> domainListToModelList(List<WorkoutEntity> workoutEntities) {
+        List<Workout> workouts = new LinkedList<>();
+        for (WorkoutEntity workoutEntity : workoutEntities) {
+            workouts.add(domainToModel(workoutEntity));
+        }
+        return workouts;
     }
 
     public WorkoutEntity modelToDomain(Workout workout) {
