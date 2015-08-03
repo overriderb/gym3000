@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import org.gym.adapter.ProgramPagerAdapter;
 import org.gym.logging.Logger;
@@ -71,6 +72,7 @@ public class ProgramActivity extends FragmentActivity {
         inflater.inflate(R.menu.program_layout_actions, menu);
         return super.onCreateOptionsMenu(menu);
     }
+
 
     @Override
     public boolean onOptionsItemSelected (MenuItem item) {
