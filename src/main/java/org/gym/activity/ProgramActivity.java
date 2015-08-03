@@ -19,6 +19,7 @@ import org.gym.logging.Logger;
 public class ProgramActivity extends FragmentActivity {
 
     public final static String CURRENT_ITEM = "org.gym.activity.ProgramActivity.CURRENT_ITEM";
+    public final static int ACTIVITY = 2;
 
     private ViewPager viewPager;
     private ProgressBar progressBar;
@@ -41,15 +42,28 @@ public class ProgramActivity extends FragmentActivity {
     @Override
     public void onStart() {
         super.onStart();
+        int activity = getIntent().getIntExtra("activity", 0);
+        Logger.debug("onStart() int activity: " + activity, ProgramActivity.class);
+        switch (activity) {
+            case MenuActivity.ACTIVITY:
+                Logger.debug("onStart() from activity = MenuActivity.ACTIVITY", ProgramActivity.class);
+                overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
+                break;
+            case HistoryActivity.ACTIVITY:
+                Logger.debug("onStart() from activity = HistoryActivity.ACTIVITY", ProgramActivity.class);
+                overridePendingTransition(R.anim.buttom_out, R.anim.top_in);
+                break;
+            default:
+                break;
+        }
     }
 
-    @Override
+   /* @Override
     public void onPause() {
         super.onPause();
-        //overridePendingTransition(R.anim.right_in, R.anim.left_out);
         Logger.debug("Android PROGRAM pause button clicked", ProgramActivity.class);
 
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
@@ -64,11 +78,11 @@ public class ProgramActivity extends FragmentActivity {
             case R.id.program_action_settings:
                 startSettingsProgramActivity();
                 return true;
-            case android.R.id.home:
+            /*case android.R.id.home:
                 finish();
-                //overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
                 Logger.debug("Android PROGRAM home button clicked", ProgramActivity.class);
-                return true;
+                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -78,6 +92,7 @@ public class ProgramActivity extends FragmentActivity {
     public void startHistory(View view){
         Intent intent = new Intent(this, HistoryActivity.class);
         intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
+        intent.putExtra("activity", ProgramActivity.ACTIVITY);
         startActivity(intent);
         //overridePendingTransition(R.anim.buttom_out, R.anim.top_in);
     }

@@ -7,8 +7,6 @@ import android.view.*;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.sun.xml.internal.bind.annotation.OverrideAnnotationOf;
-
 import org.gym.cache.CurrentProgramCache;
 import org.gym.domain.Program;
 import org.gym.domain.Workout;
@@ -23,6 +21,7 @@ import java.util.List;
  */
 public class MenuActivity extends Activity {
 
+    public final static int ACTIVITY = 1;
     private ProgramService programService;
     private WorkoutService workoutService;
 
@@ -40,15 +39,25 @@ public class MenuActivity extends Activity {
     @Override
     public void onStart() {
         super.onStart();
-        overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        /*int activity = getIntent().getIntExtra("activity", 0);
+        Logger.debug("onStart() int activity: " + activity, MenuActivity.class);
+        switch (activity) {
+            case 0:
+                Logger.debug("onStart() from activity = 0" + activity, MenuActivity.class);
+                overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);//TODO: Make slide from other side
+                break;
+            default:
+                break;
+        }*/
+        overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);//TODO: Make slide from other side
     }
 
-    @Override
+   /* @Override
     public void onPause() {
         super.onPause();
-        overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
         Logger.info("onPause()", MenuActivity.class);
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
@@ -70,8 +79,8 @@ public class MenuActivity extends Activity {
 
     public void startActivity(View view){
         Intent intent = new Intent(this, ProgramActivity.class);
+        intent.putExtra("activity", MenuActivity.ACTIVITY);
         startActivity(intent);
-        overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
 
     private void startSettingsMenuActivity(){

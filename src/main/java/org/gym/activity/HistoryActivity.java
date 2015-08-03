@@ -19,6 +19,7 @@ import org.gym.logging.Logger;
 public class HistoryActivity extends FragmentActivity {
 
     public final static String CURRENT_ITEM = "org.gym.activity.HistoryActivity.CURRENT_ITEM";
+    public final static int ACTIVITY = 3;
 
     private HistoryPagerAdapter historyPagerAdapter;
     private ViewPager viewPager;
@@ -41,14 +42,22 @@ public class HistoryActivity extends FragmentActivity {
     @Override
     public void onStart() {
         super.onStart();
+        int activity = getIntent().getIntExtra("activity", 0);
+        switch (activity) {
+            case ProgramActivity.ACTIVITY:
+                overridePendingTransition(R.anim.bottom_in, R.anim.top_out);
+                break;
+            default:
+                break;
+        }
     }
 
-    @Override
+    /*@Override
     public void onPause() {
         super.onPause();
-        //overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
         Logger.debug("Android HISTORY pause button clicked", HistoryActivity.class);
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
@@ -62,11 +71,11 @@ public class HistoryActivity extends FragmentActivity {
         switch (item.getItemId()) {
             case R.id.history_action_settings:
                 return true;
-            case android.R.id.home:
+            /*case android.R.id.home:
                 finish();
-                //overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
                 Logger.debug("Android HISTORY home button clicked", HistoryActivity.class);
-                return true;
+                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -76,6 +85,7 @@ public class HistoryActivity extends FragmentActivity {
     public void startProgram(View view){
         Intent intent = new Intent(this, ProgramActivity.class);
         intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
+        intent.putExtra("activity", HistoryActivity.ACTIVITY);
         startActivity(intent);
         //overridePendingTransition(R.anim.bottom_in, R.anim.top_out);
     }
