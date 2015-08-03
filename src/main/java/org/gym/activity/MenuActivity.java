@@ -40,6 +40,7 @@ public class MenuActivity extends Activity {
     @Override
     public void onStart() {
         super.onStart();
+        overridePendingTransition(R.anim.right_in, R.anim.left_out);
     }
 
     @Override

@@ -43,12 +43,12 @@ public class HistoryActivity extends FragmentActivity {
         super.onStart();
     }
 
-   /* @Override
+    @Override
     public void onPause() {
         super.onPause();
-        overridePendingTransition(R.anim.right_in, R.anim.left_out);
-
-    }*/
+        //overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        Logger.debug("Android HISTORY pause button clicked", HistoryActivity.class);
+    }
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
@@ -62,6 +62,11 @@ public class HistoryActivity extends FragmentActivity {
         switch (item.getItemId()) {
             case R.id.history_action_settings:
                 return true;
+            case android.R.id.home:
+                finish();
+                //overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                Logger.debug("Android HISTORY home button clicked", HistoryActivity.class);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -72,7 +77,7 @@ public class HistoryActivity extends FragmentActivity {
         Intent intent = new Intent(this, ProgramActivity.class);
         intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
         startActivity(intent);
-        overridePendingTransition(R.anim.bottom_in, R.anim.top_out);
+        //overridePendingTransition(R.anim.bottom_in, R.anim.top_out);
     }
 
     private void fillParams(){

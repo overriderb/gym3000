@@ -43,12 +43,13 @@ public class ProgramActivity extends FragmentActivity {
         super.onStart();
     }
 
-    /*@Override
+    @Override
     public void onPause() {
         super.onPause();
-        overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        //overridePendingTransition(R.anim.right_in, R.anim.left_out);
+        Logger.debug("Android PROGRAM pause button clicked", ProgramActivity.class);
 
-    }*/
+    }
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
@@ -63,6 +64,11 @@ public class ProgramActivity extends FragmentActivity {
             case R.id.program_action_settings:
                 startSettingsProgramActivity();
                 return true;
+            case android.R.id.home:
+                finish();
+                //overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                Logger.debug("Android PROGRAM home button clicked", ProgramActivity.class);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -73,7 +79,7 @@ public class ProgramActivity extends FragmentActivity {
         Intent intent = new Intent(this, HistoryActivity.class);
         intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
         startActivity(intent);
-        overridePendingTransition(R.anim.buttom_out, R.anim.top_in);
+        //overridePendingTransition(R.anim.buttom_out, R.anim.top_in);
     }
 
     private void startSettingsProgramActivity(){
