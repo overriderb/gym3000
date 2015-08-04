@@ -21,7 +21,6 @@ import java.util.List;
  */
 public class MenuActivity extends Activity {
 
-    public final static int ACTIVITY = 1;
     private ProgramService programService;
     private WorkoutService workoutService;
 
@@ -39,25 +38,17 @@ public class MenuActivity extends Activity {
     @Override
     public void onStart() {
         super.onStart();
-        /*int activity = getIntent().getIntExtra("activity", 0);
-        Logger.debug("onStart() int activity: " + activity, MenuActivity.class);
+        int activity = getIntent().getIntExtra(getString(R.string.activity_number), 0);
         switch (activity) {
-            case 0:
-                Logger.debug("onStart() from activity = 0" + activity, MenuActivity.class);
-                overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);//TODO: Make slide from other side
+            case R.integer.change_single_program_activity:
+                overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
                 break;
             default:
+                overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
                 break;
-        }*/
-        overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);//TODO: Make slide from other side
-    }
+        }
 
-   /* @Override
-    public void onPause() {
-        super.onPause();
-        overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
-        Logger.info("onPause()", MenuActivity.class);
-    }*/
+    }
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
@@ -79,12 +70,13 @@ public class MenuActivity extends Activity {
 
     public void startActivity(View view){
         Intent intent = new Intent(this, ProgramActivity.class);
-        intent.putExtra("activity", MenuActivity.ACTIVITY);
+        intent.putExtra(getString(R.string.activity_number), R.integer.menu_activity);
         startActivity(intent);
     }
 
     private void startSettingsMenuActivity(){
         Intent intent = new Intent(this, SettingsMenuActivity.class);
+        intent.putExtra(getString(R.string.activity_number), R.integer.menu_activity);
         startActivity(intent);
     }
 
@@ -96,7 +88,8 @@ public class MenuActivity extends Activity {
         for(final Program program : programsList){
             Button button = new Button(this);
             button.setText(program.getName());
-            button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT));
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

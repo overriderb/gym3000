@@ -43,16 +43,28 @@ public class ChangeWorkoutsListActivity extends Activity {
         listView.setAdapter(adapter);
     }
 
-    /**
-     * onClick is in xml file
-     */
-    public void startChangeSingleWorkoutActivity(View view){
-        Intent intent = new Intent(this, ChangeSingleWorkoutActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     public void onStart() {
         super.onStart();
+        int activity = getIntent().getIntExtra(getString(R.string.activity_number), 0);
+        switch (activity) {
+            case R.integer.settings_program_activity:
+                overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
+                break;
+            /*case R.integer.change_single_workout_activity:
+                overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
+                break;*/
+            default:
+                overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
+                break;
+        }
+    }
+
+
+    //onClick is in xml file
+    public void startChangeSingleWorkoutActivity(View view){
+        Intent intent = new Intent(this, ChangeSingleWorkoutActivity.class);
+        intent.putExtra(getString(R.string.activity_number), R.integer.change_workouts_list_activity);
+        startActivity(intent);
     }
 }

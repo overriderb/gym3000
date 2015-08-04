@@ -8,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import org.gym.adapter.ProgramPagerAdapter;
 import org.gym.logging.Logger;
@@ -20,7 +19,6 @@ import org.gym.logging.Logger;
 public class ProgramActivity extends FragmentActivity {
 
     public final static String CURRENT_ITEM = "org.gym.activity.ProgramActivity.CURRENT_ITEM";
-    public final static int ACTIVITY = 2;
 
     private ViewPager viewPager;
     private ProgressBar progressBar;
@@ -43,28 +41,29 @@ public class ProgramActivity extends FragmentActivity {
     @Override
     public void onStart() {
         super.onStart();
-        int activity = getIntent().getIntExtra("activity", 0);
+        int activity = getIntent().getIntExtra(getString(R.string.activity_number), 0);
         Logger.debug("onStart() int activity: " + activity, ProgramActivity.class);
         switch (activity) {
-            case MenuActivity.ACTIVITY:
-                Logger.debug("onStart() from activity = MenuActivity.ACTIVITY", ProgramActivity.class);
+            case R.integer.menu_activity:
+                //Logger.debug("onStart() from activity = MenuActivity.ACTIVITY", ProgramActivity.class);
                 overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
                 break;
-            case HistoryActivity.ACTIVITY:
-                Logger.debug("onStart() from activity = HistoryActivity.ACTIVITY", ProgramActivity.class);
-                overridePendingTransition(R.anim.buttom_out, R.anim.top_in);
+            case R.integer.history_activity:
+                //Logger.debug("onStart() from activity = HistoryActivity.ACTIVITY", ProgramActivity.class);
+                overridePendingTransition(R.anim.slide_up_1, R.anim.slide_up_2);
                 break;
+            case R.integer.program_activity:
+                //Logger.debug("onStart() from activity = HistoryActivity.ACTIVITY", ProgramActivity.class);
+                overridePendingTransition(R.anim.slide_up_1, R.anim.slide_up_2);
+                break;
+            /*case R.integer.change_single_workout_activity:
+                overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
+                break;*/
             default:
+                overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
                 break;
         }
     }
-
-   /* @Override
-    public void onPause() {
-        super.onPause();
-        Logger.debug("Android PROGRAM pause button clicked", ProgramActivity.class);
-
-    }*/
 
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
@@ -73,18 +72,12 @@ public class ProgramActivity extends FragmentActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-
     @Override
     public boolean onOptionsItemSelected (MenuItem item) {
         switch (item.getItemId()) {
             case R.id.program_action_settings:
                 startSettingsProgramActivity();
                 return true;
-            /*case android.R.id.home:
-                finish();
-                overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
-                Logger.debug("Android PROGRAM home button clicked", ProgramActivity.class);
-                return true;*/
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -94,13 +87,13 @@ public class ProgramActivity extends FragmentActivity {
     public void startHistory(View view){
         Intent intent = new Intent(this, HistoryActivity.class);
         intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
-        intent.putExtra("activity", ProgramActivity.ACTIVITY);
+        intent.putExtra(getString(R.string.activity_number), R.integer.program_activity);
         startActivity(intent);
-        //overridePendingTransition(R.anim.buttom_out, R.anim.top_in);
     }
 
     private void startSettingsProgramActivity(){
         Intent intent = new Intent(this, SettingsProgramActivity.class);
+        intent.putExtra(getString(R.string.activity_number), R.integer.program_activity);
         startActivity(intent);
     }
 

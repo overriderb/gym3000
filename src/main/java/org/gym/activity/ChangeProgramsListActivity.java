@@ -40,19 +40,28 @@ public class ChangeProgramsListActivity extends Activity {
         listView.setAdapter(adapter);
     }
 
-    /**
-     * onClick is in xml file
-     */
-    public void startChangeSingleProgramActivity(View view){
-        Intent intent = new Intent(this, ChangeSingleProgramActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     public void onStart() {
         super.onStart();
+        int activity = getIntent().getIntExtra(getString(R.string.activity_number), 0);
+        switch (activity) {
+            case R.integer.settings_menu_activity:
+                overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
+                break;
+            /*case R.integer.change_programs_list_activity:
+                overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
+                break;*/
+            default:
+                overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
+                break;
+        }
     }
 
-
+    //onClick is in xml file
+    public void startChangeSingleProgramActivity(View view){
+        Intent intent = new Intent(this, ChangeSingleProgramActivity.class);
+        intent.putExtra(getString(R.string.activity_number), R.integer.change_programs_list_activity);
+        startActivity(intent);
+    }
 }
 

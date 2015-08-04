@@ -26,6 +26,19 @@ public class ChangeSingleProgramActivity extends Activity {
         databaseHelper = new DatabaseHelper(this);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        int activity = getIntent().getIntExtra(getString(R.string.activity_number), 0);
+        switch (activity) {
+            case R.integer.change_programs_list_activity:
+                overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
+                break;
+            default:
+                break;
+        }
+    }
+
     public void saveProgram(View view){
         EditText title = (EditText)findViewById(R.id.change_single_program_title_edit);
         EditText description = (EditText)findViewById(R.id.change_single_program_description_edit);
@@ -37,6 +50,7 @@ public class ChangeSingleProgramActivity extends Activity {
         //Logger.info("Save program : " + program.getName() + "\n" + program.getDescription() + "\n" + program.getOrderNumber(), ChangeSingleProgramActivity.class);
         //databaseHelper.getProgramRepository().storeProgram(program);
         Intent intent = new Intent(this, MenuActivity.class);
+        intent.putExtra(getString(R.string.activity_number), R.integer.change_single_program_activity);
         startActivity(intent);
     }
 }

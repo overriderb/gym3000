@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--This is the list of integer variables.
+    It is used for identification each activity by simple value
+    and use it for properly working of activity changes animations
+    -->
+    <integer name="menu_activity">1</integer>
+    <integer name="program_activity">2</integer>
+    <integer name="history_activity">3</integer>
+    <integer name="settings_menu_activity">4</integer>
+    <integer name="settings_program_activity">5</integer>
+    <integer name="change_single_workout_activity">6</integer>
+    <integer name="change_single_program_activity">7</integer>
+    <integer name="change_workouts_list_activity">8</integer>
+    <integer name="change_programs_list_activity">9</integer>
+
+    <string name="activity_number">activity</string>
+</resources>

@@ -25,7 +25,19 @@ public class ChangeSingleWorkoutActivity extends Activity {
         setContentView(R.layout.change_single_workout_layout);
         databaseHelper = new DatabaseHelper(this);
         cache = CurrentProgramCache.getInstance();
+    }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        int activity = getIntent().getIntExtra(getString(R.string.activity_number), 0);
+        switch (activity) {
+            case R.integer.change_workouts_list_activity:
+                overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
+                break;
+            default:
+                break;
+        }
     }
 
     public void saveWorkout(View view){
@@ -40,6 +52,7 @@ public class ChangeSingleWorkoutActivity extends Activity {
 
 
         Intent intent = new Intent(this, ProgramActivity.class);
+        intent.putExtra(getString(R.string.activity_number), R.integer.change_single_workout_activity);
         startActivity(intent);
     }
 }
