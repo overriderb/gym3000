@@ -24,11 +24,11 @@ public class InitializeUtils {
         AttemptRepository attemptRepository = AttemptRepository.getInstance();
         ExerciseRepository exerciseRepository = ExerciseRepository.getInstance();
 
-        ProgramEntity handsChestProgramEntity = new ProgramEntity("Hands/Chest training day", "Blah-blah, hands and chest");
+        ProgramEntity handsChestProgramEntity = new ProgramEntity("Hands/Chest training day", "Blah-blah, hands and chest", 1);
         Long handsChestProgramStoredId = programRepository.store(handsChestProgramEntity);
         handsChestProgramEntity.setId(handsChestProgramStoredId);
 
-        ProgramEntity legsBackProgramEntity = new ProgramEntity("Legs/Back training day", "Description of Legs/Back program");
+        ProgramEntity legsBackProgramEntity = new ProgramEntity("Legs/Back training day", "Description of Legs/Back program", 1);
         Long legsBackProgramStoredId = programRepository.store(legsBackProgramEntity);
         legsBackProgramEntity.setId(legsBackProgramStoredId);
 

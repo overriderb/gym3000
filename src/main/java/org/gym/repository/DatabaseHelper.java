@@ -7,8 +7,8 @@ import org.gym.domain.AttemptEntity;
 import org.gym.domain.ExerciseEntity;
 import org.gym.domain.ExerciseTypeEntity;
 import org.gym.domain.ProgramEntity;
+import org.gym.domain.UserEntity;
 import org.gym.domain.WorkoutEntity;
-import org.gym.domain.User;
 
 /**
  * Main DB work class
@@ -23,7 +23,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String CREATE_PROGRAM = "CREATE TABLE " + ProgramEntity.TABLE_NAME + " ("
             + ProgramEntity.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + ProgramEntity.Column.NAME + " TEXT NOT NULL, "
-            + ProgramEntity.Column.DESCRIPTION + " TEXT);";
+            + ProgramEntity.Column.DESCRIPTION + " TEXT, "
+            + ProgramEntity.Column.ORDER + " INTEGER NOT NULL);";
 
     private static final String CREATE_WORKOUT = "CREATE TABLE " + WorkoutEntity.TABLE_NAME + " ("
             + WorkoutEntity.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -64,41 +65,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + "REFERENCES " + ExerciseEntity.TABLE_NAME + "(" + ExerciseEntity.Column.ID + ")"
             + ");";
 
-//    private static final String CREATE_ATTEMPT = "CREATE TABLE " + Attempt.TABLE_NAME + " ("
-//            + Attempt.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-//            + Attempt.Column.PARENT_ID + " INTEGER NOT NULL, "
-//            + Attempt.Column.WEIGHT + " TEXT NOT NULL, "
-//            + Attempt.Column.COUNT + " INTEGER NOT NULL);";
-//
-//    private static final String CREATE_USER = "CREATE TABLE " + User.TABLE_NAME + " ("
-//            + User.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-//            + User.Column.NAME + " TEXT NOT NULL);";
-//
-//    private static final String CREATE_PROGRAM = "CREATE TABLE " + Program.TABLE_NAME + " ("
-//            + Program.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-//            + Program.Column.NAME + " TEXT NOT NULL, "
-//            + Program.Column.DESCRIPTION + " TEXT, "
-//            + Program.Column.ORDER_NUMBER + " INTEGER NOT NULL);";
-//
-//    private static final String CREATE_WORKOUT = "CREATE TABLE " + Workout.TABLE_NAME + " ("
-//            + Workout.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-//            + Workout.Column.PARENT_ID + " INTEGER NOT NULL, "
-//            + Workout.Column.NAME + " TEXT NOT NULL, "
-//            + Workout.Column.PICTURE_ID + " INTEGER, "
-//            + Workout.Column.DESCRIPTION + " TEXT, "
-//            + Workout.Column.ORDER_NUMBER + " INTEGER NOT NULL);";
-//
-//    private static final String CREATE_EXERCISE = "CREATE TABLE " + Exercise.TABLE_NAME + " ("
-//            + Exercise.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-//            + Exercise.Column.PARENT_ID + " INTEGER NOT NULL, "
-//            + Exercise.Column.DATE + " DATE NOT NULL, "
-//            + Exercise.Column.TYPE + " CHAR);";
-//
-//    private static final String CREATE_ATTEMPT = "CREATE TABLE " + Attempt.TABLE_NAME + " ("
-//            + Attempt.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-//            + Attempt.Column.PARENT_ID + " INTEGER NOT NULL, "
-//            + Attempt.Column.WEIGHT + " TEXT NOT NULL, "
-//            + Attempt.Column.COUNT + " INTEGER NOT NULL);";
+    private static final String CREATE_USER = "CREATE TABLE " + UserEntity.TABLE_NAME + " ("
+            + UserEntity.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + UserEntity.Column.NAME + " TEXT NOT NULL);";
 
     private DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
         super(context, name, factory, version);
@@ -118,6 +87,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return instance;
     }
 
+    public static void closeDb() {
+        instance.close();
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_USER);
@@ -135,11 +108,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + ExerciseEntity.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + ExerciseTypeEntity.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + AttemptEntity.TABLE_NAME);
-//        db.execSQL("DROP TABLE IF EXISTS " + User.TABLE_NAME);
-//        db.execSQL("DROP TABLE IF EXISTS " + Program.TABLE_NAME);
-//        db.execSQL("DROP TABLE IF EXISTS " + Workout.TABLE_NAME);
-//        db.execSQL("DROP TABLE IF EXISTS " + Exercise.TABLE_NAME);
-//        db.execSQL("DROP TABLE IF EXISTS " + Attempt.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + UserEntity.TABLE_NAME);
         onCreate(db);
     }
 }

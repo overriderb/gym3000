@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.widget.FrameLayout;
 import org.gym.activity.R;
-import org.gym.domain.User;
+import org.gym.domain.UserEntity;
 import org.gym.helper.SharedPreferencesHelper;
 import org.gym.repository.DatabaseHelper;
 import org.gym.repository.InitializeUtils;
@@ -24,19 +24,19 @@ public class Gym3000 extends Application {
 //        if(false){                                //For first start of application please change change isFirstStart()
 //            setInitialPrograms();
 //            setInitialPreferences();              //to true for correct setting to DB default programs
-//        }
+        }
     }
 
     @Override
     public void onTerminate() {
         super.onTerminate();
-//        databaseHelper.close();
+        DatabaseHelper.closeDb();
     }
 
     @Override
     public void onLowMemory(){
         super.onLowMemory();
-        databaseHelper.close();
+        DatabaseHelper.closeDb();
     }
 
     /**
@@ -59,7 +59,7 @@ public class Gym3000 extends Application {
      * Method sets to DB programs and workouts, which user will see after starting this application first time
      */
     private void setInitialPrograms() {
-        User user = new User("Andrew");
+        UserEntity user = new UserEntity("Andrew");
         Program handsChestProgram1 = new Program(user.getId(), "1. Руки/грудь", "Тренировка групп мышц груди и рук", 1);
         databaseHelper.getProgramRepository().storeProgram(handsChestProgram1);
 
