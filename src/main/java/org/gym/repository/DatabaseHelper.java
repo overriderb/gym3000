@@ -51,6 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + ExerciseTypeEntity.Column.NAME + " TEXT, "
             + ExerciseTypeEntity.Column.DESCRIPTION + " TEXT, "
             + ExerciseTypeEntity.Column.PICTURE_ID + " INTEGER, "
+            + ExerciseTypeEntity.Column.ORDER + " INTEGER, "
             + "FOREIGN KEY (" + ExerciseTypeEntity.Column.PROGRAM_ID + ") "
             + "REFERENCES " + ProgramEntity.TABLE_NAME + "(" + ProgramEntity.Column.ID + ")"
             + ");";
