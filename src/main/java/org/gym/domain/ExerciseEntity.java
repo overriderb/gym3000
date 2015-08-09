@@ -62,4 +62,13 @@ public class ExerciseEntity {
         this.workoutId = workoutId;
     }
 
+    @Override
+    public String toString() {
+        return "ExerciseEntity{" +
+                "id=" + id +
+                ", level='" + level + '\'' +
+                ", workoutId=" + workoutId +
+                ", exerciseTypeId=" + exerciseTypeId +
+                '}';
+    }
 }

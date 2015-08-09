@@ -64,10 +64,11 @@ public class ProgramEntity implements HasNameAndDescription {
 
     @Override
     public String toString() {
-        return "Program{" +
+        return "ProgramEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", order=" + order +
                 '}';
     }
 }

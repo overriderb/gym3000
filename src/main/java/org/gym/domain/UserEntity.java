@@ -40,7 +40,7 @@ public class UserEntity {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

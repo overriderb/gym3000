@@ -81,4 +81,16 @@ public class ExerciseTypeEntity {
     public void setOrder(int order) {
         this.order = order;
     }
+
+    @Override
+    public String toString() {
+        return "ExerciseTypeEntity{" +
+                "id=" + id +
+                ", programId=" + programId +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", pictureId=" + pictureId +
+                ", order=" + order +
+                '}';
+    }
 }

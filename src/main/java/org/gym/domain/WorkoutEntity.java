@@ -79,4 +79,16 @@ public class WorkoutEntity {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "WorkoutEntity{" +
+                "id=" + id +
+                ", programId=" + programId +
+                ", userId=" + userId +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", status='" + status + '\'' +
+                '}';
+    }
 }

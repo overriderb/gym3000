@@ -68,4 +68,15 @@ public class AttemptEntity {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+    @Override
+    public String toString() {
+        return "AttemptEntity{" +
+                "id=" + id +
+                ", exerciseId=" + exerciseId +
+                ", weight='" + weight + '\'' +
+                ", count=" + count +
+                ", comment='" + comment + '\'' +
+                '}';
+    }
 }
