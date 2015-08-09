@@ -1,5 +1,6 @@
 package org.gym.repository;
 
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import org.gym.domain.UserEntity;
@@ -24,6 +25,21 @@ public class UserRepository {
             instance = new UserRepository(DatabaseHelper.getInstance());
         }
         return instance;
+    }
+
+    public Long store(UserEntity userEntity) {
+        instantiateDb();
+        Logger.info("Storing user: " + userEntity.toString(), UserRepository.class);
+
+        ContentValues values = new ContentValues();
+        values.put(UserEntity.Column.NAME.name(), userEntity.getName());
+
+        Long id = database.insert(UserEntity.TABLE_NAME, null, values);
+        userEntity.setId(id);
+        Logger.info("User stored: " + userEntity.toString(), UserRepository.class);
+
+        closeDb();
+        return id;
     }
 
     public UserEntity find(Long id) {

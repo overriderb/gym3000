@@ -5,6 +5,7 @@ import org.gym.domain.AttemptEntity;
 import org.gym.domain.ExerciseEntity;
 import org.gym.domain.ExerciseTypeEntity;
 import org.gym.domain.ProgramEntity;
+import org.gym.domain.UserEntity;
 import org.gym.domain.WorkoutEntity;
 
 import java.util.Calendar;
@@ -18,19 +19,28 @@ public class InitializeUtils {
      * Method sets to DB programs and workouts, which user will see after starting this application first time
      */
     public static void initTestPrograms() {
+        UserRepository userRepository = UserRepository.getInstance();
         ProgramRepository programRepository = ProgramRepository.getInstance();
         ExerciseTypeRepository exerciseTypeRepository = ExerciseTypeRepository.getInstance();
         WorkoutRepository workoutRepository = WorkoutRepository.getInstance();
         AttemptRepository attemptRepository = AttemptRepository.getInstance();
         ExerciseRepository exerciseRepository = ExerciseRepository.getInstance();
 
-        ProgramEntity handsChestProgramEntity = new ProgramEntity("Hands/Chest training day", "Blah-blah, hands and chest", 1);
-        Long handsChestProgramStoredId = programRepository.store(handsChestProgramEntity);
-        handsChestProgramEntity.setId(handsChestProgramStoredId);
+        UserEntity user = new UserEntity("Andrew");
+        Long userStoredId = userRepository.store(user);
+        user.setId(userStoredId);
 
-        ProgramEntity legsBackProgramEntity = new ProgramEntity("Legs/Back training day", "Description of Legs/Back program", 1);
+        ProgramEntity handsChestFirstProgramEntity = new ProgramEntity("1. Руки/грудь", "Тренировка групп мышц груди и рук", 1);
+        Long handsChestProgramStoredId = programRepository.store(handsChestFirstProgramEntity);
+        handsChestFirstProgramEntity.setId(handsChestProgramStoredId);
+
+        ProgramEntity legsBackProgramEntity = new ProgramEntity("2. Ноги/спина", "Тренировка групп мышц спины и ног", 2);
         Long legsBackProgramStoredId = programRepository.store(legsBackProgramEntity);
         legsBackProgramEntity.setId(legsBackProgramStoredId);
+
+        ProgramEntity handsChestSecondProgramEntity = new ProgramEntity("3. Руки/грудь", "Тренировка групп мышц груди и рук", 3);
+        Long handsChestSecondProgramStoredId = programRepository.store(handsChestSecondProgramEntity);
+        handsChestSecondProgramEntity.setId(handsChestSecondProgramStoredId);
 
         ExerciseTypeEntity warmUpExerciseTypeEntity = new ExerciseTypeEntity(handsChestProgramStoredId, "Warm-up", "Some warm-up exercises. It is important to warming-up and " +
                 "stretch every muscle which will be burden.", R.drawable.warm_up);
