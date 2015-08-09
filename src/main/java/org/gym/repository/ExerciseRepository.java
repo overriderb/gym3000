@@ -51,10 +51,6 @@ public class ExerciseRepository {
         instantiateDb();
         Logger.info("Finding exercise id: " + exerciseId, ExerciseRepository.class);
         String query = "SELECT  * FROM " + ExerciseEntity.TABLE_NAME + " WHERE " + ExerciseEntity.Column.ID + " = " + exerciseId;
-//        Logger.info("Finding exercise list by parent id: " + parentId, ExerciseRepository.class);
-//        List<Exercise> exerciseList = new LinkedList<Exercise>();
-//        String query = "SELECT  * FROM " + Exercise.TABLE_NAME + " WHERE " + Exercise.Column.PARENT_ID + " = " + 
-//                parentId+  " ORDER BY DATE";
         Logger.info("Query: " + query, ExerciseRepository.class);
 
         ExerciseEntity exerciseEntity = null;
