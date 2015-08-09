@@ -48,6 +48,7 @@ public class ExerciseTypeRepository {
         values.put(ExerciseTypeEntity.Column.NAME.name(), exerciseTypeEntity.getName());
         values.put(ExerciseTypeEntity.Column.DESCRIPTION.name(), exerciseTypeEntity.getDescription());
         values.put(ExerciseTypeEntity.Column.PICTURE_ID.name(), exerciseTypeEntity.getPictureId());
+        values.put(ExerciseTypeEntity.Column.ORDER.name(), exerciseTypeEntity.getOrder());
 
         Long id = database.insert(ExerciseTypeEntity.TABLE_NAME, null, values);
         exerciseTypeEntity.setId(id);
@@ -60,7 +61,7 @@ public class ExerciseTypeRepository {
     public ExerciseTypeEntity find(Long exerciseTypeId){
         instantiateDb();
         Logger.info("Finding exercise type id: " + exerciseTypeId, ExerciseTypeRepository.class);
-        String query = "SELECT  * FROM " + ExerciseTypeEntity.TABLE_NAME + " WHERE " + ExerciseTypeEntity.Column.ID + " = " + exerciseTypeId;
+        String query = "SELECT  * FROM " + ExerciseTypeEntity.TABLE_NAME + " WHERE " + ExerciseTypeEntity.Column.ID + " = " + exerciseTypeId +  " ORDER BY ORDER";;
         Logger.info("Query: " + query, WorkoutRepository.class);
 
         ExerciseTypeEntity exerciseTypeEntity = null;
@@ -73,6 +74,7 @@ public class ExerciseTypeRepository {
             exerciseTypeEntity.setName(cursor.getString(2));
             exerciseTypeEntity.setDescription(cursor.getString(3));
             exerciseTypeEntity.setPictureId(cursor.getInt(4));
+            exerciseTypeEntity.setOrder(cursor.getInt(5));
         }
 
         closeDb();
@@ -83,7 +85,7 @@ public class ExerciseTypeRepository {
         instantiateDb();
         Logger.info("Finding exercise types by program id: " + programId, ExerciseTypeRepository.class);
         List<ExerciseTypeEntity> exerciseTypeEntities = new LinkedList<>();
-        String query = "SELECT  * FROM " + ExerciseTypeEntity.TABLE_NAME + " WHERE " + ExerciseTypeEntity.Column.PROGRAM_ID + " = " + programId;
+        String query = "SELECT  * FROM " + ExerciseTypeEntity.TABLE_NAME + " WHERE " + ExerciseTypeEntity.Column.PROGRAM_ID + " = " + programId +  " ORDER BY ORDER";;
         Logger.info("Query: " + query, WorkoutRepository.class);
 
         Cursor cursor = database.rawQuery(query, null);
@@ -95,6 +97,7 @@ public class ExerciseTypeRepository {
                 exerciseTypeEntity.setName(cursor.getString(2));
                 exerciseTypeEntity.setDescription(cursor.getString(3));
                 exerciseTypeEntity.setPictureId(cursor.getInt(4));
+                exerciseTypeEntity.setOrder(cursor.getInt(5));
 
                 exerciseTypeEntities.add(exerciseTypeEntity);
             } while (cursor.moveToNext());

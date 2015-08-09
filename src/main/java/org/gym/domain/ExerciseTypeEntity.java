@@ -12,23 +12,26 @@ public class ExerciseTypeEntity {
     private String name;
     private String description;
     private int pictureId;
+    private int order;
 
     public enum Column {
         ID,
         PROGRAM_ID,
         NAME,
         DESCRIPTION,
-        PICTURE_ID
+        PICTURE_ID,
+        ORDER
     }
 
     public ExerciseTypeEntity() {
     }
 
-    public ExerciseTypeEntity(Long programId, String name, String description, int pictureId) {
+    public ExerciseTypeEntity(Long programId, String name, String description, int pictureId, int order) {
         this.programId = programId;
         this.name = name;
         this.description = description;
         this.pictureId = pictureId;
+        this.order = order;
     }
 
     public Long getId() {
@@ -69,5 +72,13 @@ public class ExerciseTypeEntity {
 
     public void setPictureId(int pictureId) {
         this.pictureId = pictureId;
+    }
+
+    public int getOrder() {
+        return order;
+    }
+
+    public void setOrder(int order) {
+        this.order = order;
     }
 }
