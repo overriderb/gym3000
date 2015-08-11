@@ -38,7 +38,7 @@ public class MenuActivity extends Activity {
     @Override
     public void onStart() {
         super.onStart();
-        int activity = getIntent().getIntExtra(getString(R.string.activity_number), 0);
+        /*int activity = getIntent().getIntExtra(getString(R.string.activity_number), 0);
         switch (activity) {
             case R.integer.change_single_program_activity:
                 overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
@@ -46,8 +46,8 @@ public class MenuActivity extends Activity {
             default:
                 overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
                 break;
-        }
-
+        }*/
+        overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
     }
 
     @Override

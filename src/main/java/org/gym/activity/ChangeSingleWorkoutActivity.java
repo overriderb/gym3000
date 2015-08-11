@@ -40,6 +40,13 @@ public class ChangeSingleWorkoutActivity extends Activity {
         }
     }
 
+    @Override
+    public void onPause(){
+        super.onPause();
+        overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
+
+    }
+
     public void saveWorkout(View view){
 
         EditText title = (EditText)findViewById(R.id.change_single_workout_title_edit);

@@ -51,6 +51,11 @@ public class HistoryActivity extends FragmentActivity {
     }
 
     @Override
+    public void onPause(){
+        super.onPause();
+        overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
+    }
+    @Override
     public boolean onCreateOptionsMenu (Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.history_layout_actions, menu);

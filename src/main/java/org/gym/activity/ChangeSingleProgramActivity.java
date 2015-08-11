@@ -39,6 +39,12 @@ public class ChangeSingleProgramActivity extends Activity {
         }
     }
 
+    @Override
+    public void onPause(){
+        super.onPause();
+        overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
+    }
+
     public void saveProgram(View view){
         EditText title = (EditText)findViewById(R.id.change_single_program_title_edit);
         EditText description = (EditText)findViewById(R.id.change_single_program_description_edit);

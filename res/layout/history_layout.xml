@@ -39,7 +39,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:id="@+id/history_plus_picture"
-            android:src="@drawable/plus_white"
+            android:src="@drawable/point_down_white"
             android:scaleType="centerCrop"
             android:layout_gravity="center_horizontal|bottom"
             android:onClick="startProgram"/>

@@ -24,13 +24,15 @@ public class SettingsMenuActivity extends Activity {
             case R.integer.menu_activity:
                 overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
                 break;
-            /*case R.integer.change_programs_list_activity:
-                overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
-                break;*/
             default:
-                overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
                 break;
         }
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
     }
 
     //onClick was setted in xml

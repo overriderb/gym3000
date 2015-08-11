@@ -52,17 +52,20 @@ public class ProgramActivity extends FragmentActivity {
                 //Logger.debug("onStart() from activity = HistoryActivity.ACTIVITY", ProgramActivity.class);
                 overridePendingTransition(R.anim.slide_up_1, R.anim.slide_up_2);
                 break;
-            case R.integer.program_activity:
+            case R.integer.change_single_workout_activity:
                 //Logger.debug("onStart() from activity = HistoryActivity.ACTIVITY", ProgramActivity.class);
-                overridePendingTransition(R.anim.slide_up_1, R.anim.slide_up_2);
-                break;
-            /*case R.integer.change_single_workout_activity:
-                overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
-                break;*/
-            default:
                 overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
                 break;
+            default:
+                break;
         }
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
+
     }
 
     @Override
