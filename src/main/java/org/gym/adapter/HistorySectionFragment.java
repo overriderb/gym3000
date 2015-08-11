@@ -14,6 +14,8 @@ import org.gym.model.Exercise;
 import org.gym.model.ExerciseType;
 import org.gym.service.ExerciseService;
 
+import java.util.List;
+
 /**
  * A section fragment representing history
  */
@@ -21,27 +23,29 @@ public class HistorySectionFragment extends Fragment {
     
     public static final String ARG_SECTION_NUMBER = "org.gym.adapter.HistorySectionFragment.ARG_SECTION_NUMBER";
 
-    private ExerciseType exerciseType;
-    View rootView;
-    TextView exerciseNameTextView;
-    ListView exerciseHistoryView;
+    private View rootView;
+    private TextView exerciseNameTextView;
+    private ListView exerciseHistoryView;
+
     private CurrentProgramCache cache;
+    private ExerciseService exerciseService;
 
     public HistorySectionFragment() {
-        cache = CurrentProgramCache.getInstance();
+        this.cache = CurrentProgramCache.getInstance();
+        this.exerciseService = ExerciseService.getInstance();
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        exerciseType = cache.getExerciseTypes().get(getArguments().getInt(ARG_SECTION_NUMBER));
+        ExerciseType exerciseType = cache.getExerciseTypes().get(getArguments().getInt(ARG_SECTION_NUMBER));
         rootView = inflater.inflate(R.layout.history_pages, container, false);
         exerciseNameTextView = (TextView) rootView.findViewById(R.id.history_workout_title);
         exerciseNameTextView.setText(exerciseType.getName());
         exerciseHistoryView = (ListView) rootView.findViewById(R.id.history_workout_list_view);
 
-        List<Exercise> exercises = ExerciseService.getInstance().findByTypeId(exerciseType.getId());
+        List<Exercise> exercises = exerciseService.findByType(exerciseType);
 
         ArrayAdapter<Exercise> historyExerciseTypeAdapter = new HistoryArrayAdapter(this.getActivity(),
             R.layout.history_list_item_layout,

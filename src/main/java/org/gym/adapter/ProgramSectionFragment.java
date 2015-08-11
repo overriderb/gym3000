@@ -19,6 +19,7 @@ import org.gym.activity.R;
 import org.gym.model.Exercise;
 import org.gym.model.ExerciseType;
 import org.gym.helper.SharedPreferencesHelper;
+import org.gym.model.Workout;
 import org.gym.service.AttemptService;
 import org.gym.service.ExerciseService;
 
@@ -34,29 +35,18 @@ public class ProgramSectionFragment extends Fragment {
      */
     public static final String ARG_SECTION_NUMBER = "org.gym.adapter.ProgramSectionFragment.ARG_SECTION_NUMBER";
 
-    private ExerciseType exerciseType;
-    View rootView;
-    TextView exerciseTypeNameTextView;
-    TextView exerciseTypeDescrTextView;
-    ImageView imageView;
-    FrameLayout frameLayout;
-    CurrentProgramCache cache;
+    private View rootView;
+    private TextView exerciseTypeNameTextView;
+    private TextView exerciseTypeDescrTextView;
+    private TextView exerciseTypeDescrTitleTextView;
+    private ImageView imageView;
+    private FrameLayout frameLayout;
     private GymValuePicker weightPicker;
     private GymValuePicker countPicker;
     private GymValuePicker attemptTypePicker;
 
-    private Workout workoutItem;
-    private View rootView;
-    private TextView workoutNameTextView;
-    private TextView workoutDescrTextView;
-    private TextView workoutDescrTitleTextView;
-
-    private Long exerciseId;
-    private Long attemptId;
-    private ImageView imageView;
     private ImageView openHidePictureImage;
     private ImageView openHideDescriptionImage;
-    private FrameLayout frameLayout;
 
     private AttemptService attemptService;
     private ExerciseService exerciseService;
@@ -73,15 +63,15 @@ public class ProgramSectionFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        exerciseType = cache.getExerciseTypes().get(getArguments().getInt(ARG_SECTION_NUMBER));
+        ExerciseType exerciseType = cache.getExerciseTypes().get(getArguments().getInt(ARG_SECTION_NUMBER));
 
         rootView = inflater.inflate(R.layout.program_pages, container, false);
         exerciseTypeNameTextView = (TextView) rootView.findViewById(R.id.workout_title);
         exerciseTypeDescrTextView = (TextView) rootView.findViewById(R.id.workout_descr);
-//        frameLayout = (FrameLayout)rootView.findViewById(R.id.absolute_layout_picture);
-//        workoutNameTextView = (TextView) rootView.findViewById(R.id.workout_title);
-//        workoutDescrTitleTextView = (TextView) rootView.findViewById(R.id.description_title);
-//        workoutDescrTextView = (TextView) rootView.findViewById(R.id.workout_descr);
+        frameLayout = (FrameLayout)rootView.findViewById(R.id.absolute_layout_picture);
+        exerciseTypeNameTextView = (TextView) rootView.findViewById(R.id.workout_title);
+        exerciseTypeDescrTitleTextView = (TextView) rootView.findViewById(R.id.description_title);
+        exerciseTypeDescrTextView = (TextView) rootView.findViewById(R.id.workout_descr);
         imageView = (ImageView) rootView.findViewById(R.id.workout_picture);
         openHidePictureImage = (ImageView) rootView.findViewById(R.id.open_hide_picture_button);
         openHideDescriptionImage = (ImageView) rootView.findViewById(R.id.open_hide_description_button);
@@ -89,19 +79,15 @@ public class ProgramSectionFragment extends Fragment {
         exerciseTypeNameTextView.setText(exerciseType.getName());
         exerciseTypeDescrTextView.setText(exerciseType.getDescription());
         imageView.setImageResource(exerciseType.getPictureId());
-//        workoutNameTextView.setText(workoutItem.getName());
-//        workoutDescrTextView.setText(workoutItem.getDescription());
-//
-//        imageView.setImageResource(workoutItem.getPictureId());
 
 
-        workoutNameTextView.setOnClickListener(new View.OnClickListener() {
+        exerciseTypeNameTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickPicture();
             }
         });
-        workoutDescrTitleTextView.setOnClickListener(new View.OnClickListener() {
+        exerciseTypeDescrTitleTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickDescription();

@@ -33,6 +33,10 @@ public class CurrentProgramCache {
         this.exerciseTypes = exerciseTypes;
     }
 
+    public void addExerciseType(ExerciseType exerciseType) {
+        exerciseTypes.add(exerciseType);
+    }
+
     public Long getId() {
         return id;
     }

@@ -31,7 +31,6 @@ public class ChangeWorkoutsListActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.change_workouts_layout);
 
-
         List<Workout> workoutList = cache.getWorkoutList();
         ArrayList<String> resultList = new ArrayList<String>();
         for(Workout item: workoutList){

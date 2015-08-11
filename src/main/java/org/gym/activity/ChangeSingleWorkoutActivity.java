@@ -2,28 +2,24 @@ package org.gym.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import org.gym.cache.CurrentProgramCache;
-import org.gym.domain.Workout;
 import org.gym.logging.Logger;
-import org.gym.repository.DatabaseHelper;
+import org.gym.model.Workout;
 
 /**
  * Activity for changing and adding workout
  */
 public class ChangeSingleWorkoutActivity extends Activity {
 
-    DatabaseHelper databaseHelper;
     CurrentProgramCache cache;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.change_single_workout_layout);
-        databaseHelper = new DatabaseHelper(this);
         cache = CurrentProgramCache.getInstance();
 
     }

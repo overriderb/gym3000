@@ -21,19 +21,16 @@ public class HistoryArrayAdapter extends ArrayAdapter<Exercise> {
 
     private List<Exercise> exercises;
     private Context context;
-    private AttemptService attemptService;
 
-    public HistoryListItemAdapter(Context context, int resource, List<Exercise> exercises) {
+    public HistoryArrayAdapter(Context context, int resource, List<Exercise> exercises) {
         super(context, resource, exercises);
         this.context = context;
         this.exercises = exercises;
-        attemptService = new AttemptService();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         Exercise exercise = exercises.get(position);
-//        List<Attempt> attemptList = attemptService.getAttempts(context, exercise.getId());
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext())
