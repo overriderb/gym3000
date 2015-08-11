@@ -19,7 +19,7 @@ public class SettingsProgramActivity extends Activity {
 
     //onClick was setted in xml
     public void startChangeWorkoutsActivity(View view){
-        Intent intent = new Intent(this, ChangeWorkoutsListActivity.class);
+        Intent intent = new Intent(this, ChangeExerciseTypeListActivity.class);
         startActivity(intent);
     }
 }
