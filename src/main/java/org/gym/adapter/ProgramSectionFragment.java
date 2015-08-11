@@ -53,8 +53,6 @@ public class ProgramSectionFragment extends Fragment {
 
     private CurrentProgramCache cache;
 
-
-
     public ProgramSectionFragment() {
         cache = CurrentProgramCache.getInstance();
         attemptService = AttemptService.getInstance();
@@ -177,9 +175,9 @@ public class ProgramSectionFragment extends Fragment {
     }
 
     private void fillPictureAndDescriptionHeight(){
-        LinearLayout.LayoutParams workoutDescrLayoutParams = (LinearLayout.LayoutParams)workoutDescrTextView.getLayoutParams();
+        LinearLayout.LayoutParams workoutDescrLayoutParams = (LinearLayout.LayoutParams)exerciseTypeDescrTextView.getLayoutParams();
         workoutDescrLayoutParams.height = SharedPreferencesHelper.getInt(this.getActivity(), SharedPreferencesHelper.DESCRIPTION_HEIGHT);
-        workoutDescrTextView.setLayoutParams(workoutDescrLayoutParams);
+        exerciseTypeDescrTextView.setLayoutParams(workoutDescrLayoutParams);
 
         LinearLayout.LayoutParams absoluteLayoutParams = (LinearLayout.LayoutParams)frameLayout.getLayoutParams();
         absoluteLayoutParams.height = SharedPreferencesHelper.getInt(this.getActivity(), SharedPreferencesHelper.PICTURE_HEIGHT);
@@ -227,10 +225,10 @@ public class ProgramSectionFragment extends Fragment {
             SharedPreferencesHelper.setInt(getActivity(), SharedPreferencesHelper.DESCRIPTION_HEIGHT, FrameLayout.LayoutParams.WRAP_CONTENT);
             openHideDescriptionImage.setImageResource(R.drawable.minus_white);
         }
-        DropDownAnimation animation = new DropDownAnimation(workoutDescrTextView,
+        DropDownAnimation animation = new DropDownAnimation(exerciseTypeDescrTextView,
                 SharedPreferencesHelper.getInt(getActivity(),
                         SharedPreferencesHelper.DESCRIPTION_HEIGHT));
-        workoutDescrTextView.startAnimation(animation);
+        exerciseTypeDescrTextView.startAnimation(animation);
     }
 
 
