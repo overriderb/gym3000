@@ -6,7 +6,7 @@
         android:layout_height="fill_parent">
 
     <LinearLayout
-            android:id="@+id/change_workouts_linear_layout"
+            android:id="@+id/change_exercise_types_linear_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
@@ -21,7 +21,7 @@
                 android:layout_gravity="center_horizontal"/>
 
         <ListView
-                android:id="@+id/change_workouts_list_view"
+                android:id="@+id/change_exercise_types_list_view"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"/>
 
@@ -38,7 +38,7 @@
                 android:textSize="@dimen/text_size_middle"
                 android:clickable="true"
                 android:background="#ff1c1c1c"
-                android:onClick="startChangeSingleWorkoutActivity"/>
+                android:onClick="startChangeSingleExerciseTypeActivity"/>
 
     </LinearLayout>
 </LinearLayout>

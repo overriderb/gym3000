@@ -3,14 +3,16 @@ package org.gym.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.*;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import org.gym.cache.CurrentProgramCache;
-import org.gym.domain.Program;
-import org.gym.domain.Workout;
+import org.gym.model.Program;
 import org.gym.service.ProgramService;
-import org.gym.service.WorkoutService;
 
 import java.util.List;
 
@@ -19,17 +21,29 @@ import java.util.List;
  */
 public class MenuActivity extends Activity {
 
-    private ProgramService programService;
-    private WorkoutService workoutService;
+    private ProgramService programService = ProgramService.getInstance();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        programService = new ProgramService();
-        workoutService = new WorkoutService();
-
+        
         setContentView(R.layout.menu_layout);
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.menu_linear_layout);
+        List<Program> programs = ProgramService.getInstance().findAll();
+        for(final Program program : programs) {
+            Button button = new Button(this);
+            button.setText(program.getName());
+            button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    fillCurrentProgramCache(program);
+                    startActivity(view);
+                }
+            });
+            linearLayout.addView(button);
+        }
+
         createMenuButtons();
     }
 
@@ -69,7 +83,7 @@ public class MenuActivity extends Activity {
     private void createMenuButtons(){
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.menu_linear_layout);
 
-        List<Program> programsList = programService.getPrograms(this);
+        List<Program> programsList = programService.findAll();
 
         for(final Program program : programsList){
             Button button = new Button(this);
@@ -88,7 +102,6 @@ public class MenuActivity extends Activity {
 
     private void fillCurrentProgramCache(Program program){
         CurrentProgramCache cache = CurrentProgramCache.getInstance();
-        List<Workout> workoutList = workoutService.getWorkouts(this, program.getId());
-        cache.setValues(program.getId(), program.getName(), program.getDescription(), workoutList);
+        cache.setValues(program.getId(), program.getName(), program.getDescription(), program.getExerciseTypes());
     }
 }

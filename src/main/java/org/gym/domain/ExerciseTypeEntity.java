@@ -1,17 +1,14 @@
 package org.gym.domain;
 
-
-
-
 /**
- * Created by anni0913 on 07.07.2014.
+ * Exercise type describe details of exercise
  */
-public class Workout implements HasNameAndDescription{
+public class ExerciseTypeEntity {
 
-    public static final String TABLE_NAME = "WORKOUT";
+    public static final String TABLE_NAME = "EXERCISE_TYPE";
 
     private Long id;
-    private Long parentId;
+    private Long programId;
     private String name;
     private String description;
     private int pictureId;
@@ -19,29 +16,22 @@ public class Workout implements HasNameAndDescription{
 
     public enum Column {
         ID,
-        PARENT_ID,
+        PROGRAM_ID,
         NAME,
-        PICTURE_ID,
         DESCRIPTION,
+        PICTURE_ID,
         ORDER_NUMBER
     }
 
-    public Workout() { }
-
-    public Workout(Long parentProgram, String name, String description, int pictureId, int order_number) {
-        this.parentId = parentProgram;
-        this.name = name;
-        this.description = description;
-        this.pictureId = pictureId;
-        this.orderNumber = order_number;
+    public ExerciseTypeEntity() {
     }
 
-    public Workout(Program program, String name, String description, int pictureId, int order_number) {
-        this.parentId = program.getId();
+    public ExerciseTypeEntity(Long programId, String name, String description, int pictureId, int orderNumber) {
+        this.programId = programId;
         this.name = name;
         this.description = description;
         this.pictureId = pictureId;
-        this.orderNumber = order_number;
+        this.orderNumber = orderNumber;
     }
 
     public Long getId() {
@@ -52,34 +42,32 @@ public class Workout implements HasNameAndDescription{
         this.id = id;
     }
 
-    public Long getParentId() {
-        return parentId;
+    public Long getProgramId() {
+        return programId;
     }
 
-    public void setParentId(Long parentId) {
-        this.parentId = parentId;
+    public void setProgramId(Long programId) {
+        this.programId = programId;
     }
 
-    @Override
     public String getName() {
         return name;
-    }
-
-    @Override
-    public String getDescription() {
-        return description;
-    }
-
-    public int getPictureId() {
-        return pictureId;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getPictureId() {
+        return pictureId;
     }
 
     public void setPictureId(int pictureId) {
@@ -96,12 +84,13 @@ public class Workout implements HasNameAndDescription{
 
     @Override
     public String toString() {
-        return "Workout{" +
+        return "ExerciseTypeEntity{" +
                 "id=" + id +
-                ", parentId=" + parentId +
+                ", programId=" + programId +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", pictureId=" + pictureId +
+                ", orderNumber=" + orderNumber +
                 '}';
     }
 }

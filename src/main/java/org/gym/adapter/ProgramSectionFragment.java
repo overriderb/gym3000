@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,10 +15,11 @@ import org.gym.animation.DropDownAnimation;
 import android.widget.Toast;
 import org.gym.cache.CurrentProgramCache;
 import org.gym.component.GymValuePicker;
-import org.gym.domain.Exercise;
-import org.gym.domain.Workout;
 import org.gym.activity.R;
+import org.gym.model.Exercise;
+import org.gym.model.ExerciseType;
 import org.gym.helper.SharedPreferencesHelper;
+import org.gym.model.Workout;
 import org.gym.service.AttemptService;
 import org.gym.service.ExerciseService;
 
@@ -35,63 +35,57 @@ public class ProgramSectionFragment extends Fragment {
      */
     public static final String ARG_SECTION_NUMBER = "org.gym.adapter.ProgramSectionFragment.ARG_SECTION_NUMBER";
 
-    private GymValuePicker weightPicker;
-    private GymValuePicker countPicker;
-    private GymValuePicker exerciseTypePicker;
-
-    private Workout workoutItem;
     private View rootView;
-    private TextView workoutNameTextView;
-    private TextView workoutDescrTextView;
-    private TextView workoutDescrTitleTextView;
-
-    private Long exerciseId;
-    private Long attemptId;
+    private TextView exerciseTypeNameTextView;
+    private TextView exerciseTypeDescrTextView;
+    private TextView exerciseTypeDescrTitleTextView;
     private ImageView imageView;
+    private FrameLayout frameLayout;
+//    private GymValuePicker weightPicker;
+//    private GymValuePicker countPicker;
+//    private GymValuePicker attemptTypePicker;
+
     private ImageView openHidePictureImage;
     private ImageView openHideDescriptionImage;
-    private FrameLayout frameLayout;
 
     private AttemptService attemptService;
     private ExerciseService exerciseService;
 
     private CurrentProgramCache cache;
 
-
-
     public ProgramSectionFragment() {
         cache = CurrentProgramCache.getInstance();
-        attemptService = new AttemptService();
-        exerciseService = new ExerciseService();
+        attemptService = AttemptService.getInstance();
+        exerciseService = ExerciseService.getInstance();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        workoutItem = cache.getWorkoutList().get(getArguments().getInt(ARG_SECTION_NUMBER));
+        ExerciseType exerciseType = cache.getExerciseTypes().get(getArguments().getInt(ARG_SECTION_NUMBER));
 
         rootView = inflater.inflate(R.layout.program_pages, container, false);
+        exerciseTypeNameTextView = (TextView) rootView.findViewById(R.id.workout_title);
+        exerciseTypeDescrTextView = (TextView) rootView.findViewById(R.id.workout_descr);
         frameLayout = (FrameLayout)rootView.findViewById(R.id.absolute_layout_picture);
-        workoutNameTextView = (TextView) rootView.findViewById(R.id.workout_title);
-        workoutDescrTitleTextView = (TextView) rootView.findViewById(R.id.description_title);
-        workoutDescrTextView = (TextView) rootView.findViewById(R.id.workout_descr);
+        exerciseTypeNameTextView = (TextView) rootView.findViewById(R.id.workout_title);
+        exerciseTypeDescrTitleTextView = (TextView) rootView.findViewById(R.id.description_title);
+        exerciseTypeDescrTextView = (TextView) rootView.findViewById(R.id.workout_descr);
         imageView = (ImageView) rootView.findViewById(R.id.workout_picture);
         openHidePictureImage = (ImageView) rootView.findViewById(R.id.open_hide_picture_button);
         openHideDescriptionImage = (ImageView) rootView.findViewById(R.id.open_hide_description_button);
 
-        workoutNameTextView.setText(workoutItem.getName());
-        workoutDescrTextView.setText(workoutItem.getDescription());
+        exerciseTypeNameTextView.setText(exerciseType.getName());
+        exerciseTypeDescrTextView.setText(exerciseType.getDescription());
+        imageView.setImageResource(exerciseType.getPictureId());
 
-        imageView.setImageResource(workoutItem.getPictureId());
 
-
-        workoutNameTextView.setOnClickListener(new View.OnClickListener() {
+        exerciseTypeNameTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickPicture();
             }
         });
-        workoutDescrTitleTextView.setOnClickListener(new View.OnClickListener() {
+        exerciseTypeDescrTitleTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickDescription();
@@ -102,10 +96,10 @@ public class ProgramSectionFragment extends Fragment {
         fillOpenHideImages();
 
         // Configuration of exercise type section
-        final LinearLayout attemptPickerLayout = (LinearLayout) rootView.findViewById(R.id.attemptPickerLayout);
+        /*final LinearLayout attemptPickerLayout = (LinearLayout) rootView.findViewById(R.id.attemptPickerLayout);
         final LinearLayout exerciseTypeLayout = (LinearLayout) rootView.findViewById(R.id.exerciseTypeLayout);
-        exerciseTypePicker = buildExerciseTypePicker(exerciseTypeLayout.getContext());
-        exerciseTypeLayout.addView(exerciseTypePicker);
+        attemptTypePicker = buildAttemptTypePicker(exerciseTypeLayout.getContext());
+        exerciseTypeLayout.addView(attemptTypePicker);
         final Button saveExerciseButton = (Button) rootView.findViewById(R.id.saveExerciseType);
         saveExerciseButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -113,10 +107,10 @@ public class ProgramSectionFragment extends Fragment {
                 exerciseTypeLayout.setVisibility(View.GONE);
                 attemptPickerLayout.setVisibility(View.VISIBLE);
             }
-        });
+        });*/
 
         // Configuration of attempt save section
-        LinearLayout countLayout = (LinearLayout) rootView.findViewById(R.id.countPickerLayout);
+        /*LinearLayout countLayout = (LinearLayout) rootView.findViewById(R.id.countPickerLayout);
         LinearLayout wightLayout = (LinearLayout) rootView.findViewById(R.id.wightPickerLayout);
         countPicker = buildCountPicker(countLayout.getContext());
         countLayout.addView(countPicker);
@@ -127,7 +121,7 @@ public class ProgramSectionFragment extends Fragment {
             public void onClick(View v) {
                 persistAttempt(saveAttemptButton.getContext(), exerciseId);
             }
-        });
+        });*/
 
         return rootView;
     }
@@ -140,7 +134,7 @@ public class ProgramSectionFragment extends Fragment {
      * @param context parent layout context
      * @return created gym number picker
      */
-    private GymValuePicker buildWeightPicker(Context context) {
+    /*private GymValuePicker buildWeightPicker(Context context) {
         GymValuePicker weightPicker = new GymValuePicker(context);
         weightPicker.configureRange(10, 100, 2.5f);
         weightPicker.scaleSize(0.6f);
@@ -158,32 +152,32 @@ public class ProgramSectionFragment extends Fragment {
         return countPicker;
     }
 
-    private GymValuePicker buildExerciseTypePicker(Context context) {
-        GymValuePicker exerciseTypePicker = new GymValuePicker(context);
-        exerciseTypePicker.configureEnumValues(Exercise.TYPE.values());
-        exerciseTypePicker.scaleSize(0.6f);
-        exerciseTypePicker.setWrapSelectorWheel(false);
-        exerciseTypePicker.setDescendantFocusability(GymValuePicker.FOCUS_BLOCK_DESCENDANTS);
-        return exerciseTypePicker;
+    private GymValuePicker buildExerciseLevelPicker(Context context) {
+        GymValuePicker exerciseLevelPicker = new GymValuePicker(context);
+        exerciseLevelPicker.configureEnumValues(Exercise.Level.values());
+        exerciseLevelPicker.scaleSize(0.6f);
+        exerciseLevelPicker.setWrapSelectorWheel(false);
+        exerciseLevelPicker.setDescendantFocusability(GymValuePicker.FOCUS_BLOCK_DESCENDANTS);
+        return exerciseLevelPicker;
     }
 
     private void persistAttempt(Context context, Long exerciseId) {
         String weight = weightPicker.getDisplayedValues()[weightPicker.getValue()];
         int count = countPicker.getValue();
-        attemptId = attemptService.persistAttempt(context, exerciseId, count, weight);
+        attemptId = attemptService.save(context, exerciseId, count, weight);
         Toast.makeText(context, "Attempt " + weight + "/" + count + " persisted", Toast.LENGTH_SHORT).show();
     }
 
     private void persistExerciseType(Context context) {
-        String exerciseType = exerciseTypePicker.getDisplayedValues()[exerciseTypePicker.getValue()];
-        exerciseId = exerciseService.persistExercise(context, workoutItem.getId(), exerciseType);
+        String attemptType = attemptTypePicker.getDisplayedValues()[attemptTypePicker.getValue()];
+        exerciseId = exerciseService.save(context, workoutItem.getId(), attemptType);
         Toast.makeText(context, "Exercise persisted", Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
     private void fillPictureAndDescriptionHeight(){
-        LinearLayout.LayoutParams workoutDescrLayoutParams = (LinearLayout.LayoutParams)workoutDescrTextView.getLayoutParams();
+        LinearLayout.LayoutParams workoutDescrLayoutParams = (LinearLayout.LayoutParams)exerciseTypeDescrTextView.getLayoutParams();
         workoutDescrLayoutParams.height = SharedPreferencesHelper.getInt(this.getActivity(), SharedPreferencesHelper.DESCRIPTION_HEIGHT);
-        workoutDescrTextView.setLayoutParams(workoutDescrLayoutParams);
+        exerciseTypeDescrTextView.setLayoutParams(workoutDescrLayoutParams);
 
         LinearLayout.LayoutParams absoluteLayoutParams = (LinearLayout.LayoutParams)frameLayout.getLayoutParams();
         absoluteLayoutParams.height = SharedPreferencesHelper.getInt(this.getActivity(), SharedPreferencesHelper.PICTURE_HEIGHT);
@@ -231,10 +225,10 @@ public class ProgramSectionFragment extends Fragment {
             SharedPreferencesHelper.setInt(getActivity(), SharedPreferencesHelper.DESCRIPTION_HEIGHT, FrameLayout.LayoutParams.WRAP_CONTENT);
             openHideDescriptionImage.setImageResource(R.drawable.minus_white);
         }
-        DropDownAnimation animation = new DropDownAnimation(workoutDescrTextView,
+        DropDownAnimation animation = new DropDownAnimation(exerciseTypeDescrTextView,
                 SharedPreferencesHelper.getInt(getActivity(),
                         SharedPreferencesHelper.DESCRIPTION_HEIGHT));
-        workoutDescrTextView.startAnimation(animation);
+        exerciseTypeDescrTextView.startAnimation(animation);
     }
 
 

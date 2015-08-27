@@ -1,11 +1,14 @@
 package org.gym.service;
 
-import android.content.Context;
-import org.gym.domain.Exercise;
-import org.gym.repository.DatabaseHelper;
+import org.gym.assembler.ExerciseAssembler;
+import org.gym.model.Exercise;
+import org.gym.model.ExerciseType;
+import org.gym.model.Workout;
+import org.gym.repository.ExerciseRepository;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 /**
  * Service for processing logic about exercise entity
@@ -14,20 +17,41 @@ public class ExerciseService {
 
     public static final String GYM_DATE_FORMAT = "dd.MM.yyyy";
 
-    public Long persistExercise(Context context, Long workoutId, String exerciseType) {
-        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+    private static ExerciseService instance;
 
-        Exercise exercise = new Exercise();
-        exercise.setDate(getCurrentDate());
-        exercise.setParentId(workoutId);
+    private ExerciseAssembler exerciseAssembler;
+    private ExerciseRepository exerciseRepository;
 
-        for (Exercise.TYPE type: Exercise.TYPE.values()) {
-            if (type.name().equals(exerciseType)) {
-                exercise.setType(type);
-            }
+    private ExerciseService() {}
+
+    public static ExerciseService getInstance() {
+        if (instance == null) {
+            instance = new ExerciseService();
+            instance.initFields();
         }
+        return instance;
+    }
 
-        return databaseHelper.getExerciseRepository().storeExercise(exercise);
+    public Long save(Exercise.Level level, Workout workout, ExerciseType exerciseType) {
+        Exercise exercise = new Exercise();
+        exercise.setLevel(level);
+        exercise.setWorkout(workout);
+        exercise.setExerciseType(exerciseType);
+
+        return save(exercise);
+    }
+
+    public Long save(Exercise exercise) {
+        return exerciseRepository.store(exerciseAssembler.modelToDomain(exercise));
+    }
+
+    public List<Exercise> findByType(ExerciseType exerciseType) {
+        return exerciseAssembler.domainListToModelList(exerciseRepository.findByTypeId(exerciseType.getId()));
+    }
+
+    private void initFields() {
+        exerciseAssembler = ExerciseAssembler.getInstance();
+        exerciseRepository = ExerciseRepository.getInstance();
     }
 
     private String getCurrentDate() {

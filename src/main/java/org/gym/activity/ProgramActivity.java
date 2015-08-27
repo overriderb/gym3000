@@ -11,7 +11,6 @@ import android.widget.ProgressBar;
 
 import org.gym.adapter.ProgramPagerAdapter;
 
-
 /**
  * Shows workouts list which has single parent program.
  */

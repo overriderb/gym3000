@@ -8,7 +8,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/title"
-            android:id="@+id/change_single_workout_top_title"
+            android:id="@+id/change_single_exercise_type_top_title"
             android:textSize="@dimen/text_size_middle"
             android:layout_gravity="center_horizontal"/>
     <TextView
@@ -19,7 +19,7 @@
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/change_single_workout_title_edit"/>
+            android:id="@+id/change_single_exercise_type_title_edit"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,13 +28,13 @@
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/change_single_workout_description_edit"/>
+            android:id="@+id/change_single_exercise_type_description_edit"/>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/save_workout"
-            android:id="@+id/change_single_workout_save_button"
+            android:text="@string/save_exercise_type"
+            android:id="@+id/change_single_exercise_type_save_button"
             android:layout_gravity="center_horizontal"
             android:clickable="true"
-            android:onClick="saveWorkout"/>
+            android:onClick="saveExerciseType"/>
 </LinearLayout>

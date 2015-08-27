@@ -1,26 +1,54 @@
 package org.gym.service;
 
-import android.content.Context;
-
-import org.gym.domain.Program;
-import org.gym.repository.DatabaseHelper;
+import org.gym.assembler.ProgramAssembler;
+import org.gym.model.Program;
+import org.gym.repository.ProgramRepository;
 
 import java.util.List;
 
 /**
- * Service for processing logic about program entity
+ * TODO: Add comment
  */
 public class ProgramService {
 
-    public Long persistProgram(Context context, Long userId, String name, String description, int order_number){
-        DatabaseHelper databaseHelper = new DatabaseHelper(context);
+    private static ProgramService instance;
 
-        Program program = new Program(userId, name, description, order_number);
-        return databaseHelper.getProgramRepository().storeProgram(program);
+    private ProgramAssembler programAssembler;
+    private ProgramRepository programRepository;
+
+    private ProgramService() {}
+
+    public static ProgramService getInstance() {
+        if (instance == null) {
+            instance = new ProgramService();
+            instance.initFields();
+        }
+        return instance;
     }
 
-    public List<Program> getPrograms(Context context){
-        DatabaseHelper databaseHelper = new DatabaseHelper(context);
-        return databaseHelper.getProgramRepository().findAllProgramsList();
+    public Long save(String name, String description, int order) {
+        Program program = new Program();
+        program.setName(name);
+        program.setDescription(description);
+        program.setOrderNumber(order);
+
+        return save(program);
+    }
+
+    public Long save(Program program) {
+        return programRepository.store(programAssembler.modelToDomain(program));
+    }
+
+    public Program find() {
+        return null;
+    }
+
+    public List<Program> findAll() {
+        return programAssembler.domainListToModelList(programRepository.findAll());
+    }
+
+    private void initFields() {
+        programAssembler = ProgramAssembler.getInstance();
+        programRepository = ProgramRepository.getInstance();
     }
 }
