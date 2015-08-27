@@ -61,7 +61,9 @@ public class ExerciseTypeRepository {
     public ExerciseTypeEntity find(Long exerciseTypeId){
         instantiateDb();
         Logger.info("Finding exercise type id: " + exerciseTypeId, ExerciseTypeRepository.class);
-        String query = "SELECT  * FROM " + ExerciseTypeEntity.TABLE_NAME + " WHERE " + ExerciseTypeEntity.Column.ID + " = " + exerciseTypeId +  " ORDER BY ORDER_NUMBER";;
+        String query =
+                "SELECT  * FROM " + ExerciseTypeEntity.TABLE_NAME + " WHERE " + ExerciseTypeEntity.Column.ID
+                        + " = " + exerciseTypeId +  " ORDER BY " + ExerciseTypeEntity.Column.ORDER_NUMBER;
         Logger.info("Query: " + query, WorkoutRepository.class);
 
         ExerciseTypeEntity exerciseTypeEntity = null;
@@ -85,7 +87,9 @@ public class ExerciseTypeRepository {
         instantiateDb();
         Logger.info("Finding exercise types by program id: " + programId, ExerciseTypeRepository.class);
         List<ExerciseTypeEntity> exerciseTypeEntities = new LinkedList<>();
-        String query = "SELECT  * FROM " + ExerciseTypeEntity.TABLE_NAME + " WHERE " + ExerciseTypeEntity.Column.PROGRAM_ID + " = " + programId +  " ORDER BY ORDER_NUMBER";;
+        String query =
+                "SELECT  * FROM " + ExerciseTypeEntity.TABLE_NAME + " WHERE " + ExerciseTypeEntity.Column.PROGRAM_ID
+                        + " = " + programId +  " ORDER BY " + ExerciseTypeEntity.Column.ORDER_NUMBER;
         Logger.info("Query: " + query, WorkoutRepository.class);
 
         Cursor cursor = database.rawQuery(query, null);
