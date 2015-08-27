@@ -8,7 +8,7 @@ import org.gym.repository.ExerciseTypeRepository;
 import java.util.List;
 
 /**
- * TODO: Add comment
+ * Service for processing exercise type entities
  */
 public class ExerciseTypeService {
 

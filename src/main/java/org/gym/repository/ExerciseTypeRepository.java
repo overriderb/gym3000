@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * TODO: Add comment
+ * Provide CRUD operation with exercise type objects
  */
 public class ExerciseTypeRepository {
 

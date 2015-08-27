@@ -3,7 +3,7 @@ package org.gym.model;
 import java.util.List;
 
 /**
- * TODO: Add comment
+ * Program model entity for transfer data to presentation layer
  */
 public class Program {
 

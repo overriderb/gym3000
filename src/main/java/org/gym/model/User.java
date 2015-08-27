@@ -1,7 +1,7 @@
 package org.gym.model;
 
 /**
- * TODO: Add comment
+ * User model entity for transfer data to presentation layer
  */
 public class User {
 

@@ -1,7 +1,5 @@
 package org.gym.domain;
 
-import java.util.List;
-
 /**
  * Exercise is list of attempts
  */

@@ -1,8 +1,6 @@
 package org.gym.service;
 
-import android.content.Context;
 import org.gym.assembler.ExerciseAssembler;
-import org.gym.model.Attempt;
 import org.gym.model.Exercise;
 import org.gym.model.ExerciseType;
 import org.gym.model.Workout;

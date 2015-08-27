@@ -1,7 +1,7 @@
 package org.gym.model;
 
 /**
- * TODO: Add comment
+ * Attempt model entity for transfer data to presentation layer
  */
 public class Attempt {
 
