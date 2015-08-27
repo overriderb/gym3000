@@ -41,9 +41,9 @@ public class ProgramSectionFragment extends Fragment {
     private TextView exerciseTypeDescrTitleTextView;
     private ImageView imageView;
     private FrameLayout frameLayout;
-    private GymValuePicker weightPicker;
-    private GymValuePicker countPicker;
-    private GymValuePicker attemptTypePicker;
+//    private GymValuePicker weightPicker;
+//    private GymValuePicker countPicker;
+//    private GymValuePicker attemptTypePicker;
 
     private ImageView openHidePictureImage;
     private ImageView openHideDescriptionImage;
@@ -134,7 +134,7 @@ public class ProgramSectionFragment extends Fragment {
      * @param context parent layout context
      * @return created gym number picker
      */
-    private GymValuePicker buildWeightPicker(Context context) {
+    /*private GymValuePicker buildWeightPicker(Context context) {
         GymValuePicker weightPicker = new GymValuePicker(context);
         weightPicker.configureRange(10, 100, 2.5f);
         weightPicker.scaleSize(0.6f);
@@ -164,15 +164,15 @@ public class ProgramSectionFragment extends Fragment {
     private void persistAttempt(Context context, Long exerciseId) {
         String weight = weightPicker.getDisplayedValues()[weightPicker.getValue()];
         int count = countPicker.getValue();
-//        attemptId = attemptService.save(context, exerciseId, count, weight);
+        attemptId = attemptService.save(context, exerciseId, count, weight);
         Toast.makeText(context, "Attempt " + weight + "/" + count + " persisted", Toast.LENGTH_SHORT).show();
     }
 
     private void persistExerciseType(Context context) {
         String attemptType = attemptTypePicker.getDisplayedValues()[attemptTypePicker.getValue()];
-//        exerciseId = exerciseService.save(context, workoutItem.getId(), attemptType);
+        exerciseId = exerciseService.save(context, workoutItem.getId(), attemptType);
         Toast.makeText(context, "Exercise persisted", Toast.LENGTH_SHORT).show();
-    }
+    }*/
 
     private void fillPictureAndDescriptionHeight(){
         LinearLayout.LayoutParams workoutDescrLayoutParams = (LinearLayout.LayoutParams)exerciseTypeDescrTextView.getLayoutParams();
