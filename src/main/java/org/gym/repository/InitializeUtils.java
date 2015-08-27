@@ -6,7 +6,7 @@ import org.gym.domain.ProgramEntity;
 import org.gym.domain.UserEntity;
 
 /**
- * TODO: Add comment
+ * Class contains initialize data for first start application and functional testing
  */
 public class InitializeUtils {
 
