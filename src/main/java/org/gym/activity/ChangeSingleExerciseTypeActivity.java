@@ -35,7 +35,7 @@ public class ChangeSingleExerciseTypeActivity extends Activity {
         exerciseType.setName(title.getText().toString());
         exerciseType.setDescription(description.getText().toString());
         //TODO: Remove magic numbers!
-        exerciseType.setOrder(0);
+        exerciseType.setOrderNumber(0);
         exerciseType.setPictureId(12);
 
         cache.addExerciseType(exerciseType);

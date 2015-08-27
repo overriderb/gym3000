@@ -34,7 +34,7 @@ public class ProgramAssembler {
         program.setId(programEntity.getId());
         program.setName(programEntity.getName());
         program.setDescription(programEntity.getDescription());
-        program.setOrder(programEntity.getOrder());
+        program.setOrderNumber(programEntity.getOrderNumber());
         List<ExerciseTypeEntity> exerciseTypeEntities = exerciseTypeRepository.findByProgramId(programEntity.getId());
         List<ExerciseType> exerciseTypes = exerciseTypeAssembler.domainListToModelList(exerciseTypeEntities, false);
         program.setExerciseTypes(fillExerciseTypes(exerciseTypes, program));
@@ -56,7 +56,7 @@ public class ProgramAssembler {
         programEntity.setId(program.getId());
         programEntity.setName(program.getName());
         programEntity.setDescription(program.getDescription());
-        programEntity.setOrder(program.getOrder());
+        programEntity.setOrderNumber(program.getOrderNumber());
 
         return programEntity;
     }

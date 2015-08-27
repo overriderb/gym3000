@@ -46,7 +46,7 @@ public class ProgramRepository {
         ContentValues values = new ContentValues();
         values.put(ProgramEntity.Column.NAME.name(), programEntity.getName());
         values.put(ProgramEntity.Column.DESCRIPTION.name(), programEntity.getDescription());
-        values.put(ProgramEntity.Column.ORDER.name(), programEntity.getOrder());
+        values.put(ProgramEntity.Column.ORDER_NUMBER.name(), programEntity.getOrderNumber());
 
         Long id = database.insert(ProgramEntity.TABLE_NAME, null, values);
         programEntity.setId(id);
@@ -69,7 +69,7 @@ public class ProgramRepository {
             programEntity.setId(cursor.getLong(0));
             programEntity.setName(cursor.getString(1));
             programEntity.setDescription(cursor.getString(2));
-            programEntity.setOrder(cursor.getInt(3));
+            programEntity.setOrderNumber(cursor.getInt(3));
         }
         closeDb();
         return programEntity;
@@ -79,7 +79,7 @@ public class ProgramRepository {
         instantiateDb();
         Logger.info("Finding all programs", ProgramRepository.class);
         List<ProgramEntity> programEntities = new LinkedList<>();
-        String query = "SELECT * FROM " + ProgramEntity.TABLE_NAME +  " ORDER BY ORDER";
+        String query = "SELECT * FROM " + ProgramEntity.TABLE_NAME +  " ORDER BY ORDER_NUMBER";
 
         Cursor cursor = database.rawQuery(query, null);
         if (cursor.moveToFirst()) {
@@ -88,7 +88,7 @@ public class ProgramRepository {
                 programEntity.setId(cursor.getLong(0));
                 programEntity.setName(cursor.getString(1));
                 programEntity.setDescription(cursor.getString(2));
-                programEntity.setOrder(cursor.getInt(3));
+                programEntity.setOrderNumber(cursor.getInt(3));
 
                 programEntities.add(programEntity);
             } while (cursor.moveToNext());

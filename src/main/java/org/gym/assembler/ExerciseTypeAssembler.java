@@ -43,7 +43,7 @@ public class ExerciseTypeAssembler {
         exerciseTypeEntity.setDescription(exerciseType.getDescription());
         exerciseTypeEntity.setPictureId(exerciseType.getPictureId());
         exerciseTypeEntity.setProgramId(exerciseType.getProgram().getId());
-        exerciseTypeEntity.setOrder(exerciseType.getOrder());
+        exerciseTypeEntity.setOrderNumber(exerciseType.getOrderNumber());
 
         return exerciseTypeEntity;
     }
@@ -54,7 +54,7 @@ public class ExerciseTypeAssembler {
         exerciseType.setName(exerciseTypeEntity.getName());
         exerciseType.setDescription(exerciseTypeEntity.getDescription());
         exerciseType.setPictureId(exerciseTypeEntity.getPictureId());
-        exerciseType.setOrder(exerciseTypeEntity.getOrder());
+        exerciseType.setOrderNumber(exerciseTypeEntity.getOrderNumber());
         // Need for correct filling field with cyclic dependencies
         if (withDependencies) {
             ProgramEntity programEntity = programRepository.find(exerciseTypeEntity.getProgramId());

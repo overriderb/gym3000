@@ -12,7 +12,7 @@ public class ExerciseTypeEntity {
     private String name;
     private String description;
     private int pictureId;
-    private int order;
+    private int orderNumber;
 
     public enum Column {
         ID,
@@ -20,18 +20,18 @@ public class ExerciseTypeEntity {
         NAME,
         DESCRIPTION,
         PICTURE_ID,
-        ORDER
+        ORDER_NUMBER
     }
 
     public ExerciseTypeEntity() {
     }
 
-    public ExerciseTypeEntity(Long programId, String name, String description, int pictureId, int order) {
+    public ExerciseTypeEntity(Long programId, String name, String description, int pictureId, int orderNumber) {
         this.programId = programId;
         this.name = name;
         this.description = description;
         this.pictureId = pictureId;
-        this.order = order;
+        this.orderNumber = orderNumber;
     }
 
     public Long getId() {
@@ -74,12 +74,12 @@ public class ExerciseTypeEntity {
         this.pictureId = pictureId;
     }
 
-    public int getOrder() {
-        return order;
+    public int getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setOrder(int order) {
-        this.order = order;
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     @Override
@@ -90,7 +90,7 @@ public class ExerciseTypeEntity {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", pictureId=" + pictureId +
-                ", order=" + order +
+                ", orderNumber=" + orderNumber +
                 '}';
     }
 }

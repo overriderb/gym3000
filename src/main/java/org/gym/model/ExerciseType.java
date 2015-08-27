@@ -10,7 +10,7 @@ public class ExerciseType {
     private String name;
     private String description;
     private int pictureId;
-    private int order;
+    private int orderNumber;
 
     public Long getId() {
         return id;
@@ -52,11 +52,11 @@ public class ExerciseType {
         this.pictureId = pictureId;
     }
 
-    public int getOrder() {
-        return order;
+    public int getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setOrder(int order) {
-        this.order = order;
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
     }
 }

@@ -24,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + ProgramEntity.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + ProgramEntity.Column.NAME + " TEXT NOT NULL, "
             + ProgramEntity.Column.DESCRIPTION + " TEXT, "
-            + ProgramEntity.Column.ORDER + " INTEGER NOT NULL);";
+            + ProgramEntity.Column.ORDER_NUMBER + " INTEGER NOT NULL);";
 
     private static final String CREATE_WORKOUT = "CREATE TABLE " + WorkoutEntity.TABLE_NAME + " ("
             + WorkoutEntity.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
@@ -51,7 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + ExerciseTypeEntity.Column.NAME + " TEXT, "
             + ExerciseTypeEntity.Column.DESCRIPTION + " TEXT, "
             + ExerciseTypeEntity.Column.PICTURE_ID + " INTEGER, "
-            + ExerciseTypeEntity.Column.ORDER + " INTEGER, "
+            + ExerciseTypeEntity.Column.ORDER_NUMBER + " INTEGER, "
             + "FOREIGN KEY (" + ExerciseTypeEntity.Column.PROGRAM_ID + ") "
             + "REFERENCES " + ProgramEntity.TABLE_NAME + "(" + ProgramEntity.Column.ID + ")"
             + ");";

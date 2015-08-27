@@ -10,22 +10,22 @@ public class ProgramEntity implements HasNameAndDescription {
     private Long id;
     private String name;
     private String description;
-    private int order;
+    private int orderNumber;
 
     public enum Column {
         ID,
         NAME,
         DESCRIPTION,
-        ORDER
+        ORDER_NUMBER
     }
 
     public ProgramEntity() {
     }
 
-    public ProgramEntity(String name, String description, int order) {
+    public ProgramEntity(String name, String description, int orderNumber) {
         this.name = name;
         this.description = description;
-        this.order = order;
+        this.orderNumber = orderNumber;
     }
 
     public Long getId() {
@@ -54,12 +54,12 @@ public class ProgramEntity implements HasNameAndDescription {
         this.description = description;
     }
 
-    public int getOrder() {
-        return order;
+    public int getOrderNumber() {
+        return orderNumber;
     }
 
-    public void setOrder(int order) {
-        this.order = order;
+    public void setOrderNumber(int orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class ProgramEntity implements HasNameAndDescription {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", order=" + order +
+                ", orderNumber=" + orderNumber +
                 '}';
     }
 }

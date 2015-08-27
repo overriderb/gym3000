@@ -30,7 +30,7 @@ public class ProgramService {
         Program program = new Program();
         program.setName(name);
         program.setDescription(description);
-        program.setOrder(order);
+        program.setOrderNumber(order);
 
         return save(program);
     }
