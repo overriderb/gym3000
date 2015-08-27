@@ -4,7 +4,7 @@ import org.gym.domain.UserEntity;
 import org.gym.model.User;
 
 /**
- * TODO: Add comment
+ * Assemble user domain entities to model entities and vice versa
  */
 public class UserAssembler {
 

@@ -9,7 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * TODO: Add comment
+ * Assemble attempt domain entities to model entities and vice versa
  */
 public class AttemptAssembler {
 

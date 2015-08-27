@@ -14,7 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * TODO: Add comment
+ * Assemble exercise domain entities to model entities and vice versa
  */
 public class ExerciseAssembler {
 
