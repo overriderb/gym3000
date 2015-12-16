@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android">
+        android:layout_height="fill_parent">
 
-
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/program_frame_layout">
+    <View
+        android:id="@+id/top_progress_bar_line"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/black"/>
 
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
@@ -19,35 +19,22 @@
             android:id="@+id/programProgressBar"
             android:progressDrawable="@layout/progress_bar_drawable"
             android:layout_gravity="center_horizontal"
+            android:text="@string/program_layout_history"
+            android:layout_below="@+id/top_progress_bar_line"/>
 
-            android:text="@string/program_layout_history"/>
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/program_point_up_picture"
-            android:src="@drawable/point_up_white"
-            android:scaleType="centerCrop"
-            android:layout_gravity="center_horizontal|top"
-            android:onClick="startHistory"/>
-    </FrameLayout>
-
-
-    <!--<Button-->
-        <!--style="?android:attr/buttonStyleSmall"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/program_layout_history"-->
-        <!--android:id="@+id/program_to_history_button"-->
-        <!--android:onClick="startHistory"/>-->
-
-
+    <View
+        android:id="@+id/buttom_progress_bar_line"
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="@android:color/black"
+        android:layout_below="@+id/programProgressBar"/>
 
     <android.support.v4.view.ViewPager
             xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/program_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:layout_below="@id/buttom_progress_bar_line">
 
             <android.support.v4.view.PagerTitleStrip
                     android:id="@+id/pagerTitleStrip"
@@ -57,4 +44,14 @@
                     android:background="#33b5e5"
                     android:textColor="#fff" />
     </android.support.v4.view.ViewPager>
-</LinearLayout>
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:id="@+id/program_point_up_picture"
+        android:src="@drawable/point_up_white"
+        android:onClick="startHistory"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
