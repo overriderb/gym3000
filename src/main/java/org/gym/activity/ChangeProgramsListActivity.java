@@ -7,9 +7,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import org.gym.domain.Program;
-import org.gym.repository.DatabaseHelper;
-import org.gym.repository.ProgramRepository;
+import org.gym.model.Program;
+import org.gym.service.ProgramService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,16 +18,14 @@ import java.util.List;
  */
 public class ChangeProgramsListActivity extends Activity {
 
-    private DatabaseHelper databaseHelper;
+    private ProgramService programService = ProgramService.getInstance();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.change_programs_layout);
 
-        databaseHelper = new DatabaseHelper(this);
-        ProgramRepository programRepository =  databaseHelper.getProgramRepository();
-        List<Program> programsList = programRepository.findAllProgramsList();
+        List<Program> programsList = programService.findAll();
 
         ArrayList<String> resultList = new ArrayList<String>();
         for(Program item: programsList){

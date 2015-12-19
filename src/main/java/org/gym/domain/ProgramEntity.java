@@ -1,31 +1,28 @@
 package org.gym.domain;
 
 /**
- * Created by anni0913 on 15.10.2014.
+ * Program is type of workout that contains excercises of different types
  */
-public class Program implements HasNameAndDescription{
+public class ProgramEntity implements HasNameAndDescription {
 
     public static final String TABLE_NAME = "PROGRAM";
 
     private Long id;
-    private Long userId;
     private String name;
     private String description;
     private int orderNumber;
 
     public enum Column {
         ID,
-        PARENT_ID,
         NAME,
         DESCRIPTION,
         ORDER_NUMBER
     }
 
-    public Program() {
+    public ProgramEntity() {
     }
 
-    public Program(Long userId, String name, String description, int orderNumber) {
-        this.userId = userId;
+    public ProgramEntity(String name, String description, int orderNumber) {
         this.name = name;
         this.description = description;
         this.orderNumber = orderNumber;
@@ -65,20 +62,13 @@ public class Program implements HasNameAndDescription{
         this.orderNumber = orderNumber;
     }
 
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
     @Override
     public String toString() {
-        return "Program{" +
+        return "ProgramEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", orderNumber=" + orderNumber +
                 '}';
     }
 }

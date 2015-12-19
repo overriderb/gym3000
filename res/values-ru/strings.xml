@@ -19,7 +19,7 @@
     <string name="program_settings">Настройки программ</string>
     <string name="save_attempt_button">Сохранить</string>
     <string name="save_program">Сохранить программу</string>
-    <string name="save_workout">Сохранить упражнение</string>
+    <string name="save_exercise_type">Сохранить тип упражнения</string>
     <string name="settings">Настройки</string>
     <string name="start_exercise_button">Старт</string>
     <string name="title">Название</string>

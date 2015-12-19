@@ -3,7 +3,7 @@ package org.gym.domain;
 /**
  * User entity
  */
-public class User {
+public class UserEntity {
 
     public static final String TABLE_NAME = "USER";
 
@@ -15,10 +15,10 @@ public class User {
         NAME
     }
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(String name) {
+    public UserEntity(String name) {
         this.name = name;
     }
 
@@ -40,7 +40,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "UserEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

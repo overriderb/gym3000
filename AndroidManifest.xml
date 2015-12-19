@@ -25,7 +25,7 @@
         <activity android:name=".HistoryActivity"
                   android:parentActivityName=".MenuActivity"
                   android:label=""/>
-        <activity android:name=".ChangeWorkoutsListActivity"
+        <activity android:name=".ChangeExerciseTypeListActivity"
                   android:parentActivityName=".SettingsProgramActivity"
                   android:label=""/>
         <activity android:name=".ChangeProgramsListActivity"
@@ -40,8 +40,8 @@
         <activity android:name=".ChangeSingleProgramActivity"
                   android:parentActivityName=".ChangeProgramsListActivity"
                   android:label=""/>
-        <activity android:name=".ChangeSingleWorkoutActivity"
-                  android:parentActivityName=".ChangeWorkoutsListActivity"
+        <activity android:name=".ChangeSingleExerciseTypeActivity"
+                  android:parentActivityName=".ChangeExerciseTypeListActivity"
                   android:label=""/>
     </application>
 

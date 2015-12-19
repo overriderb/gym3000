@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.ProgressBar;
 import org.gym.adapter.HistoryPagerAdapter;
 
-
 /**
  * Activity shows exercises and attempts which are binded to current workouts list and single program
  */

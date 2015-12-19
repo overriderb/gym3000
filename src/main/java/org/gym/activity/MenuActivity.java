@@ -3,16 +3,16 @@ package org.gym.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.*;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-
 import org.gym.cache.CurrentProgramCache;
-import org.gym.domain.Program;
-import org.gym.domain.Workout;
-import org.gym.logging.Logger;
+import org.gym.model.Program;
 import org.gym.service.ProgramService;
-import org.gym.service.WorkoutService;
 
 import java.util.List;
 
@@ -21,33 +21,35 @@ import java.util.List;
  */
 public class MenuActivity extends Activity {
 
-    private ProgramService programService;
-    private WorkoutService workoutService;
+    private ProgramService programService = ProgramService.getInstance();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        programService = new ProgramService();
-        workoutService = new WorkoutService();
-
+        
         setContentView(R.layout.menu_layout);
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.menu_linear_layout);
+        List<Program> programs = ProgramService.getInstance().findAll();
+        for(final Program program : programs) {
+            Button button = new Button(this);
+            button.setText(program.getName());
+            button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    fillCurrentProgramCache(program);
+                    startActivity(view);
+                }
+            });
+            linearLayout.addView(button);
+        }
+
         createMenuButtons();
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        /*int activity = getIntent().getIntExtra(getString(R.string.activity_number), 0);
-        switch (activity) {
-            case R.integer.change_single_program_activity:
-                overridePendingTransition(R.anim.left_slide_1, R.anim.left_slide_2);
-                break;
-            default:
-                overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
-                break;
-        }*/
-        overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
     }
 
     @Override
@@ -60,7 +62,7 @@ public class MenuActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected (MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.menu_action_settings:
+            case R.id.action_settings:
                 startSettingsMenuActivity();
                 return true;
             default:
@@ -70,26 +72,23 @@ public class MenuActivity extends Activity {
 
     public void startActivity(View view){
         Intent intent = new Intent(this, ProgramActivity.class);
-        intent.putExtra(getString(R.string.activity_number), R.integer.menu_activity);
         startActivity(intent);
     }
 
     private void startSettingsMenuActivity(){
         Intent intent = new Intent(this, SettingsMenuActivity.class);
-        intent.putExtra(getString(R.string.activity_number), R.integer.menu_activity);
         startActivity(intent);
     }
 
     private void createMenuButtons(){
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.menu_linear_layout);
 
-        List<Program> programsList = programService.getPrograms(this);
+        List<Program> programsList = programService.findAll();
 
         for(final Program program : programsList){
             Button button = new Button(this);
             button.setText(program.getName());
-            button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT));
+            button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -103,7 +102,6 @@ public class MenuActivity extends Activity {
 
     private void fillCurrentProgramCache(Program program){
         CurrentProgramCache cache = CurrentProgramCache.getInstance();
-        List<Workout> workoutList = workoutService.getWorkouts(this, program.getId());
-        cache.setValues(program.getId(), program.getName(), program.getDescription(), workoutList);
+        cache.setValues(program.getId(), program.getName(), program.getDescription(), program.getExerciseTypes());
     }
 }

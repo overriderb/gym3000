@@ -6,7 +6,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.View;
 import org.gym.cache.CurrentProgramCache;
-import org.gym.domain.Workout;
+import org.gym.model.ExerciseType;
 
 import java.util.Map;
 
@@ -22,7 +22,7 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
     public ProgramPagerAdapter(FragmentManager fragmentManager) {
         super(fragmentManager);
         cache = CurrentProgramCache.getInstance();
-        this.pageCount = cache.getWorkoutList().size();
+        this.pageCount = cache.getExerciseTypes().size();
     }
 
     @Override
@@ -46,8 +46,8 @@ public class ProgramPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        Workout workoutItem = cache.getWorkoutList().get(position);
-        return position + 1 + ". " + workoutItem.getName();
+        ExerciseType exerciseType = cache.getExerciseTypes().get(position);
+        return position + 1 + ". " + exerciseType.getName();
     }
 
     public void setPageCount(int pageCount) {

@@ -26,7 +26,7 @@
     <string name="description_dot">Description:</string>
     <string name="picture_dot">Picture:</string>
     <string name="save_program">Save program</string>
-    <string name="save_workout">Save workout</string>
+    <string name="save_exercise_type">Save exercise type</string>
 
     <string name="save_attempt_button">Save Attempt</string>
     <string name="start_exercise_button">Start Exercise</string>
