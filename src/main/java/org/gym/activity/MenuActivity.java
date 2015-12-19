@@ -28,8 +28,8 @@ public class MenuActivity extends Activity {
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.menu_layout);
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.menu_linear_layout);
-        List<Program> programs = ProgramService.getInstance().findAll();
+        /*LinearLayout linearLayout = (LinearLayout) findViewById(R.id.menu_linear_layout);
+        List<Program> programs = programService.findAll();
         for(final Program program : programs) {
             Button button = new Button(this);
             button.setText(program.getName());
@@ -42,8 +42,7 @@ public class MenuActivity extends Activity {
                 }
             });
             linearLayout.addView(button);
-        }
-
+        }*/
         createMenuButtons();
     }
 
@@ -62,7 +61,7 @@ public class MenuActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected (MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings:
+            case R.id.menu_action_settings:
                 startSettingsMenuActivity();
                 return true;
             default:

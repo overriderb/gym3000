@@ -38,8 +38,12 @@ public class HistoryPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        ExerciseType exerciseType = cache.getExerciseTypes().get(position);
-        return position + 1 + ". " + exerciseType.getName();
+        if(cache.getExerciseTypes().isEmpty()) {
+            return "no items";
+        } else {
+            ExerciseType exerciseType = cache.getExerciseTypes().get(position);
+            return position + 1 + ". " + exerciseType.getName();
+        }
     }
 
     public void setPageCount(int pageCount) {
