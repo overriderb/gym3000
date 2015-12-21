@@ -20,7 +20,7 @@ public class ProgramActivity extends FragmentActivity {
     public final static String CURRENT_ITEM = "org.gym.activity.ProgramActivity.CURRENT_ITEM";
 
     private ViewPager viewPager;
-    private ProgressBar progressBar;
+    //private ProgressBar progressBar;
     private int currentItem;
 
     @Override
@@ -32,12 +32,12 @@ public class ProgramActivity extends FragmentActivity {
         viewPager = (ViewPager) findViewById(R.id.program_pager);
         viewPager.setAdapter(programPagerAdapter);
         viewPager.setCurrentItem(currentItem);
-        progressBar = (ProgressBar)findViewById(R.id.programProgressBar);
+       /* progressBar = (ProgressBar)findViewById(R.id.programProgressBar);
         progressBar.setMax(100);
-        progressBar.setProgress(75);
+        progressBar.setProgress(75);*/
     }
 
-    @Override
+   /* @Override
     public void onStart() {
         super.onStart();
         int activity = getIntent().getIntExtra(getString(R.string.activity_number), 0);
@@ -58,15 +58,15 @@ public class ProgramActivity extends FragmentActivity {
             default:
                 break;
         }
-    }
+    }*/
 
-    @Override
+    /*@Override
     public void onPause(){
         super.onPause();
         overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
 
     }
-
+*/
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
         MenuInflater inflater = getMenuInflater();

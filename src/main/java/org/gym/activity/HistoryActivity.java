@@ -20,7 +20,7 @@ public class HistoryActivity extends FragmentActivity {
 
     private HistoryPagerAdapter historyPagerAdapter;
     private ViewPager viewPager;
-    private ProgressBar progressBar;
+    //private ProgressBar progressBar;
     private int currentItem;
 
     @Override
@@ -32,11 +32,11 @@ public class HistoryActivity extends FragmentActivity {
         viewPager = (ViewPager) findViewById(R.id.historyPager);
         viewPager.setAdapter(historyPagerAdapter);
         viewPager.setCurrentItem(currentItem);
-        progressBar = (ProgressBar)findViewById(R.id.historyProgressBar);
-        progressBar.setProgress(60);
+        /*progressBar = (ProgressBar)findViewById(R.id.historyProgressBar);
+        progressBar.setProgress(60);*/
     }
 
-    @Override
+   /* @Override
     public void onStart() {
         super.onStart();
         int activity = getIntent().getIntExtra(getString(R.string.activity_number), 0);
@@ -53,7 +53,8 @@ public class HistoryActivity extends FragmentActivity {
     public void onPause(){
         super.onPause();
         overridePendingTransition(R.anim.right_slide_1, R.anim.right_slide_2);
-    }
+    }*/
+
     @Override
     public boolean onCreateOptionsMenu (Menu menu){
         MenuInflater inflater = getMenuInflater();
@@ -65,17 +66,26 @@ public class HistoryActivity extends FragmentActivity {
     public boolean onOptionsItemSelected (MenuItem item) {
         switch (item.getItemId()) {
             case R.id.history_action_settings:
+                startSettingsProgramActivity();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
+
+
     //it is called from xml
     public void startProgram(View view){
         Intent intent = new Intent(this, ProgramActivity.class);
         intent.putExtra(CURRENT_ITEM, viewPager.getCurrentItem());
         intent.putExtra(getString(R.string.activity_number), R.integer.history_activity);
+        startActivity(intent);
+    }
+
+    private void startSettingsProgramActivity(){
+        Intent intent = new Intent(this, SettingsProgramActivity.class);
+        intent.putExtra(getString(R.string.activity_number), R.integer.program_activity);
         startActivity(intent);
     }
 

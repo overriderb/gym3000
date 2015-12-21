@@ -26,23 +26,7 @@ public class MenuActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
         setContentView(R.layout.menu_layout);
-        /*LinearLayout linearLayout = (LinearLayout) findViewById(R.id.menu_linear_layout);
-        List<Program> programs = programService.findAll();
-        for(final Program program : programs) {
-            Button button = new Button(this);
-            button.setText(program.getName());
-            button.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    fillCurrentProgramCache(program);
-                    startActivity(view);
-                }
-            });
-            linearLayout.addView(button);
-        }*/
         createMenuButtons();
     }
 
