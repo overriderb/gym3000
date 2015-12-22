@@ -5,8 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import org.gym.domain.AttemptEntity;
 import org.gym.domain.ExerciseEntity;
+import org.gym.domain.ExerciseTemplateEntity;
+import org.gym.domain.ExerciseTemplateListEntity;
 import org.gym.domain.ExerciseTypeEntity;
 import org.gym.domain.ProgramEntity;
+import org.gym.domain.ProgramTemplateEntity;
 import org.gym.domain.UserEntity;
 import org.gym.domain.WorkoutEntity;
 
@@ -16,7 +19,7 @@ import org.gym.domain.WorkoutEntity;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 3;
-    private static final String DATABASE_NAME = "SQLite9";
+    private static final String DATABASE_NAME = "SQLite_10";
     private static DatabaseHelper instance;
 
 
@@ -70,6 +73,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + UserEntity.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
             + UserEntity.Column.NAME + " TEXT NOT NULL);";
 
+    private static final String CREATE_PROGRAM_TEMPLATE = "CREATE TABLE " + ProgramTemplateEntity.TABLE_NAME + " ("
+            + ProgramTemplateEntity.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + ProgramTemplateEntity.Column.NAME + " TEXT, "
+            + ProgramTemplateEntity.Column.DESCRIPTION + " TEXT);";
+
+    private static final String CREATE_EXERCISE_TEMPLATE = "CREATE TABLE " + ExerciseTemplateEntity.TABLE_NAME + " ("
+            + ExerciseTemplateEntity.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + ExerciseTemplateEntity.Column.NAME + " TEXT, "
+            + ExerciseTemplateEntity.Column.DESCRIPTION + " TEXT);";
+
+    private static final String CREATE_EXERCISE_TEMPLATE_LIST = "CREATE TABLE " + ExerciseTemplateListEntity.TABLE_NAME + " ("
+            + ExerciseTemplateListEntity.Column.ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+            + ExerciseTemplateListEntity.Column.PROGRAM_TEMPLATE_ID + " INTEGER NOT NULL, "
+            + ExerciseTemplateListEntity.Column.EXERCISE_TEMPLATE_ID + " INTEGER NOT NULL, "
+            + "FOREIGN KEY (" + ExerciseTemplateListEntity.Column.PROGRAM_TEMPLATE_ID + ") "
+            + "REFERENCES " + ProgramTemplateEntity.TABLE_NAME + "(" + ProgramTemplateEntity.Column.ID + ")"
+            + "FOREIGN KEY (" + ExerciseTemplateListEntity.Column.EXERCISE_TEMPLATE_ID + ") "
+            + "REFERENCES " + ExerciseTemplateEntity.TABLE_NAME + "(" + ExerciseTemplateEntity.Column.ID + ")"
+            + ");";
+
     private DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version){
         super(context, name, factory, version);
     }
@@ -100,6 +123,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_EXERCISE);
         db.execSQL(CREATE_EXERCISE_TYPE);
         db.execSQL(CREATE_ATTEMPT);
+        db.execSQL(CREATE_PROGRAM_TEMPLATE);
+        db.execSQL(CREATE_EXERCISE_TEMPLATE);
+        db.execSQL(CREATE_EXERCISE_TEMPLATE_LIST);
     }
 
     @Override
@@ -110,6 +136,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + ExerciseTypeEntity.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + AttemptEntity.TABLE_NAME);
         db.execSQL("DROP TABLE IF EXISTS " + UserEntity.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ProgramTemplateEntity.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ExerciseTemplateEntity.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + ExerciseTemplateListEntity.TABLE_NAME);
         onCreate(db);
     }
 }
