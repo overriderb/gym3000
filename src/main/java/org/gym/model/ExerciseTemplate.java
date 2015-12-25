@@ -1,23 +1,16 @@
-package org.gym.domain;
-
-import java.util.List;
+package org.gym.model;
 
 /**
- *
+ * Created by anni0913 on 25.12.2015.
  */
-public class ProgramTemplateEntity {
-
-    public static final String TABLE_NAME = "PROGRAM_TEMPLATE";
+public class ExerciseTemplate {
 
     private Long id;
     private String name;
     private String description;
 
-
-    public enum Column {
-        ID,
-        NAME,
-        DESCRIPTION
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -34,13 +27,5 @@ public class ProgramTemplateEntity {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }
