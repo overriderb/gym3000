@@ -32,7 +32,7 @@ public class ProgramTemplateRepository {
 
     public Long store(ProgramTemplate programTemplate) {
         instantiateDb();
-        Logger.info("Storing programTemplate: " + programTemplate.toString(), ProgramTemplate.class);
+        Logger.info("Storing programTemplate: " + programTemplate.toString(), ProgramTemplateRepository.class);
 
         ContentValues values = new ContentValues();
         values.put(ProgramTemplateEntity.Column.NAME.name(), programTemplate.getName());
@@ -48,8 +48,8 @@ public class ProgramTemplateRepository {
 
     public ProgramTemplateEntity find(Long id) {
         instantiateDb();
-        Logger.info("Finding program by id = " + id, ProgramRepository.class);
-        String query = "SELECT * FROM " + ProgramEntity.TABLE_NAME +  " WHERE " + ProgramEntity.Column.ID + "=" + id;
+        Logger.info("Finding program by id = " + id, ProgramTemplateRepository.class);
+        String query = "SELECT * FROM " + ProgramTemplateEntity.TABLE_NAME +  " WHERE " + ProgramTemplateEntity.Column.ID + "=" + id;
 
         ProgramTemplateEntity programTemplateEntity = null;
 
